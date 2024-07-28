@@ -1,0 +1,45 @@
+.FontSwitcher {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &:hover {
+        .link {
+            color: #e9b00f;
+            transition: color var(--transition);
+        }
+    }
+
+    svg {
+        cursor: pointer;
+
+
+        &.stroke {
+            path {
+                stroke: var(--inverted-primary-color);
+            }
+        }
+
+
+    }
+}
+.bold {
+    background-color: var(--inverted-primary-color);
+    border-radius: 3px;
+
+    svg {
+        &.stroke {
+            path {
+                stroke: var(--inverted-font-icon-color);
+            }
+        }
+    }
+}
+.link {
+    margin-left: 15px;
+    opacity: 1;
+    display: block;
+    transition: color var(--transition);
+    color: var(--inverted-primary-color);
+
+
+}

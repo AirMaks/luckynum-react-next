@@ -1,0 +1,41 @@
+.SlideInfo {
+    position: fixed;
+    bottom: 0;
+    max-width: 350px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+.info {
+    height: 0;
+    overflow: hidden;
+    max-width: 500px;
+    word-break: break-word;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.infoIsOpen {
+    height: 100%;
+}
+.isOpen {
+    bottom: 0;
+}
+.closeBtn {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    cursor: pointer;
+}
+.btnInfo {
+    position: fixed;
+    bottom: 12px;
+    left: 20px;
+    text-align: center;
+    margin: 0 auto;
+    cursor: pointer;
+    font-size: var(--inverted-font-size-xs);
+    padding: 5px 10px;
+    border-radius: 30px;
+    line-height: 1;
+}

@@ -1,0 +1,55 @@
+@tailwind components;
+
+@layer components {
+    .link {
+      @apply flex items-center py-[8px] cursor-pointer text-[14px] leading-[14px] pl-[20px];
+      &.active {
+        background-color: #f2f2f2;
+      }
+    }
+    .link_text {
+        @apply ms-[7px] block text-stone-800 text-[100%];
+    }
+}
+
+.Sidebar {
+    border-left: 1px solid;
+    right: 0;
+    transform: translateX(var(--sidebar-width));
+    transition: transform var(--transition);
+}
+.opened {
+    transform: translateX(0);
+    transition: transform var(--transition);
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 14px;
+    padding-left: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.icon {
+    fill: var(--inverted-primary-color);
+}
+
+@media (max-width: 530px) {
+    .Sidebar {
+        transform: translateX(100vw);
+        border-left: 0;
+    }
+
+    .opened {
+        transform: translateX(0);
+        transition: transform var(--transition);
+    }
+}

@@ -1,0 +1,245 @@
+.Calculator {
+    max-width: 600px;
+    margin: 0 auto 0;
+    border-radius: 5px;
+}
+
+.Field {
+    position: relative;
+    &:nth-child(2) {
+        margin: 0 8px;
+    }
+    label, .label {
+        margin-bottom: 10px;
+        display: inline-block;
+        font-weight: var(--inverted-font-weight);
+        font-size: var(--inverted-font-size-label);
+        line-height: 1;
+    }
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: var(--inverted-font-size);
+    font-weight: var(--inverted-font-weight);
+}
+
+.Button {
+    font-weight: var(--inverted-font-weight);
+    font-size: var(--inverted-font-size-button);
+}
+
+.finalPayment {
+    font-weight: var(--inverted-font-weight);
+    font-size: var(--inverted-font-size-button);
+    margin-bottom: 10px;
+
+    div {
+        margin-right: 10px;
+    }
+}
+
+.errorPercent {
+    border-color: #c00;
+}
+.Select, .SelectType {
+    border: 1px solid;
+}
+.Select {
+    height: 38px;
+    border-radius: 4px;
+    width: 140px;
+    padding: 4px;
+    > div {
+        cursor: pointer;
+    }
+
+    svg {
+        position: absolute;
+        right: 5px;
+        top: 45px;
+        pointer-events: none;
+
+        path {
+            &:nth-child(2) {
+            }
+        }
+    }
+}
+
+.SelectType {
+    height: 38px;
+    border-radius: 4px;
+    width: 100%;
+    padding: 4px;
+    padding-right: 30px;
+    margin-top: 10px;
+    > div {
+        cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+
+    }
+
+    svg {
+        position: absolute;
+        right: 5px;
+        top: 12px;
+        pointer-events: none;
+        path {
+            &:nth-child(2) {
+            }
+        }
+    }
+}
+.selectList {
+    display: none;
+    opacity: 0;
+    max-height: 300px;
+    right: 0;
+    left: 0;
+    overflow-y: auto;
+    z-index: 1001;
+    position: absolute;
+    border-radius: 4px;
+    top: 40px;
+
+    div {
+        padding: 4px;
+        cursor: pointer;
+    }
+
+    &.openSelect {
+        display: block;
+        opacity: 1;
+    }
+}
+
+.selectList, .selectListTerm {
+    border: 1px solid;
+    div {
+        &:hover:not(&.selected) {
+        }
+    }
+}
+
+.selectListTerm {
+    display: none;
+    opacity: 0;
+    max-height: 300px;
+    right: 0;
+    left: 0;
+    overflow-y: auto;
+    z-index: 1001;
+    position: absolute;
+    border-radius: 4px;
+    top: 75px;
+
+
+    div {
+        padding: 4px;
+        cursor: pointer;
+    }
+
+    &.openSelect {
+        display: block;
+        opacity: 1;
+    }
+}
+
+.selected {
+}
+
+.container {
+    display: flex;
+}
+
+
+
+.paymentTable {
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    // width: 540px;
+    overflow-x: auto;
+  }
+
+  .tableHeader {
+    border-bottom: 1px solid;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding: 10px;
+    max-width: 600px;
+    >div {
+        width: 20%;
+        text-align: center;
+    }
+  }
+  .tableOverflow {
+    max-height: 400px;
+    white-space: nowrap;
+  }
+  .tableRow {
+    border-bottom: 1px solid;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+
+    &:last-child {
+        border: 0;
+    }
+
+    >div {
+        width: 20%;
+        text-align: center;
+    }
+  }
+  @media (max-width: 530px) {
+    .container {
+        flex-wrap: wrap;
+    }
+
+    .Field {
+        width: 100%;
+        &:nth-child(2) {
+            margin: 0;
+        }
+    }
+    .Select{
+        width: 100%;
+    }
+
+    .finalPayment {
+        span {
+            display: inline-block;
+        }
+    }
+
+    .paymentTable {
+        font-size: 14px;
+        width: calc(100vw - 40px);
+        overflow-x: auto;
+    }
+
+    .tableOverflow, .tableHeader {
+        width: 530px;
+    }
+
+
+}
+
+@media (max-width: 420px) {
+    .paymentTable {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 374px) {
+    .paymentTable {
+
+        font-size: 10px;
+    }
+}

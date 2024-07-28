@@ -1,0 +1,51 @@
+.Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    line-height: 1.5;
+
+    button {
+        cursor: pointer;
+        border: 0;
+        padding: 6px 15px;
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        &.disabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+
+    }
+
+    .border {
+        border: 1px solid;
+    }
+}
+
+.size_m {
+    font: var(--font-m);
+}
+
+.size_l {
+    font: var(--font-l);
+}
+
+.size_xl {
+    font: var(--font-xl);
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.semibold {
+    font-weight: 500;
+}
+
+.w100 {
+    width: 100%;
+    max-width: 100%;
+}

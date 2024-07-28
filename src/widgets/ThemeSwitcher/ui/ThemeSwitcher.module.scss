@@ -1,0 +1,14 @@
+.ThemeSwitcher {
+    display: flex;
+    align-items: center;
+
+    svg {
+        cursor: pointer;
+
+        path {
+            fill: var(--inverted-primary-color);
+        }
+
+       
+    }
+}

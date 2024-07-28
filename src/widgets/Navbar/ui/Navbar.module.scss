@@ -1,0 +1,25 @@
+.Settings {
+    transform: rotate(0deg);
+    transition: transform var(--transition);
+}
+.roll {
+    transform: rotate(90deg);
+    transition: transform var(--transition);
+}
+.Icon {
+    path {
+        fill: var(--inverted-primary-color);
+    }
+}
+.logoutBtn {
+    margin-left: auto;
+    cursor: pointer;
+
+    path {
+        fill: var(--inverted-primary-color);
+    }
+}
+
+.mainLink {
+    margin-right: 15px;
+}

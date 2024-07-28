@@ -1,0 +1,56 @@
+.OwnAnimation {
+    border-right: 1px solid;
+    left: 0;
+    padding: 0 20px;
+}
+
+.closeBtn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.heading {
+    font-size: var(--inverted-font-weight);
+    font-size: var(--inverted-font-size);
+    padding: 20px 0;
+    max-width: 250px;
+}
+
+.items_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 14px;
+    padding-left: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    cursor: pointer;
+}
+
+.input {
+    padding: 2px 3px;
+    border: 1px solid;
+    outline: none;
+    background: transparent;
+}
+
+@media (max-width: 530px) {
+    .OwnAnimation {
+        border-right: 0;
+    }
+}

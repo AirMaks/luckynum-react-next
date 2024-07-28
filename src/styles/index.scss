@@ -1,0 +1,139 @@
+
+* {
+    font: inherit;
+}
+
+body {
+    overscroll-behavior: contain;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    font-family: var(--font-family-main);
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+li {
+    list-style: none;
+}
+
+.w-100 {
+    width: 100%;
+}
+body {
+    font: var(--font-m);
+    min-height: 100vh;
+}
+
+button {
+    appearance: none;
+    outline: none;
+}
+
+input, button, textarea {
+    border-radius: 4px;
+}
+.content-page {
+    width: 100%;
+    margin-right: var(--sidebar-width);
+    min-height: calc(100vh);
+    position: relative;
+    z-index: 999;
+    transition: width var(--transition), margin var(--transition);
+    background-color: var(--inverted-bg-color);
+}
+
+.animation {
+    max-width: 400px;
+}
+
+.page-wrapper {
+    padding: 20px;
+    min-height: calc(100vh - var(--navbar-height));
+}
+
+.d-block {
+    display: block;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+.mr-10 {
+    margin-right: 10px;
+}
+.ml-10 {
+    margin-left: 10px;
+}
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+.mr-20 {
+    margin-right: 20px;
+}
+.ml-20 {
+    margin-left: 20px;
+}
+.mb-20 {
+    margin-bottom: 20px;
+}
+.mx-auto, .my-auto, .m-auto {
+    display: block;
+}
+
+.mx-auto {
+    margin: 0 auto;
+}
+
+.my-auto {
+    margin: auto 0;
+}
+
+.m-auto {
+    margin: auto;
+}
+
+[data-theme=dark] {
+    ::-webkit-scrollbar {
+        width: initial;
+    }
+
+    ::-webkit-scrollbar-button {
+        background-color: #1b2838;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #213042;
+    }
+}
+@media screen and (max-width: 850px) {
+    .animation {
+        max-width: 350px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .animation {
+        max-width: 300px;
+    }
+}

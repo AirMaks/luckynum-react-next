@@ -1,0 +1,106 @@
+.Container {
+    max-width: 350px;
+    margin: 0 auto 0;
+    padding: 30px 0 0;
+
+
+
+    .ButtonChoose {
+
+
+        button {
+            width: 100%;
+            min-height: 62px;
+            font-weight: var(--inverted-font-weight);
+            font-size: var(--inverted-font-size-button);
+            line-height: 1;
+        }
+
+    }
+
+    .Input {
+        // min-height: 50px;
+        // font-size: 27px;
+        // text-align: right;
+        // padding: 10px 6px 4px;
+        // width: 100px;
+    }
+}
+
+.Field {
+    position: relative;
+    display: flex;
+    label {
+        position: absolute;
+        left: 5px;
+        right: 5px;
+        top: 1px;
+        font-weight: var(--inverted-font-weight);
+        font-size: var(--inverted-font-size-label);
+        line-height: 1;
+        color: var(--inverted-label-color);
+        pointer-events: none;
+    }
+}
+
+.Textarea {
+    border: 1px solid;
+    min-height: 58px !important;
+    max-height: 170px !important;
+    min-width: 100%;
+    overflow: auto;
+    text-align: left;
+    padding: 4px 6px 4px;
+    outline: none;
+    font-weight: var(--inverted-font-weight);
+    font-size: var(--inverted-font-size);
+    width: 100%;
+    -webkit-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+    background: transparent;
+    spellcheck: false;
+    text-decoration: none !important;
+}
+
+.Word {
+    word-break: break-word;
+    font-size:90px;
+    margin-top: 70px;
+    line-height: 1;
+    text-align: center;
+}
+
+.AllRepeated {
+    font-size: 24px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #f31919;
+}
+
+.heading {
+    text-align: center;
+    font-size: var(--inverted-font-size);
+    font-weight: var(--inverted-font-weight);
+    padding: 30px 0 0;
+}
+@media (max-width: 820px) {
+    .Word {
+        font-size: 46px;
+    }
+
+    .AllRepeated {
+        font-size: 24px;
+    }
+}
+@media screen and (max-width: 450px) {
+    .Word {
+        font-size: 32px;
+        line-height: 42px;
+    }
+    .AllRepeated {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}

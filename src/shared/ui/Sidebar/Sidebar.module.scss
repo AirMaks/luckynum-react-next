@@ -1,0 +1,13 @@
+.Sidebar {
+    position: fixed;
+    bottom: 26px;
+    z-index: 1000;
+}
+
+
+@media (max-width: 530px) {
+    .Sidebar {
+        width: 100%;
+        max-width: 100%;
+    }
+}

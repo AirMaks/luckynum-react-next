@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "reset";
+@import "fonts/bold";
+@import "fonts/regular";
+@import "fonts";
+@import "index";
+
+:root {
+    --transition-all: all ease-in .2s;
+}
+
