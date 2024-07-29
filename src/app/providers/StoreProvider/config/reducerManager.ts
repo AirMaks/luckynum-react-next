@@ -13,7 +13,7 @@ export function createReducerManager(initialReducers: ReducersMapObject<StateSch
         getReducerMap: () => reducers,
         getMountedReducers: () => mountedReducers,
         reduce: (state: any, action: Action) => {
-        // reduce: (state: StateSchema, action: Action) => {
+            // reduce: (state: StateSchema, action: Action) => {
             if (keysToRemove.length > 0) {
                 state = { ...state };
                 keysToRemove.forEach(key => {

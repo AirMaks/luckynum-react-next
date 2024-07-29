@@ -32,7 +32,7 @@ export const Text = (props: TextProps) => {
                             [cls.middle]: middle,
                             [cls.large]: large,
                             [cls.center]: center,
-                            [cls.right]: right,
+                            [cls.right]: right
                             // [cls[color]]: true
                         },
                         [className]

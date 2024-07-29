@@ -1,4 +1,7 @@
+"use client";
+
 import cn from "classnames";
+import Image from "next/image";
 
 interface GifProps {
     src: string;
@@ -6,5 +9,5 @@ interface GifProps {
 }
 
 export const Gif = ({ src, className }: GifProps) => {
-    return <img src={src} className={cn("", {}, [className])} />;
+    return <Image src={src} className={cn("", {}, [className])} alt={src} />;
 };

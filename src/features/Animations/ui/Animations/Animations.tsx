@@ -60,39 +60,34 @@ export const Animations = memo(({ className, isOpenAnimations, onClose }: Sideba
 
     return (
         // <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
-            <Sidebar isOpen={isOpenAnimations} lazy className={cn(cls.Animations, {}, [className])}>
-                <CloseIcon width={30} height={30} className="fill-stone-800" onClick={onClose} />
-                <div className={cls.items_container}>
-                    <h3 className={cn(cls.heading, {}, [])}>{t("Выберите анимацию")}</h3>
-                    {/* <CustomScrollbar className={cls.items}> */}
-                        <Image src={gif1} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif1 }, [])} alt="cat gif" />
-                        <Image src={gif2} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif2 }, [])} alt="rocket gif" />
-                        <Image src={gif3} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif3 }, [])} alt="dancer girl gif" />
-                        <Image src={gif4} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif4 }, [])} alt="gatsby gif" />
-                        <Image src={gif5} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif5 }, [])} alt="dice gif" />
-                        <Image src={gif6} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif6 }, [])} alt="space gif" />
-                        <Image src={gif7} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif7 }, [])} alt="world gif" />
-                        <Image src={gif8} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif8 }, [])} alt="tree gif" />
-                        <Image src={gif9} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif9 }, [])} alt="rocket gif draw" />
-                        <Image src={gif10} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif10 }, [])} alt="firework gif" />
-                        <Image src={gif11} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif11 }, [])} alt="spider man gif" />
-                        <Image src={gif12} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif12 }, [])} alt="mem gif" />
-                        <Image src={gif13} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif13 }, [])} alt="dog gif" />
-                        <Image src={gif14} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif14 }, [])} alt="guitar gif" />
-                        <Image
-                            src={gif15}
-                            onClick={onClickAnimation}
-                            className={cn("", { [cls.border]: src === gif15 }, [])}
-                            alt="dancing girl gif"
-                        />
-                        <Image src={gif16} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif16 }, [])} alt="lamp gif" />
-                        <Image src={gif17} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif17 }, [])} alt="drum gif" />
-                        <Image src={gif18} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif18 }, [])} alt="rubik gif" />
-                        <Image src={gif19} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif19 }, [])} alt="banana gif" />
-                        <Image src={gif20} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif20 }, [])} alt="kitty gif" />
-                    {/* </CustomScrollbar> */}
-                </div>
-            </Sidebar>
+        <Sidebar isOpen={isOpenAnimations} lazy className={cn(cls.Animations, {}, [className])}>
+            <CloseIcon width={30} height={30} className="fill-stone-800" onClick={onClose} />
+            <div className={cls.items_container}>
+                <h3 className={cn(cls.heading, {}, [])}>{t("Выберите анимацию")}</h3>
+                {/* <CustomScrollbar className={cls.items}> */}
+                <Image src={gif1} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif1 }, [])} alt="cat gif" />
+                <Image src={gif2} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif2 }, [])} alt="rocket gif" />
+                <Image src={gif3} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif3 }, [])} alt="dancer girl gif" />
+                <Image src={gif4} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif4 }, [])} alt="gatsby gif" />
+                <Image src={gif5} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif5 }, [])} alt="dice gif" />
+                <Image src={gif6} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif6 }, [])} alt="space gif" />
+                <Image src={gif7} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif7 }, [])} alt="world gif" />
+                <Image src={gif8} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif8 }, [])} alt="tree gif" />
+                <Image src={gif9} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif9 }, [])} alt="rocket gif draw" />
+                <Image src={gif10} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif10 }, [])} alt="firework gif" />
+                <Image src={gif11} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif11 }, [])} alt="spider man gif" />
+                <Image src={gif12} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif12 }, [])} alt="mem gif" />
+                <Image src={gif13} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif13 }, [])} alt="dog gif" />
+                <Image src={gif14} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif14 }, [])} alt="guitar gif" />
+                <Image src={gif15} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif15 }, [])} alt="dancing girl gif" />
+                <Image src={gif16} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif16 }, [])} alt="lamp gif" />
+                <Image src={gif17} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif17 }, [])} alt="drum gif" />
+                <Image src={gif18} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif18 }, [])} alt="rubik gif" />
+                <Image src={gif19} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif19 }, [])} alt="banana gif" />
+                <Image src={gif20} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif20 }, [])} alt="kitty gif" />
+                {/* </CustomScrollbar> */}
+            </div>
+        </Sidebar>
         // </DynamicModuleLoader>
     );
 });
