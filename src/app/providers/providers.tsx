@@ -14,7 +14,7 @@ export function Providers({ children }: Props) {
         <StoreProvider>
             <FontProvider>
                 <ThemeProvider attribute="class" defaultTheme="system">
-                    <YandexMetrica>{children}</YandexMetrica>
+                    {children}
                 </ThemeProvider>
             </FontProvider>
         </StoreProvider>
