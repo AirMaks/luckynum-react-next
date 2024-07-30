@@ -11,14 +11,12 @@ interface Props {
 }
 export function Providers({ children }: Props) {
     return (
-        <YandexMetrica>
-            <StoreProvider>
-                <FontProvider>
-                    <ThemeProvider attribute="class" defaultTheme="system">
-                        {children}
-                    </ThemeProvider>
-                </FontProvider>
-            </StoreProvider>
-        </YandexMetrica>
+        <StoreProvider>
+            <FontProvider>
+                <ThemeProvider attribute="class" defaultTheme="system">
+                    <YandexMetrica>{children}</YandexMetrica>
+                </ThemeProvider>
+            </FontProvider>
+        </StoreProvider>
     );
 }
