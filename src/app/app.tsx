@@ -60,8 +60,10 @@ export const App = ({
     const onToggleCalcInfo = () => setIsOpenCalcInfo(true);
 
     const onClickMenuItem = () => {
-        if (window && window.innerWidth <= 530) {
-            setIsOpenMenu(false);
+        if (typeof window !== "undefined") {
+            if (window.innerWidth <= 530) {
+                setIsOpenMenu(false);
+            }
         }
     };
     return (
