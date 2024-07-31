@@ -52,12 +52,16 @@ export const Sidebar = (props: SidebarProps) => {
 
     useEffect(() => {
         if (isOpen) {
-            window.addEventListener("keydown", onKeyDown);
+            if (window) {
+                window.addEventListener("keydown", onKeyDown);
+            }
         }
 
         return () => {
             clearTimeout(timerRef.current);
-            window.removeEventListener("keydown", onKeyDown);
+            if (window) {
+                window.removeEventListener("keydown", onKeyDown);
+            }
         };
     }, [isOpen, onKeyDown]);
 
