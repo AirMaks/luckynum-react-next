@@ -3,8 +3,7 @@
 import "styles/globals.scss";
 import { Jura } from "next/font/google";
 import { App } from "./app";
-import { Metrika } from "./YandexMetrika";
-import { Suspense } from "react";
+import YandexMetrika from "./YandexMetrika";
 
 const jura = Jura({ subsets: ["cyrillic", "latin"] });
 
@@ -23,9 +22,7 @@ export default function RootLayout({
             </head>
             <body className="bg-lightbg text-black dark:bg-stone-800 dark:text-white">
                 <App>{children}</App>
-                <Suspense>
-                    <Metrika />
-                </Suspense>
+                <YandexMetrika yid={88160252} clickmap={true} trackLinks={true} accurateTrackBounce={true} webvisor={true} />
             </body>
         </html>
     );
