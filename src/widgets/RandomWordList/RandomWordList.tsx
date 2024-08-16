@@ -109,7 +109,7 @@ const RandomWordList = () => {
                 </Button>
             </div>
             <div className={cn(cls.Word, { [cls.AllRepeated]: Array.isArray(randomWord) }, ["d-flex justify-content-center"])}>
-                <Image src={src || gif1} className={cn("", { hidden: !animation })} alt="animation" />
+                <Image src={src || gif1} className={cn("", { hidden: !animation })} alt="animation" priority unoptimized />
                 {!animation && randomWord}
             </div>
         </>

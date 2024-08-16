@@ -93,7 +93,7 @@ const RandomNumber = ({ animationSrc }: any) => {
                 </Button>
             </div>
             <div className={cn(cls.Number, { [cls.AllRepeated]: number && typeof number !== "number" }, ["d-flex justify-content-center"])}>
-                <Image src={src || gifOne} className={cn("", { hidden: !animation })} alt="gif" />
+                <Image src={src || gifOne} className={cn("", { hidden: !animation })} alt="gif" priority unoptimized />
                 {!animation && (typeof number !== "number" ? number?.map((el: boolean | string, i: number) => <div key={i}>{el}</div>) : number)}
             </div>
         </>
