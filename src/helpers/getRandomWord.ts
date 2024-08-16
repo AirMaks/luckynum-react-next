@@ -46,8 +46,6 @@ export const getRandomWord = (list: any, isExclude: boolean) => {
     let randomWord: any;
 
     if (isExclude) {
-        console.log("exc", exclude);
-
         if (exclude.length < list.length) {
             do {
                 const randomIndex = Math.floor(Math.random() * list.length);

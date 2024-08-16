@@ -46,18 +46,6 @@ const RandomWordList = () => {
         setTime(sanitizeSymbols(value));
     };
 
-    const onExclude = () => {
-        setIsExclude(prev => !prev);
-    };
-
-    const onFocus = () => {
-        setFocus(true);
-    };
-
-    const onBlur = () => {
-        setFocus(false);
-    };
-
     return (
         <>
             <h1 className="pt-[30px] text-center text-[20px]">{t("Генератор случайных слов из списка")}</h1>
@@ -69,7 +57,7 @@ const RandomWordList = () => {
                             "min-h-[50px] bg-white-500 border border-black rounded mr-[10px] text-[18px] leading-[1]"
                         ])}
                         border
-                        onClick={onExclude}>
+                        onClick={() => setIsExclude(prev => !prev)}>
                         {t("исключить повторения")}
                     </Button>
 
@@ -94,8 +82,8 @@ const RandomWordList = () => {
                         id="textarea"
                         className={cn(cls.Textarea, {}, [])}
                         onChange={handleTextareaChange}
-                        onFocus={onFocus}
-                        onBlur={onBlur}></Textarea>
+                        onFocus={() => setFocus(true)}
+                        onBlur={() => setFocus(false)}></Textarea>
                 </div>
 
                 <Button

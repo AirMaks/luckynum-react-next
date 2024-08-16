@@ -245,7 +245,9 @@ const CreditCalculator = () => {
                 {(monthlyPayment > 0 || monthlyPayment.length > 0) && (
                     <>
                         <div className={cn(cls.finalPayment, {}, [])}>
-                            <div className="d-inline-block">Ежемесячный платеж:</div>
+                            <div className="d-inline-block">
+                                <b>Ежемесячный платеж:</b>
+                            </div>
                             <span>
                                 {type === DIFF
                                     ? `${formatPrice(parseFloat(monthlyPayment[0].toFixed(2)))} ₽ ... ${formatPrice(
@@ -255,7 +257,9 @@ const CreditCalculator = () => {
                             </span>
                         </div>
                         <div className={cn(cls.finalPayment, {}, [])}>
-                            <div className="d-inline-block">Переплата по кредиту:</div>
+                            <div className="d-inline-block">
+                                <b>Переплата по кредиту:</b>
+                            </div>
                             <span>
                                 {type === DIFF
                                     ? `${formatPrice(diffOverPaid)} ₽`
@@ -267,7 +271,9 @@ const CreditCalculator = () => {
                             </span>
                         </div>
                         <div className={cn(cls.finalPayment, {}, [])}>
-                            <div className="d-inline-block">Общая выплата:</div>
+                            <div className="d-inline-block">
+                                <b>Общая выплата:</b>
+                            </div>
                             <span>
                                 {type === DIFF
                                     ? `${formatPrice(+diffOverPaid + +creditSumValue - +initialPaymentValue)} ₽`
@@ -294,13 +300,17 @@ const CreditCalculator = () => {
                                     <div className={cls.tableOverflow}>
                                         {paymentSchedule.map((payment: any, index: number) => (
                                             <div key={index} className={cls.tableRow}>
-                                                <div>{payment.date}</div>
+                                                <div>
+                                                    <b>{payment.date}</b>
+                                                </div>
                                                 <div>
                                                     {Math.round(payment.balance) >= 0 ? formatPrice(parseFloat(payment.balance.toFixed(2))) : 0}
                                                 </div>
                                                 <div>{formatPrice(parseFloat(payment.interest.toFixed(2)))}</div>
                                                 <div>{formatPrice(parseFloat(payment.principal.toFixed(2)))}</div>
-                                                <div>{formatPrice(parseFloat(payment.payment.toFixed(2)))}</div>
+                                                <div>
+                                                    <b>{formatPrice(parseFloat(payment.payment.toFixed(2)))}</b>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>

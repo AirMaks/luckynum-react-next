@@ -54,10 +54,6 @@ const RandomNumber = ({ animationSrc }: any) => {
         setTime(sanitizeSymbols(value));
     };
 
-    const onExclude = () => {
-        setIsExclude(prev => !prev);
-    };
-
     return (
         <>
             <h1 className={cls.heading}>{t("Генератор случайных чисел")}</h1>
@@ -66,7 +62,7 @@ const RandomNumber = ({ animationSrc }: any) => {
                     className={cn(cls.ButtonExclude, { "bg-stone-800 text-white": isExclude }, [
                         "min-h-[42px] bg-white-500 border border-black rounded mb-2"
                     ])}
-                    onClick={onExclude}>
+                    onClick={() => setIsExclude(prev => !prev)}>
                     {t("исключить повторения")}
                 </Button>
                 <div className={cn("d-flex mt-10", {}, [cls.Inputs])}>
