@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 function convertParam(boolValue: any, defaultValue: any) {
     return (boolValue === undefined ? defaultValue : boolValue) ? "true" : "false";
 }
@@ -38,7 +36,7 @@ function YandexMetrikaPixel({ yid }: any) {
     return (
         <noscript>
             <div>
-                <Image src={pixelSource} style={{ position: "absolute", left: "-9999px" }} alt="" />
+                <img src={pixelSource} style={{ position: "absolute", left: "-9999px" }} alt="" />
             </div>
         </noscript>
     );
