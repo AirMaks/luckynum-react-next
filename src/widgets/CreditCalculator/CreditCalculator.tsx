@@ -292,10 +292,10 @@ const CreditCalculator = () => {
                                 <>
                                     <div className={cls.tableHeader}>
                                         <div>Дата</div>
+                                        <div>Платеж</div>
+                                        <div>Погашено</div>
                                         <div>Остаток</div>
                                         <div>Проценты</div>
-                                        <div>Погашено</div>
-                                        <div>Платеж</div>
                                     </div>
                                     <div className={cls.tableOverflow}>
                                         {paymentSchedule.map((payment: any, index: number) => (
@@ -304,13 +304,15 @@ const CreditCalculator = () => {
                                                     <b>{payment.date}</b>
                                                 </div>
                                                 <div>
+                                                    <b>{formatPrice(parseFloat(payment.payment.toFixed(2)))}</b>
+                                                </div>
+                                                <div>
+                                                    <b>{formatPrice(parseFloat(payment.principal.toFixed(2)))}</b>
+                                                </div>
+                                                <div>
                                                     {Math.round(payment.balance) >= 0 ? formatPrice(parseFloat(payment.balance.toFixed(2))) : 0}
                                                 </div>
                                                 <div>{formatPrice(parseFloat(payment.interest.toFixed(2)))}</div>
-                                                <div>{formatPrice(parseFloat(payment.principal.toFixed(2)))}</div>
-                                                <div>
-                                                    <b>{formatPrice(parseFloat(payment.payment.toFixed(2)))}</b>
-                                                </div>
                                             </div>
                                         ))}
                                     </div>
