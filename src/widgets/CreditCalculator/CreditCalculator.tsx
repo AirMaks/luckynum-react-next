@@ -19,7 +19,11 @@ const ANUI = "Аннуитетный";
 const keys = Object.keys(TERMS);
 
 const csvDataHeaders = [
-    {label: "Дата", key: "date"}, {label: "Платеж", key:"payment"}, {label: "Погашено", key: "principal"}, {label: "Остаток", key: "balance"}, {label: "Проценты", key: "interest"}
+    { label: "Дата", key: "date" },
+    { label: "Платеж", key: "payment" },
+    { label: "Погашено", key: "principal" },
+    { label: "Остаток", key: "balance" },
+    { label: "Проценты", key: "interest" }
 ];
 
 const CreditCalculator = () => {
@@ -185,17 +189,17 @@ const CreditCalculator = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type, creditSumValue, initialPaymentValue, percent, creditTerm]);
 
-
-
     const csvData = (paymentSchedule || []).reduce((acc: any, curr: any) => {
-        acc.push({ date: curr.date,
+        acc.push({
+            date: curr.date,
             payment: formatPrice(parseFloat(curr.payment.toFixed(2))),
             principal: formatPrice(parseFloat(curr.principal.toFixed(2))),
             balance: Math.round(curr.balance) >= 0 ? formatPrice(parseFloat(curr.balance.toFixed(2))) : 0,
-            interest: formatPrice(parseFloat(curr.interest.toFixed(2)))})
+            interest: formatPrice(parseFloat(curr.interest.toFixed(2)))
+        });
 
         return acc;
-    }, [])
+    }, []);
 
     return (
         <>
@@ -283,94 +287,96 @@ const CreditCalculator = () => {
                         </div>
 
                         <div className="ps-[20px] pt-[20px] max-sm:p-[0] max-sm:mt-[20px] relative w-2/3">
-                        {(monthlyPayment > 0 || monthlyPayment.length > 0) ? (
-                            <>
-                                <div className="mb-[10px] text-[20px] flex justify-between flex-wrap">
-                                    <div className="d-inline-block font-bold me-[20px]">Ежемесячный платеж:</div>
-                                    <span>
-                                        {type === DIFF
-                                            ? `${formatPrice(parseFloat(monthlyPayment[0]?.toFixed(2)))} ₽ ... ${formatPrice(
-                                                parseFloat(monthlyPayment[monthlyPayment.length - 1]?.toFixed(2))
-                                            )} ₽`
-                                            : `${formatPrice(parseFloat(monthlyPayment?.toFixed(2)))} ₽`}
-                                    </span>
-                                </div>
-                                <div className="mb-[10px] text-[20px] flex justify-between flex-wrap">
-                                    <div className="d-inline-block font-bold me-[20px]">Общая выплата:</div>
-                                    <span>
-                                        {type === DIFF
-                                            ? `${formatPrice(parseFloat((+diffOverPaid + +creditSumValue - +initialPaymentValue)?.toFixed(2)))} ₽`
-                                            : `${formatPrice(
-                                                parseFloat(
-                                                    (
-                                                        monthlyPayment * Math.round(TERMS[creditTerm] * 12) -
-                                                        creditSumValue +
-                                                        +initialPaymentValue
-                                                    )?.toFixed(2)
-                                                ) +
-                                                    +creditSumValue -
-                                                    +initialPaymentValue
-                                            )} ₽`}
-                                    </span>
-                                </div>
-                                <div className="mb-[10px] text-[20px] flex justify-between flex-wrap">
-                                    <div className="d-inline-block font-bold me-[20px] text-[#0168af]">Сумма кредита:</div>
-                                    <span>{`${formattedCreditSumValue} ₽`}</span>
-                                </div>
-                                <div className="mb-[10px] text-[20px] flex justify-between flex-wrap">
-                                    <div className="d-inline-block font-bold me-[20px] text-[#489b00]">Переплата по кредиту:</div>
-                                    <span>
-                                        {type === DIFF
-                                            ? `${formatPrice(diffOverPaid)} ₽`
-                                            : `${formatPrice(
-                                                parseFloat(
-                                                    (
-                                                        monthlyPayment * Math.round(TERMS[creditTerm] * 12) -
-                                                        creditSumValue +
-                                                        +initialPaymentValue
-                                                    )?.toFixed(2)
-                                                )
-                                            )} ₽`}
-                                    </span>
-                                </div>
+                            {monthlyPayment > 0 || monthlyPayment.length > 0 ? (
+                                <>
+                                    <div className="mb-[10px] text-[20px] flex justify-between flex-wrap">
+                                        <div className="d-inline-block font-bold me-[20px]">Ежемесячный платеж:</div>
+                                        <span>
+                                            {type === DIFF
+                                                ? `${formatPrice(parseFloat(monthlyPayment[0]?.toFixed(2)))} ₽ ... ${formatPrice(
+                                                      parseFloat(monthlyPayment[monthlyPayment.length - 1]?.toFixed(2))
+                                                  )} ₽`
+                                                : `${formatPrice(parseFloat(monthlyPayment?.toFixed(2)))} ₽`}
+                                        </span>
+                                    </div>
+                                    <div className="mb-[10px] text-[20px] flex justify-between flex-wrap">
+                                        <div className="d-inline-block font-bold me-[20px]">Общая выплата:</div>
+                                        <span>
+                                            {type === DIFF
+                                                ? `${formatPrice(parseFloat((+diffOverPaid + +creditSumValue - +initialPaymentValue)?.toFixed(2)))} ₽`
+                                                : `${formatPrice(
+                                                      parseFloat(
+                                                          (
+                                                              monthlyPayment * Math.round(TERMS[creditTerm] * 12) -
+                                                              creditSumValue +
+                                                              +initialPaymentValue
+                                                          )?.toFixed(2)
+                                                      ) +
+                                                          +creditSumValue -
+                                                          +initialPaymentValue
+                                                  )} ₽`}
+                                        </span>
+                                    </div>
+                                    <div className="mb-[10px] text-[20px] flex justify-between flex-wrap">
+                                        <div className="d-inline-block font-bold me-[20px] text-[#0168af]">Сумма кредита:</div>
+                                        <span>{`${formattedCreditSumValue} ₽`}</span>
+                                    </div>
+                                    <div className="mb-[10px] text-[20px] flex justify-between flex-wrap">
+                                        <div className="d-inline-block font-bold me-[20px] text-[#489b00]">Переплата по кредиту:</div>
+                                        <span>
+                                            {type === DIFF
+                                                ? `${formatPrice(diffOverPaid)} ₽`
+                                                : `${formatPrice(
+                                                      parseFloat(
+                                                          (
+                                                              monthlyPayment * Math.round(TERMS[creditTerm] * 12) -
+                                                              creditSumValue +
+                                                              +initialPaymentValue
+                                                          )?.toFixed(2)
+                                                      )
+                                                  )} ₽`}
+                                        </span>
+                                    </div>
 
-                                <div className="mt-[10px] flex w-full h-[10px] bg-[#5ac300] rounded">
+                                    <div className="mt-[10px] flex w-full h-[10px] bg-[#5ac300] rounded">
+                                        <div
+                                            className="rounded-l"
+                                            style={{
+                                                width:
+                                                    type === DIFF
+                                                        ? `${(creditSumValue / (+diffOverPaid + +creditSumValue - +initialPaymentValue)) * 100}%`
+                                                        : `${
+                                                              (creditSumValue /
+                                                                  (monthlyPayment * Math.round(TERMS[creditTerm] * 12) -
+                                                                      creditSumValue +
+                                                                      +initialPaymentValue +
+                                                                      +creditSumValue -
+                                                                      +initialPaymentValue)) *
+                                                              100
+                                                          }%`,
+                                                backgroundColor: "#0168af"
+                                            }}></div>
+                                    </div>
                                     <div
-                                        className="rounded-l"
-                                        style={{
-                                            width:
-                                                type === DIFF
-                                                    ? `${(creditSumValue / (+diffOverPaid + +creditSumValue - +initialPaymentValue)) * 100}%`
-                                                    : `${
-                                                        (creditSumValue /
-                                                            (monthlyPayment * Math.round(TERMS[creditTerm] * 12) -
-                                                                creditSumValue +
-                                                                +initialPaymentValue +
-                                                                +creditSumValue -
-                                                                +initialPaymentValue)) *
-                                                        100
-                                                    }%`,
-                                            backgroundColor: "#0168af"
-                                        }}></div>
-                                </div>
-                                <div className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px]" onClick={() => setModalIsOpen(true)}>Скачать график платежей</div>
-                            </>) : <Loader />}
+                                        className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px]"
+                                        onClick={() => setModalIsOpen(true)}>
+                                        Скачать график платежей
+                                    </div>
+                                </>
+                            ) : (
+                                <Loader />
+                            )}
                         </div>
                     </div>
                 </div>
 
-                <Modal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)} >
+                <Modal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)}>
                     <div className="bg-white p-[20px] rounded shadow">
                         <div className="flex justify-between items-center mb-[20px] font-bold">
                             <CSVLink data={csvData} headers={csvDataHeaders} filename={`График платежей по кредиту (${type})`}>
                                 <div className="text-[#006af3] cursor-pointer">Скачать график в формате CSV</div>
                             </CSVLink>
-                            <CloseIcon
-                                width={30}
-                                height={30}
-                                onClick={() => setModalIsOpen(false)}
-                                className={cn("cursor-pointer fill-stone-800")}
-                            />
+                            <CloseIcon width={30} height={30} onClick={() => setModalIsOpen(false)} className={cn("cursor-pointer fill-stone-800")} />
                         </div>
                         {paymentSchedule.length > 0 && (
                             <div className="border border-black overflow-x-auto">
@@ -394,7 +400,9 @@ const CreditCalculator = () => {
                                                 <div className="w-[200px]">
                                                     <b>{formatPrice(parseFloat(payment.principal.toFixed(2)))}</b>
                                                 </div>
-                                                <div className="w-[200px]">{Math.round(payment.balance) >= 0 ? formatPrice(parseFloat(payment.balance.toFixed(2))) : 0}</div>
+                                                <div className="w-[200px]">
+                                                    {Math.round(payment.balance) >= 0 ? formatPrice(parseFloat(payment.balance.toFixed(2))) : 0}
+                                                </div>
                                                 <div className="w-[200px]">{formatPrice(parseFloat(payment.interest.toFixed(2)))}</div>
                                             </div>
                                         ))}
