@@ -399,17 +399,17 @@ const CreditCalculator = () => {
                     учитывать, что банки начисляют проценты ежедневно на оставшуюся сумму долга. Таким образом, размер процентов, начисляемых за
                     каждый день, составляет:
                 </p>
-                <p className="flex items-center font-bold mb-[20px] sm:text-[12px]">
-                    <div className="text-green-800">Процент за день</div>
-                    <div className="mx-[5px]">=</div>
-                    <div className="me-[10px] text-center">
-                        <div className="text-yellow-500">12%</div>
-                        <div className="border-t border-gray-700 text-pink-700">12 месяцев</div>
-                    </div>
-                    <div className="me-[5px]">÷</div>
-                    <div className="me-[5px] text-blue-500">30 дней</div>
-                    <div className="me-[5px]">≈</div>
-                    <div>0.033%</div>
+                <p className="flex items-center font-bold mb-[20px] max-sm:text-[12px]">
+                    <span className="text-green-800 block">Процент за день</span>
+                    <span className="mx-[5px] block">=</span>
+                    <span className="me-[10px] text-center block">
+                        <span className="text-yellow-500 block">12%</span>
+                        <span className="border-t border-gray-700 text-pink-700 block">12 месяцев</span>
+                    </span>
+                    <span className="me-[5px] block">÷</span>
+                    <span className="me-[5px] block text-blue-500">30 дней</span>
+                    <span className="me-[5px] block">≈</span>
+                    <span>0.033%</span>
                 </p>
                 <p className="mb-[5px]">
                     <strong>Фиксированная и плавающая процентная ставка</strong>
