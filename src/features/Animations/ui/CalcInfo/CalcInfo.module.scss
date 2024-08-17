@@ -1,7 +1,5 @@
 
 .CalcInfo {
-    @include themeBorderRight(nth($border_color, 1), nth($border_color, 2));
-    border-right: 1px solid;
     transform: translateX(calc(0px - var(--sidebar-width)));
     transition: transform var(--transition);
 

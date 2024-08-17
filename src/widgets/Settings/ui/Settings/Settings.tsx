@@ -28,17 +28,17 @@ export const Settings = (props: SidebarProps) => {
     const pathname = usePathname();
     const { className, isOpenSettings, openAnimations, openOwnAnimation, openRandomNumberInfo, openRandomWordInfo, openCalcInfo } = props;
     return (
-        <Sidebar isOpen={isOpenSettings} className={cn(cls.Sidebar, { [cls.opened]: isOpenSettings }, ["border-r", className])}>
+        <Sidebar isOpen={isOpenSettings} className={cn("border-", { [cls.opened]: isOpenSettings }, ["border-r", className])}>
             <div className="flex flex-col justify-between min-h-[100%] px-[20px]">
                 <div className="flex flex-col py-[10px]">
-                    <div className={cls.item} onClick={openAnimations}>
+                    {/* <div className={cls.item} onClick={openAnimations}>
                         <GifIcon width={20} height={20} className={cls.fill} />
                         <span className={cls.item_text}>{t("Анимация")}</span>
                     </div>
                     <div className={cn(cls.item, {}, ["hr"])} onClick={openOwnAnimation}>
                         <MyGifIcon className={cls.fill} width={20} height={20} />
                         <span className={cls.item_text}>{t("Своя анимация")}</span>
-                    </div>
+                    </div> */}
                     {/* {pathname === "/" ? (
                         <div className={cls.item} onClick={openRandomNumberInfo}>
                             <InfoIcon className={cls.fill} width={20} height={20} />
@@ -59,7 +59,7 @@ export const Settings = (props: SidebarProps) => {
                     )} */}
                 </div>
                 <div className={cls.footer}>
-                    <ThemeSwitcher />
+                    {/* <ThemeSwitcher /> */}
                     {/* <FontSwitcher />
                     <LangSwitcher /> */}
                 </div>

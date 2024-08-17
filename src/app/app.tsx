@@ -79,11 +79,11 @@ export const App = ({
                 openCalcInfo={onToggleCalcInfo}
             /> */}
             {/* <Animations isOpenAnimations={isOpenAnimations} onClose={onClose} /> */}
-            {/* <OwnAnimation isOpenOwnAnimation={isOpenOwnAnimation} onClose={onClose} />
-            {pathname === "/" && <RandomNumberInfo isOpenRandomNumberInfo={isOpenRandomNumberInfo} onClose={onClose} />}
-            {pathname === "/choose-from-list" && <RandomWordInfo isOpenRandomWordInfo={isOpenRandomWordInfo} onClose={onClose} />}
+            {/* <OwnAnimation isOpenOwnAnimation={isOpenOwnAnimation} onClose={onClose} />*/}
+            {/* {pathname === "/" && <RandomNumberInfo isOpenRandomNumberInfo={isOpenRandomNumberInfo} onClose={onClose} />} */}
+            {/*pathname === "/choose-from-list" && <RandomWordInfo isOpenRandomWordInfo={isOpenRandomWordInfo} onClose={onClose} />}
             {pathname === "/credit-calculator" && <CalcInfo isOpenCalcInfo={isOpenCalcInfo} onClose={onClose} />} */}
-            <div className="p-[20px]">{children}</div>
+            <div>{children}</div>
         </Providers>
     );
 };

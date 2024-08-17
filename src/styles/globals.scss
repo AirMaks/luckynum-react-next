@@ -9,5 +9,29 @@
 
 :root {
     --transition-all: all ease-in .2s;
+    --navbar-height: 60px;
+    --sidebar-width: 320px;
+    --sidebar-width-expandedSidebarMenu: 60px;
+
+    // z - Индексы
+    --modal-z-index: 9999;
+
+    // Цвета
+    --overlay-color: rgba(0 0 0 / 60%);
+    --transition: 0.3s;
+    --yellow-bg-color: #ffc107;
+    --yellow-bg-color-hover: #f0b609;
+    --red-bg-color: #fc4d2e;
+    --red-bg-color-hover: #e93818;
+    --blue-bg-color: #49b7f7;
+    --blue-bg-color-hover: #2aa0e4;
+    --green-bg-color: #27db45;
+    --green-bg-color-hover: #2cc446;
+    --black-bg-color: #0d0e0f;
+    --black-bg-color-hover: #333;
+    --grey-bg-color: #c7c7c7;
+    --grey-bg-color-hover: #adadad;
+    --transparent-bg: transparent;
+    --rounded: 4px;
 }
 

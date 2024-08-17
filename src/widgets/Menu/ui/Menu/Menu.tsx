@@ -15,7 +15,7 @@ interface MenuProps {
     onClickMenuItem?: () => void;
 }
 
-export const Menu = memo(({ className, isOpenMenu, onClickMenuItem }: MenuProps) => {
+export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
     const { t } = useTranslation();
     const pathname = usePathname();
 

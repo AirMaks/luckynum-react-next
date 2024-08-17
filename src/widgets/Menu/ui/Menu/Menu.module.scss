@@ -13,7 +13,6 @@
 }
 
 .Sidebar {
-    border-left: 1px solid;
     right: 0;
     transform: translateX(var(--sidebar-width));
     transition: transform var(--transition);

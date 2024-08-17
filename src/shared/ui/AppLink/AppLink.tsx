@@ -17,9 +17,8 @@ interface AppLinkProps extends LinkProps {
 }
 export const AppLink: FC<AppLinkProps> = props => {
     const { href, className, children, theme, ...otherProps } = props;
-    const pathname = usePathname();
     return (
-        <Link href={href} {...otherProps} className={cn({ "": href === pathname }, [className])}>
+        <Link href={href} {...otherProps} className={cn(className)}>
             {children}
         </Link>
     );
