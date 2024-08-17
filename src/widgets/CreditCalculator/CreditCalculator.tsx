@@ -138,7 +138,6 @@ const CreditCalculator = () => {
 
     const handleChangeCreditSum = (value: any) => {
         const sanitized = sanitizeSymbols(value).toString();
-        setMonthlyPayment(0);
         setCreditSumValue(sanitized);
         const percent = (+initialPaymentValue / +sanitized) * 100;
         setInitialPaymentPercent(percent);
@@ -146,14 +145,12 @@ const CreditCalculator = () => {
 
     const handleChangeInitialPayment = (value: any) => {
         const sanitized = sanitizeSymbols(value).toString();
-        setMonthlyPayment(0);
         setInitialPaymentValue(sanitized);
         const percent = (+sanitized / +creditSumValue) * 100;
         setInitialPaymentPercent(percent);
     };
 
     const handlePercentChange = (value: any) => {
-        setMonthlyPayment(0);
         const newValue = value.replace(/[^\d.]/g, "");
         setPercent(newValue);
     };
@@ -164,7 +161,6 @@ const CreditCalculator = () => {
     };
 
     const onSelectItemClick = (value: any) => {
-        if (value !== creditTerm) setMonthlyPayment(0);
         setCreditTerm(value);
         setIsOpenSelect(false);
     };
@@ -287,7 +283,7 @@ const CreditCalculator = () => {
                         </div>
 
                         <div className="ps-[20px] pt-[20px] max-sm:p-[0] max-sm:mt-[20px] relative w-2/3">
-                            {monthlyPayment > 0 || monthlyPayment.length > 0 ? (
+                            {parseFloat(percent) && (monthlyPayment > 0 || (monthlyPayment.length > 0) && !monthlyPayment?.some((el: any) => parseFloat(el) < 0)) ? (
                                 <>
                                     <div className="mb-[10px] text-[20px] flex justify-between flex-wrap">
                                         <div className="d-inline-block font-bold me-[20px]">Ежемесячный платеж:</div>
@@ -311,9 +307,7 @@ const CreditCalculator = () => {
                                                               creditSumValue +
                                                               +initialPaymentValue
                                                           )?.toFixed(2)
-                                                      ) +
-                                                          +creditSumValue -
-                                                          +initialPaymentValue
+                                                      ) + parseFloat((+creditSumValue - +initialPaymentValue)?.toFixed(2))
                                                   )} ₽`}
                                         </span>
                                     </div>
@@ -363,6 +357,10 @@ const CreditCalculator = () => {
                                         Скачать график платежей
                                     </div>
                                 </>
+                            ) : !parseFloat(percent) ||
+                              parseFloat(creditSumValue) < parseFloat(initialPaymentValue) ||
+                              !parseFloat(creditSumValue) ? (
+                                <div className="text-center text-red-600">Введите корректные данные для расчета.</div>
                             ) : (
                                 <Loader />
                             )}
