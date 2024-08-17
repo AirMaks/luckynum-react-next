@@ -191,7 +191,7 @@ const CreditCalculator = () => {
             payment: formatPrice(parseFloat(curr.payment.toFixed(2))),
             principal: formatPrice(parseFloat(curr.principal.toFixed(2))),
             balance: Math.round(curr.balance) >= 0 ? formatPrice(parseFloat(curr.balance.toFixed(2))) : 0,
-            interest: formatPrice(parseFloat(curr.interest.toFixed(2)))
+            interest: parseFloat(curr.interest) > 0 ? formatPrice(parseFloat(curr.interest.toFixed(2))) : 0
         });
 
         return acc;
@@ -283,7 +283,8 @@ const CreditCalculator = () => {
                         </div>
 
                         <div className="ps-[20px] pt-[20px] max-sm:p-[0] max-sm:mt-[20px] relative w-2/3">
-                            {parseFloat(percent) && (monthlyPayment > 0 || (monthlyPayment.length > 0) && !monthlyPayment?.some((el: any) => parseFloat(el) < 0)) ? (
+                            {parseFloat(percent) &&
+                            (monthlyPayment > 0 || (monthlyPayment.length > 0 && !monthlyPayment?.some((el: any) => parseFloat(el) < 0))) ? (
                                 <>
                                     <div className="mb-[10px] text-[20px] flex justify-between flex-wrap">
                                         <div className="d-inline-block font-bold me-[20px]">Ежемесячный платеж:</div>
@@ -401,7 +402,9 @@ const CreditCalculator = () => {
                                                 <div className="w-[200px]">
                                                     {Math.round(payment.balance) >= 0 ? formatPrice(parseFloat(payment.balance.toFixed(2))) : 0}
                                                 </div>
-                                                <div className="w-[200px]">{formatPrice(parseFloat(payment.interest.toFixed(2)))}</div>
+                                                <div className="w-[200px]">
+                                                    {parseFloat(payment.interest) > 0 ? formatPrice(parseFloat(payment.interest.toFixed(2))) : 0}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
