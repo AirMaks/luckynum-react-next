@@ -27,6 +27,7 @@ li {
 body {
     font: var(--font-m);
     min-height: 100vh;
+    overscroll-behavior-y: none;
 }
 
 button {
