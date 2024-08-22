@@ -14,7 +14,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ru" className={cn([jura.className, "overscroll-none"])}>
+        <html lang="ru" className={cn([jura.className, "overscroll-none overflow-hidden h-[100%]"])}>
             <head>
                 <meta name="yandex-verification" content="b2606e0b53f2e31f" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
