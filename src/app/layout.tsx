@@ -1,13 +1,18 @@
-"use client";
-
 import "styles/globals.scss";
 import { Jura } from "next/font/google";
 import { App } from "./app";
 import YandexMetrika from "./YandexMetrika";
 import cn from "classnames";
+import { Metadata } from "next";
 
 const jura = Jura({ subsets: ["cyrillic", "latin"] });
 
+export const metadata: Metadata = {
+    metadataBase: new URL("https://lucky-num.ru"),
+    alternates: {
+        canonical: "./"
+    }
+};
 export default function RootLayout({
     children
 }: Readonly<{
@@ -17,7 +22,6 @@ export default function RootLayout({
         <html lang="ru" className={cn([jura.className, "overscroll-none overflow-hidden h-[100%]"])}>
             <head>
                 <meta name="yandex-verification" content="b2606e0b53f2e31f" />
-                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
                 <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
