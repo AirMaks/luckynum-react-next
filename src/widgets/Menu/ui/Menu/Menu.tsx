@@ -5,6 +5,7 @@ import ListIcon from "shared/assets/icons/menu/list.svg";
 import cls from "./Menu.module.scss";
 import DiceIcon from "shared/assets/icons/menu/dice.svg";
 import CalcIcon from "shared/assets/icons/menu/calculator.svg";
+import CreditCardIcon from "shared/assets/icons/menu/credit-card.svg";
 import { Sidebar } from "shared/ui/Sidebar/Sidebar";
 import { memo } from "react";
 import { usePathname } from "next/navigation";
@@ -46,10 +47,20 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                     <li>
                         <AppLink
                             theme={AppLinkTheme.SECONDARY}
+                            href={"/mortgage-calculator"}
+                            className={cn(cls.link, { [cls.active]: pathname === "/mortgage-calculator" })}
+                            onClick={onClickMenuItem}>
+                            <CalcIcon className={cls.icon} />
+                            <span className={cls.link_text}>{t("Калькулятор ипотеки")}</span>
+                        </AppLink>
+                    </li>
+                    <li>
+                        <AppLink
+                            theme={AppLinkTheme.SECONDARY}
                             href={"/credit-calculator"}
                             className={cn(cls.link, { [cls.active]: pathname === "/credit-calculator" })}
                             onClick={onClickMenuItem}>
-                            <CalcIcon className={cls.icon} />
+                            <CreditCardIcon className={cls.icon} />
                             <span className={cls.link_text}>{t("Кредитный калькулятор")}</span>
                         </AppLink>
                     </li>

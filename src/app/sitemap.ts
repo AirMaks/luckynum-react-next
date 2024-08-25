@@ -9,6 +9,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1
         },
         {
+            url: "https://lucky-num.ru/mortgage-calculator",
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 0.8
+        },
+        {
             url: "https://lucky-num.ru/credit-calculator",
             lastModified: new Date(),
             changeFrequency: "monthly",

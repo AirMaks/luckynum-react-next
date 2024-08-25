@@ -19,3 +19,8 @@ export const TERMS: any = {
     "25 лет": 25,
     "30 лет": 30
 };
+
+export const DIFF = "Дифференцированный";
+export const ANUI = "Аннуитетный";
+export const CREDIT_TIME = "Расчет срока кредита";
+export const MONTHLY_PAYMENT = "Расчет ежемесячного платежа";

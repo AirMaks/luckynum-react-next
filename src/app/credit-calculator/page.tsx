@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import CreditCalculator from "widgets/CreditCalculator/CreditCalculator";
 import { title, description, keywords } from "../seo/credit-calculator";
+import CreditCalculator from "widgets/calculators/CreditCalculator/CreditCalculator";
 
 export const metadata: Metadata = {
     title,
