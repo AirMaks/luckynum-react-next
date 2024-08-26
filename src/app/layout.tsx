@@ -19,7 +19,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ru" className={cn([jura.className, "overscroll-none overflow-hidden h-[100%]"])}>
+        <html lang="ru" className={cn([jura.className, ""])}>
             <head>
                 <meta name="yandex-verification" content="b2606e0b53f2e31f" />
                 <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml" />
@@ -29,7 +29,7 @@ export default function RootLayout({
                 <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
                 <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
             </head>
-            <body className="bg-lightbg text-black dark:bg-stone-800 dark:text-white overscroll-none">
+            <body className="bg-lightbg text-black dark:bg-stone-800 dark:text-white">
                 <App>{children}</App>
                 <YandexMetrika yid={88160252} clickmap={true} trackLinks={true} accurateTrackBounce={true} webvisor={true} />
             </body>
