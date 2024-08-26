@@ -194,7 +194,7 @@ const CreditCalculator = () => {
     };
 
     const renderErrorCS = () => {
-        if (document.activeElement?.id !== "credit_sum") return;
+        if (typeof window !== "undefined" && document.activeElement?.id !== "credit_sum") return;
         const monthlyInterestRate = percent / 12 / 100;
 
         if (Number(creditSumValue) === 0) {
@@ -218,7 +218,7 @@ const CreditCalculator = () => {
     };
 
     const renderErrorMP = () => {
-        if (document.activeElement?.id !== "monthly_payment") return;
+        if (typeof window !== "undefined" && document.activeElement?.id !== "monthly_payment") return;
         const monthlyInterestRate = percent / 12 / 100;
         const isMonthlyPaymentNotCover = Number(monthlyPaymentInputValue) <= Number(creditSumValue) * Number(monthlyInterestRate);
 
@@ -239,7 +239,7 @@ const CreditCalculator = () => {
     };
 
     const renderErrorPercent = () => {
-        if (document.activeElement?.id !== "percent") return;
+        if (typeof window !== "undefined" && document.activeElement?.id !== "percent") return;
         if (errorPercent) return <ErrorBadge text="Процент не может быть 0" />;
         if (creditType === CREDIT_TIME) {
             const monthlyInterestRate = percent / 12 / 100;
