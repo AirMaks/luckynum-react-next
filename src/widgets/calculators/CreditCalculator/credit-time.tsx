@@ -7,19 +7,7 @@ import { DifferenceBar } from "../DifferenceBar";
 import { formatMonths } from "helpers/formatMonths";
 
 export const CreditTime = (props: any) => {
-    const {
-        percent,
-        creditSumValue,
-        monthlyPaymentInputValue,
-        setCreditTime,
-        creditTime,
-        setCreditTimeError,
-        creditTimeError,
-        setPaymentSchedule,
-        creditType,
-        setErrorCS,
-        setErrorMonthlyPayment
-    } = props;
+    const { percent, creditSumValue, monthlyPaymentInputValue, setCreditTime, creditTime, setPaymentSchedule, creditType } = props;
 
     useEffect(() => {
         calculateCreditTime();
@@ -27,22 +15,14 @@ export const CreditTime = (props: any) => {
     }, [creditSumValue, percent, monthlyPaymentInputValue, creditType]);
 
     const calculateCreditTime = () => {
-        calculatePaymentSchedule();
         const monthlyInterestRate = percent / 12 / 100;
-        console.log(Number(monthlyPaymentInputValue), creditSumValue * monthlyInterestRate);
-        if (Number(creditSumValue) <= monthlyPaymentInputValue) {
-            setErrorCS(true);
-            setErrorMonthlyPayment(true);
-        }
-        setCreditTimeError(Number(monthlyPaymentInputValue) <= creditSumValue * monthlyInterestRate);
-        if (Number(monthlyPaymentInputValue) <= creditSumValue * monthlyInterestRate)
-            console.log("Ежемесячный платеж недостаточен для покрытия процентов по кредиту.");
 
         const creditTimeInMonths =
             Math.log(monthlyPaymentInputValue / (monthlyPaymentInputValue - creditSumValue * monthlyInterestRate)) /
             Math.log(1 + monthlyInterestRate);
 
         setCreditTime(creditTimeInMonths);
+        calculatePaymentSchedule();
     };
 
     const calculatePaymentSchedule = () => {
@@ -89,17 +69,12 @@ export const CreditTime = (props: any) => {
 
     const calculateWidth = (creditSumValue / totalPayment) * 100;
 
-    const years = Math.floor(creditTime / 12);
-
-    if (years >= 50) return <div>Срок кредита превышает 50 лет.</div>;
-    if (creditTimeError) return <div>Ежемесячный платеж недостаточен для покрытия процентов по кредиту.</div>;
-
     return (
         <>
             <SummaryItem text="Срок кредита:" value={`${formatMonths(creditTime)}`} />
-            <SummaryItem text="Общая выплата:" value={formatPrice(totalPayment > 0 ? totalPayment : 0)} />
-            <SummaryItem text="Сумма кредита:" value={formatPrice(creditSumValue > 0 ? creditSumValue : 0)} className="text-[#0168af]" />
-            <SummaryItem text="Переплата по кредиту:" value={formatPrice(overPay > 0 ? overPay : 0)} className="text-[#489b00]" />
+            <SummaryItem text="Общая выплата:" value={formatPrice(totalPayment)} />
+            <SummaryItem text="Сумма кредита:" value={formatPrice(creditSumValue)} className="text-[#0168af]" />
+            <SummaryItem text="Переплата по кредиту:" value={formatPrice(overPay)} className="text-[#489b00]" />
             <DifferenceBar width={calculateWidth} />
         </>
     );

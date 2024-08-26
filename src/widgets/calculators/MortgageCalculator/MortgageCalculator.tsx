@@ -44,12 +44,13 @@ const MortgageCalculator = () => {
     const [errorPV, setErrorPV] = useState(false);
     const [errorCS, setErrorCS] = useState(false);
     const [errorPercent, setErrorPercent] = useState(false);
+    const [errorPercentTooBig, setErrorPercentTooBig] = useState(false);
 
     const [type, setType] = useState<any>(ANUI);
     const [isMounted, setIsMounted] = useState(false);
     useEffect(() => {
         setIsMounted(true);
-      }, []);
+    }, []);
 
     const handleChangeCreditSum = (value: any) => {
         const sanitized = sanitizeSymbols(value).toString();
@@ -74,6 +75,8 @@ const MortgageCalculator = () => {
 
     const handlePercentChange = (value: any) => {
         const sanitized = sanitizePercents(value);
+        const monthlyInterestRate = Number(sanitized) / 12 / 100;
+        setErrorPercentTooBig(Number(sanitized) > 99);
         setErrorPercent(Number(sanitized) === 0);
         setPercent(sanitized);
     };
@@ -139,7 +142,11 @@ const MortgageCalculator = () => {
 
     const scheduleProps = { modalIsOpen, csvData, setModalIsOpen, paymentSchedule, type };
 
-
+    const renderErrorPercent = () => {
+        if (errorPercent) return <ErrorBadge text="Процент не может быть 0" />;
+        if (errorPercentTooBig) return <ErrorBadge text="Процент не может быть больше 99" />;
+        return null;
+    };
 
     return (
         <div className="pt-[60px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[1000px] px-[20px]">
@@ -152,16 +159,13 @@ const MortgageCalculator = () => {
                             <Input
                                 ref={refCreditSum}
                                 rounded={false}
-                                className={cn({
-                                    "!outline-red-600 !outline-2 !outline !border-transparent": errorCS
-                                })}
                                 id="credit_sum"
                                 value={formattedCreditSumValue}
                                 onChange={handleChangeCreditSum}
                             />
                         </FormFieldWrapper>
                         <FormFieldWrapper label="Процентная ставка" htmlFor="percent">
-                            {errorPercent && <ErrorBadge text="Процент не может быть 0" />}
+                            {renderErrorPercent()}
                             <Input className={cn("")} ref={refPercent} rounded={false} id="percent" value={percent} onChange={handlePercentChange} />
                         </FormFieldWrapper>
                         <FormFieldWrapper label="Срок кредита">
@@ -185,9 +189,6 @@ const MortgageCalculator = () => {
                                 ref={refInitialPayment}
                                 rounded={false}
                                 id="initial_payment"
-                                className={cn({
-                                    "!outline-red-600 !outline-2 !outline !border-transparent": errorPV
-                                })}
                                 value={formattedInitialPaymentValue}
                                 onChange={handleChangeInitialPayment}
                             />
@@ -203,16 +204,24 @@ const MortgageCalculator = () => {
                         </FormFieldWrapper>
                     </div>
                     <div className="ps-[20px] pt-[20px] max-sm:p-[0] max-sm:mt-[20px] relative w-2/3">
-                        {!isMounted ? <Loader /> :
-                            !errorPercent && !errorCS && !errorPV && isMounted && (
+                        {!isMounted ? (
+                            <Loader />
+                        ) : (
+                            !errorPercent &&
+                            !errorPercentTooBig &&
+                            !errorCS &&
+                            !errorPV &&
+                            isMounted && (
                                 <>
                                     {type === DIFF ? <Diff {...diffProps} /> : <Anui {...anuiProps} />}
-                                    <div className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px]" onClick={() => setModalIsOpen(true)}>
+                                    <div
+                                        className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px]"
+                                        onClick={() => setModalIsOpen(true)}>
                                         Скачать график платежей
                                     </div>
-                                </>)
-
-                        }
+                                </>
+                            )
+                        )}
                     </div>
                 </div>
             </div>

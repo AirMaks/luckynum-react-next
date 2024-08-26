@@ -34,19 +34,25 @@ const CreditCalculator = () => {
     const [monthlyPayment, setMonthlyPayment] = useState<any>(0);
     const [creditTime, setCreditTime] = useState<any>(0);
     const [diffOverPaid, setDiffOverPaid] = useState<any>(0);
+
     const [isOpenSelect, setIsOpenSelect] = useState<any>(false);
     const [isOpenSelectType, setIsOpenSelectType] = useState<any>(false);
     const [isOpenSelectCreditType, setIsOpenSelectCreditType] = useState<any>(false);
+
     const refCreditSum = useRef(null);
     const refPercent = useRef(null);
     const refMonthlyPayment = useRef(null);
+
     const [paymentSchedule, setPaymentSchedule] = useState<any>([]);
+
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [error, setError] = useState(false);
-    const [errorMonthlyPayment, setErrorMonthlyPayment] = useState(false);
-    const [errorCS, setErrorCS] = useState(false);
-    const [creditTimeError, setCreditTimeError] = useState(false);
+
     const [errorPercent, setErrorPercent] = useState(false);
+
+    const [errorCreditSumZero, setErrorCreditSumZero] = useState(false);
+    const [errorIsMonthlyPaymentNotCover, setErrorIsMonthlyPaymentNotCover] = useState(false);
+    const [errorCreditSumLessMonthlyPayment, setErrorCreditSumLessMonthlyPayment] = useState(false);
+    const [errorPercentTooBig, setErrorPercentTooBig] = useState(false);
 
     const [monthlyPaymentInputValue, setMonthlyPaymentInputValue] = useState<any>(10000);
 
@@ -59,12 +65,13 @@ const CreditCalculator = () => {
 
     const handleChangeCreditSum = (value: any) => {
         const sanitized = sanitizeSymbols(value).toString();
-        if (creditType === MONTHLY_PAYMENT) {
-            setErrorCS(Number(sanitized) === 0);
-        }
+        const monthlyInterestRate = percent / 12 / 100;
+
+        setErrorCreditSumZero(Number(sanitized) === 0);
 
         if (creditType === CREDIT_TIME) {
-            setErrorCS(Number(sanitized) <= Number(monthlyPaymentInputValue));
+            setErrorIsMonthlyPaymentNotCover(Number(monthlyPaymentInputValue) <= Number(sanitized) * Number(monthlyInterestRate));
+            setErrorCreditSumLessMonthlyPayment(Number(sanitized) <= Number(monthlyPaymentInputValue));
         }
 
         setCreditSumValue(sanitized);
@@ -72,13 +79,23 @@ const CreditCalculator = () => {
 
     const handleChangeMonthlyPayment = (value: any) => {
         const sanitized = sanitizeSymbols(value).toString();
-        setErrorMonthlyPayment(Number(sanitized) >= Number(creditSumValue));
+
+        const monthlyInterestRate = percent / 12 / 100;
+
+        setErrorIsMonthlyPaymentNotCover(Number(sanitized) <= Number(creditSumValue) * Number(monthlyInterestRate));
+        setErrorCreditSumLessMonthlyPayment(Number(creditSumValue) <= Number(sanitized));
 
         setMonthlyPaymentInputValue(sanitized);
     };
 
     const handlePercentChange = (value: any) => {
         const sanitized = sanitizePercents(value);
+        const monthlyInterestRate = Number(sanitized) / 12 / 100;
+        const isMonthlyPaymentNotCover = Number(monthlyPaymentInputValue) <= Number(creditSumValue) * Number(monthlyInterestRate);
+        if (creditType === CREDIT_TIME) {
+            setErrorIsMonthlyPaymentNotCover(isMonthlyPaymentNotCover);
+        }
+        setErrorPercentTooBig(Number(sanitized) > 99);
         setErrorPercent(Number(sanitized) === 0);
         setPercent(sanitized);
     };
@@ -99,23 +116,31 @@ const CreditCalculator = () => {
         setIsOpenSelect(false);
     };
     const onSelectTypeItemClick = (value: any) => {
-        // if (value !== type) setMonthlyPayment(0);
         setType(value);
         setIsOpenSelectType(false);
     };
 
     const onSelectCreditTypeClick = (value: any) => {
-        // if (value !== type) {
-        //     setErrorMonthlyPayment(false);
-        //     setErrorCS(false);
-        //     setErrorPercent(false);
-        //     setCreditTimeError(false);
-        // }
         setIsOpenSelectCreditType((prev: any) => !prev);
         setIsOpenSelect(false);
         setIsOpenSelectType(false);
     };
     const onSelectCreditTypeItemClick = (value: any) => {
+        if (value !== creditType) {
+            setErrorPercent(false);
+            setErrorPercentTooBig(false);
+            setErrorCreditSumZero(false);
+            setErrorIsMonthlyPaymentNotCover(false);
+            setErrorCreditSumLessMonthlyPayment(false);
+            setCreditSumValue(1000000);
+            setPercent(5);
+            setCreditTerm("1 год");
+            setMonthlyPayment(0);
+            setMonthlyPaymentInputValue(10000);
+            setCreditTime(0);
+            setDiffOverPaid(0);
+            setType(ANUI);
+        }
         setCreditType(value);
         setIsOpenSelectCreditType(false);
         setIsOpenSelect(false);
@@ -164,13 +189,72 @@ const CreditCalculator = () => {
         monthlyPaymentInputValue,
         setCreditTime,
         creditTime,
-        setCreditTimeError,
-        creditTimeError,
-        creditTerm,
         setPaymentSchedule,
-        creditType,
-        setErrorCS,
-        setErrorMonthlyPayment
+        creditType
+    };
+
+    const renderErrorCS = () => {
+        if (document.activeElement?.id !== "credit_sum") return;
+        const monthlyInterestRate = percent / 12 / 100;
+
+        if (Number(creditSumValue) === 0) {
+            return <ErrorBadge text="СК не может быть равной 0" />;
+        }
+        if (creditType === CREDIT_TIME) {
+            const isMonthlyPaymentNotCover = Number(monthlyPaymentInputValue) <= Number(creditSumValue) * Number(monthlyInterestRate);
+            if (Number(creditSumValue) <= Number(monthlyPaymentInputValue)) {
+                return <ErrorBadge text="СК не может быть меньше/равен ЕП" />;
+            }
+
+            if (isMonthlyPaymentNotCover) {
+                return <ErrorBadge text="ЕП не покрывает проценты по кредиту" />;
+            }
+
+            if (Math.floor(creditTime / 12) >= 50) {
+                return <ErrorBadge text="Срок кредита превышает 50 лет" />;
+            }
+        }
+        return null;
+    };
+
+    const renderErrorMP = () => {
+        if (document.activeElement?.id !== "monthly_payment") return;
+        const monthlyInterestRate = percent / 12 / 100;
+        const isMonthlyPaymentNotCover = Number(monthlyPaymentInputValue) <= Number(creditSumValue) * Number(monthlyInterestRate);
+
+        if (Number(monthlyPaymentInputValue) === 0) return <ErrorBadge text="ЕП не может быть равен 0" />;
+        if (Number(creditSumValue) <= Number(monthlyPaymentInputValue)) {
+            return <ErrorBadge text="ЕП не может быть больше/равен СК" />;
+        }
+
+        if (isMonthlyPaymentNotCover) {
+            return <ErrorBadge text="ЕП не покрывает проценты по кредиту" />;
+        }
+
+        if (Math.floor(creditTime / 12) >= 50) {
+            return <ErrorBadge text="Срок кредита превышает 50 лет" />;
+        }
+
+        return null;
+    };
+
+    const renderErrorPercent = () => {
+        if (document.activeElement?.id !== "percent") return;
+        if (errorPercent) return <ErrorBadge text="Процент не может быть 0" />;
+        if (creditType === CREDIT_TIME) {
+            const monthlyInterestRate = percent / 12 / 100;
+            const isMonthlyPaymentNotCover = Number(monthlyPaymentInputValue) <= Number(creditSumValue) * Number(monthlyInterestRate);
+
+            if (isMonthlyPaymentNotCover) {
+                return <ErrorBadge text="ЕП не покрывает проценты по кредиту" />;
+            }
+
+            if (Math.floor(creditTime / 12) >= 50) {
+                return <ErrorBadge text="Срок кредита превышает 50 лет" />;
+            }
+        }
+        if (errorPercentTooBig) return <ErrorBadge text="Процент не может быть больше 99" />;
+        return null;
     };
 
     return (
@@ -184,19 +268,15 @@ const CreditCalculator = () => {
                                 onSelectClick={onSelectCreditTypeClick}
                                 isOpenSelect={isOpenSelectCreditType}
                                 onSelectItemClick={onSelectCreditTypeItemClick}
-                                items={[MONTHLY_PAYMENT]}
+                                items={[MONTHLY_PAYMENT, CREDIT_TIME]}
                                 selectedItem={creditType}
                             />
                         </FormFieldWrapper>
                         <FormFieldWrapper label="Сумма кредита" htmlFor="credit_sum">
-                            {creditType === MONTHLY_PAYMENT && errorCS && <ErrorBadge text="СК не может быть 0" />}
-                            {creditType === CREDIT_TIME && errorCS && <ErrorBadge text="СК не может быть меньше/равен ЕП" />}
+                            {renderErrorCS()}
                             <Input
                                 ref={refCreditSum}
                                 rounded={false}
-                                className={cn({
-                                    "!outline-red-600 !outline-2 !outline !border-transparent": errorCS
-                                })}
                                 id="credit_sum"
                                 value={formatPrice(creditSumValue, false)}
                                 onChange={handleChangeCreditSum}
@@ -204,13 +284,10 @@ const CreditCalculator = () => {
                         </FormFieldWrapper>
                         {creditType === CREDIT_TIME && (
                             <FormFieldWrapper label="Ежемесячный платеж" htmlFor="monthly_payment">
-                                {creditType === CREDIT_TIME && errorMonthlyPayment && <ErrorBadge text="ЕП не может быть больше/равен СК" />}
+                                {renderErrorMP()}
                                 <Input
                                     ref={refMonthlyPayment}
                                     rounded={false}
-                                    className={cn({
-                                        "!outline-red-600 !outline-2 !outline !border-transparent": errorMonthlyPayment
-                                    })}
                                     id="monthly_payment"
                                     value={formatPrice(monthlyPaymentInputValue, false)}
                                     onChange={handleChangeMonthlyPayment}
@@ -218,7 +295,7 @@ const CreditCalculator = () => {
                             </FormFieldWrapper>
                         )}
                         <FormFieldWrapper label="Процентная ставка" htmlFor="percent">
-                            {creditType === MONTHLY_PAYMENT && errorPercent && <ErrorBadge text="Процент не может быть 0" />}
+                            {renderErrorPercent()}
                             <Input className={cn("")} ref={refPercent} rounded={false} id="percent" value={percent} onChange={handlePercentChange} />
                         </FormFieldWrapper>
                         {creditType === MONTHLY_PAYMENT && (
@@ -248,10 +325,11 @@ const CreditCalculator = () => {
                         {!isMounted ? (
                             <Loader />
                         ) : (
-                            !errorMonthlyPayment &&
-                            !creditTimeError &&
-                            !errorCS &&
-                            !errorPercent && (
+                            !errorPercentTooBig &&
+                            !errorPercent &&
+                            !errorCreditSumZero &&
+                            !errorIsMonthlyPaymentNotCover &&
+                            !errorCreditSumLessMonthlyPayment && (
                                 <>
                                     {creditType === MONTHLY_PAYMENT && type === DIFF ? (
                                         <Diff {...diffProps} />
