@@ -1,7 +1,7 @@
 import { formatPrice } from "helpers/formatPrice";
 import { formatRublesText } from "helpers/formatRublesText";
 
-export const Content = ({ isMainPage, isCountryIpoteka, isItIpoteka, isInitialPaymentIpoteka, creditSum, years, initialPayment }: any) => {
+export const Content = ({ isMainPage, isCountryIpoteka, isItIpoteka, isInitialPaymentIpoteka, creditSum, years, initialPayment, percent }: any) => {
     if (isInitialPaymentIpoteka) {
         return (
             <article className="mt-[50px]">
@@ -20,10 +20,11 @@ export const Content = ({ isMainPage, isCountryIpoteka, isItIpoteka, isInitialPa
         return (
             <article className="mt-[50px]">
                 <h2 className="font-bold text-[24px] mb-[10px]">
-                    Вы рассчитали кредит на сельскую ипотеку с суммой кредита {formatPrice(creditSum, false)} {formatRublesText(creditSum)} и сроком
+                    Вы рассчитали кредит на сельскую ипотеку с процетной ставкой {percent}%, с суммой кредита {formatPrice(creditSum, false)} {formatRublesText(creditSum)} и сроком
                     на {years}
                 </h2>
                 <p className="mb-[20px]">
+                    Процент сельской ипотеки может зависеть от различных факторов, поэтому выберите подходящую для вас процентную ставку.
                     Вы можете поменять сумму ипотеки, срок ипотеки, процентную ставку или тип платежей (аннуитетный или дифференцированный), чтобы
                     рассчитать нужную вам ипотеку.
                 </p>
@@ -35,10 +36,11 @@ export const Content = ({ isMainPage, isCountryIpoteka, isItIpoteka, isInitialPa
         return (
             <article className="mt-[50px]">
                 <h2 className="font-bold text-[24px] mb-[10px]">
-                    Вы рассчитали кредит на IT ипотеку с суммой кредита {formatPrice(creditSum, false)} {formatRublesText(creditSum)} и сроком на{" "}
+                    Вы рассчитали кредит на IT ипотеку с процетной ставкой {percent}%, с суммой кредита {formatPrice(creditSum, false)} {formatRublesText(creditSum)} и сроком на{" "}
                     {years}
                 </h2>
                 <p className="mb-[20px]">
+                    Процент IT ипотеки может меняться, поэтому выберите подходящую для вас процентную ставку.
                     Вы можете поменять сумму ипотеки, срок ипотеки, процентную ставку или тип платежей (аннуитетный или дифференцированный), чтобы
                     рассчитать нужную вам ипотеку.
                 </p>

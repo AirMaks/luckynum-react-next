@@ -258,6 +258,7 @@ const MortgageCalculator = (props: Props) => {
                 isItIpoteka={props.isItIpoteka}
                 isInitialPaymentIpoteka={props.isInitialPaymentIpoteka}
                 initialPayment={initialPaymentValue}
+                percent={percent}
             />
             <ScheduleModal {...scheduleProps} />
         </div>
