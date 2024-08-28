@@ -50,7 +50,7 @@ const RandomWordList = () => {
         <>
             <h1 className="pt-[30px] text-center text-[24px] font-bold max-sm:text-[20px]">{t("Генератор случайных слов из списка")}</h1>
             <div className={cn(cls.Container, {}, [])}>
-                <div className="d-flex">
+                <div className="flex">
                     <Button
                         classContainer="mr-[10px] w-full"
                         className={cn({ "bg-stone-800 text-white": isExclude }, [
