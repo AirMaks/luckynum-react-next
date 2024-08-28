@@ -12,6 +12,16 @@ export function formatMonths(months: any) {
         remainingMonths = 0;
     }
 
+    let result = `${years} ${formatYearsText(years)}`;
+
+    if (remainingMonths > 0) {
+        result += ` ${remainingMonths} ${remainingMonths === 1 ? "месяц" : remainingMonths >= 2 && remainingMonths <= 4 ? "месяца" : "месяцев"}`;
+    }
+
+    return result;
+}
+
+export const formatYearsText = (years: any) => {
     let txt;
     let count = years % 100;
     if (count >= 5 && count <= 20) {
@@ -27,11 +37,5 @@ export function formatMonths(months: any) {
         }
     }
 
-    let result = `${years} ${txt}`;
-
-    if (remainingMonths > 0) {
-        result += ` ${remainingMonths} ${remainingMonths === 1 ? "месяц" : remainingMonths >= 2 && remainingMonths <= 4 ? "месяца" : "месяцев"}`;
-    }
-
-    return result;
-}
+    return txt;
+};

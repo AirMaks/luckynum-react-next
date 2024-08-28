@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import MortgageCalculator from "widgets/calculators/MortgageCalculator/MortgageCalculator";
-import { title, description, keywords } from "../seo/mortgage-calculator";
+import { title, description, keywords } from "./seo";
 
 export const metadata: Metadata = {
     title,
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const MortgageCalculatorPage = () => {
-    return <MortgageCalculator />;
+    return <MortgageCalculator creditSum={1000000} paymentValue={0} years={1} isMainPage h1="Калькулятор ипотеки" />;
 };
 
 export default MortgageCalculatorPage;

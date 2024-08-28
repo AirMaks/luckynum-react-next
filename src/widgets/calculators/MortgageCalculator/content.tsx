@@ -1,10 +1,66 @@
-import Image from "next/image";
+import { formatPrice } from "helpers/formatPrice";
+import { formatRublesText } from "helpers/formatRublesText";
 
-export const Content = () => {
+export const Content = ({ isMainPage, isCountryIpoteka, isItIpoteka, isInitialPaymentIpoteka, creditSum, years, initialPayment }: any) => {
+    if (isInitialPaymentIpoteka) {
+        return (
+            <article className="mt-[50px]">
+                <h2 className="font-bold text-[24px] mb-[10px]">
+                    Вы рассчитали кредит с первоначальным взносом {formatPrice(initialPayment, false)} {formatRublesText(initialPayment)}, с суммой
+                    кредита {formatPrice(creditSum, false)} {formatRublesText(creditSum)} и сроком на {years}
+                </h2>
+                <p className="mb-[20px]">
+                    Вы можете поменять сумму ипотеки, срок ипотеки, процентную ставку или тип платежей (аннуитетный или дифференцированный), чтобы
+                    рассчитать нужную вам ипотеку.
+                </p>
+            </article>
+        );
+    }
+    if (isCountryIpoteka) {
+        return (
+            <article className="mt-[50px]">
+                <h2 className="font-bold text-[24px] mb-[10px]">
+                    Вы рассчитали кредит на сельскую ипотеку с суммой кредита {formatPrice(creditSum, false)} {formatRublesText(creditSum)} и сроком
+                    на {years}
+                </h2>
+                <p className="mb-[20px]">
+                    Вы можете поменять сумму ипотеки, срок ипотеки, процентную ставку или тип платежей (аннуитетный или дифференцированный), чтобы
+                    рассчитать нужную вам ипотеку.
+                </p>
+            </article>
+        );
+    }
+
+    if (isItIpoteka) {
+        return (
+            <article className="mt-[50px]">
+                <h2 className="font-bold text-[24px] mb-[10px]">
+                    Вы рассчитали кредит на IT ипотеку с суммой кредита {formatPrice(creditSum, false)} {formatRublesText(creditSum)} и сроком на{" "}
+                    {years}
+                </h2>
+                <p className="mb-[20px]">
+                    Вы можете поменять сумму ипотеки, срок ипотеки, процентную ставку или тип платежей (аннуитетный или дифференцированный), чтобы
+                    рассчитать нужную вам ипотеку.
+                </p>
+            </article>
+        );
+    }
+
+    if (!isMainPage) return null;
     return (
         <article className="mt-[50px]">
-            <h2 className="font-bold text-[24px] mb-[10px]">Расчет ипотеки онлайн: Удобный и точный способ планирования покупки недвижимости</h2>
+            <h2 className="font-bold text-[24px] mb-[10px]">Расчет ипотеки онлайн с помощью ипотечного калькулятора</h2>
             <p className="mb-[20px]">
+                Ипотечный калькулятор — это программа, которая с помощью математических формул рассчитывает ежемесячные платежи, процентные ставки,
+                переплату и другие важные параметры кредита. Для получения точных данных пользователю необходимо ввести:
+            </p>
+            <ul className="ms-[18px] mb-[20px]">
+                <li className="mb-[5px] list-disc">Сумму кредита</li>
+                <li className="mb-[5px] list-disc">Срок кредитования</li>
+                <li className="mb-[5px] list-disc">Процентную ставку</li>
+                <li className="mb-[5px] list-disc">Тип платежей (аннуитетные или дифференцированные)</li>
+            </ul>
+            {/* <p className="mb-[20px]">
                 Покупка недвижимости в ипотеку — важное решение, которое требует тщательной подготовки и анализа финансовых возможностей. Одним из
                 самых полезных инструментов для потенциального заемщика является ипотечный калькулятор. Этот инструмент позволяет рассчитать
                 ежемесячные платежи, определить максимальный размер кредита и понять, какую сумму придется переплатить банку. В этой статье мы
@@ -99,7 +155,7 @@ export const Content = () => {
                 Расчет ипотеки онлайн с помощью калькулятора — это удобный способ оценить свои финансовые возможности и подготовиться к покупке
                 недвижимости. Этот инструмент позволяет быстро рассчитать ежемесячные платежи, переплату и другие важные параметры кредита. Используя
                 ипотечный калькулятор, вы сможете более осознанно подойти к выбору кредитной программы и избежать финансовых трудностей в будущем.
-            </p>
+            </p> */}
         </article>
     );
 };

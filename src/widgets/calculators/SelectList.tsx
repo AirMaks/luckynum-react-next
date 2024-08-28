@@ -3,6 +3,7 @@ import ArrowIcon from "shared/assets/icons/arrow-down.svg";
 
 export const SelectList = (props: any) => {
     const { className, onSelectClick, onSelectItemClick, items, selectedItem, isOpenSelect } = props;
+    if (!items || !items.length) return null;
     return (
         <div className={cn("rounded p-[4px] border border-black relative", [className])}>
             <ArrowIcon className="absolute top-[10px] right-[5px] pointer-events-none" />

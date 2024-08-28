@@ -7,7 +7,25 @@ import { DifferenceBar } from "../DifferenceBar";
 import { formatMonths } from "helpers/formatMonths";
 
 export const CreditTime = (props: any) => {
-    const { percent, creditSumValue, monthlyPaymentInputValue, setCreditTime, creditTime, setPaymentSchedule, creditType } = props;
+    const {
+        percent,
+        creditSumValue,
+        monthlyPaymentInputValue,
+        setCreditTime,
+        creditTime,
+        setPaymentSchedule,
+        creditType,
+        setErrorIsMonthlyPaymentNotCover,
+        setErrorPercentTooBig,
+        setErrorPercent,
+        setErrorCreditSumLessMonthlyPayment,
+        setErrorCreditTimeTooBig,
+        errorIsMonthlyPaymentNotCover,
+        errorCreditSumLessMonthlyPayment,
+        errorPercentTooBig,
+        errorPercent,
+        errorCreditTimeTooBig
+    } = props;
 
     useEffect(() => {
         calculateCreditTime();
@@ -20,6 +38,12 @@ export const CreditTime = (props: any) => {
         const creditTimeInMonths =
             Math.log(monthlyPaymentInputValue / (monthlyPaymentInputValue - creditSumValue * monthlyInterestRate)) /
             Math.log(1 + monthlyInterestRate);
+
+        setErrorIsMonthlyPaymentNotCover(Number(monthlyPaymentInputValue) <= Number(creditSumValue) * Number(monthlyInterestRate));
+        setErrorCreditSumLessMonthlyPayment(Number(creditSumValue) <= Number(monthlyPaymentInputValue));
+        setErrorPercentTooBig(Number(percent) > 99);
+        setErrorPercent(Number(percent) === 0);
+        setErrorCreditTimeTooBig(Math.floor(creditTimeInMonths / 12) >= 50);
 
         setCreditTime(creditTimeInMonths);
         calculatePaymentSchedule();
@@ -69,13 +93,16 @@ export const CreditTime = (props: any) => {
 
     const calculateWidth = (creditSumValue / totalPayment) * 100;
 
+    const hasErrors =
+        errorIsMonthlyPaymentNotCover || errorCreditSumLessMonthlyPayment || errorPercentTooBig || errorPercent || errorCreditTimeTooBig;
+
     return (
         <>
-            <SummaryItem text="Срок кредита:" value={`${formatMonths(creditTime)}`} />
-            <SummaryItem text="Общая выплата:" value={formatPrice(totalPayment)} />
-            <SummaryItem text="Сумма кредита:" value={formatPrice(creditSumValue)} className="text-[#0168af]" />
-            <SummaryItem text="Переплата по кредиту:" value={formatPrice(overPay)} className="text-[#489b00]" />
-            <DifferenceBar width={calculateWidth} />
+            <SummaryItem text="Срок кредита:" value={hasErrors ? "" : `${formatMonths(creditTime)}`} />
+            <SummaryItem text="Общая выплата:" value={hasErrors ? "" : formatPrice(totalPayment)} />
+            <SummaryItem text="Сумма кредита:" value={hasErrors ? "" : formatPrice(creditSumValue)} className="text-[#0168af]" />
+            <SummaryItem text="Переплата по кредиту:" value={hasErrors ? "" : formatPrice(overPay)} className="text-[#489b00]" />
+            {!hasErrors && <DifferenceBar width={calculateWidth} />}
         </>
     );
 };

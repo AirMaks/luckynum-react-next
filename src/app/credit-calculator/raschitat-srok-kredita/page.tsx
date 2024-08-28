@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const CreditCalculatorPage = () => {
-    return <CreditCalculator isMainPage years={5} creditSum={1000000} h1="Кредитный калькулятор" />;
+    return <CreditCalculator creditSum={1000000} years={5} paymentValue={10000} h1="Рассчитать срок кредита" isCreditTime />;
 };
 
 export default CreditCalculatorPage;

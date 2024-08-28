@@ -15,6 +15,7 @@ import { SelectList } from "../SelectList";
 import Link from "next/link";
 import { ErrorBadge } from "../ErrorBadge";
 import Loader from "shared/ui/Loader/Loader";
+import { formatYearsText } from "helpers/formatMonths";
 
 const keys = Object.keys(TERMS);
 
@@ -26,12 +27,33 @@ export const csvDataHeaders = [
     { label: "Проценты", key: "interest" }
 ];
 
-const MortgageCalculator = () => {
-    const [creditSumValue, setCreditSumValue] = useState<any>(1000000);
-    const [initialPaymentValue, setInitialPaymentValue] = useState<any>(0);
-    const [initialPaymentPercent, setInitialPaymentPercent] = useState<any>(0);
-    const [percent, setPercent] = useState<any>(5);
-    const [creditTerm, setCreditTerm] = useState<any>("1 год");
+interface Props {
+    creditSum: number;
+    years: number;
+    isMainPage?: boolean;
+    paymentValue: number;
+    isCreditTime?: boolean;
+    h1: string;
+    percent?: number;
+    isCountryIpoteka?: boolean;
+    isItIpoteka?: boolean;
+    isInitialPaymentIpoteka?: boolean;
+}
+
+const MortgageCalculator = (props: Props) => {
+    const initialState = {
+        creditSum: props.creditSum,
+        years: `${props.years} ${formatYearsText(props.years)}`,
+        paymentValue: props.paymentValue,
+        percent: props.percent || 5
+    };
+
+    const [creditSumValue, setCreditSumValue] = useState<any>(initialState.creditSum);
+    const [initialPaymentValue, setInitialPaymentValue] = useState<any>(initialState.paymentValue);
+    const [percent, setPercent] = useState<any>(initialState.percent);
+    const [creditTerm, setCreditTerm] = useState<any>(initialState.years);
+
+    const [initialPaymentPercent, setInitialPaymentPercent] = useState<any>((+initialPaymentValue / +creditSumValue) * 100);
     const [monthlyPayment, setMonthlyPayment] = useState<any>(0);
     const [diffOverPaid, setDiffOverPaid] = useState<any>(0);
     const [isOpenSelect, setIsOpenSelect] = useState<any>(false);
@@ -151,7 +173,7 @@ const MortgageCalculator = () => {
     return (
         <div className="pt-[60px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[1000px] px-[20px]">
             <div className="bg-blue-50 p-[40px] max-lg:p-[20px] rounded">
-                <h1 className="text-center text-[24px] mb-[20px] font-bold">Калькулятор ипотеки</h1>
+                <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">{props.h1}</h1>
                 <div className="flex justify-between max-sm:flex-col">
                     <div className="flex flex-col w-1/2 max-sm:w-full">
                         <FormFieldWrapper label="Сумма ипотеки" htmlFor="credit_sum">
@@ -228,7 +250,15 @@ const MortgageCalculator = () => {
             <Link href="/credit-calculator" className="bg-blue-50 mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
                 Кредитный калькулятор
             </Link>
-            <Content />
+            <Content
+                isMainPage={props.isMainPage}
+                isCountryIpoteka={props.isCountryIpoteka}
+                years={creditTerm}
+                creditSum={creditSumValue}
+                isItIpoteka={props.isItIpoteka}
+                isInitialPaymentIpoteka={props.isInitialPaymentIpoteka}
+                initialPayment={initialPaymentValue}
+            />
             <ScheduleModal {...scheduleProps} />
         </div>
     );

@@ -70,47 +70,6 @@ input, button, textarea {
     justify-content: center;
 }
 
-.mt-10 {
-    margin-top: 10px;
-}
-.mr-10 {
-    margin-right: 10px;
-}
-.ml-10 {
-    margin-left: 10px;
-}
-.mb-10 {
-    margin-bottom: 10px;
-}
-
-.mt-20 {
-    margin-top: 20px;
-}
-.mr-20 {
-    margin-right: 20px;
-}
-.ml-20 {
-    margin-left: 20px;
-}
-.mb-20 {
-    margin-bottom: 20px;
-}
-.mx-auto, .my-auto, .m-auto {
-    display: block;
-}
-
-.mx-auto {
-    margin: 0 auto;
-}
-
-.my-auto {
-    margin: auto 0;
-}
-
-.m-auto {
-    margin: auto;
-}
-
 [data-theme=dark] {
     ::-webkit-scrollbar {
         width: initial;

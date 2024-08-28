@@ -7,10 +7,25 @@ import { SummaryItem } from "../SummaryItem";
 import { DifferenceBar } from "../DifferenceBar";
 
 export const Anui = (props: any) => {
-    const { percent, creditTerm, creditSumValue, setMonthlyPayment, setPaymentSchedule, type, monthlyPayment } = props;
+    const {
+        percent,
+        creditTerm,
+        creditSumValue,
+        setMonthlyPayment,
+        setPaymentSchedule,
+        type,
+        monthlyPayment,
+        setErrorCreditSumZero,
+        setErrorPercentTooBig,
+        setErrorPercent,
+        errorPercentTooBig,
+        errorPercent,
+        errorCreditSumZero
+    } = props;
 
     useEffect(() => {
         calculateMonthlyPayment();
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type, creditSumValue, percent, creditTerm]);
 
@@ -19,6 +34,10 @@ export const Anui = (props: any) => {
         const newCreditTerm = TERMS[creditTerm];
         const monthlyInterest = percent / 100 / 12;
         const totalPayments = Math.round(newCreditTerm * 12);
+
+        setErrorCreditSumZero(Number(creditSumValue) === 0);
+        setErrorPercentTooBig(Number(percent) > 99);
+        setErrorPercent(Number(percent) === 0);
         const payment = (creditSumValue * monthlyInterest) / (1 - Math.pow(1 + monthlyInterest, -totalPayments));
         setMonthlyPayment(payment);
     };
@@ -56,13 +75,18 @@ export const Anui = (props: any) => {
     const calculateWidth = (creditSumValue / totalPayment) * 100;
     const overPay = monthlyPayment * Math.round(TERMS[creditTerm] * 12) - creditSumValue;
 
+    const hasErrors = errorPercentTooBig || errorPercent || errorCreditSumZero;
     return (
         <>
-            <SummaryItem text="Ежемесячный платеж:" value={formatPrice(monthlyPayment > 0 ? monthlyPayment : 0)} />
-            <SummaryItem text="Общая выплата:" value={formatPrice(totalPayment > 0 ? totalPayment : 0)} />
-            <SummaryItem text="Сумма кредита:" value={formatPrice(creditSumValue > 0 ? creditSumValue : 0)} className="text-[#0168af]" />
-            <SummaryItem text="Переплата по кредиту:" value={formatPrice(overPay > 0 ? overPay : 0)} className="text-[#489b00]" />
-            <DifferenceBar width={calculateWidth} />
+            <SummaryItem text="Ежемесячный платеж:" value={hasErrors ? "" : formatPrice(monthlyPayment > 0 ? monthlyPayment : 0)} />
+            <SummaryItem text="Общая выплата:" value={hasErrors ? "" : formatPrice(totalPayment > 0 ? totalPayment : 0)} />
+            <SummaryItem
+                text="Сумма кредита:"
+                value={hasErrors ? "" : formatPrice(creditSumValue > 0 ? creditSumValue : 0)}
+                className="text-[#0168af]"
+            />
+            <SummaryItem text="Переплата по кредиту:" value={hasErrors ? "" : formatPrice(overPay > 0 ? overPay : 0)} className="text-[#489b00]" />
+            {!hasErrors && <DifferenceBar width={calculateWidth} />}
         </>
     );
 };

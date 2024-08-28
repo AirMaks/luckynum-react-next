@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { title, description, keywords } from "../seo/choose-from-list-page";
+import { title, description, keywords } from "./seo";
 import RandomWordList from "widgets/RandomWordList/RandomWordList";
 
 export const metadata: Metadata = {
