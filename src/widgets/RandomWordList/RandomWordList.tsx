@@ -54,7 +54,7 @@ const RandomWordList = () => {
                     <Button
                         classContainer="mr-[10px] w-full"
                         className={cn({ "bg-stone-800 text-white": isExclude }, [
-                            "min-h-[50px] bg-white-500 border border-black rounded mr-[10px] text-[18px] leading-[1]"
+                            "min-h-[50px] bg-white-500 border border-black rounded mr-[10px] text-[16px] leading-[1]"
                         ])}
                         border
                         onClick={() => setIsExclude(prev => !prev)}>
@@ -65,7 +65,7 @@ const RandomWordList = () => {
                         <label htmlFor="time">{t("время анимации")}</label>
                         <Input
                             ref={refTime}
-                            className={cn("w-[100px] min-h-[50px] text[27px] text-right pt-[10px] px-[6px] pb-[4px]", {}, [cls.Input])}
+                            className={cn("w-[100px] min-h-[50px] !text-[16px] text-right pt-[10px] px-[6px] pb-[4px]", {}, [])}
                             rounded={false}
                             id="time"
                             onChange={handleChangeTime}

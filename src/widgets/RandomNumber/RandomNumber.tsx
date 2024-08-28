@@ -60,7 +60,7 @@ const RandomNumber = ({ animationSrc }: any) => {
             <div className={cn(cls.Container, {}, [])}>
                 <Button
                     className={cn(cls.ButtonExclude, { "bg-stone-800 text-white": isExclude }, [
-                        "min-h-[42px] bg-white-500 border border-black rounded"
+                        "min-h-[42px] bg-white-500 border border-black rounded text-[16px]"
                     ])}
                     onClick={() => setIsExclude(prev => !prev)}>
                     {t("исключить повторения")}
