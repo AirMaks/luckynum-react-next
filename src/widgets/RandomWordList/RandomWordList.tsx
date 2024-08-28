@@ -48,7 +48,7 @@ const RandomWordList = () => {
 
     return (
         <>
-            <h1 className="pt-[30px] text-center text-[20px]">{t("Генератор случайных слов из списка")}</h1>
+            <h1 className="pt-[30px] text-center text-[24px] font-bold max-sm:text-[20px]">{t("Генератор случайных слов из списка")}</h1>
             <div className={cn(cls.Container, {}, [])}>
                 <div className="d-flex">
                     <Button
@@ -73,7 +73,7 @@ const RandomWordList = () => {
                         />
                     </div>
                 </div>
-                <div className={cn(cls.Field, {}, ["mt-10"])}>
+                <div className={cn(cls.Field, {}, ["mt-[10px]"])}>
                     {!focus && !textareaValue && (
                         <label htmlFor="textarea">{t("выбрать из списка через запятую (банан, апельсин, персик) или с переносом строк")}</label>
                     )}
@@ -96,7 +96,7 @@ const RandomWordList = () => {
                     {t("Получить случайное слово")}
                 </Button>
             </div>
-            <div className={cn(cls.Word, { [cls.AllRepeated]: Array.isArray(randomWord) }, ["d-flex justify-content-center"])}>
+            <div className={cn(cls.Word, { [cls.AllRepeated]: Array.isArray(randomWord) }, ["flex justify-center"])}>
                 <Image src={src || gif1} className={cn("", { hidden: !animation })} alt="animation" priority />
                 {!animation && randomWord}
             </div>

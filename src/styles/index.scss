@@ -19,9 +19,6 @@ li {
     list-style: none;
 }
 
-.w-100 {
-    width: 100%;
-}
 body {
     font: var(--font-m);
     min-height: 100vh;
@@ -52,22 +49,6 @@ input, button, textarea {
 .page-wrapper {
     padding: 20px;
     min-height: calc(100vh - var(--navbar-height));
-}
-
-.d-block {
-    display: block;
-}
-
-.d-inline-block {
-    display: inline-block;
-}
-
-.d-flex {
-    display: flex;
-}
-
-.justify-content-center {
-    justify-content: center;
 }
 
 [data-theme=dark] {

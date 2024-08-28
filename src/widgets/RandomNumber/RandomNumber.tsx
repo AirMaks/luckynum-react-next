@@ -50,22 +50,22 @@ const RandomNumber = ({ animationSrc }: any) => {
         setToValue(sanitizeSymbols(value));
     };
 
-    const handleChangeTime = (value: string) => {
+    const handleChangeTime: any = (value: string) => {
         setTime(sanitizeSymbols(value));
     };
 
     return (
         <>
-            <h1 className={cls.heading}>{t("Генератор случайных чисел")}</h1>
+            <h1 className="pt-[30px] text-center text-[24px] font-bold max-sm:text-[20px]">{t("Генератор случайных чисел")}</h1>
             <div className={cn(cls.Container, {}, [])}>
                 <Button
                     className={cn(cls.ButtonExclude, { "bg-stone-800 text-white": isExclude }, [
-                        "min-h-[42px] bg-white-500 border border-black rounded mb-2"
+                        "min-h-[42px] bg-white-500 border border-black rounded"
                     ])}
                     onClick={() => setIsExclude(prev => !prev)}>
                     {t("исключить повторения")}
                 </Button>
-                <div className={cn("d-flex mt-10", {}, [cls.Inputs])}>
+                <div className={cn("flex mt-[10px]", {}, [cls.Inputs])}>
                     <div className={cls.Field}>
                         <label htmlFor="from">{t("от")}</label>
                         <Input ref={refFrom} rounded={false} id="from" value={fromValue} onChange={handleChangeFrom} />
@@ -88,7 +88,7 @@ const RandomNumber = ({ animationSrc }: any) => {
                     {t("Получить случайное число")}
                 </Button>
             </div>
-            <div className={cn(cls.Number, { [cls.AllRepeated]: number && typeof number !== "number" }, ["d-flex justify-content-center"])}>
+            <div className={cn(cls.Number, { [cls.AllRepeated]: number && typeof number !== "number" }, ["flex justify-center"])}>
                 <Image src={src || gifOne} className={cn("", { hidden: !animation })} alt="gif" priority />
                 {!animation && (typeof number !== "number" ? number?.map((el: boolean | string, i: number) => <div key={i}>{el}</div>) : number)}
             </div>
