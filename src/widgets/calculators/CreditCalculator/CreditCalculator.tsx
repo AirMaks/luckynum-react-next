@@ -259,7 +259,7 @@ const CreditCalculator = (props: Props) => {
 
     return (
         <div className="pt-[60px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[1000px] px-[20px]">
-            <div className="bg-blue-50 p-[40px] max-lg:p-[20px] rounded">
+            <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded">
                 <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">{renderHeading()}</h1>
                 <div className="flex justify-between max-sm:flex-col">
                     <div className="flex flex-col w-1/2 max-sm:w-full">
@@ -331,7 +331,7 @@ const CreditCalculator = (props: Props) => {
                     </div>
                 </div>
             </div>
-            <Link href="/mortgage-calculator" className="bg-blue-50 mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
+            <Link href="/mortgage-calculator" className="bg-[#f7f7f7] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
                 Калькулятор ипотеки
             </Link>
             <Content
