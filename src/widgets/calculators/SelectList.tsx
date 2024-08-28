@@ -14,13 +14,13 @@ export const SelectList = (props: any) => {
                 className={cn(
                     "absolute max-h-[300px] top-[40px] right-0 left-0 overflow-y-auto z-[1001] border border-black rounded",
                     { "opacity-0 hidden": !isOpenSelect },
-                    ["bg-blue-50"]
+                    ["bg-[#f7f7f7]"]
                 )}>
                 {items.map((el: any, i: any) => {
                     return (
                         <div
                             onClick={() => onSelectItemClick(el)}
-                            className={cn("p-[4px] cursor-pointer", { "bg-[#a7e8ff]": el === selectedItem }, [])}
+                            className={cn("p-[4px] cursor-pointer", { "bg-[#e1e1e1]": el === selectedItem }, [])}
                             key={i}>
                             {el}
                         </div>
