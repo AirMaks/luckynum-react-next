@@ -48,55 +48,57 @@ const RandomWordList = () => {
 
     return (
         <>
-            <h1 className="pt-[30px] text-center text-[24px] font-bold max-sm:text-[20px]">{t("Генератор случайных слов из списка")}</h1>
-            <div className={cn(cls.Container, {}, [])}>
-                <div className="flex">
+            <div className="px-[10px]">
+                <div className={cn("mx-auto mt-[40px] max-sm:mt-[20px] bg-[#f7f7f7] max-w-[530px] rounded p-[20px]", {}, [])}>
+                    <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[15px]">{t("Генератор случайных слов из списка")}</h1>
+                    <div className="flex">
+                        <Button
+                            classContainer="w-full me-[10px]"
+                            className={cn({ "bg-stone-800 text-white": isExclude }, [
+                                "min-h-[45px] max-sm:min-h-[38px] max-sm:m-0 bg-white-500 border border-black rounded text-[18px] max-sm:text-[14px] leading-[1]"
+                            ])}
+                            border
+                            onClick={() => setIsExclude(prev => !prev)}>
+                            {t("исключить повторения")}
+                        </Button>
+
+                        <div className={cn(cls.Field, {}, ["max-sm:w-full"])}>
+                            <label htmlFor="time" className="!text-[12px]">{t("время анимации")}</label>
+                            <Input
+                                ref={refTime}
+                                className={cn("w-[100px] min-h-[45px] max-sm:min-h-[38px] !text-[25px] max-sm:!text-[20px] text-right pt-[10px] px-[6px] pb-[4px] leading-none", {}, [])}
+                                rounded={false}
+                                id="time"
+                                onChange={handleChangeTime}
+                                value={time}
+                            />
+                        </div>
+                    </div>
+                    <div className={cn(cls.Field, {}, ["mt-[10px]"])}>
+                        {!focus && !textareaValue && (
+                            <label htmlFor="textarea" className="!text-[14px] max-sm:!text-[12px]">{t("введите слова через запятую (банан, апельсин, персик) или с переносом строк")}</label>
+                        )}
+                        <Textarea
+                            spellcheck={false}
+                            id="textarea"
+                            className={cn(cls.Textarea, {}, ["leading-tight"])}
+                            onChange={handleTextareaChange}
+                            onFocus={() => setFocus(true)}
+                            onBlur={() => setFocus(false)}></Textarea>
+                    </div>
+
                     <Button
-                        classContainer="mr-[10px] w-full"
-                        className={cn({ "bg-stone-800 text-white": isExclude }, [
-                            "min-h-[50px] bg-white-500 border border-black rounded mr-[10px] text-[16px] leading-[1]"
+                        className={cn(cls.ButtonChoose, {}, [
+                            "min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded mt-2 text-[20px] max-sm:text-[16px]"
                         ])}
                         border
-                        onClick={() => setIsExclude(prev => !prev)}>
-                        {t("исключить повторения")}
+                        onClick={onClick}
+                        disabled={animation}>
+                        {t("Получить случайное слово")}
                     </Button>
-
-                    <div className={cn(cls.Field, {}, [])}>
-                        <label htmlFor="time">{t("время анимации")}</label>
-                        <Input
-                            ref={refTime}
-                            className={cn("w-[100px] min-h-[50px] !text-[16px] text-right pt-[10px] px-[6px] pb-[4px]", {}, [])}
-                            rounded={false}
-                            id="time"
-                            onChange={handleChangeTime}
-                            value={time}
-                        />
-                    </div>
                 </div>
-                <div className={cn(cls.Field, {}, ["mt-[10px]"])}>
-                    {!focus && !textareaValue && (
-                        <label htmlFor="textarea">{t("выбрать из списка через запятую (банан, апельсин, персик) или с переносом строк")}</label>
-                    )}
-                    <Textarea
-                        spellcheck={false}
-                        id="textarea"
-                        className={cn(cls.Textarea, {}, [])}
-                        onChange={handleTextareaChange}
-                        onFocus={() => setFocus(true)}
-                        onBlur={() => setFocus(false)}></Textarea>
-                </div>
-
-                <Button
-                    className={cn(cls.ButtonChoose, {}, [
-                        "min-h-[62px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded mt-2"
-                    ])}
-                    border
-                    onClick={onClick}
-                    disabled={animation}>
-                    {t("Получить случайное слово")}
-                </Button>
             </div>
-            <div className={cn(cls.Word, { [cls.AllRepeated]: Array.isArray(randomWord) }, ["flex justify-center"])}>
+            <div className={cn(cls.Word, { [cls.AllRepeated]: Array.isArray(randomWord), "!mt-0": animation }, ["text-[46px] max-sm:text-[27px] mt-[30px] flex justify-center max-sm:px-[10px] leading-tight"])}>
                 <Image src={src || gif1} className={cn("", { hidden: !animation })} alt="animation" priority />
                 {!animation && randomWord}
             </div>
