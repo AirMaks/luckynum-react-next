@@ -12,7 +12,8 @@ export const metaData = ({ title, description, keywords, img }: any) => {
                 {
                     url: img.src,
                     width: img.width,
-                    height: img.height
+                    height: img.height,
+                    type: "image/png"
                 }
             ]
         }
