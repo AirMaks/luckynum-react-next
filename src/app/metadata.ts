@@ -1,4 +1,4 @@
-export const metaData = ({ title, description, keywords, imgSrc, imgWidth, imgHeight }: any) => {
+export const metaData = ({ title, description, keywords, img }: any) => {
     return {
         title,
         description,
@@ -10,9 +10,9 @@ export const metaData = ({ title, description, keywords, imgSrc, imgWidth, imgHe
             type: "website",
             images: [
                 {
-                    url: imgSrc,
-                    width: imgWidth,
-                    height: imgHeight
+                    url: img.src,
+                    width: img.width,
+                    height: img.height
                 }
             ]
         }

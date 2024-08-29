@@ -2,9 +2,10 @@ import { Metadata } from "next";
 import { title, description, keywords } from "./seo";
 import CreditCalculator from "widgets/calculators/CreditCalculator/CreditCalculator";
 import { metaData } from "../../metadata";
+import ImageOg from "../og-credit-calc.png";
 
 export const metadata: Metadata = {
-    ...metaData({ title, description, keywords, imgSrc: "https://lucky-num.ru/img/og-credit-calc.png", imgWidth: 1538, imgHeight: 718 })
+    ...metaData({ title, description, keywords, img: ImageOg })
 };
 
 const CreditCalculatorPage = () => {

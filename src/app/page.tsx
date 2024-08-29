@@ -3,9 +3,10 @@ import { title, description, keywords } from "./seo";
 
 import type { Metadata } from "next";
 import { metaData } from "./metadata";
+import ImageOg from "./og-number.png";
 
 export const metadata: Metadata = {
-    ...metaData({ title, description, keywords, imgSrc: "https://lucky-num.ru/img/og-number.png", imgWidth: 1073, imgHeight: 653 })
+    ...metaData({ title, description, keywords, img: ImageOg })
 };
 
 export default function Home() {

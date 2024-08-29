@@ -2,9 +2,10 @@ import { Metadata } from "next";
 import MortgageCalculator from "widgets/calculators/MortgageCalculator/MortgageCalculator";
 import { title, description, keywords } from "./seo";
 import { metaData } from "app/metadata";
+import ImageOg from "./og-mortgage.png";
 
 export const metadata: Metadata = {
-    ...metaData({ title, description, keywords, imgSrc: "https://lucky-num.ru/img/og-mortgage.png", imgWidth: 1355, imgHeight: 708 })
+    ...metaData({ title, description, keywords, img: ImageOg })
 };
 
 const MortgageCalculatorPage = () => {
