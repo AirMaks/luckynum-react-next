@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
         rules: {
             userAgent: "*",
             allow: "/",
-            disallow: ["/_next/static/"]
+            // disallow: ["/_next/static/"]
         },
         sitemap: "https://lucky-num.ru/sitemap.xml"
     };
