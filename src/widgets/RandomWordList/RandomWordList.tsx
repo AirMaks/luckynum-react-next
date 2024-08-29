@@ -63,10 +63,16 @@ const RandomWordList = () => {
                         </Button>
 
                         <div className={cn(cls.Field, {}, ["max-sm:w-full"])}>
-                            <label htmlFor="time" className="!text-[12px]">{t("время анимации")}</label>
+                            <label htmlFor="time" className="!text-[12px]">
+                                {t("время анимации")}
+                            </label>
                             <Input
                                 ref={refTime}
-                                className={cn("w-[100px] min-h-[45px] max-sm:min-h-[38px] !text-[25px] max-sm:!text-[20px] text-right pt-[10px] px-[6px] pb-[4px] leading-none", {}, [])}
+                                className={cn(
+                                    "w-[100px] min-h-[45px] max-sm:min-h-[38px] !text-[25px] max-sm:!text-[20px] text-right pt-[10px] px-[6px] pb-[4px] leading-none",
+                                    {},
+                                    []
+                                )}
                                 rounded={false}
                                 id="time"
                                 onChange={handleChangeTime}
@@ -76,7 +82,9 @@ const RandomWordList = () => {
                     </div>
                     <div className={cn(cls.Field, {}, ["mt-[10px]"])}>
                         {!focus && !textareaValue && (
-                            <label htmlFor="textarea" className="!text-[14px] max-sm:!text-[12px]">{t("введите слова через запятую (банан, апельсин, персик) или с переносом строк")}</label>
+                            <label htmlFor="textarea" className="!text-[14px] max-sm:!text-[12px]">
+                                {t("введите слова через запятую (банан, апельсин, персик) или с переносом строк")}
+                            </label>
                         )}
                         <Textarea
                             spellcheck={false}
@@ -98,7 +106,10 @@ const RandomWordList = () => {
                     </Button>
                 </div>
             </div>
-            <div className={cn(cls.Word, { [cls.AllRepeated]: Array.isArray(randomWord), "!mt-0": animation }, ["text-[46px] max-sm:text-[27px] mt-[30px] flex justify-center max-sm:px-[10px] leading-tight"])}>
+            <div
+                className={cn(cls.Word, { [cls.AllRepeated]: Array.isArray(randomWord), "!mt-0": animation }, [
+                    "text-[46px] max-sm:text-[27px] mt-[30px] flex justify-center max-sm:px-[10px] leading-tight"
+                ])}>
                 <Image src={src || gif1} className={cn("", { hidden: !animation })} alt="animation" priority />
                 {!animation && randomWord}
             </div>
