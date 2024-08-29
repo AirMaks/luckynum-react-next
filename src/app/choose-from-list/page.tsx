@@ -5,7 +5,7 @@ import { metaData } from "app/metadata";
 import ImageOg from "../../../public/img/og-choose.png";
 
 export const metadata: Metadata = {
-    ...metaData({ title, description, keywords, img: ImageOg })
+    ...metaData({ title, description, keywords })
 };
 
 const ChooseFromList = () => {
