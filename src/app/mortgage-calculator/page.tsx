@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import MortgageCalculator from "widgets/calculators/MortgageCalculator/MortgageCalculator";
 import { title, description, keywords } from "./seo";
 import { metaData } from "app/metadata";
-import ImageOg from "./og-mortgage.png";
+import ImageOg from "../../../public/img/og-mortgage.png";
 
 export const metadata: Metadata = {
     ...metaData({ title, description, keywords, img: ImageOg })

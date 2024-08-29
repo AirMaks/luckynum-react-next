@@ -3,7 +3,7 @@ import { title, description, keywords } from "./seo";
 
 import type { Metadata } from "next";
 import { metaData } from "./metadata";
-import ImageOg from "./og-number.png";
+import ImageOg from "../../public/img/og-number.png";
 
 export const metadata: Metadata = {
     ...metaData({ title, description, keywords, img: ImageOg })
