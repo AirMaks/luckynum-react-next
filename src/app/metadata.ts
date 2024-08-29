@@ -3,6 +3,7 @@ export const metaData = ({ title, description, keywords, imgSrc, imgWidth, imgHe
         title,
         description,
         keywords,
+        metadataBase: new URL("https://lucky-num.ru"),
         openGraph: {
             title: title,
             description: description,
