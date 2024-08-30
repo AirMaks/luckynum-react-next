@@ -48,7 +48,7 @@ const CurtainsCalculator = () => {
         <div className="pt-[60px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[750px] px-[20px]">
             <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded">
                 <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">Рассчитать ширину штор</h1>
-                <div className="flex gap-[10px]">
+                <div className="flex gap-[10px] max-sm:flex-col">
                     <FormFieldWrapper label="Длина карниза (см)" htmlFor="rod_length">
                         <Input rounded={false} id="rod_length" value={rodLength} onChange={handleRodWidth} className="text-right" />
                     </FormFieldWrapper>
@@ -75,7 +75,7 @@ const CurtainsCalculator = () => {
                         <Input rounded={false} id="curtain_number" value={curtainNumber} onChange={handleCurtainNumber} className="text-right" />
                     </FormFieldWrapper>
                 </div>
-                <div className="flex mt-[10px]">
+                <div className="flex mt-[10px] flex-wrap">
                     <h2 className="font-bold text-[20px] me-[10px]">Ширина одной шторы:</h2>
                     <p className="text-[20px]">{result || 0} см.</p>
                 </div>
