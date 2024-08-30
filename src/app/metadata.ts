@@ -8,13 +8,20 @@ export const metaData = ({ title, description, keywords, img }: any) => {
             description: description,
             type: "website",
             images: [
-              `https://lucky-num.ru${img.src}`
-                // {
-                //     url: img.src,
-                //     width: img.width,
-                //     height: img.height,
-                //     type: "image/png"
-                // }
+                {
+                    url: img.src,
+                    width: img.width,
+                    height: img.height
+                }
+            ]
+        },
+        twitter: {
+            images: [
+                {
+                    url: img.src,
+                    width: img.width,
+                    height: img.height
+                }
             ]
         }
     };
