@@ -5,7 +5,7 @@ import { metaData } from "app/metadata";
 import ImageOg from "./opengraph-image.jpg";
 
 export const metadata: Metadata = {
-    ...metaData({ title, description, keywords, img: { src: ImageOg.src, width: ImageOg.width, height: ImageOg.height } })
+    ...metaData({ title, description, keywords })
 };
 
 const ChooseFromList = () => {
