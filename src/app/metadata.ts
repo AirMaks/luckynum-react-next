@@ -8,12 +8,13 @@ export const metaData = ({ title, description, keywords, img }: any) => {
             description: description,
             type: "website",
             images: [
-                {
-                    url: img.src,
-                    width: img.width,
-                    height: img.height,
-                    type: "image/png"
-                }
+              img.src
+                // {
+                //     url: img.src,
+                //     width: img.width,
+                //     height: img.height,
+                //     type: "image/png"
+                // }
             ]
         }
     };
