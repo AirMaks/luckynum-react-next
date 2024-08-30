@@ -2,10 +2,10 @@ import { Metadata } from "next";
 import { title, description, keywords } from "./seo";
 import RandomWordList from "widgets/RandomWordList/RandomWordList";
 import { metaData } from "app/metadata";
-import ImageOg from "./opengraph-image.jpg";
+import ImageOg from "../../../public/og-choose.jpg";
 
 export const metadata: Metadata = {
-    ...metaData({ title, description, keywords })
+    ...metaData({ title, description, keywords, img: ImageOg })
 };
 
 const ChooseFromList = () => {
