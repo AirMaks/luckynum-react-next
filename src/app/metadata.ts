@@ -8,7 +8,7 @@ export const metaData = ({ title, description, keywords, img }: any) => {
             description: description,
             type: "website",
             images: [
-              img.src
+              `https://lucky-num.ru${img.src}`
                 // {
                 //     url: img.src,
                 //     width: img.width,
