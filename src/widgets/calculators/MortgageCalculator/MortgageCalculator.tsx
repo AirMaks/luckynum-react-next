@@ -97,7 +97,6 @@ const MortgageCalculator = (props: Props) => {
 
     const handlePercentChange = (value: any) => {
         const sanitized = sanitizePercents(value);
-        const monthlyInterestRate = Number(sanitized) / 12 / 100;
         setErrorPercentTooBig(Number(sanitized) > 99);
         setErrorPercent(Number(sanitized) === 0);
         setPercent(sanitized);
