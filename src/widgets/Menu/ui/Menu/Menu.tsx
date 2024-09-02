@@ -22,7 +22,7 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
     const pathname = usePathname();
 
     return (
-        <Sidebar isOpen={isOpenMenu} className={cn("right-[0] border-l", { [cls.opened]: isOpenMenu }, [])}>
+        <Sidebar isOpen={isOpenMenu} className={cn("right-[0] border-l !z-[1002]", { [cls.opened]: isOpenMenu }, [])}>
             <nav className={cls.items}>
                 <ul>
                     <li>
