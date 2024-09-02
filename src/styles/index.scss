@@ -51,6 +51,22 @@ input, button, textarea {
     min-height: calc(100vh - var(--navbar-height));
 }
 
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f7f7f7;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #afafaf;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9e9e9e;
+}
+
 [data-theme=dark] {
     ::-webkit-scrollbar {
         width: initial;
