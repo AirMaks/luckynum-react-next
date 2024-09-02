@@ -32,14 +32,18 @@
     display: flex;
     label {
         position: absolute;
-        left: 5px;
-        right: 5px;
+        left: 3px;
+        right: 3px;
         top: 1px;
         font-weight: var(--inverted-font-weight);
         font-size: var(--inverted-font-size-label);
         line-height: 1;
         color: var(--inverted-label-color);
         pointer-events: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
     }
 }
 

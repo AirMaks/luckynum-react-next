@@ -77,7 +77,7 @@ const RandomNumber = ({ animationSrc }: any) => {
                                 id="from"
                                 value={fromValue}
                                 onChange={handleChangeFrom}
-                                className="!text-[25px] text-right h-[48px] max-sm:!text-[20px] max-sm:h-[40px]"
+                                className="!text-[25px] h-[48px] max-sm:!text-[20px] max-sm:h-[40px]"
                             />
                         </div>
                         <div className={cls.Field}>
@@ -90,7 +90,7 @@ const RandomNumber = ({ animationSrc }: any) => {
                                 id="to"
                                 value={toValue}
                                 onChange={handleChangeTo}
-                                className="!text-[25px] text-right h-[48px] max-sm:!text-[20px] max-sm:h-[40px]"
+                                className="!text-[25px] h-[48px] max-sm:!text-[20px] max-sm:h-[40px]"
                             />
                         </div>
                         <div className={cls.Field}>
@@ -103,7 +103,7 @@ const RandomNumber = ({ animationSrc }: any) => {
                                 id="time"
                                 onChange={handleChangeTime}
                                 value={time}
-                                className="!text-[25px] text-right h-[48px] max-sm:!text-[20px] max-sm:h-[40px]"
+                                className="!text-[25px] h-[48px] max-sm:!text-[20px] max-sm:h-[40px]"
                             />
                         </div>
                     </div>

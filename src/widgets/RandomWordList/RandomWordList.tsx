@@ -69,7 +69,7 @@ const RandomWordList = () => {
                             <Input
                                 ref={refTime}
                                 className={cn(
-                                    "w-[100px] min-h-[45px] max-sm:min-h-[38px] !text-[25px] max-sm:!text-[20px] text-right pt-[10px] px-[6px] pb-[4px] leading-none",
+                                    "w-[100px] min-h-[45px] max-sm:min-h-[38px] !text-[25px] max-sm:!text-[20px] pt-[10px] px-[6px] pb-[4px] leading-none",
                                     {},
                                     []
                                 )}
