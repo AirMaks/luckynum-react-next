@@ -7,16 +7,16 @@ import Image from "next/image";
 import { sanitizePercents, sanitizeSymbols } from "helpers/sanitizeSymbols";
 
 const CurtainsCalculator = () => {
-    const [rodLength, setRodLength] = useState<any>("250");
-    const [gatheringCoefficient, setGatheringCoefficient] = useState("1.5");
-    const [additionalWidth, setAdditionalWidth] = useState("20");
-    const [curtainNumber, setCurtainNumber] = useState("2");
-    const [result, setResult] = useState("");
+    const [rodLength, setRodLength] = useState<any>(250);
+    const [gatheringCoefficient, setGatheringCoefficient] = useState<any>(1.5);
+    const [additionalWidth, setAdditionalWidth] = useState<any>(20);
+    const [curtainNumber, setCurtainNumber] = useState<any>(2);
+    const [result, setResult] = useState(0);
 
     const calculateWidth = () => {
         const totalWidth = (Number(rodLength) + Number(additionalWidth)) * (Number(gatheringCoefficient) || 1);
         const res = totalWidth / (Number(curtainNumber) || 1);
-        setResult(Number(res.toFixed(2)).toString());
+        setResult(Number(res.toFixed(2)));
     };
 
     const handleCoeff = (value: any) => {
@@ -26,7 +26,7 @@ const CurtainsCalculator = () => {
 
     const handleCurtainNumber = (value: any) => {
         let sanitized = sanitizeSymbols(value);
-        setCurtainNumber(sanitized.toString());
+        setCurtainNumber(sanitized);
     };
 
     const handleRodWidth = (value: any) => {
@@ -57,7 +57,7 @@ const CurtainsCalculator = () => {
                         <Input
                             rounded={false}
                             id="additional_width"
-                            value={additionalWidth}
+                            value={additionalWidth.toString()}
                             onChange={handleAdditionalWidth}
                             className="text-right"
                         />
@@ -66,13 +66,19 @@ const CurtainsCalculator = () => {
                         <Input
                             rounded={false}
                             id="gathering_coefficient"
-                            value={gatheringCoefficient}
+                            value={gatheringCoefficient.toString()}
                             onChange={handleCoeff}
                             className="text-right"
                         />
                     </FormFieldWrapper>
                     <FormFieldWrapper label="Кол-во штор" htmlFor="curtain_number">
-                        <Input rounded={false} id="curtain_number" value={curtainNumber} onChange={handleCurtainNumber} className="text-right" />
+                        <Input
+                            rounded={false}
+                            id="curtain_number"
+                            value={curtainNumber.toString()}
+                            onChange={handleCurtainNumber}
+                            className="text-right"
+                        />
                     </FormFieldWrapper>
                 </div>
                 <div className="flex mt-[10px] flex-wrap">

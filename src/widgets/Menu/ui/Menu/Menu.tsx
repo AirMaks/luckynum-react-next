@@ -9,6 +9,7 @@ import CreditCardIcon from "shared/assets/icons/menu/credit-card.svg";
 import { Sidebar } from "shared/ui/Sidebar/Sidebar";
 import { memo } from "react";
 import { usePathname } from "next/navigation";
+import PercentCalcIcon from "shared/assets/icons/menu/percent-calc.svg"
 
 interface MenuProps {
     className?: string;
@@ -62,6 +63,16 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             onClick={onClickMenuItem}>
                             <CreditCardIcon className={cls.icon} />
                             <span className={cls.link_text}>{t("Кредитный калькулятор")}</span>
+                        </AppLink>
+                    </li>
+                    <li>
+                        <AppLink
+                            theme={AppLinkTheme.SECONDARY}
+                            href={"/percent-calculator"}
+                            className={cn(cls.link, { [cls.active]: pathname === "/percent-calculator" })}
+                            onClick={onClickMenuItem}>
+                            <PercentCalcIcon className={cls.icon} />
+                            <span className={cls.link_text}>{t("Калькулятор процентов")}</span>
                         </AppLink>
                     </li>
                 </ul>
