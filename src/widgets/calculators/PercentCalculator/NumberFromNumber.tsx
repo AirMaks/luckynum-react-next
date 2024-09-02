@@ -45,7 +45,9 @@ const NumberFromNumber = () => {
             </div>
             <div className="flex mt-[10px] flex-col">
                 <h2 className="font-bold text-[20px] me-[10px] mb-[10px]">Результат: {formatPrice(result, false)}%</h2>
-                <p className="text-md">{number1} это {formatPrice(result, false)}% от {number2}</p>
+                <p className="text-md">
+                    {number1} это {formatPrice(result, false)}% от {number2}
+                </p>
             </div>
         </>
     );

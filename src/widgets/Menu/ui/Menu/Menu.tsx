@@ -9,7 +9,7 @@ import CreditCardIcon from "shared/assets/icons/menu/credit-card.svg";
 import { Sidebar } from "shared/ui/Sidebar/Sidebar";
 import { memo } from "react";
 import { usePathname } from "next/navigation";
-import PercentCalcIcon from "shared/assets/icons/menu/percent-calc.svg"
+import PercentCalcIcon from "shared/assets/icons/menu/percent-calc.svg";
 
 interface MenuProps {
     className?: string;

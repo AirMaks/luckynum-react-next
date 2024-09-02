@@ -45,7 +45,9 @@ const NumberLessNumber = () => {
             </div>
             <div className="flex mt-[10px] flex-wrap">
                 <h2 className="font-bold text-[20px] me-[10px]">Результат: {formatPrice(result, false)}%</h2>
-                <p className="text-[20px]">{number1} меньше чем {number2} на {formatPrice(result, false)}%</p>
+                <p className="text-[20px]">
+                    {number1} меньше чем {number2} на {formatPrice(result, false)}%
+                </p>
             </div>
         </>
     );
