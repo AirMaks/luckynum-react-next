@@ -19,7 +19,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ru" className={cn([jura.className, ""])}>
+        <html lang="ru" className={cn([jura.className, "overflow-hidden h-[100%]"])}>
             <head>
                 <meta name="yandex-verification" content="b2606e0b53f2e31f" />
                 <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />

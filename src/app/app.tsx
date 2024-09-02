@@ -83,7 +83,7 @@ export const App = ({
             {/* {pathname === "/" && <RandomNumberInfo isOpenRandomNumberInfo={isOpenRandomNumberInfo} onClose={onClose} />} */}
             {/*pathname === "/choose-from-list" && <RandomWordInfo isOpenRandomWordInfo={isOpenRandomWordInfo} onClose={onClose} />}
             {pathname === "/credit-calculator" && <CalcInfo isOpenCalcInfo={isOpenCalcInfo} onClose={onClose} />} */}
-            <div>{children}</div>
+            <div className="overflow-auto">{children}</div>
         </Providers>
     );
 };
