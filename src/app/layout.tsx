@@ -29,7 +29,7 @@ export default function RootLayout({
                 <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
                 <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
             </head>
-            <body className="bg-lightbg text-black dark:bg-stone-800 dark:text-white">
+            <body className="bg-lightbg text-black dark:bg-stone-800 dark:text-white overflow-hidden h-[100%]">
                 <App>{children}</App>
                 <YandexMetrika yid={88160252} clickmap={true} trackLinks={true} accurateTrackBounce={true} webvisor={true} />
             </body>
