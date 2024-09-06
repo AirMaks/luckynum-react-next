@@ -18,6 +18,7 @@ import { ErrorBadge } from "../ErrorBadge";
 import Loader from "shared/ui/Loader/Loader";
 import { formatYearsText } from "helpers/formatMonths";
 import { formatRublesText } from "helpers/formatRublesText";
+import YandexAd from "app/adds";
 
 const keys = Object.keys(TERMS);
 
@@ -258,92 +259,102 @@ const CreditCalculator = (props: Props) => {
     };
 
     return (
-        <div className="pt-[60px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[1000px] px-[20px]">
-            <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded">
-                <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">{renderHeading()}</h1>
-                <div className="flex justify-between max-sm:flex-col">
-                    <div className="flex flex-col w-1/2 max-sm:w-full">
-                        {renderCreditTypeSelect()}
-                        <FormFieldWrapper label="Сумма кредита" htmlFor="credit_sum">
-                            {renderErrorCS()}
-                            <Input
-                                ref={refCreditSum}
-                                rounded={false}
-                                id="credit_sum"
-                                value={formatPrice(creditSumValue, false)}
-                                onChange={handleChangeCreditSum}
-                            />
-                        </FormFieldWrapper>
-                        {creditType === CREDIT_TIME && (
-                            <FormFieldWrapper label="Ежемесячный платеж" htmlFor="monthly_payment">
-                                {renderErrorMP()}
+        <>
+            <YandexAd className="max-w-[430px] h-[70px] mx-auto mt-[20px] px-[10px] max-sm:mt-[0]" />
+            <div className="pt-[60px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[1000px] px-[20px]">
+                <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded">
+                    <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">{renderHeading()}</h1>
+                    <div className="flex justify-between max-sm:flex-col">
+                        <div className="flex flex-col w-1/2 max-sm:w-full">
+                            {renderCreditTypeSelect()}
+                            <FormFieldWrapper label="Сумма кредита" htmlFor="credit_sum">
+                                {renderErrorCS()}
                                 <Input
-                                    ref={refMonthlyPayment}
+                                    ref={refCreditSum}
                                     rounded={false}
-                                    id="monthly_payment"
-                                    value={formatPrice(monthlyPaymentInputValue, false)}
-                                    onChange={handleChangeMonthlyPayment}
+                                    id="credit_sum"
+                                    value={formatPrice(creditSumValue, false)}
+                                    onChange={handleChangeCreditSum}
                                 />
                             </FormFieldWrapper>
-                        )}
-                        <FormFieldWrapper label="Процентная ставка" htmlFor="percent">
-                            {renderErrorPercent()}
-                            <Input className={cn("")} ref={refPercent} rounded={false} id="percent" value={percent} onChange={handlePercentChange} />
-                        </FormFieldWrapper>
-                        {creditType === MONTHLY_PAYMENT && (
-                            <FormFieldWrapper label="Срок кредита">
-                                <SelectList
-                                    onSelectClick={onSelectClick}
-                                    isOpenSelect={isOpenSelect}
-                                    onSelectItemClick={onSelectItemClick}
-                                    items={keys}
-                                    selectedItem={creditTerm}
+                            {creditType === CREDIT_TIME && (
+                                <FormFieldWrapper label="Ежемесячный платеж" htmlFor="monthly_payment">
+                                    {renderErrorMP()}
+                                    <Input
+                                        ref={refMonthlyPayment}
+                                        rounded={false}
+                                        id="monthly_payment"
+                                        value={formatPrice(monthlyPaymentInputValue, false)}
+                                        onChange={handleChangeMonthlyPayment}
+                                    />
+                                </FormFieldWrapper>
+                            )}
+                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent">
+                                {renderErrorPercent()}
+                                <Input
+                                    className={cn("")}
+                                    ref={refPercent}
+                                    rounded={false}
+                                    id="percent"
+                                    value={percent}
+                                    onChange={handlePercentChange}
                                 />
                             </FormFieldWrapper>
-                        )}
-                        {creditType === MONTHLY_PAYMENT && (
-                            <FormFieldWrapper label="Тип платежей">
-                                <SelectList
-                                    onSelectClick={onSelectTypeClick}
-                                    isOpenSelect={isOpenSelectType}
-                                    onSelectItemClick={onSelectTypeItemClick}
-                                    items={[ANUI, DIFF]}
-                                    selectedItem={type}
-                                />
-                            </FormFieldWrapper>
-                        )}
-                    </div>
-                    <div className="ps-[20px] pt-[20px] max-sm:p-[0] max-sm:mt-[20px] relative w-2/3">
-                        {!isMounted ? (
-                            <Loader />
-                        ) : (
-                            <>
-                                {creditType === MONTHLY_PAYMENT && type === DIFF ? (
-                                    <Diff {...diffProps} />
-                                ) : creditType === MONTHLY_PAYMENT && type === ANUI ? (
-                                    <Anui {...anuiProps} />
-                                ) : (
-                                    <CreditTime {...creditTimeProps} />
-                                )}
-                                {renderDownloadBtn()}
-                            </>
-                        )}
+                            {creditType === MONTHLY_PAYMENT && (
+                                <FormFieldWrapper label="Срок кредита">
+                                    <SelectList
+                                        onSelectClick={onSelectClick}
+                                        isOpenSelect={isOpenSelect}
+                                        onSelectItemClick={onSelectItemClick}
+                                        items={keys}
+                                        selectedItem={creditTerm}
+                                    />
+                                </FormFieldWrapper>
+                            )}
+                            {creditType === MONTHLY_PAYMENT && (
+                                <FormFieldWrapper label="Тип платежей">
+                                    <SelectList
+                                        onSelectClick={onSelectTypeClick}
+                                        isOpenSelect={isOpenSelectType}
+                                        onSelectItemClick={onSelectTypeItemClick}
+                                        items={[ANUI, DIFF]}
+                                        selectedItem={type}
+                                    />
+                                </FormFieldWrapper>
+                            )}
+                        </div>
+                        <div className="ps-[20px] pt-[20px] max-sm:p-[0] max-sm:mt-[20px] relative w-2/3">
+                            {!isMounted ? (
+                                <Loader />
+                            ) : (
+                                <>
+                                    {creditType === MONTHLY_PAYMENT && type === DIFF ? (
+                                        <Diff {...diffProps} />
+                                    ) : creditType === MONTHLY_PAYMENT && type === ANUI ? (
+                                        <Anui {...anuiProps} />
+                                    ) : (
+                                        <CreditTime {...creditTimeProps} />
+                                    )}
+                                    {renderDownloadBtn()}
+                                </>
+                            )}
+                        </div>
                     </div>
                 </div>
+                <Link href="/mortgage-calculator" className="bg-[#f7f7f7] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
+                    Калькулятор ипотеки
+                </Link>
+                <Content
+                    isMonthlyPayment={props.isMonthlyPayment}
+                    years={creditTerm}
+                    creditSum={creditSumValue}
+                    isMainPage={props.isMainPage}
+                    isCreditTime={props.isCreditTime}
+                    isAutoCredit={props.isAutoCredit}
+                />
+                <ScheduleModal {...scheduleProps} />
             </div>
-            <Link href="/mortgage-calculator" className="bg-[#f7f7f7] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
-                Калькулятор ипотеки
-            </Link>
-            <Content
-                isMonthlyPayment={props.isMonthlyPayment}
-                years={creditTerm}
-                creditSum={creditSumValue}
-                isMainPage={props.isMainPage}
-                isCreditTime={props.isCreditTime}
-                isAutoCredit={props.isAutoCredit}
-            />
-            <ScheduleModal {...scheduleProps} />
-        </div>
+        </>
     );
 };
 export default CreditCalculator;

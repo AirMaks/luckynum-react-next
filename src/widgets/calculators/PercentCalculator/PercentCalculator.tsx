@@ -17,6 +17,7 @@ import PercentPlusNumber from "./PercentPlusNumber";
 import PercentMinusNumber from "./PercentMinusNumber";
 import NumberGreaterNumber from "./NumberGreaterNumber";
 import NumberLessNumber from "./NumberLessNumber";
+import YandexAd from "app/adds";
 
 const PercentCalculator = () => {
     const [isOpenSelectType, setIsOpenSelectType] = useState<any>(false);
@@ -31,33 +32,36 @@ const PercentCalculator = () => {
     };
 
     return (
-        <div className="pt-[60px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[550px] px-[20px]">
-            <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded">
-                <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">Рассчитать проценты</h1>
-                <FormFieldWrapper label="Тип вычисления">
-                    <SelectList
-                        onSelectClick={onSelectTypeClick}
-                        isOpenSelect={isOpenSelectType}
-                        onSelectItemClick={onSelectTypeItemClick}
-                        items={[
-                            PERCENT_TYPE_NUMBER_FROM_NUMBER,
-                            PERCENT_TYPE_PERCENT_FROM_NUMBER,
-                            PERCENT_TYPE_PERCENT_PLUS_NUMBER,
-                            PERCENT_TYPE_PERCENT_MINUS_NUMBER,
-                            PERCENT_TYPE_NUMBER_GREATER_NUMBER,
-                            PERCENT_TYPE_NUMBER_LESS_NUMBER
-                        ]}
-                        selectedItem={percentType}
-                    />
-                </FormFieldWrapper>
-                {percentType === PERCENT_TYPE_NUMBER_FROM_NUMBER && <NumberFromNumber />}
-                {percentType === PERCENT_TYPE_PERCENT_FROM_NUMBER && <PercentFromNumber />}
-                {percentType === PERCENT_TYPE_PERCENT_PLUS_NUMBER && <PercentPlusNumber />}
-                {percentType === PERCENT_TYPE_PERCENT_MINUS_NUMBER && <PercentMinusNumber />}
-                {percentType === PERCENT_TYPE_NUMBER_GREATER_NUMBER && <NumberGreaterNumber />}
-                {percentType === PERCENT_TYPE_NUMBER_LESS_NUMBER && <NumberLessNumber />}
+        <>
+            <YandexAd className="max-w-[430px] h-[70px] mx-auto mt-[20px] px-[10px] max-sm:mt-[0]" />
+            <div className="pt-[60px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[550px] px-[20px]">
+                <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded">
+                    <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">Рассчитать проценты</h1>
+                    <FormFieldWrapper label="Тип вычисления">
+                        <SelectList
+                            onSelectClick={onSelectTypeClick}
+                            isOpenSelect={isOpenSelectType}
+                            onSelectItemClick={onSelectTypeItemClick}
+                            items={[
+                                PERCENT_TYPE_NUMBER_FROM_NUMBER,
+                                PERCENT_TYPE_PERCENT_FROM_NUMBER,
+                                PERCENT_TYPE_PERCENT_PLUS_NUMBER,
+                                PERCENT_TYPE_PERCENT_MINUS_NUMBER,
+                                PERCENT_TYPE_NUMBER_GREATER_NUMBER,
+                                PERCENT_TYPE_NUMBER_LESS_NUMBER
+                            ]}
+                            selectedItem={percentType}
+                        />
+                    </FormFieldWrapper>
+                    {percentType === PERCENT_TYPE_NUMBER_FROM_NUMBER && <NumberFromNumber />}
+                    {percentType === PERCENT_TYPE_PERCENT_FROM_NUMBER && <PercentFromNumber />}
+                    {percentType === PERCENT_TYPE_PERCENT_PLUS_NUMBER && <PercentPlusNumber />}
+                    {percentType === PERCENT_TYPE_PERCENT_MINUS_NUMBER && <PercentMinusNumber />}
+                    {percentType === PERCENT_TYPE_NUMBER_GREATER_NUMBER && <NumberGreaterNumber />}
+                    {percentType === PERCENT_TYPE_NUMBER_LESS_NUMBER && <NumberLessNumber />}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
