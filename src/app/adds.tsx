@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const YandexAd = ({ className }: any) => {
+    const pathname = usePathname();
+
     useEffect(() => {
         if (window.yaContextCb && window.Ya) {
             window.yaContextCb.push(() => {
@@ -12,7 +15,7 @@ const YandexAd = ({ className }: any) => {
                 });
             });
         }
-    }, []);
+    }, [pathname]);
 
     return <div id="yandex_rtb_R-A-11866944-1" className={className}></div>;
 };
