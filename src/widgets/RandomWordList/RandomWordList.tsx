@@ -49,10 +49,7 @@ const RandomWordList = () => {
 
     return (
         <>
-        <div className="max-w-[430px] h-[70px] mx-auto mt-[20px] max-sm:px-[10px] max-sm:mt-[0]" >
-            <YandexAd />
-
-        </div>
+            <YandexAd className="w-[430px] h-[70px] mx-auto mt-[20px] max-sm:px-[10px] max-sm:mt-[0]" />
             <div className="px-[10px]">
                 <div className={cn("mx-auto mt-[40px] max-sm:mt-[20px] bg-[#f7f7f7] max-w-[530px] rounded p-[20px]", {}, [])}>
                     <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[15px]">{t("Генератор случайных слов из списка")}</h1>
