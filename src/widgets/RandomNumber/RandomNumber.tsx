@@ -118,7 +118,7 @@ const RandomNumber = ({ animationSrc }: any) => {
                 </div>
                 <div
                     className={cn(cls.Number, { [cls.AllRepeated]: number && typeof number !== "number", "!mt-0": animation }, [
-                        "max-sm:!text-[67px] flex justify-center"
+                        "max-sm:!text-[67px] flex justify-center min-h-[300px]"
                     ])}>
                     <Image src={src || gifOne} className={cn("", { hidden: !animation })} alt="gif" priority />
                     {!animation && (typeof number !== "number" ? number?.map((el: boolean | string, i: number) => <div key={i}>{el}</div>) : number)}
