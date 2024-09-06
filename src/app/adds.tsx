@@ -8,12 +8,14 @@ const YandexAd = ({ className }: any) => {
 
     useEffect(() => {
         if (window.yaContextCb && window.Ya) {
-            window.yaContextCb.push(() => {
-                window.Ya.Context.AdvManager.render({
-                    blockId: "R-A-11866944-1",
-                    renderTo: "yandex_rtb_R-A-11866944-1"
+            setTimeout(() => {
+                window.yaContextCb.push(() => {
+                    window.Ya.Context.AdvManager.render({
+                        blockId: "R-A-11866944-1",
+                        renderTo: "yandex_rtb_R-A-11866944-1"
+                    });
                 });
-            });
+            }, 1000);
         }
     }, [pathname]);
 
