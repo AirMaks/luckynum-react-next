@@ -14,7 +14,7 @@ export default function Home() {
     return (
         <>
             <RandomNumber animationSrc={{}} />;
-            <YandexAd />
+            {/* <YandexAd /> */}
         </>
     );
 }
