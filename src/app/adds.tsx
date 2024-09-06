@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const YandexAd = () => {
+const YandexAd = ({ className }: any) => {
     useEffect(() => {
         if (window.yaContextCb && window.Ya) {
             window.yaContextCb.push(() => {
@@ -14,7 +14,7 @@ const YandexAd = () => {
         }
     }, []);
 
-    return <div id="yandex_rtb_R-A-11866944-1"></div>;
+    return <div id="yandex_rtb_R-A-11866944-1" className={className}></div>;
 };
 
 export default YandexAd;

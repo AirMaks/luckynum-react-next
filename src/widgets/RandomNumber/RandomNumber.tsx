@@ -12,6 +12,7 @@ import { getAnimationSrc } from "features/Animations/model/selectors/getAnimatio
 import { useSelector } from "react-redux";
 import gifOne from "shared/assets/images/1.gif";
 import Image from "next/image";
+import YandexAd from "app/adds";
 
 const RandomNumber = ({ animationSrc }: any) => {
     const { t } = useTranslation();
@@ -56,6 +57,7 @@ const RandomNumber = ({ animationSrc }: any) => {
 
     return (
         <>
+            <YandexAd className="max-h-[50px]" />
             <div className="px-[10px]">
                 <div className={cn("mx-auto mt-[40px] max-sm:mt-[20px] bg-[#f7f7f7] max-w-[430px] rounded p-[20px]", {}, [])}>
                     <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">{t("Генератор случайных чисел")}</h1>
