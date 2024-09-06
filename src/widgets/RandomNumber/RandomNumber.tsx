@@ -57,9 +57,9 @@ const RandomNumber = ({ animationSrc }: any) => {
 
     return (
         <>
-            <YandexAd className="max-w-[430px] h-[70px] mx-auto mt-[20px] px-[10px]" />
+            <YandexAd className="max-w-[430px] h-[70px] mx-auto mt-[20px] px-[10px] max-sm:mt-[0]" />
             <div className="px-[10px]">
-                <div className={cn("mx-auto mt-[20px] max-sm:mt-[20px] bg-[#f7f7f7] max-w-[430px] rounded p-[20px]", {}, [])}>
+                <div className={cn("mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[430px] rounded p-[20px]", {}, [])}>
                     <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">{t("Генератор случайных чисел")}</h1>
                     <Button
                         className={cn("", { "bg-stone-800 text-white": isExclude }, [
