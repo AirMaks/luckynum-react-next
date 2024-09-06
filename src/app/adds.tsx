@@ -19,14 +19,8 @@ const YandexAd = ({ className }: any) => {
         };
 
         if (typeof window !== "undefined") {
-            window.addEventListener("load", loadAd);
+            loadAd();
         }
-
-        return () => {
-            if (typeof window !== "undefined") {
-                window.removeEventListener("load", loadAd);
-            }
-        };
     }, [pathname]);
 
     return <div id="yandex_rtb_R-A-11866944-1" className={className}></div>;
