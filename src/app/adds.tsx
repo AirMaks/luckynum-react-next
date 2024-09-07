@@ -19,7 +19,9 @@ const YandexAd = ({ className }: any) => {
         };
 
         if (typeof window !== "undefined") {
-            loadAd();
+            setTimeout(() => {
+                loadAd();
+            }, 1000);
         }
     }, [pathname]);
 
