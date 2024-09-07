@@ -2,11 +2,11 @@ function convertParam(boolValue: any, defaultValue: any) {
     return (boolValue === undefined ? defaultValue : boolValue) ? "true" : "false";
 }
 
-function YandexMetrikaTag({ yid, clickmap = true, trackLinks = true, accurateTrackBounce = true, webvisor = false }: any) {
+function YandexMetrikaTag({ yid, clickmap = true, trackLinks = true, accurateTrackBounce = true, webvisor = true }: any) {
     clickmap = convertParam(clickmap, true);
     trackLinks = convertParam(trackLinks, true);
     accurateTrackBounce = convertParam(accurateTrackBounce, true);
-    webvisor = convertParam(webvisor, false);
+    webvisor = convertParam(webvisor, true);
 
     const scriptInjectorHTML = `
       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -23,7 +23,7 @@ function YandexMetrikaTag({ yid, clickmap = true, trackLinks = true, accurateTra
                   clickmap:${clickmap},
                   trackLinks:${trackLinks},
                   accurateTrackBounce:${accurateTrackBounce},
-                  webvisor:${webvisor}
+                  webvisor:false
               });
         `
             }}
@@ -42,7 +42,7 @@ function YandexMetrikaPixel({ yid }: any) {
     );
 }
 
-export default function YandexMetrika({ yid, clickmap = true, trackLinks = true, accurateTrackBounce = true, webvisor = false }: any) {
+export default function YandexMetrika({ yid, clickmap = true, trackLinks = true, accurateTrackBounce = true, webvisor = true }: any) {
     return (
         <>
             <YandexMetrikaTag yid={yid} clickmap={clickmap} trackLinks={trackLinks} accuracyTrackBounce={accurateTrackBounce} webvisor={webvisor} />
