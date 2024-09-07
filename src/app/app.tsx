@@ -85,7 +85,7 @@ export const App = ({
             {/*pathname === "/choose-from-list" && <RandomWordInfo isOpenRandomWordInfo={isOpenRandomWordInfo} onClose={onClose} />}
             {pathname === "/credit-calculator" && <CalcInfo isOpenCalcInfo={isOpenCalcInfo} onClose={onClose} />} */}
             <div className="overflow-y-auto flex flex-col h-[calc(100vh-56px)]">
-                <div className="flex-1 pb-[100px]">
+                <div className="flex-1">
                     <YandexAd className="max-w-[960px] h-[70px] mx-auto pt-[20px] max-sm:px-[10px] max-sm:pt-[0]" />
                     {children}
                 </div>
