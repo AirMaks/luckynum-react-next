@@ -1,5 +1,4 @@
 import cn from "classnames";
-import { useTranslation } from "react-i18next";
 import cls from "./OwnAnimation.module.scss";
 import { Sidebar } from "shared/ui/Sidebar/Sidebar";
 import CloseIcon from "shared/assets/icons/navbar/close.svg";
@@ -16,7 +15,6 @@ interface SidebarProps {
 }
 
 export const OwnAnimation = ({ className, isOpenOwnAnimation, onClose }: SidebarProps) => {
-    const { t } = useTranslation();
     const dispatch = useDispatch();
     const srcAnimation = useSelector(getAnimationSrc);
     const onChangeAnimation = useCallback(
@@ -29,7 +27,7 @@ export const OwnAnimation = ({ className, isOpenOwnAnimation, onClose }: Sidebar
         <Sidebar isOpen={isOpenOwnAnimation} lazy className={cn(cls.OwnAnimation, {}, [className])}>
             <CloseIcon width={30} height={30} className="fill-stone-800" onClick={onClose} />
             <div className={cls.items_container}>
-                <h3 className={cn(cls.heading, {}, [])}>{t("Вставьте ссылку с расширением gif")}</h3>
+                <h3 className={cn(cls.heading, {}, [])}>Вставьте ссылку с расширением gif</h3>
                 <input className={cls.input} onChange={onChangeAnimation} value={srcAnimation} />
             </div>
         </Sidebar>

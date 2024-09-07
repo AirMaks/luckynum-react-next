@@ -1,5 +1,3 @@
-// import i18next from "i18next";
-
 let exclude: number[] = [];
 
 export const getRandomNumber = (min: number, max: number, isExclude: boolean) => {

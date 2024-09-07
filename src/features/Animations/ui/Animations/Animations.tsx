@@ -1,7 +1,6 @@
 "use client";
 
 import cn from "classnames";
-import { useTranslation } from "react-i18next";
 import cls from "./Animations.module.scss";
 import { Sidebar } from "shared/ui/Sidebar/Sidebar";
 import CloseIcon from "shared/assets/icons/navbar/close.svg";
@@ -47,7 +46,6 @@ const initialReducers: ReducersList = {
 
 export const Animations = memo(({ className, isOpenAnimations, onClose }: SidebarProps) => {
     const pathname = usePathname();
-    const { t } = useTranslation();
     const dispatch = useDispatch();
     const srcAnimation = useSelector(getAnimationSrc);
     const onClickAnimation = useCallback(
@@ -63,7 +61,7 @@ export const Animations = memo(({ className, isOpenAnimations, onClose }: Sideba
         <Sidebar isOpen={isOpenAnimations} lazy className={cn(cls.Animations, {}, [className])}>
             <CloseIcon width={30} height={30} className="fill-stone-800" onClick={onClose} />
             <div className={cls.items_container}>
-                <h3 className={cn(cls.heading, {}, [])}>{t("Выберите анимацию")}</h3>
+                <h3 className={cn(cls.heading, {}, [])}>Выберите анимацию</h3>
                 {/* <CustomScrollbar className={cls.items}> */}
                 <Image src={gif1} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif1 }, [])} alt="cat gif" />
                 <Image src={gif2} onClick={onClickAnimation} className={cn("", { [cls.border]: src === gif2 }, [])} alt="rocket gif" />

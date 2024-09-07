@@ -1,10 +1,8 @@
 import cn from "classnames";
-import { useTranslation } from "react-i18next";
 import cls from "./CalcInfo.module.scss";
 import { Sidebar } from "shared/ui/Sidebar/Sidebar";
 import CloseIcon from "shared/assets/icons/navbar/close.svg";
 import { memo } from "react";
-// import CustomScrollbar from "shared/ui/CustomScrollbar/CustomScrollbar";
 
 interface SidebarProps {
     className?: string;
@@ -14,34 +12,31 @@ interface SidebarProps {
 }
 
 export const CalcInfo = memo(({ className, isOpenCalcInfo, onClose }: SidebarProps) => {
-    const { t } = useTranslation();
-
     return (
         <Sidebar isOpen={isOpenCalcInfo} className={cn(cls.CalcInfo, { [cls.opened]: isOpenCalcInfo }, [className])}>
             <CloseIcon width={30} height={30} className="fill-stone-800" onClick={onClose} />
-            {/* <CustomScrollbar className={cls.overflow}> */}
-            <h2>{"Как пользоваться нашим кредитным калькулятором"}</h2>
+            <h2>Как пользоваться нашим кредитным калькулятором</h2>
             <div className={cls.ul}>
                 <ul>
                     <li>
-                        <b>1.</b> {t("Введите сумму кредита.")}
+                        <b>1.</b> Введите сумму кредита.
                     </li>
                     <li>
                         <b>2.</b>
-                        {t("Введите процентную ставку кредита.")}
+                         Введите процентную ставку кредита.
                     </li>
                     <li>
-                        <b>3.</b> {t("Введите срок кредита.")}
+                        <b>3.</b> Введите срок кредита.
                     </li>
                     <li>
-                        <b>4.</b> {t("Введите тип платежей АННУИТЕТНЫЕ или ДИФФЕРЕНЦИРОВАННЫЕ.")}
+                        <b>4.</b> Введите тип платежей АННУИТЕТНЫЕ или ДИФФЕРЕНЦИРОВАННЫЕ.
                     </li>
                     <li>
-                        <b>5.</b> {t("Нажмите кнопку РАССЧИТАТЬ КРЕДИТ.")}
+                        <b>5.</b> Нажмите кнопку РАССЧИТАТЬ КРЕДИТ.
                     </li>
                 </ul>
                 <div>
-                    <h3>{"В чем отличие между аннуитетным и дифференцированным платежами"}</h3>
+                    <h3>В чем отличие между аннуитетным и дифференцированным платежами</h3>
                     <p>
                         {
                             "Аннуитетные и дифференцированные типы платежей являются двумя разными способами расчета и возврата кредита. Понимание различий между ними поможет вам выбрать наиболее подходящий тип платежей для ваших финансовых потребностей. Вот краткое объяснение каждого из них:"
@@ -85,7 +80,6 @@ export const CalcInfo = memo(({ className, isOpenCalcInfo, onClose }: SidebarPro
                     </p>
                 </div>
             </div>
-            {/* </CustomScrollbar> */}
         </Sidebar>
     );
 });

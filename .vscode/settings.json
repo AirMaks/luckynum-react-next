@@ -1,11 +1,9 @@
 {
-	"i18n-ally.localesPaths": ["public/locales", "src/shared/config/i18n"],
 	"editor.autoClosingBrackets": "always",
 	"cSpell.words": [
 		"LOCALSTORAGE",
 		"Результат"
 	],
-	"i18n-ally.keystyle": "nested",
 	// "stylelint.enable": true,
 	// "css.validate": true,
 	// "scss.validate": true,

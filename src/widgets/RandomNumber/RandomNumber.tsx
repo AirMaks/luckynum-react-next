@@ -3,7 +3,6 @@
 import cn from "classnames";
 import cls from "./RandomNumber.module.scss";
 import { Button } from "shared/ui/Button/Button";
-import { useTranslation } from "react-i18next";
 import { Input } from "shared/ui/Input/Input";
 import { useRef, useState } from "react";
 import { getRandomNumber } from "helpers/getRandom";
@@ -15,7 +14,6 @@ import Image from "next/image";
 import YandexAd from "app/adds";
 
 const RandomNumber = ({ animationSrc }: any) => {
-    const { t } = useTranslation();
     const [number, setNumber] = useState<any>(0);
     const [fromValue, setFromValue] = useState<any>(1);
     const [toValue, setToValue] = useState<any>(10);
@@ -59,18 +57,18 @@ const RandomNumber = ({ animationSrc }: any) => {
         <>
             <div className="px-[10px]">
                 <div className={cn("mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[430px] rounded p-[20px]", {}, [])}>
-                    <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">{t("Генератор случайных чисел")}</h1>
+                    <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">Генератор случайных чисел</h1>
                     <Button
                         className={cn("", { "bg-stone-800 text-white": isExclude }, [
                             "min-h-[42px] bg-white-500 border border-black rounded text-[18px] max-sm:text-[16px] max-sm:min-h-[37px]"
                         ])}
                         onClick={() => setIsExclude(prev => !prev)}>
-                        {t("исключить повторения")}
+                        исключить повторения
                     </Button>
                     <div className={cn("flex mt-[10px]", {}, [cls.Inputs])}>
                         <div className={cls.Field}>
                             <label htmlFor="from" className="max-sm:!text-[9px]">
-                                {t("от")}
+                                от
                             </label>
                             <Input
                                 ref={refFrom}
@@ -83,7 +81,7 @@ const RandomNumber = ({ animationSrc }: any) => {
                         </div>
                         <div className={cls.Field}>
                             <label htmlFor="to" className="max-sm:!text-[9px]">
-                                {t("до")}
+                                до
                             </label>
                             <Input
                                 ref={refTo}
@@ -96,7 +94,7 @@ const RandomNumber = ({ animationSrc }: any) => {
                         </div>
                         <div className={cls.Field}>
                             <label htmlFor="time" className="max-sm:!text-[9px]">
-                                {t("время анимации")}
+                                время анимации
                             </label>
                             <Input
                                 ref={refTime}
@@ -114,7 +112,7 @@ const RandomNumber = ({ animationSrc }: any) => {
                         ])}
                         onClick={onClick}
                         disabled={animation}>
-                        {t("Получить случайное число")}
+                        Получить случайное число
                     </Button>
                 </div>
                 <div

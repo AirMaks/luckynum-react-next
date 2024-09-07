@@ -1,5 +1,3 @@
-// import i18next from "i18next";
-
 let exclude: string[] = [];
 
 export const getRandomWord = (list: any, isExclude: boolean) => {

@@ -3,7 +3,6 @@
 import cn from "classnames";
 import cls from "./RandomWordList.module.scss";
 import { Button } from "shared/ui/Button/Button";
-import { useTranslation } from "react-i18next";
 import { Input } from "shared/ui/Input/Input";
 import { useRef, useState } from "react";
 import { getRandomWord } from "helpers/getRandomWord";
@@ -16,7 +15,6 @@ import Image from "next/image";
 import YandexAd from "app/adds";
 
 const RandomWordList = () => {
-    const { t } = useTranslation();
     const [randomWord, setRandomWord] = useState<any>("");
     const [time, setTime] = useState<any>(1);
     const [isExclude, setIsExclude] = useState(false);
@@ -51,7 +49,7 @@ const RandomWordList = () => {
         <>
             <div className="px-[10px]">
                 <div className={cn("mx-auto mt-[40px] max-sm:mt-[20px] bg-[#f7f7f7] max-w-[530px] rounded p-[20px]", {}, [])}>
-                    <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[15px]">{t("Генератор случайных слов из списка")}</h1>
+                    <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[15px]">Генератор случайных слов из списка</h1>
                     <div className="flex">
                         <Button
                             classContainer="w-full me-[10px]"
@@ -60,12 +58,12 @@ const RandomWordList = () => {
                             ])}
                             border
                             onClick={() => setIsExclude(prev => !prev)}>
-                            {t("исключить повторения")}
+                            исключить повторения
                         </Button>
 
                         <div className={cn(cls.Field, {}, ["max-sm:w-full"])}>
                             <label htmlFor="time" className="!text-[12px]">
-                                {t("время анимации")}
+                                время анимации
                             </label>
                             <Input
                                 ref={refTime}
@@ -84,7 +82,7 @@ const RandomWordList = () => {
                     <div className={cn(cls.Field, {}, ["mt-[10px]"])}>
                         {!focus && !textareaValue && (
                             <label htmlFor="textarea" className="!text-[14px] max-sm:!text-[12px]">
-                                {t("введите слова через запятую (банан, апельсин, персик) или с переносом строк")}
+                                введите слова через запятую (банан, апельсин, персик) или с переносом строк
                             </label>
                         )}
                         <Textarea
@@ -103,7 +101,7 @@ const RandomWordList = () => {
                         border
                         onClick={onClick}
                         disabled={animation}>
-                        {t("Получить случайное слово")}
+                        Получить случайное слово
                     </Button>
                 </div>
             </div>
