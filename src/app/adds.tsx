@@ -21,7 +21,7 @@ const YandexAd = ({ className }: any) => {
         if (typeof window !== "undefined") {
             setTimeout(() => {
                 loadAd();
-            }, 2000);
+            }, 3000);
         }
     }, [pathname]);
 
