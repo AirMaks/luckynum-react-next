@@ -17,7 +17,6 @@ import PercentPlusNumber from "./PercentPlusNumber";
 import PercentMinusNumber from "./PercentMinusNumber";
 import NumberGreaterNumber from "./NumberGreaterNumber";
 import NumberLessNumber from "./NumberLessNumber";
-import YandexAd from "app/adds";
 
 const PercentCalculator = () => {
     const [isOpenSelectType, setIsOpenSelectType] = useState<any>(false);

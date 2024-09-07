@@ -5,7 +5,6 @@ import { FormFieldWrapper } from "../FormFieldWrapper";
 import { Input } from "shared/ui/Input/Input";
 import Image from "next/image";
 import { sanitizePercents, sanitizeSymbols } from "helpers/sanitizeSymbols";
-import YandexAd from "app/adds";
 
 const CurtainsCalculator = () => {
     const [rodLength, setRodLength] = useState<any>(250);

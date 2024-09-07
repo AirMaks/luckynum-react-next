@@ -11,7 +11,6 @@ import { getAnimationSrc } from "features/Animations/model/selectors/getAnimatio
 import { useSelector } from "react-redux";
 import gifOne from "shared/assets/images/1.gif";
 import Image from "next/image";
-import YandexAd from "app/adds";
 
 const RandomNumber = ({ animationSrc }: any) => {
     const [number, setNumber] = useState<any>(0);

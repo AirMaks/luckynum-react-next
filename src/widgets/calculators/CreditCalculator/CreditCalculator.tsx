@@ -18,7 +18,6 @@ import { ErrorBadge } from "../ErrorBadge";
 import Loader from "shared/ui/Loader/Loader";
 import { formatYearsText } from "helpers/formatMonths";
 import { formatRublesText } from "helpers/formatRublesText";
-import YandexAd from "app/adds";
 
 const keys = Object.keys(TERMS);
 

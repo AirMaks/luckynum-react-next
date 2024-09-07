@@ -4,6 +4,7 @@ import { App } from "./app";
 import YandexMetrika from "./YandexMetrika";
 import cn from "classnames";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 const jura = Jura({ subsets: ["cyrillic", "latin"] });
 
@@ -33,7 +34,9 @@ export default function RootLayout({
             </head>
             <body className="bg-lightbg text-black dark:bg-stone-800 dark:text-white overflow-hidden h-[100%]">
                 <App>{children}</App>
-                <YandexMetrika yid={88160252} clickmap={true} trackLinks={true} accurateTrackBounce={true} webvisor={true} />
+                <Suspense fallback={<></>}>
+                    <YandexMetrika yid={88160252} clickmap={true} trackLinks={true} accurateTrackBounce={true} webvisor={true} />
+                </Suspense>
             </body>
         </html>
     );

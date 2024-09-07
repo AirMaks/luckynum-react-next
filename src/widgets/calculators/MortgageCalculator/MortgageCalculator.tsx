@@ -16,7 +16,6 @@ import Link from "next/link";
 import { ErrorBadge } from "../ErrorBadge";
 import Loader from "shared/ui/Loader/Loader";
 import { formatYearsText } from "helpers/formatMonths";
-import YandexAd from "app/adds";
 
 const keys = Object.keys(TERMS);
 
