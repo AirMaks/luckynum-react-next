@@ -19,7 +19,7 @@ export const Navbar = ({ onToggleMenu, onToggleSettings, isOpenMenu, isOpenSetti
         <div className="z-[1001] border-b h-[60px] sticky top-[0] w-full bg-[#f7f7f7] shadow shadow-sm flex justify-between p-[20px] max-sm:px-[15px] items-center">
             <div className="contents">
                 <Link href="/" className="absolute left-[50%] translate-x-[-50%]">
-                    <Image src="/img/logo.svg" alt="lucky num calculation" width={148} height={32} />
+                    <img src="/img/logo.svg" alt="lucky num calculation" width={148} height={32} />
                 </Link>
                 {/* {isOpenSettings ? (
                     <CloseIcon
