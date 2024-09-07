@@ -49,9 +49,8 @@ const RandomWordList = () => {
 
     return (
         <>
-            <YandexAd className="max-w-[960px] h-[70px] mx-auto mt-[20px] max-sm:px-[10px] max-sm:mt-[0]" />
             <div className="px-[10px]">
-                <div className={cn("mx-auto mt-[40px] max-sm:mt-[20px] bg-[#f7f7f7] max-w-[530px] rounded p-[20px]", {}, [])}>
+                <div className={cn("mx-auto pt-[40px] max-sm:pt-[20px] bg-[#f7f7f7] max-w-[530px] rounded p-[20px]", {}, [])}>
                     <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[15px]">{t("Генератор случайных слов из списка")}</h1>
                     <div className="flex">
                         <Button
@@ -109,8 +108,8 @@ const RandomWordList = () => {
                 </div>
             </div>
             <div
-                className={cn(cls.Word, { [cls.AllRepeated]: Array.isArray(randomWord), "!mt-0": animation }, [
-                    "text-[46px] max-sm:text-[27px] mt-[30px] flex justify-center max-sm:px-[10px] leading-tight"
+                className={cn(cls.Word, { [cls.AllRepeated]: Array.isArray(randomWord), "!pt-0": animation }, [
+                    "text-[46px] max-sm:text-[27px] pt-[30px] flex justify-center max-sm:px-[10px] leading-tight"
                 ])}>
                 <Image src={src || gif1} className={cn("", { hidden: !animation })} alt="animation" priority />
                 {!animation && randomWord}

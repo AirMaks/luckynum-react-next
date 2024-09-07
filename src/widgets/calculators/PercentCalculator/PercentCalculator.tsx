@@ -33,7 +33,6 @@ const PercentCalculator = () => {
 
     return (
         <>
-            <YandexAd className="max-w-[960px] h-[70px] mx-auto mt-[20px] max-sm:px-[10px] max-sm:mt-[0]" />
             <div className="pt-[30px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[550px] px-[20px] max-sm:px-[10px]">
                 <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded">
                     <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">Рассчитать проценты</h1>
