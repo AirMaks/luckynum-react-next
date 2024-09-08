@@ -46,7 +46,15 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                         </h3>
                         <Slider
                             trackStyle={{ backgroundColor: "#2569e1" }}
-                            handleStyle={{ backgroundColor: "#2569e1", borderColor: "#2569e1", opacity: 1, boxShadow: "none" }}
+                            handleStyle={{
+                                backgroundColor: "#2569e1",
+                                borderColor: "#2569e1",
+                                opacity: 1,
+                                boxShadow: "none",
+                                width: "20px",
+                                height: "20px",
+                                marginTop: "-8px"
+                            }}
                             min={1}
                             max={20}
                             className=""
