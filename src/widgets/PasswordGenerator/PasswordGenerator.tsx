@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import cn from "classnames";
 import { Button } from "shared/ui/Button/Button";
-// import Slider from "rc-slider";
-// import "rc-slider/assets/index.css";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import CopyToClipboardButton from "shared/ui/Copy/Copy";
 
 const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
@@ -45,7 +45,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                         <h3 className="mb-[10px] text-[20px] max-sm:text-[16px]">
                             Длина пароля: <span className="font-bold">{length}</span>
                         </h3>
-                        {/* <Slider
+                        <Slider
                             trackStyle={{ backgroundColor: "#2569e1" }}
                             handleStyle={{
                                 backgroundColor: "#2569e1",
@@ -61,9 +61,9 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                             className=""
                             value={length}
                             onChange={value => setLength(value)}
-                        /> */}
+                        />
                     </div>
-                    <div className="mt-[20px] flex justify-between gap-[10px] max-sm:flex-col max-sm:text-[16px]">
+                    {/* <div className="mt-[20px] flex justify-between gap-[10px] max-sm:flex-col max-sm:text-[16px]">
                         <label className="cursor-pointer">
                             <input
                                 type="checkbox"
@@ -82,7 +82,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                             />
                             Включить символы
                         </label>
-                    </div>
+                    </div> */}
                 </div>
 
                 <Button
