@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import cn from "classnames";
 import { Button } from "shared/ui/Button/Button";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+// import Slider from "rc-slider";
+// import "rc-slider/assets/index.css";
 import CopyToClipboardButton from "shared/ui/Copy/Copy";
 
 const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
@@ -45,7 +45,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                         <h3 className="mb-[10px] text-[20px] max-sm:text-[16px]">
                             Длина пароля: <span className="font-bold">{length}</span>
                         </h3>
-                        <Slider
+                        {/* <Slider
                             trackStyle={{ backgroundColor: "#2569e1" }}
                             handleStyle={{
                                 backgroundColor: "#2569e1",
@@ -61,7 +61,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                             className=""
                             value={length}
                             onChange={value => setLength(value)}
-                        />
+                        /> */}
                     </div>
                     <div className="mt-[20px] flex justify-between gap-[10px] max-sm:flex-col max-sm:text-[16px]">
                         <label className="cursor-pointer">
@@ -94,8 +94,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
             <div className="max-w-[430px] mx-auto text-center mt-[30px]">
                 <h2 className="text-[26px] max-sm:text-[18px] mb-[10px]">Скопируйте ваш пароль кликом:</h2>
                 <div className="text-[30px] max-sm:text-[20px] font-bold cursor-pointer hover:text-[#45a12e] transition-colors hover:transition-colors">
-                    {/* <CopyToClipboardButton textToCopy={password} /> */}
-                    <div>{password}</div>
+                    <CopyToClipboardButton textToCopy={password} />
                 </div>
             </div>
         </div>
