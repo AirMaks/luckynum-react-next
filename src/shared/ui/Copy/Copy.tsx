@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import cn from "classnames";
 
@@ -8,8 +10,6 @@ const CopyToClipboardButton = ({ textToCopy }: any) => {
         try {
             await navigator.clipboard.writeText(textToCopy);
             setIsCopied(true);
-
-            // Сбросить состояние "скопировано" через некоторое время
             setTimeout(() => setIsCopied(false), 2000);
         } catch (err) {
             console.error("Не удалось скопировать текст: ", err);
