@@ -5,6 +5,7 @@ import cn from "classnames";
 import { Button } from "shared/ui/Button/Button";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import CopyToClipboardButton from "shared/ui/Copy/Copy";
 
 const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
     const [password, setPassword] = useState("");
@@ -36,7 +37,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
     };
 
     return (
-        <div className="px-[10px] pb-[40px]">
+        <div className="px-[10px] pb-[40px] select-none">
             <div className={cn("mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[430px] rounded p-[20px]")}>
                 <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">Генератор паролей</h1>
                 <div className={cn("flex mt-[10px] mb-[20px] flex-col")}>
@@ -91,8 +92,10 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                 </Button>
             </div>
             <div className="max-w-[430px] mx-auto text-center mt-[30px]">
-                <h2 className="text-[26px] max-sm:text-[18px] mb-[10px]">Ваш пароль:</h2>
-                <p className="text-[30px] max-sm:text-[20px] font-bold">{password}</p>
+                <h2 className="text-[26px] max-sm:text-[18px] mb-[10px]">Скопируйте ваш пароль кликом:</h2>
+                <p className="text-[30px] max-sm:text-[20px] font-bold cursor-pointer hover:text-[#45a12e] transition-colors hover:transition-colors">
+                    <CopyToClipboardButton textToCopy={password} />
+                </p>
             </div>
         </div>
     );
