@@ -108,7 +108,7 @@ const RandomWordList = () => {
                 className={cn(cls.Word, { [cls.AllRepeated]: Array.isArray(randomWord), "!pt-0": animation }, [
                     "text-[46px] max-sm:text-[27px] pt-[30px] flex justify-center max-sm:px-[10px] leading-tight"
                 ])}>
-                <Image src={src || gif1} className={cn("", { hidden: !animation })} alt="animation" priority={true} />
+                <Image src={src || gif1} className={cn("", { hidden: !animation })} alt="animation" loading="lazy" />
                 {!animation && randomWord}
             </div>
         </>

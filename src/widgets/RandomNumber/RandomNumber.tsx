@@ -126,7 +126,7 @@ const RandomNumber = ({ animationSrc }: RandomNumberProps) => {
                     },
                     "!text-[80px] max-sm:!text-[67px] flex justify-center min-h-[300px] pt-[70px]"
                 )}>
-                <Image src={src || gifOne} className={cn({ hidden: !state.animation })} alt="gif" priority={true} />
+                <Image src={src || gifOne} className={cn({ hidden: !state.animation })} alt="gif" loading="lazy" />
                 {!state.animation &&
                     (Array.isArray(state.number)
                         ? state.number.map((el, i) => (
