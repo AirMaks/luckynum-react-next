@@ -63,7 +63,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                             onChange={value => setLength(value)}
                         />
                     </div>
-                    {/* <div className="mt-[20px] flex justify-between gap-[10px] max-sm:flex-col max-sm:text-[16px]">
+                    <div className="mt-[20px] flex justify-between gap-[10px] max-sm:flex-col max-sm:text-[16px]">
                         <label className="cursor-pointer">
                             <input
                                 type="checkbox"
@@ -82,7 +82,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                             />
                             Включить символы
                         </label>
-                    </div> */}
+                    </div>
                 </div>
 
                 <Button
