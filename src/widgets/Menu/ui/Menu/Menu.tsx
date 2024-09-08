@@ -9,6 +9,7 @@ import { Sidebar } from "shared/ui/Sidebar/Sidebar";
 import { memo } from "react";
 import { usePathname } from "next/navigation";
 import PercentCalcIcon from "shared/assets/icons/menu/percent-calc.svg";
+import PasswordIcon from "shared/assets/icons/menu/password.svg";
 
 interface MenuProps {
     className?: string;
@@ -71,6 +72,16 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             onClick={onClickMenuItem}>
                             <PercentCalcIcon className={cls.icon} />
                             <span className={cls.link_text}>Калькулятор процентов</span>
+                        </AppLink>
+                    </li>
+                    <li>
+                        <AppLink
+                            theme={AppLinkTheme.SECONDARY}
+                            href={"/generator-parolei"}
+                            className={cn(cls.link, { [cls.active]: pathname === "/generator-parolei" })}
+                            onClick={onClickMenuItem}>
+                            <PasswordIcon className={cls.icon} />
+                            <span className={cls.link_text}>Генератор паролей</span>
                         </AppLink>
                     </li>
                 </ul>

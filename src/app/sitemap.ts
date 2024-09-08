@@ -115,6 +115,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified: new Date(),
             changeFrequency: "monthly",
             priority: 1
+        },
+        {
+            url: "https://lucky-num.ru/generator-parolei",
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 1
+        },
+        {
+            url: "https://lucky-num.ru/generator-parolei/generator-parolei-12-simvolov",
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 1
+        },
+        {
+            url: "https://lucky-num.ru/generator-parolei/generator-parolei-8-simvolov",
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 1
+        },
+        {
+            url: "https://lucky-num.ru/generator-parolei/generator-parolei-10-simvolov",
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 1
+        },
+        {
+            url: "https://lucky-num.ru/generator-parolei/generator-parolei-po-zadannym-parametram",
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 1
         }
     ];
 }

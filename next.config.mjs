@@ -22,7 +22,7 @@ const nextConfig = {
             test: /\.svg$/,
             use: ["@svgr/webpack"]
         });
-        if (!isServer) {
+        if (!isServer && !dev) {
             config.optimization.usedExports = true;
         }
         return config
