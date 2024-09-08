@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-    return <RandomNumber animationSrc={{}} />;
+    return <RandomNumber />;
 }
