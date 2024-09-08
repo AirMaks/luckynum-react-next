@@ -1,5 +1,7 @@
-import NotFoundPage from "./404";
+import dynamic from "next/dynamic";
 
-const NotFound = () => <NotFoundPage />;
+const NotFoundPage = dynamic(() => import("./404"), { ssr: false });
 
-export default NotFound;
+export default function NotFound() {
+    return <NotFoundPage />;
+}

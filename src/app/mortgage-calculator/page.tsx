@@ -1,8 +1,10 @@
 import { Metadata } from "next";
-import MortgageCalculator from "widgets/calculators/MortgageCalculator/MortgageCalculator";
 import { title, description, keywords } from "./seo";
 import { metaData } from "app/metadata";
 import ImageOg from "../../../public/og-mortgage.jpg";
+import dynamic from "next/dynamic";
+
+const MortgageCalculator = dynamic(() => import("widgets/calculators/MortgageCalculator/MortgageCalculator"), { ssr: true });
 
 export const metadata: Metadata = {
     ...metaData({ title, description, keywords, img: ImageOg })

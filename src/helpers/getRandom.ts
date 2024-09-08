@@ -1,11 +1,13 @@
 let exclude: number[] = [];
 
-export const getRandomNumber = (min: number, max: number, isExclude: boolean) => {
+export const getRandomNumber = (minValue: number | string, maxValue: number | string, isExclude: boolean) => {
     const errors = {
         noNumberLast: "Не осталось ни одного числа, которое бы не повторилось.",
     };
 
     const errorText: any = [];
+    let min = Number(minValue);
+    let max = Number(maxValue);
 
     // Если min больше max, меняем их местами
     if (min > max) {

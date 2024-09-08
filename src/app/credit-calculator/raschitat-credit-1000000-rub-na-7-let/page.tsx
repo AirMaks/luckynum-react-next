@@ -1,8 +1,10 @@
 import { Metadata } from "next";
 import { title, description, keywords } from "./seo";
-import CreditCalculator from "widgets/calculators/CreditCalculator/CreditCalculator";
 import { metaData } from "../../metadata";
 import ImageOg from "../../../../public/og-credit-calc.jpg";
+import dynamic from "next/dynamic";
+
+const CreditCalculator = dynamic(() => import("widgets/calculators/CreditCalculator/CreditCalculator"), { ssr: true });
 
 export const metadata: Metadata = {
     ...metaData({ title, description, keywords, img: ImageOg })
