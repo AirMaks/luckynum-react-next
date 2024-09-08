@@ -94,7 +94,8 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
             <div className="max-w-[430px] mx-auto text-center mt-[30px]">
                 <h2 className="text-[26px] max-sm:text-[18px] mb-[10px]">Скопируйте ваш пароль кликом:</h2>
                 <div className="text-[30px] max-sm:text-[20px] font-bold cursor-pointer hover:text-[#45a12e] transition-colors hover:transition-colors">
-                    <CopyToClipboardButton textToCopy={password} />
+                    {/* <CopyToClipboardButton textToCopy={password} /> */}
+                    <div>{password}</div>
                 </div>
             </div>
         </div>
