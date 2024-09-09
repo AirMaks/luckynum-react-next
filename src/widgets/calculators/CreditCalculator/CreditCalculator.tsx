@@ -46,6 +46,8 @@ const CreditCalculator = (props: Props) => {
     const [creditTime, setCreditTime] = useState<any>(0);
     const [diffOverPaid, setDiffOverPaid] = useState<any>(0);
 
+    const [loadingSchedule, setLoadingSchedule] = useState(false);
+
     const [isOpenSelect, setIsOpenSelect] = useState<any>(false);
     const [isOpenSelectType, setIsOpenSelectType] = useState<any>(false);
     const [isOpenSelectCreditType, setIsOpenSelectCreditType] = useState<any>(false);
@@ -140,7 +142,9 @@ const CreditCalculator = (props: Props) => {
         setErrorPercentTooBig,
         setErrorPercent,
         errorPercentTooBig,
-        errorPercent
+        errorPercent,
+        modalIsOpen,
+        setLoadingSchedule
     };
 
     const anuiProps = {
@@ -179,7 +183,7 @@ const CreditCalculator = (props: Props) => {
         errorIsMonthlyPaymentNotCover
     };
 
-    const scheduleProps = { modalIsOpen, csvData, setModalIsOpen, paymentSchedule, type };
+    const scheduleProps = { modalIsOpen, csvData, setModalIsOpen, paymentSchedule, type, loadingSchedule };
 
     const renderErrorCS = () => {
         if (creditType === MONTHLY_PAYMENT) {
@@ -222,8 +226,12 @@ const CreditCalculator = (props: Props) => {
         ) {
             return null;
         }
+        const handleOpenScheduleModal = () => {
+            setLoadingSchedule(true);
+            setModalIsOpen(true);
+        };
         return (
-            <div className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px]" onClick={() => setModalIsOpen(true)}>
+            <div className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px]" onClick={handleOpenScheduleModal}>
                 Скачать график платежей
             </div>
         );
@@ -245,7 +253,7 @@ const CreditCalculator = (props: Props) => {
         };
 
         return (
-            <FormFieldWrapper label="Способ расчета">
+            <FormFieldWrapper label="Способ расчета" labelOutside>
                 <SelectList
                     onSelectClick={onSelectCreditTypeClick}
                     isOpenSelect={isOpenSelectCreditType}
@@ -260,12 +268,12 @@ const CreditCalculator = (props: Props) => {
     return (
         <>
             <div className="pt-[30px] pb-[20px] max-sm:pt-[20px] max-sm:pb-[100px] ms-auto me-auto max-w-[1000px] px-[20px] max-sm:px-[10px]">
-                <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded">
+                <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded max-sm:px-[10px]">
                     <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">{renderHeading()}</h1>
                     <div className="flex justify-between max-sm:flex-col">
                         <div className="flex flex-col w-1/2 max-sm:w-full">
                             {renderCreditTypeSelect()}
-                            <FormFieldWrapper label="Сумма кредита" htmlFor="credit_sum">
+                            <FormFieldWrapper label="Сумма кредита" htmlFor="credit_sum" labelOutside>
                                 {renderErrorCS()}
                                 <Input
                                     ref={refCreditSum}
@@ -276,7 +284,7 @@ const CreditCalculator = (props: Props) => {
                                 />
                             </FormFieldWrapper>
                             {creditType === CREDIT_TIME && (
-                                <FormFieldWrapper label="Ежемесячный платеж" htmlFor="monthly_payment">
+                                <FormFieldWrapper label="Ежемесячный платеж" htmlFor="monthly_payment" labelOutside>
                                     {renderErrorMP()}
                                     <Input
                                         ref={refMonthlyPayment}
@@ -287,7 +295,7 @@ const CreditCalculator = (props: Props) => {
                                     />
                                 </FormFieldWrapper>
                             )}
-                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent">
+                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent" labelOutside>
                                 {renderErrorPercent()}
                                 <Input
                                     className={cn("")}
@@ -299,7 +307,7 @@ const CreditCalculator = (props: Props) => {
                                 />
                             </FormFieldWrapper>
                             {creditType === MONTHLY_PAYMENT && (
-                                <FormFieldWrapper label="Срок кредита">
+                                <FormFieldWrapper label="Срок кредита" labelOutside>
                                     <SelectList
                                         onSelectClick={onSelectClick}
                                         isOpenSelect={isOpenSelect}
@@ -310,7 +318,7 @@ const CreditCalculator = (props: Props) => {
                                 </FormFieldWrapper>
                             )}
                             {creditType === MONTHLY_PAYMENT && (
-                                <FormFieldWrapper label="Тип платежей">
+                                <FormFieldWrapper label="Тип платежей" labelOutside>
                                     <SelectList
                                         onSelectClick={onSelectTypeClick}
                                         isOpenSelect={isOpenSelectType}

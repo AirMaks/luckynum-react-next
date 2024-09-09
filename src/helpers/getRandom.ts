@@ -2,7 +2,7 @@ let exclude: number[] = [];
 
 export const getRandomNumber = (minValue: number | string, maxValue: number | string, isExclude: boolean) => {
     const errors = {
-        noNumberLast: "Не осталось ни одного числа, которое бы не повторилось.",
+        noNumberLast: "Не осталось числа, которое бы не повторилось."
     };
 
     const errorText: any = [];

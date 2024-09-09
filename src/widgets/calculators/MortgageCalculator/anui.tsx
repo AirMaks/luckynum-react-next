@@ -7,15 +7,36 @@ import { SummaryItem } from "../SummaryItem";
 import { DifferenceBar } from "../DifferenceBar";
 
 export const Anui = (props: any) => {
-    const { percent, creditTerm, creditSumValue, initialPaymentValue, setMonthlyPayment, setPaymentSchedule, type, monthlyPayment } = props;
+    const {
+        percent,
+        creditTerm,
+        creditSumValue,
+        modalIsOpen,
+        setLoadingSchedule,
+        initialPaymentValue,
+        setMonthlyPayment,
+        setPaymentSchedule,
+        type,
+        monthlyPayment,
+        errorPercent,
+        errorPercentTooBig,
+        errorCS,
+        errorPV
+    } = props;
 
     useEffect(() => {
         calculateMonthlyPayment();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type, creditSumValue, initialPaymentValue, percent, creditTerm]);
 
+    useEffect(() => {
+        if (modalIsOpen) {
+            calculatePaymentSchedule();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [modalIsOpen]);
+
     const calculateMonthlyPayment = () => {
-        calculatePaymentSchedule();
         const newCreditTerm = TERMS[creditTerm];
         const monthlyInterest = parseFloat(percent) / 100 / 12;
         const totalPayments = Math.round(newCreditTerm * 12);
@@ -49,6 +70,7 @@ export const Anui = (props: any) => {
 
             schedule.push(payment);
         }
+        setLoadingSchedule(false);
         setPaymentSchedule(schedule);
     };
 
@@ -58,13 +80,18 @@ export const Anui = (props: any) => {
     const calculateWidth = (creditSumValue / totalPayment) * 100;
     const overPay = monthlyPayment * (TERMS[creditTerm] * 12) - creditSumValue + +initialPaymentValue;
 
+    const hasErrors = errorPercent || errorPercentTooBig || errorCS || errorPV;
     return (
         <>
-            <SummaryItem text="Ежемесячный платеж:" value={formatPrice(monthlyPayment)} />
-            <SummaryItem text="Общая выплата:" value={formatPrice(totalPayment)} />
-            <SummaryItem text="Сумма кредита:" value={formatPrice(creditSumValue - initialPaymentValue)} className="text-[#0168af]" />
-            <SummaryItem text="Переплата по кредиту:" value={formatPrice(overPay)} className="text-[#489b00]" />
-            <DifferenceBar width={calculateWidth} />
+            <SummaryItem text="Ежемесячный платеж:" value={hasErrors ? "" : formatPrice(monthlyPayment)} />
+            <SummaryItem text="Общая выплата:" value={hasErrors ? "" : formatPrice(totalPayment)} />
+            <SummaryItem
+                text="Сумма кредита:"
+                value={hasErrors ? "" : formatPrice(creditSumValue - initialPaymentValue)}
+                className="text-[#0168af]"
+            />
+            <SummaryItem text="Переплата по кредиту:" value={hasErrors ? "" : formatPrice(overPay)} className="text-[#489b00]" />
+            {!hasErrors && <DifferenceBar width={calculateWidth} />}
         </>
     );
 };

@@ -35,11 +35,11 @@ const PercentPlusNumber = () => {
         <>
             <div className="flex flex-col">
                 <div className="flex gap-[10px]">
-                    <FormFieldWrapper label="Число" htmlFor="number" className="w-[50%]">
-                        <Input rounded={false} id="number" value={number.toString()} onChange={handleNumber} />
+                    <FormFieldWrapper label="Число" htmlFor="number" className="w-[50%]" labelClassName="text-[13px]">
+                        <Input rounded={false} id="number" value={number.toString()} onChange={handleNumber} className="h-[38px] text-[17px]" />
                     </FormFieldWrapper>
-                    <FormFieldWrapper label="Процент %" htmlFor="percent" className="w-[50%]">
-                        <Input rounded={false} id="percent" value={percent.toString()} onChange={handlePercent} />
+                    <FormFieldWrapper label="Процент %" htmlFor="percent" className="w-[50%]" labelClassName="text-[13px]">
+                        <Input rounded={false} id="percent" value={percent.toString()} onChange={handlePercent} className="h-[38px] text-[17px]" />
                     </FormFieldWrapper>
                 </div>
             </div>

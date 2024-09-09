@@ -52,6 +52,7 @@ const MortgageCalculator = (props: Props) => {
     const [initialPaymentValue, setInitialPaymentValue] = useState<any>(initialState.paymentValue);
     const [percent, setPercent] = useState<any>(initialState.percent);
     const [creditTerm, setCreditTerm] = useState<any>(initialState.years);
+    const [loadingSchedule, setLoadingSchedule] = useState(false);
 
     const [initialPaymentPercent, setInitialPaymentPercent] = useState<any>((+initialPaymentValue / +creditSumValue) * 100);
     const [monthlyPayment, setMonthlyPayment] = useState<any>(0);
@@ -144,7 +145,13 @@ const MortgageCalculator = (props: Props) => {
         setPaymentSchedule,
         type,
         monthlyPayment,
-        setPercent
+        setPercent,
+        errorPercent,
+        errorPercentTooBig,
+        errorCS,
+        errorPV,
+        modalIsOpen,
+        setLoadingSchedule
     };
 
     const diffProps = {
@@ -158,10 +165,16 @@ const MortgageCalculator = (props: Props) => {
         monthlyPayment,
         diffOverPaid,
         setDiffOverPaid,
-        setPercent
+        setPercent,
+        errorPercent,
+        errorPercentTooBig,
+        errorCS,
+        errorPV,
+        modalIsOpen,
+        setLoadingSchedule
     };
 
-    const scheduleProps = { modalIsOpen, csvData, setModalIsOpen, paymentSchedule, type };
+    const scheduleProps = { modalIsOpen, csvData, setModalIsOpen, paymentSchedule, type, loadingSchedule };
 
     const renderErrorPercent = () => {
         if (errorPercent) return <ErrorBadge text="Процент не может быть 0" />;
@@ -169,14 +182,29 @@ const MortgageCalculator = (props: Props) => {
         return null;
     };
 
+    const renderDownloadBtn = () => {
+        if (errorPercent || errorPercentTooBig || errorCS || errorPV) {
+            return null;
+        }
+        const handleOpenScheduleModal = () => {
+            setLoadingSchedule(true);
+            setModalIsOpen(true);
+        };
+        return (
+            <div className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px]" onClick={handleOpenScheduleModal}>
+                Скачать график платежей
+            </div>
+        );
+    };
+
     return (
         <>
             <div className="pt-[30px] pb-[20px] max-sm:pt-[20px] max-sm:pb-[100px] ms-auto me-auto max-w-[1000px] px-[20px] max-sm:px-[10px]">
-                <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded">
+                <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded max-sm:px-[10px]">
                     <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">{props.h1}</h1>
                     <div className="flex justify-between max-sm:flex-col">
                         <div className="flex flex-col w-1/2 max-sm:w-full">
-                            <FormFieldWrapper label="Сумма ипотеки" htmlFor="credit_sum">
+                            <FormFieldWrapper label="Сумма ипотеки" htmlFor="credit_sum" labelOutside>
                                 {errorCS && <ErrorBadge text="СИ не может быть меньше/равна ПВ" />}
                                 <Input
                                     ref={refCreditSum}
@@ -186,7 +214,7 @@ const MortgageCalculator = (props: Props) => {
                                     onChange={handleChangeCreditSum}
                                 />
                             </FormFieldWrapper>
-                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent">
+                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent" labelOutside>
                                 {renderErrorPercent()}
                                 <Input
                                     className={cn("")}
@@ -197,7 +225,7 @@ const MortgageCalculator = (props: Props) => {
                                     onChange={handlePercentChange}
                                 />
                             </FormFieldWrapper>
-                            <FormFieldWrapper label="Срок кредита">
+                            <FormFieldWrapper label="Срок кредита" labelOutside>
                                 <SelectList
                                     onSelectClick={onSelectClick}
                                     isOpenSelect={isOpenSelect}
@@ -212,7 +240,8 @@ const MortgageCalculator = (props: Props) => {
                                     Number(initialPaymentValue) === Number(creditSumValue)
                                         ? "100%"
                                         : `${Number(parseFloat(initialPaymentPercent).toFixed(2))} %`
-                                }`}>
+                                }`}
+                                labelOutside>
                                 {errorPV && <ErrorBadge text="ПВ не может быть больше/равен СИ" />}
                                 <Input
                                     ref={refInitialPayment}
@@ -222,7 +251,7 @@ const MortgageCalculator = (props: Props) => {
                                     onChange={handleChangeInitialPayment}
                                 />
                             </FormFieldWrapper>
-                            <FormFieldWrapper label="Тип платежей">
+                            <FormFieldWrapper label="Тип платежей" labelOutside>
                                 <SelectList
                                     onSelectClick={onSelectTypeClick}
                                     isOpenSelect={isOpenSelectType}
@@ -236,20 +265,10 @@ const MortgageCalculator = (props: Props) => {
                             {!isMounted ? (
                                 <Loader />
                             ) : (
-                                !errorPercent &&
-                                !errorPercentTooBig &&
-                                !errorCS &&
-                                !errorPV &&
-                                isMounted && (
-                                    <>
-                                        {type === DIFF ? <Diff {...diffProps} /> : <Anui {...anuiProps} />}
-                                        <div
-                                            className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px]"
-                                            onClick={() => setModalIsOpen(true)}>
-                                            Скачать график платежей
-                                        </div>
-                                    </>
-                                )
+                                <>
+                                    {type === DIFF ? <Diff {...diffProps} /> : <Anui {...anuiProps} />}
+                                    {renderDownloadBtn()}
+                                </>
                             )}
                         </div>
                     </div>

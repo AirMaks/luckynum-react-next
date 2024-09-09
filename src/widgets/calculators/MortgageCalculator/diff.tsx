@@ -16,7 +16,12 @@ export const Diff = (props: any) => {
         monthlyPayment,
         setDiffOverPaid,
         diffOverPaid,
-        setPercent
+        errorPercent,
+        errorPercentTooBig,
+        errorCS,
+        errorPV,
+        modalIsOpen,
+        setLoadingSchedule
     } = props;
 
     useEffect(() => {
@@ -25,13 +30,19 @@ export const Diff = (props: any) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type, creditSumValue, initialPaymentValue, percent, creditTerm]);
 
+    useEffect(() => {
+        if (modalIsOpen) {
+            calculatePaymentSchedule();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [modalIsOpen]);
+
     const calculateMonthlyPayment = () => {
         const totalMonths = Math.round(TERMS[creditTerm] * 12);
         const interestRate = parseFloat(percent) / 100;
         const monthlyInterestRate = interestRate / 12;
         const principalPayment = (creditSumValue - initialPaymentValue) / totalMonths;
         const payments = [];
-        calculatePaymentSchedule();
         for (let i = 1; i <= totalMonths; i++) {
             const interestPayment = (creditSumValue - initialPaymentValue - (i - 1) * principalPayment) * monthlyInterestRate;
             const monthlyPayment = principalPayment + interestPayment;
@@ -66,6 +77,7 @@ export const Diff = (props: any) => {
 
             schedule.push(payment);
         }
+        setLoadingSchedule(false);
         setPaymentSchedule(schedule);
     };
 
@@ -73,16 +85,29 @@ export const Diff = (props: any) => {
 
     const calculateWidth = (creditSumValue / totalPayment) * 100;
 
+    const hasErrors = errorPercent || errorPercentTooBig || errorCS || errorPV;
     return (
         <>
             <SummaryItem
                 text="Ежемесячный платеж:"
-                value={`${formatPrice(monthlyPayment[0] > 0 ? monthlyPayment[0] : 0)} ... ${formatPrice(monthlyPayment[monthlyPayment.length - 1] > 0 ? monthlyPayment[monthlyPayment.length - 1] : 0)}`}
+                value={
+                    hasErrors
+                        ? ""
+                        : `${formatPrice(monthlyPayment[0] > 0 ? monthlyPayment[0] : 0)} ... ${formatPrice(monthlyPayment[monthlyPayment.length - 1] > 0 ? monthlyPayment[monthlyPayment.length - 1] : 0)}`
+                }
             />
-            <SummaryItem text="Общая выплата:" value={formatPrice(totalPayment > 0 ? totalPayment : 0)} />
-            <SummaryItem text="Сумма кредита:" value={formatPrice(creditSumValue > 0 ? creditSumValue : 0)} className="text-[#0168af]" />
-            <SummaryItem text="Переплата по кредиту:" value={formatPrice(diffOverPaid > 0 ? diffOverPaid : 0)} className="text-[#489b00]" />
-            <DifferenceBar width={calculateWidth} />
+            <SummaryItem text="Общая выплата:" value={hasErrors ? "" : formatPrice(totalPayment > 0 ? totalPayment : 0)} />
+            <SummaryItem
+                text="Сумма кредита:"
+                value={hasErrors ? "" : formatPrice(creditSumValue > 0 ? creditSumValue : 0)}
+                className="text-[#0168af]"
+            />
+            <SummaryItem
+                text="Переплата по кредиту:"
+                value={hasErrors ? "" : formatPrice(diffOverPaid > 0 ? diffOverPaid : 0)}
+                className="text-[#489b00]"
+            />
+            {!hasErrors && <DifferenceBar width={calculateWidth} />}
         </>
     );
 };

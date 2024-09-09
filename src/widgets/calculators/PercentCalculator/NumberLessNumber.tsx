@@ -35,11 +35,11 @@ const NumberLessNumber = () => {
         <>
             <div className="flex flex-col">
                 <div className="flex gap-[10px]">
-                    <FormFieldWrapper label="Число 1" htmlFor="number1" className="w-[50%]">
-                        <Input rounded={false} id="number1" value={number1.toString()} onChange={handleNumber1} />
+                    <FormFieldWrapper label="Число 1" htmlFor="number1" className="w-[50%]" labelClassName="text-[13px]">
+                        <Input rounded={false} id="number1" value={number1.toString()} onChange={handleNumber1} className="h-[38px] text-[17px]" />
                     </FormFieldWrapper>
-                    <FormFieldWrapper label="Число 2" htmlFor="number2" className="w-[50%]">
-                        <Input rounded={false} id="number2" value={number2.toString()} onChange={handleNumber2} />
+                    <FormFieldWrapper label="Число 2" htmlFor="number2" className="w-[50%]" labelClassName="text-[13px]">
+                        <Input rounded={false} id="number2" value={number2.toString()} onChange={handleNumber2} className="h-[38px] text-[17px]" />
                     </FormFieldWrapper>
                 </div>
             </div>

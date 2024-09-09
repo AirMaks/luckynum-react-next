@@ -2,7 +2,6 @@
 
 import cn from "classnames";
 import { InputHTMLAttributes, memo, ChangeEvent, forwardRef } from "react";
-import cls from "./Input.module.scss";
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "onChange">;
 
@@ -14,12 +13,11 @@ interface InputProps extends HTMLInputProps {
     autofocus?: boolean;
     rounded?: boolean;
     border?: boolean;
-    focusOutline?: boolean;
 }
 
 export const Input = memo(
     forwardRef((props: InputProps, ref) => {
-        const { className, value, onChange, type = "text", placeholder, rounded = true, border = true, focusOutline, ...otherProps } = props;
+        const { className, value, onChange, type = "text", placeholder, rounded = true, border = true, ...otherProps } = props;
         const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             onChange?.(e.target.value, e);
         };
@@ -31,11 +29,10 @@ export const Input = memo(
                 value={value}
                 onChange={onChangeHandler}
                 className={cn(
-                    cls.input,
+                    "bg-transparent border-0 outline-none w-full p-[4px]",
                     {
-                        [cls.rounded]: rounded,
-                        [cls.border]: border,
-                        [cls.outlined]: focusOutline
+                        rounded: rounded,
+                        "!border border-black": border
                     },
                     [className]
                 )}

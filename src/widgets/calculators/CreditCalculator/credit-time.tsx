@@ -24,13 +24,22 @@ export const CreditTime = (props: any) => {
         errorCreditSumLessMonthlyPayment,
         errorPercentTooBig,
         errorPercent,
-        errorCreditTimeTooBig
+        errorCreditTimeTooBig,
+        modalIsOpen,
+        setLoadingSchedule
     } = props;
 
     useEffect(() => {
         calculateCreditTime();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [creditSumValue, percent, monthlyPaymentInputValue, creditType]);
+
+    useEffect(() => {
+        if (modalIsOpen) {
+            calculatePaymentSchedule();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [modalIsOpen]);
 
     const calculateCreditTime = () => {
         const monthlyInterestRate = percent / 12 / 100;
@@ -46,7 +55,6 @@ export const CreditTime = (props: any) => {
         setErrorCreditTimeTooBig(Math.floor(creditTimeInMonths / 12) >= 50);
 
         setCreditTime(creditTimeInMonths);
-        calculatePaymentSchedule();
     };
 
     const calculatePaymentSchedule = () => {
@@ -84,6 +92,7 @@ export const CreditTime = (props: any) => {
 
             schedule.push(payment);
         }
+        setLoadingSchedule(false);
         setPaymentSchedule(schedule);
     };
 

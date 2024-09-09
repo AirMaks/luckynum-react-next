@@ -20,7 +20,9 @@ export const Diff = (props: any) => {
         setErrorPercent,
         errorPercentTooBig,
         errorPercent,
-        errorCreditSumZero
+        errorCreditSumZero,
+        setLoadingSchedule,
+        modalIsOpen
     } = props;
 
     useEffect(() => {
@@ -29,8 +31,14 @@ export const Diff = (props: any) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type, creditSumValue, percent, creditTerm]);
 
+    useEffect(() => {
+        if (modalIsOpen) {
+            calculatePaymentSchedule();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [modalIsOpen]);
+
     const calculateMonthlyPayment = () => {
-        calculatePaymentSchedule();
         const totalMonths = Math.round(TERMS[creditTerm] * 12);
         const interestRate = parseFloat(percent) / 100;
         const monthlyInterestRate = interestRate / 12;
@@ -76,6 +84,7 @@ export const Diff = (props: any) => {
 
             schedule.push(payment);
         }
+        setLoadingSchedule(false);
         setPaymentSchedule(schedule);
     };
 

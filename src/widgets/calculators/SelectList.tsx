@@ -7,7 +7,7 @@ export const SelectList = (props: any) => {
     return (
         <div className={cn("rounded p-[4px] border border-black relative", [className])}>
             <ArrowIcon className="absolute top-[10px] right-[5px] pointer-events-none" />
-            <div onClick={onSelectClick} className="cursor-pointer truncate overflow-hidden whitespace-nowrap pe-[10px]">
+            <div onClick={onSelectClick} className="cursor-pointer truncate pe-[10px]">
                 {selectedItem}
             </div>
             <div

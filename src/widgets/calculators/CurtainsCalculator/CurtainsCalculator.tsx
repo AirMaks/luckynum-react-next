@@ -50,17 +50,17 @@ const CurtainsCalculator = () => {
                 <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded">
                     <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">Рассчитать ширину штор</h1>
                     <div className="flex gap-[10px] max-sm:flex-col">
-                        <FormFieldWrapper label="Длина карниза (см)" htmlFor="rod_length">
+                        <FormFieldWrapper label="Длина карниза (см)" htmlFor="rod_length" labelOutside>
                             <Input rounded={false} id="rod_length" value={rodLength} onChange={handleRodWidth} />
                         </FormFieldWrapper>
 
-                        <FormFieldWrapper label="Доп. ширина (см)" htmlFor="additional_width">
+                        <FormFieldWrapper label="Доп. ширина (см)" htmlFor="additional_width" labelOutside>
                             <Input rounded={false} id="additional_width" value={additionalWidth.toString()} onChange={handleAdditionalWidth} />
                         </FormFieldWrapper>
-                        <FormFieldWrapper label="Коэфф. сборки" htmlFor="gathering_coefficient">
+                        <FormFieldWrapper label="Коэфф. сборки" htmlFor="gathering_coefficient" labelOutside>
                             <Input rounded={false} id="gathering_coefficient" value={gatheringCoefficient.toString()} onChange={handleCoeff} />
                         </FormFieldWrapper>
-                        <FormFieldWrapper label="Кол-во штор" htmlFor="curtain_number">
+                        <FormFieldWrapper label="Кол-во штор" htmlFor="curtain_number" labelOutside>
                             <Input rounded={false} id="curtain_number" value={curtainNumber.toString()} onChange={handleCurtainNumber} />
                         </FormFieldWrapper>
                     </div>

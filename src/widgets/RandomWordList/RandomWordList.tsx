@@ -1,7 +1,6 @@
 "use client";
 
 import cn from "classnames";
-import cls from "./RandomWordList.module.scss";
 import { Button } from "shared/ui/Button/Button";
 import { Input } from "shared/ui/Input/Input";
 import { useRef, useState } from "react";
@@ -12,12 +11,12 @@ import { useSelector } from "react-redux";
 import { getAnimationSrc } from "features/Animations/model/selectors/getAnimationSrc/getAnimationSrc";
 import gif1 from "shared/assets/images/1.gif";
 import Image from "next/image";
+import { FormFieldWrapper } from "widgets/calculators/FormFieldWrapper";
 
 const RandomWordList = () => {
     const [randomWord, setRandomWord] = useState<any>("");
     const [time, setTime] = useState<any>(1);
     const [isExclude, setIsExclude] = useState(false);
-    const [focus, setFocus] = useState(false);
     const [animation, setAnimation] = useState(false);
     const refTime = useRef(null);
     const [textareaValue, setTextareaValue] = useState("");
@@ -47,27 +46,23 @@ const RandomWordList = () => {
     return (
         <>
             <div className="px-[10px]">
-                <div className={cn("mx-auto mt-[40px] max-sm:mt-[20px] bg-[#f7f7f7] max-w-[530px] rounded p-[20px]", {}, [])}>
-                    <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[15px]">Генератор случайных слов из списка</h1>
-                    <div className="flex">
+                <div className={cn("mx-auto mt-[40px] max-sm:mt-[20px] bg-[#f7f7f7] max-w-[530px] rounded p-[20px] max-sm:px-[10px]", {}, [])}>
+                    <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[15px]">Генератор случайных слов</h1>
+                    <div className="flex mb-[15px] max-sm:mb-[10px] ">
                         <Button
                             classContainer="w-full me-[10px]"
                             className={cn({ "bg-stone-800 text-white": isExclude }, [
-                                "min-h-[45px] max-sm:min-h-[38px] max-sm:m-0 bg-white-500 border border-black rounded text-[18px] max-sm:text-[14px] leading-[1]"
+                                "min-h-[45px] max-sm:min-h-[38px] max-sm:m-0 bg-white-500 border border-black rounded text-[18px] max-sm:text-[11px] leading-none"
                             ])}
                             border
                             onClick={() => setIsExclude(prev => !prev)}>
                             исключить повторения
                         </Button>
-
-                        <div className={cn(cls.Field, {}, ["max-sm:w-full"])}>
-                            <label htmlFor="time" className="!text-[12px]">
-                                время анимации
-                            </label>
+                        <FormFieldWrapper label="Время анимации" htmlFor="time" labelClassName="mb-[2px] text-[12px]">
                             <Input
                                 ref={refTime}
                                 className={cn(
-                                    "w-[100px] min-h-[45px] max-sm:min-h-[38px] !text-[25px] max-sm:!text-[20px] pt-[10px] px-[6px] pb-[4px] leading-none",
+                                    "w-[100px] min-h-[45px] max-sm:min-h-[38px] !text-[25px] max-sm:!text-[20px] px-[6px] py-[4px] leading-none",
                                     {},
                                     []
                                 )}
@@ -76,27 +71,24 @@ const RandomWordList = () => {
                                 onChange={handleChangeTime}
                                 value={time}
                             />
-                        </div>
+                        </FormFieldWrapper>
                     </div>
-                    <div className={cn(cls.Field, {}, ["mt-[10px]"])}>
-                        {!focus && !textareaValue && (
-                            <label htmlFor="textarea" className="!text-[14px] max-sm:!text-[12px]">
-                                введите слова через запятую (банан, апельсин, персик) или с переносом строк
-                            </label>
-                        )}
-                        <Textarea
-                            spellcheck={false}
-                            id="textarea"
-                            className={cn(cls.Textarea, {}, ["leading-tight"])}
-                            onChange={handleTextareaChange}
-                            onFocus={() => setFocus(true)}
-                            onBlur={() => setFocus(false)}></Textarea>
+                    <div className="mb-[15px] max-sm:mb-[10px]">
+                        <FormFieldWrapper
+                            label="Введите слова через запятую или с переносом строк"
+                            htmlFor="textarea"
+                            labelClassName="mb-[2px] text-[12px]">
+                            <Textarea
+                                spellcheck={false}
+                                id="textarea"
+                                className={cn(
+                                    "max-sm:text-[14px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-black min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
+                                )}
+                                onChange={handleTextareaChange}></Textarea>
+                        </FormFieldWrapper>
                     </div>
-
                     <Button
-                        className={cn(cls.ButtonChoose, {}, [
-                            "min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded mt-2 text-[20px] max-sm:text-[16px]"
-                        ])}
+                        className="min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded text-[20px] max-sm:text-[16px]"
                         border
                         onClick={onClick}
                         disabled={animation}>
@@ -105,9 +97,10 @@ const RandomWordList = () => {
                 </div>
             </div>
             <div
-                className={cn(cls.Word, { [cls.AllRepeated]: Array.isArray(randomWord), "!pt-0": animation }, [
-                    "text-[46px] max-sm:text-[27px] pt-[30px] flex justify-center max-sm:px-[10px] leading-tight"
-                ])}>
+                className={cn("text-[46px] max-sm:text-[20px] text-center pt-[30px] flex justify-center max-sm:px-[10px] leading-tight", {
+                    "!text-[24px] max-sm:!text-[20px]": Array.isArray(randomWord),
+                    "!pt-0": animation
+                })}>
                 <Image src={src || gif1} className={cn("", { hidden: !animation })} alt="animation" loading="lazy" />
                 {!animation && randomWord}
             </div>

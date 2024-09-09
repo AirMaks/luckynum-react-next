@@ -20,17 +20,24 @@ export const Anui = (props: any) => {
         setErrorPercent,
         errorPercentTooBig,
         errorPercent,
-        errorCreditSumZero
+        errorCreditSumZero,
+        modalIsOpen,
+        setLoadingSchedule
     } = props;
 
     useEffect(() => {
         calculateMonthlyPayment();
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [type, creditSumValue, percent, creditTerm]);
 
+    useEffect(() => {
+        if (modalIsOpen) {
+            calculatePaymentSchedule();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [modalIsOpen]);
+
     const calculateMonthlyPayment = () => {
-        calculatePaymentSchedule();
         const newCreditTerm = TERMS[creditTerm];
         const monthlyInterest = percent / 100 / 12;
         const totalPayments = Math.round(newCreditTerm * 12);
@@ -67,6 +74,7 @@ export const Anui = (props: any) => {
 
             schedule.push(payment);
         }
+        setLoadingSchedule(false);
         setPaymentSchedule(schedule);
     };
 

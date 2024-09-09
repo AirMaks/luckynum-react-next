@@ -6,8 +6,8 @@ import cn from "classnames";
 import { formatPrice } from "helpers/formatPrice";
 
 export const ScheduleModal = (props: any) => {
-    const { modalIsOpen, csvData, setModalIsOpen, paymentSchedule, type } = props;
-
+    const { modalIsOpen, csvData, setModalIsOpen, paymentSchedule, type, loadingSchedule } = props;
+    if (loadingSchedule) return null;
     return (
         <Modal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)}>
             <div className="bg-white p-[20px] rounded shadow">

@@ -2,7 +2,7 @@ let exclude: string[] = [];
 
 export const getRandomWord = (list: any, isExclude: boolean) => {
     const errors = {
-        noWordLast: "Не осталось ни одного слова, которое бы не повторилось.",
+        noWordLast: "Не осталось слова, которое бы не повторилось.",
         noWords: list.trim() === "" ? "Введите слова или символы через запятую или с переносами строк." : false
     };
 
