@@ -5,9 +5,9 @@ export const SelectList = (props: any) => {
     const { className, onSelectClick, onSelectItemClick, items, selectedItem, isOpenSelect } = props;
     if (!items || !items.length) return null;
     return (
-        <div className={cn("rounded p-[4px] border border-black relative", [className])}>
-            <ArrowIcon className="absolute top-[10px] right-[5px] pointer-events-none" />
-            <div onClick={onSelectClick} className="cursor-pointer truncate pe-[10px]">
+        <div className={cn("rounded p-[4px] border border-black relative flex items-center", [className])}>
+            <ArrowIcon className="absolute top-[50%] right-[5px] translate-y-[-50%] pointer-events-none" />
+            <div onClick={onSelectClick} className="cursor-pointer truncate pe-[10px] w-full">
                 {selectedItem}
             </div>
             <div
@@ -20,7 +20,7 @@ export const SelectList = (props: any) => {
                     return (
                         <div
                             onClick={() => onSelectItemClick(el)}
-                            className={cn("p-[4px] cursor-pointer", { "bg-[#e1e1e1]": el === selectedItem }, [])}
+                            className={cn("p-[4px] cursor-pointer", { "bg-[#d5e3fb]": el === selectedItem }, [])}
                             key={i}>
                             {el}
                         </div>

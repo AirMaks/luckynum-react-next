@@ -32,8 +32,8 @@ const PercentCalculator = () => {
 
     return (
         <>
-            <div className="pt-[30px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[550px] px-[20px] max-sm:px-[10px]">
-                <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded max-sm:px-[10px]">
+            <div className="px-[10px]">
+                <div className="mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[550px] bg-[#f7f7f7] max-lg:p-[20px] rounded">
                     <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">Рассчитать проценты</h1>
                     <FormFieldWrapper label="" className="mb-[15px] max-sm:mb-[10px] h-[38px]">
                         <SelectList

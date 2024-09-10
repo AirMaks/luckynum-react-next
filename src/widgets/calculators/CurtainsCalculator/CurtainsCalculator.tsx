@@ -46,22 +46,46 @@ const CurtainsCalculator = () => {
 
     return (
         <>
-            <div className="pt-[30px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[750px] px-[20px] max-sm:px-[10px]">
-                <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded">
+            <div className="px-[10px]">
+                <div className="bg-[#f7f7f7] mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] rounded pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[750px] px-[20px]">
                     <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">Рассчитать ширину штор</h1>
-                    <div className="flex gap-[10px] max-sm:flex-col">
-                        <FormFieldWrapper label="Длина карниза (см)" htmlFor="rod_length" labelOutside>
-                            <Input rounded={false} id="rod_length" value={rodLength} onChange={handleRodWidth} />
+                    <div className="flex gap-[10px] max-sm:gap-[15px] max-sm:flex-col">
+                        <FormFieldWrapper label="Длина карниза (см)" htmlFor="rod_length" labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
+                            <Input rounded={false} id="rod_length" value={rodLength} onChange={handleRodWidth} className="h-[40px] text-[18px]" />
                         </FormFieldWrapper>
 
-                        <FormFieldWrapper label="Доп. ширина (см)" htmlFor="additional_width" labelOutside>
-                            <Input rounded={false} id="additional_width" value={additionalWidth.toString()} onChange={handleAdditionalWidth} />
+                        <FormFieldWrapper
+                            label="Доп. ширина (см)"
+                            htmlFor="additional_width"
+                            labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
+                            <Input
+                                rounded={false}
+                                id="additional_width"
+                                value={additionalWidth.toString()}
+                                onChange={handleAdditionalWidth}
+                                className="h-[40px] text-[18px]"
+                            />
                         </FormFieldWrapper>
-                        <FormFieldWrapper label="Коэфф. сборки" htmlFor="gathering_coefficient" labelOutside>
-                            <Input rounded={false} id="gathering_coefficient" value={gatheringCoefficient.toString()} onChange={handleCoeff} />
+                        <FormFieldWrapper
+                            label="Коэфф. сборки"
+                            htmlFor="gathering_coefficient"
+                            labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
+                            <Input
+                                rounded={false}
+                                id="gathering_coefficient"
+                                value={gatheringCoefficient.toString()}
+                                onChange={handleCoeff}
+                                className="h-[40px] text-[18px]"
+                            />
                         </FormFieldWrapper>
-                        <FormFieldWrapper label="Кол-во штор" htmlFor="curtain_number" labelOutside>
-                            <Input rounded={false} id="curtain_number" value={curtainNumber.toString()} onChange={handleCurtainNumber} />
+                        <FormFieldWrapper label="Кол-во штор" htmlFor="curtain_number" labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
+                            <Input
+                                rounded={false}
+                                id="curtain_number"
+                                value={curtainNumber.toString()}
+                                onChange={handleCurtainNumber}
+                                className="h-[40px] text-[18px]"
+                            />
                         </FormFieldWrapper>
                     </div>
                     <div className="flex mt-[10px] flex-wrap">
@@ -69,7 +93,7 @@ const CurtainsCalculator = () => {
                         <p className="text-[20px]">{result || 0} см.</p>
                     </div>
                 </div>
-                <article className="pb-[40px]">
+                <article className="pb-[40px] ms-auto me-auto max-w-[750px]">
                     <h3 className="font-bold text-[18px] mb-[10px] mt-[40px]">Как рассчитать ширину штор на нашем калькуляторе?</h3>
                     <strong className="font-semibold">
                         При определении ширины занавесей следует принимать во внимание несколько ключевых факторов:

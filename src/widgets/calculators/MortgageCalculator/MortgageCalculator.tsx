@@ -199,12 +199,12 @@ const MortgageCalculator = (props: Props) => {
 
     return (
         <>
-            <div className="pt-[30px] pb-[20px] max-sm:pt-[20px] max-sm:pb-[100px] ms-auto me-auto max-w-[1000px] px-[20px] max-sm:px-[10px]">
-                <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded max-sm:px-[10px]">
+            <div className="px-[10px] ms-auto me-auto max-w-[1000px] max-sm:pb-[100px]">
+                <div className="mt-[20px] max-sm:mt-[10px] p-[20px] bg-[#f7f7f7] max-lg:p-[20px] rounded max-sm:px-[10px] pt-[30px] pb-[20px] max-sm:pt-[20px]">
                     <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">{props.h1}</h1>
                     <div className="flex justify-between max-sm:flex-col">
-                        <div className="flex flex-col w-1/2 max-sm:w-full">
-                            <FormFieldWrapper label="Сумма ипотеки" htmlFor="credit_sum" labelOutside>
+                        <div className="flex flex-col w-1/2 max-sm:w-full gap-[15px]">
+                            <FormFieldWrapper label="Сумма ипотеки" htmlFor="credit_sum" labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
                                 {errorCS && <ErrorBadge text="СИ не может быть меньше/равна ПВ" />}
                                 <Input
                                     ref={refCreditSum}
@@ -212,26 +212,28 @@ const MortgageCalculator = (props: Props) => {
                                     id="credit_sum"
                                     value={formattedCreditSumValue}
                                     onChange={handleChangeCreditSum}
+                                    className="h-[40px] text-[17px]"
                                 />
                             </FormFieldWrapper>
-                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent" labelOutside>
+                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent" labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
                                 {renderErrorPercent()}
                                 <Input
-                                    className={cn("")}
                                     ref={refPercent}
                                     rounded={false}
                                     id="percent"
                                     value={percent}
                                     onChange={handlePercentChange}
+                                    className="h-[40px] text-[17px]"
                                 />
                             </FormFieldWrapper>
-                            <FormFieldWrapper label="Срок кредита" labelOutside>
+                            <FormFieldWrapper labelNone>
                                 <SelectList
                                     onSelectClick={onSelectClick}
                                     isOpenSelect={isOpenSelect}
                                     onSelectItemClick={onSelectItemClick}
                                     items={keys}
                                     selectedItem={creditTerm}
+                                    className="h-[40px] text-[17px]"
                                 />
                             </FormFieldWrapper>
                             <FormFieldWrapper
@@ -241,7 +243,7 @@ const MortgageCalculator = (props: Props) => {
                                         ? "100%"
                                         : `${Number(parseFloat(initialPaymentPercent).toFixed(2))} %`
                                 }`}
-                                labelOutside>
+                                labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
                                 {errorPV && <ErrorBadge text="ПВ не может быть больше/равен СИ" />}
                                 <Input
                                     ref={refInitialPayment}
@@ -249,21 +251,25 @@ const MortgageCalculator = (props: Props) => {
                                     id="initial_payment"
                                     value={formattedInitialPaymentValue}
                                     onChange={handleChangeInitialPayment}
+                                    className="h-[40px] text-[17px]"
                                 />
                             </FormFieldWrapper>
-                            <FormFieldWrapper label="Тип платежей" labelOutside>
+                            <FormFieldWrapper labelNone>
                                 <SelectList
                                     onSelectClick={onSelectTypeClick}
                                     isOpenSelect={isOpenSelectType}
                                     onSelectItemClick={onSelectTypeItemClick}
                                     items={[ANUI, DIFF]}
                                     selectedItem={type}
+                                    className="h-[40px] text-[17px]"
                                 />
                             </FormFieldWrapper>
                         </div>
-                        <div className="ps-[20px] pt-[20px] max-sm:p-[0] max-sm:mt-[20px] relative w-2/3">
+                        <div className="ps-[20px] max-sm:ps-[0] max-sm:mt-[20px] relative w-2/3 max-sm:w-full">
                             {!isMounted ? (
-                                <Loader />
+                                <div className="w-full h-full flex items-center justify-center">
+                                    <Loader />
+                                </div>
                             ) : (
                                 <>
                                     {type === DIFF ? <Diff {...diffProps} /> : <Anui {...anuiProps} />}

@@ -46,19 +46,19 @@ const RandomWordList = () => {
     return (
         <>
             <div className="px-[10px]">
-                <div className={cn("mx-auto mt-[40px] max-sm:mt-[20px] bg-[#f7f7f7] max-w-[530px] rounded p-[20px] max-sm:px-[10px]", {}, [])}>
-                    <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[15px]">Генератор случайных слов</h1>
+                <div className={cn("mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[530px] rounded p-[20px] max-sm:px-[10px]", {}, [])}>
+                    <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[18px]">Генератор случайных слов</h1>
                     <div className="flex mb-[15px] max-sm:mb-[10px] ">
                         <Button
                             classContainer="w-full me-[10px]"
                             className={cn({ "bg-stone-800 text-white": isExclude }, [
-                                "min-h-[45px] max-sm:min-h-[38px] max-sm:m-0 bg-white-500 border border-black rounded text-[18px] max-sm:text-[11px] leading-none"
+                                "leading-[0] min-h-[45px] max-sm:min-h-[38px] max-sm:m-0 bg-white-500 border border-black rounded text-[18px] max-sm:text-[11px]"
                             ])}
                             border
                             onClick={() => setIsExclude(prev => !prev)}>
                             исключить повторения
                         </Button>
-                        <FormFieldWrapper label="Время анимации" htmlFor="time" labelClassName="mb-[2px] text-[12px]">
+                        <FormFieldWrapper label="Время анимации" htmlFor="time" labelClassName="mb-[2px] text-[12px] max-sm:!text-[10px]">
                             <Input
                                 ref={refTime}
                                 className={cn(
@@ -77,7 +77,7 @@ const RandomWordList = () => {
                         <FormFieldWrapper
                             label="Введите слова через запятую или с переносом строк"
                             htmlFor="textarea"
-                            labelClassName="mb-[2px] text-[12px]">
+                            labelClassName="mb-[2px] text-[12px] max-sm:!text-[10px]">
                             <Textarea
                                 spellcheck={false}
                                 id="textarea"
@@ -88,7 +88,7 @@ const RandomWordList = () => {
                         </FormFieldWrapper>
                     </div>
                     <Button
-                        className="min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded text-[20px] max-sm:text-[16px]"
+                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded text-[20px] max-sm:text-[16px]"
                         border
                         onClick={onClick}
                         disabled={animation}>
@@ -101,7 +101,12 @@ const RandomWordList = () => {
                     "!text-[24px] max-sm:!text-[20px]": Array.isArray(randomWord),
                     "!pt-0": animation
                 })}>
-                <Image src={src || gif1} className={cn("", { hidden: !animation })} alt="animation" loading="lazy" />
+                <Image
+                    src={src || gif1}
+                    className={cn("max-sm:max-h-[180px] object-contain", { hidden: !animation })}
+                    alt="animation"
+                    loading="lazy"
+                />
                 {!animation && randomWord}
             </div>
         </>

@@ -39,7 +39,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
     return (
         <div className="px-[10px] pb-[40px] select-none">
             <div className={cn("mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[430px] rounded p-[20px]")}>
-                <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">Генератор паролей</h1>
+                <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[18px]">Генератор паролей</h1>
                 <div className={cn("flex mt-[10px] mb-[20px] flex-col")}>
                     <div>
                         <h3 className="mb-[10px] text-[20px] max-sm:text-[16px]">

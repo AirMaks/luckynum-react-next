@@ -253,13 +253,14 @@ const CreditCalculator = (props: Props) => {
         };
 
         return (
-            <FormFieldWrapper label="Способ расчета" labelOutside>
+            <FormFieldWrapper labelNone>
                 <SelectList
                     onSelectClick={onSelectCreditTypeClick}
                     isOpenSelect={isOpenSelectCreditType}
                     onSelectItemClick={onSelectCreditTypeItemClick}
                     items={creditTypeItemsArray}
                     selectedItem={creditType}
+                    className="h-[40px] text-[17px]"
                 />
             </FormFieldWrapper>
         );
@@ -267,13 +268,13 @@ const CreditCalculator = (props: Props) => {
 
     return (
         <>
-            <div className="pt-[30px] pb-[20px] max-sm:pt-[20px] max-sm:pb-[100px] ms-auto me-auto max-w-[1000px] px-[20px] max-sm:px-[10px]">
-                <div className="bg-[#f7f7f7] p-[40px] max-lg:p-[20px] rounded max-sm:px-[10px]">
+            <div className="px-[10px] max-sm:pb-[100px] ms-auto me-auto max-w-[1000px]">
+                <div className="bg-[#f7f7f7] mt-[20px] max-sm:mt-[10px] p-[20px] max-lg:p-[20px] rounded max-sm:px-[10px] pt-[30px] pb-[20px] max-sm:pt-[20px]">
                     <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">{renderHeading()}</h1>
                     <div className="flex justify-between max-sm:flex-col">
-                        <div className="flex flex-col w-1/2 max-sm:w-full">
+                        <div className="flex flex-col w-1/2 max-sm:w-full gap-[15px]">
                             {renderCreditTypeSelect()}
-                            <FormFieldWrapper label="Сумма кредита" htmlFor="credit_sum" labelOutside>
+                            <FormFieldWrapper label="Сумма кредита" htmlFor="credit_sum" labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
                                 {renderErrorCS()}
                                 <Input
                                     ref={refCreditSum}
@@ -281,10 +282,14 @@ const CreditCalculator = (props: Props) => {
                                     id="credit_sum"
                                     value={formatPrice(creditSumValue, false)}
                                     onChange={handleChangeCreditSum}
+                                    className="h-[40px] text-[17px]"
                                 />
                             </FormFieldWrapper>
                             {creditType === CREDIT_TIME && (
-                                <FormFieldWrapper label="Ежемесячный платеж" htmlFor="monthly_payment" labelOutside>
+                                <FormFieldWrapper
+                                    label="Ежемесячный платеж"
+                                    htmlFor="monthly_payment"
+                                    labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
                                     {renderErrorMP()}
                                     <Input
                                         ref={refMonthlyPayment}
@@ -292,46 +297,51 @@ const CreditCalculator = (props: Props) => {
                                         id="monthly_payment"
                                         value={formatPrice(monthlyPaymentInputValue, false)}
                                         onChange={handleChangeMonthlyPayment}
+                                        className="h-[40px] text-[17px]"
                                     />
                                 </FormFieldWrapper>
                             )}
-                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent" labelOutside>
+                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent" labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
                                 {renderErrorPercent()}
                                 <Input
-                                    className={cn("")}
                                     ref={refPercent}
                                     rounded={false}
                                     id="percent"
                                     value={percent}
                                     onChange={handlePercentChange}
+                                    className="h-[40px] text-[17px]"
                                 />
                             </FormFieldWrapper>
                             {creditType === MONTHLY_PAYMENT && (
-                                <FormFieldWrapper label="Срок кредита" labelOutside>
+                                <FormFieldWrapper labelNone>
                                     <SelectList
                                         onSelectClick={onSelectClick}
                                         isOpenSelect={isOpenSelect}
                                         onSelectItemClick={onSelectItemClick}
                                         items={keys}
                                         selectedItem={creditTerm}
+                                        className="h-[40px] text-[17px]"
                                     />
                                 </FormFieldWrapper>
                             )}
                             {creditType === MONTHLY_PAYMENT && (
-                                <FormFieldWrapper label="Тип платежей" labelOutside>
+                                <FormFieldWrapper labelNone>
                                     <SelectList
                                         onSelectClick={onSelectTypeClick}
                                         isOpenSelect={isOpenSelectType}
                                         onSelectItemClick={onSelectTypeItemClick}
                                         items={[ANUI, DIFF]}
                                         selectedItem={type}
+                                        className="h-[40px] text-[17px]"
                                     />
                                 </FormFieldWrapper>
                             )}
                         </div>
-                        <div className="ps-[20px] pt-[20px] max-sm:p-[0] max-sm:mt-[20px] relative w-2/3">
+                        <div className="ps-[20px] max-sm:ps-[0] max-sm:mt-[20px] relative w-2/3 max-sm:w-full">
                             {!isMounted ? (
-                                <Loader />
+                                <div className="w-full h-full flex items-center justify-center">
+                                    <Loader />
+                                </div>
                             ) : (
                                 <>
                                     {creditType === MONTHLY_PAYMENT && type === DIFF ? (

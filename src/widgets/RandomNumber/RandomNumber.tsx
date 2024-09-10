@@ -58,14 +58,14 @@ const RandomNumber = () => {
                 <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">Генератор случайных чисел</h1>
                 <Button
                     className={cn(
-                        "min-h-[42px] bg-white-500 border mb-[15px] max-sm:mb-[10px] border-black rounded text-[18px] max-sm:text-[16px] max-sm:min-h-[37px]",
+                        "leading-[0] min-h-[42px] bg-white-500 border mb-[15px] max-sm:mb-[10px] border-black rounded text-[18px] max-sm:text-[16px] max-sm:min-h-[37px]",
                         { "bg-stone-800 text-white": state.isExclude }
                     )}
                     onClick={() => setState(prevState => ({ ...prevState, isExclude: !prevState.isExclude }))}>
                     Исключить повторения
                 </Button>
                 <div className={cn("flex gap-[5px] mb-[15px] max-sm:mb-[10px]")}>
-                    <FormFieldWrapper label="От" htmlFor="from" labelClassName="mb-[2px] text-[12px]">
+                    <FormFieldWrapper label="От" htmlFor="from" labelClassName="mb-[2px] text-[12px] max-sm:!text-[10px]">
                         <Input
                             ref={refFrom}
                             rounded={false}
@@ -75,7 +75,7 @@ const RandomNumber = () => {
                             className="!text-[25px] h-[48px] max-sm:!text-[20px] max-sm:h-[40px]"
                         />
                     </FormFieldWrapper>
-                    <FormFieldWrapper label="До" htmlFor="to" labelClassName="mb-[2px] text-[12px]">
+                    <FormFieldWrapper label="До" htmlFor="to" labelClassName="mb-[2px] text-[12px] max-sm:!text-[10px]">
                         <Input
                             ref={refTo}
                             rounded={false}
@@ -85,7 +85,7 @@ const RandomNumber = () => {
                             className="!text-[25px] h-[48px] max-sm:!text-[20px] max-sm:h-[40px]"
                         />
                     </FormFieldWrapper>
-                    <FormFieldWrapper label="Время анимации" htmlFor="time" labelClassName="mb-[2px] text-[12px]">
+                    <FormFieldWrapper label="Время анимации" htmlFor="time" labelClassName="mb-[2px] text-[12px] max-sm:!text-[10px]">
                         <Input
                             ref={refTime}
                             rounded={false}
@@ -97,18 +97,23 @@ const RandomNumber = () => {
                     </FormFieldWrapper>
                 </div>
                 <Button
-                    className="min-h-[62px] max-sm:min-h-[50px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded text-[20px] max-sm:text-[16px]"
+                    className="leading-[0] min-h-[62px] max-sm:min-h-[50px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded text-[20px] max-sm:text-[16px]"
                     onClick={onClick}
                     disabled={state.animation}>
                     Получить случайное число
                 </Button>
             </div>
             <div
-                className={cn("!text-[80px] max-sm:!text-[67px] flex justify-center min-h-[300px] pt-[70px] max-sm:pt-[40px]", {
-                    "min-h-[auto] !pt-[20px]": typeof state.number !== "number",
+                className={cn("!text-[80px] max-sm:!text-[67px] flex justify-center pt-[70px] max-sm:pt-[40px]", {
+                    "!pt-[20px]": typeof state.number !== "number",
                     "!pt-0": state.animation
                 })}>
-                <Image src={src || gifOne} className={cn({ hidden: !state.animation })} alt="gif" loading="lazy" />
+                <Image
+                    src={src || gifOne}
+                    className={cn("max-sm:max-h-[190px] object-contain", { hidden: !state.animation })}
+                    alt="gif"
+                    loading="lazy"
+                />
                 {!state.animation &&
                     (Array.isArray(state.number)
                         ? state.number.map((el, i) => (

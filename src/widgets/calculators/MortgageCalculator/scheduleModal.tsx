@@ -10,7 +10,7 @@ export const ScheduleModal = (props: any) => {
     if (loadingSchedule) return null;
     return (
         <Modal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)}>
-            <div className="bg-white p-[20px] rounded shadow">
+            <div className="bg-white p-[20px] max-sm:px-[10px] rounded shadow">
                 <div className="flex justify-between items-center mb-[20px] font-bold">
                     <CSVLink data={csvData} headers={csvDataHeaders} filename={`График платежей по кредиту (${type})`}>
                         <div className="text-[#006af3] cursor-pointer">Скачать график в формате CSV</div>
