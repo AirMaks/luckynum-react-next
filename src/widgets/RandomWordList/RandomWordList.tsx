@@ -104,8 +104,8 @@ const RandomWordList = () => {
                 <Image
                     src={src || gif1}
                     className={cn("max-sm:max-h-[180px] object-contain", { hidden: !animation })}
-                    alt="animation"
-                    loading="lazy"
+                    alt="кот gif"
+                    priority={true}
                 />
                 {!animation && randomWord}
             </div>

@@ -110,9 +110,9 @@ const RandomNumber = () => {
                 })}>
                 <Image
                     src={src || gifOne}
-                    className={cn("max-sm:max-h-[190px] object-contain", { hidden: !state.animation })}
-                    alt="gif"
-                    loading="lazy"
+                    className={cn("max-sm:max-h-[190px] object-contain", { hidden: state.animation })}
+                    alt="кот gif"
+                    priority={true}
                 />
                 {!state.animation &&
                     (Array.isArray(state.number)
