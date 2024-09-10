@@ -46,7 +46,7 @@ const CurtainsCalculator = () => {
 
     return (
         <>
-            <div className="px-[10px]">
+            <div className="px-[10px] max-sm:pb-[100px]">
                 <div className="bg-[#f7f7f7] mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] rounded pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[750px] px-[20px]">
                     <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">Рассчитать ширину штор</h1>
                     <div className="flex gap-[10px] max-sm:gap-[15px] max-sm:flex-col">

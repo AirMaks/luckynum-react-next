@@ -97,7 +97,7 @@ const RandomNumber = () => {
                     </FormFieldWrapper>
                 </div>
                 <Button
-                    className="leading-[0] min-h-[62px] max-sm:min-h-[50px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded text-[20px] max-sm:text-[16px]"
+                    className="leading-[0] min-h-[62px] max-sm:min-h-[50px] bg-white-500 hover:bg-stone-800 hover:text-white max-sm:hover:bg-[#f7f7f7] max-sm:hover:text-inherit border border-black rounded text-[20px] max-sm:text-[16px]"
                     onClick={onClick}
                     disabled={state.animation}>
                     Получить случайное число

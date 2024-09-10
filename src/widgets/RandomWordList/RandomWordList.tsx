@@ -88,7 +88,7 @@ const RandomWordList = () => {
                         </FormFieldWrapper>
                     </div>
                     <Button
-                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded text-[20px] max-sm:text-[16px]"
+                        className="leading-[0] min-h-[62px] max-sm:hover:bg-[#f7f7f7] max-sm:hover:text-inherit max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded text-[20px] max-sm:text-[16px]"
                         border
                         onClick={onClick}
                         disabled={animation}>

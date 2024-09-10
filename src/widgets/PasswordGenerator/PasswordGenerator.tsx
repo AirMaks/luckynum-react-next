@@ -86,7 +86,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                 </div>
 
                 <Button
-                    className="min-h-[62px] max-sm:min-h-[50px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded mt-2 text-[20px] max-sm:text-[16px]"
+                    className="max-sm:hover:bg-[#f7f7f7] max-sm:hover:text-inherit min-h-[62px] max-sm:min-h-[50px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded mt-2 text-[20px] max-sm:text-[16px]"
                     onClick={generatePassword}>
                     Сгенерировать
                 </Button>
