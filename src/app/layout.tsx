@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     metadataBase: new URL("https://lucky-num.ru"),
     alternates: {
         canonical: "./"
+    },
+    viewport: {
+        width: "device-width",
+        initialScale: 1,
+        maximumScale: 1,
+        userScalable: false
     }
 };
 export default function RootLayout({
@@ -30,7 +36,6 @@ export default function RootLayout({
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
                 <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
                 <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
-                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
                 <Script
                     id="yaContextCb"
                     dangerouslySetInnerHTML={{
