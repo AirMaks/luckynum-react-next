@@ -10,11 +10,11 @@ import { ViewportLayout } from "next/dist/lib/metadata/types/extra-types";
 
 const jura = Jura({ subsets: ["cyrillic", "latin"] });
 
-export const viewport: ViewportLayout = {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1
-};
+// export const viewport: ViewportLayout = {
+//     width: "device-width",
+//     initialScale: 1,
+//     maximumScale: 1
+// };
 export const metadata: Metadata = {
     metadataBase: new URL("https://lucky-num.ru"),
     alternates: {
