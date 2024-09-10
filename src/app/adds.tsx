@@ -45,7 +45,7 @@ const YandexAd = ({ className }: any) => {
         return () => {
             removeEventListeners(); // Удаляем слушатели при размонтировании компонента
         };
-    }, [pathname]);
+    }, []);
 
     return <div id="yandex_rtb_R-A-11866944-1" className={className}></div>;
 };
