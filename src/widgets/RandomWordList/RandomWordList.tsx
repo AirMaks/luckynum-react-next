@@ -82,7 +82,7 @@ const RandomWordList = () => {
                                 spellcheck={false}
                                 id="textarea"
                                 className={cn(
-                                    "max-sm:text-[14px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-black min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
+                                    "max-sm:text-[16px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-black min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
                                 )}
                                 onChange={handleTextareaChange}></Textarea>
                         </FormFieldWrapper>
