@@ -8,9 +8,7 @@ export const getRandomWord = (list: any, isExclude: boolean) => {
 
     const errorText: any = [];
     if (errors.noWords) {
-        if (errors.noWords) {
-            errorText.push(errors.noWords);
-        }
+        errorText.push(errors.noWords);
         return errorText;
     }
 
@@ -24,6 +22,8 @@ export const getRandomWord = (list: any, isExclude: boolean) => {
         list = list
             .replace(/,+/g, "")
             .split("\n")
+            .map((word: any) => word.trim())  // убираем пробелы в начале и конце строк
+            .filter((word: any) => word !== "")  // исключаем пустые строки
             .reduce((acc: string[], curr: string) => {
                 if (!acc.includes(curr)) {
                     acc.push(curr);
@@ -34,6 +34,8 @@ export const getRandomWord = (list: any, isExclude: boolean) => {
         list = list
             .replace(/,+/g, ",")
             .split(",")
+            .map((word: any) => word.trim())  // убираем пробелы в начале и конце строк
+            .filter((word: any) => word !== "")  // исключаем пустые строки
             .reduce((acc: string[], curr: string) => {
                 if (!acc.includes(curr)) {
                     acc.push(curr);
@@ -41,6 +43,7 @@ export const getRandomWord = (list: any, isExclude: boolean) => {
                 return acc;
             }, []);
     }
+
     let randomWord: any;
 
     if (isExclude) {
