@@ -191,7 +191,7 @@ const MortgageCalculator = (props: Props) => {
             setModalIsOpen(true);
         };
         return (
-            <div className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px]" onClick={handleOpenScheduleModal}>
+            <div className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px] max-sm:text-[16px]" onClick={handleOpenScheduleModal}>
                 Скачать график платежей
             </div>
         );
@@ -200,11 +200,11 @@ const MortgageCalculator = (props: Props) => {
     return (
         <>
             <div className="px-[10px] ms-auto me-auto max-w-[1000px] max-sm:pb-[100px]">
-                <div className="mt-[20px] max-sm:mt-[10px] p-[20px] bg-[#f7f7f7] max-lg:p-[20px] rounded max-sm:px-[10px] pt-[30px] pb-[20px] max-sm:pt-[20px]">
-                    <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">{props.h1}</h1>
+                <div className="mt-[20px] max-sm:mt-[10px] p-[20px] bg-[#f7f7f7] rounded max-sm:px-[10px]">
+                    <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[17px]">{props.h1}</h1>
                     <div className="flex justify-between max-sm:flex-col">
                         <div className="flex flex-col w-1/2 max-sm:w-full gap-[15px]">
-                            <FormFieldWrapper label="Сумма ипотеки" htmlFor="credit_sum" labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
+                            <FormFieldWrapper label="Сумма ипотеки" htmlFor="credit_sum">
                                 {errorCS && <ErrorBadge text="СИ не может быть меньше/равна ПВ" />}
                                 <Input
                                     ref={refCreditSum}
@@ -212,10 +212,10 @@ const MortgageCalculator = (props: Props) => {
                                     id="credit_sum"
                                     value={formattedCreditSumValue}
                                     onChange={handleChangeCreditSum}
-                                    className="h-[40px] text-[17px]"
+                                    className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                                 />
                             </FormFieldWrapper>
-                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent" labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
+                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent">
                                 {renderErrorPercent()}
                                 <Input
                                     ref={refPercent}
@@ -223,7 +223,7 @@ const MortgageCalculator = (props: Props) => {
                                     id="percent"
                                     value={percent}
                                     onChange={handlePercentChange}
-                                    className="h-[40px] text-[17px]"
+                                    className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                                 />
                             </FormFieldWrapper>
                             <FormFieldWrapper labelNone>
@@ -233,7 +233,7 @@ const MortgageCalculator = (props: Props) => {
                                     onSelectItemClick={onSelectItemClick}
                                     items={keys}
                                     selectedItem={creditTerm}
-                                    className="h-[40px] text-[17px]"
+                                    className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                                 />
                             </FormFieldWrapper>
                             <FormFieldWrapper
@@ -242,8 +242,7 @@ const MortgageCalculator = (props: Props) => {
                                     Number(initialPaymentValue) === Number(creditSumValue)
                                         ? "100%"
                                         : `${Number(parseFloat(initialPaymentPercent).toFixed(2))} %`
-                                }`}
-                                labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
+                                }`}>
                                 {errorPV && <ErrorBadge text="ПВ не может быть больше/равен СИ" />}
                                 <Input
                                     ref={refInitialPayment}
@@ -251,7 +250,7 @@ const MortgageCalculator = (props: Props) => {
                                     id="initial_payment"
                                     value={formattedInitialPaymentValue}
                                     onChange={handleChangeInitialPayment}
-                                    className="h-[40px] text-[17px]"
+                                    className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                                 />
                             </FormFieldWrapper>
                             <FormFieldWrapper labelNone>
@@ -261,7 +260,7 @@ const MortgageCalculator = (props: Props) => {
                                     onSelectItemClick={onSelectTypeItemClick}
                                     items={[ANUI, DIFF]}
                                     selectedItem={type}
-                                    className="h-[40px] text-[17px]"
+                                    className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                                 />
                             </FormFieldWrapper>
                         </div>
@@ -279,7 +278,7 @@ const MortgageCalculator = (props: Props) => {
                         </div>
                     </div>
                 </div>
-                <Link href="/credit-calculator" className="bg-[#f7f7f7] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
+                <Link href="/credit-calculator" className="bg-[#f7f7f7] max-sm:text-[14px] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
                     Кредитный калькулятор
                 </Link>
                 <Content

@@ -231,7 +231,7 @@ const CreditCalculator = (props: Props) => {
             setModalIsOpen(true);
         };
         return (
-            <div className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px]" onClick={handleOpenScheduleModal}>
+            <div className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px] max-sm:text-[16px]" onClick={handleOpenScheduleModal}>
                 Скачать график платежей
             </div>
         );
@@ -260,7 +260,7 @@ const CreditCalculator = (props: Props) => {
                     onSelectItemClick={onSelectCreditTypeItemClick}
                     items={creditTypeItemsArray}
                     selectedItem={creditType}
-                    className="h-[40px] text-[17px]"
+                    className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                 />
             </FormFieldWrapper>
         );
@@ -269,12 +269,12 @@ const CreditCalculator = (props: Props) => {
     return (
         <>
             <div className="px-[10px] max-sm:pb-[100px] ms-auto me-auto max-w-[1000px]">
-                <div className="bg-[#f7f7f7] mt-[20px] max-sm:mt-[10px] p-[20px] max-lg:p-[20px] rounded max-sm:px-[10px] pt-[30px] pb-[20px] max-sm:pt-[20px]">
-                    <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">{renderHeading()}</h1>
+                <div className="bg-[#f7f7f7] mt-[20px] max-sm:mt-[10px] p-[20px] rounded max-sm:px-[10px]">
+                    <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[17px]">{renderHeading()}</h1>
                     <div className="flex justify-between max-sm:flex-col">
                         <div className="flex flex-col w-1/2 max-sm:w-full gap-[15px]">
                             {renderCreditTypeSelect()}
-                            <FormFieldWrapper label="Сумма кредита" htmlFor="credit_sum" labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
+                            <FormFieldWrapper label="Сумма кредита" htmlFor="credit_sum">
                                 {renderErrorCS()}
                                 <Input
                                     ref={refCreditSum}
@@ -282,14 +282,13 @@ const CreditCalculator = (props: Props) => {
                                     id="credit_sum"
                                     value={formatPrice(creditSumValue, false)}
                                     onChange={handleChangeCreditSum}
-                                    className="h-[40px] text-[17px]"
+                                    className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                                 />
                             </FormFieldWrapper>
                             {creditType === CREDIT_TIME && (
                                 <FormFieldWrapper
                                     label="Ежемесячный платеж"
-                                    htmlFor="monthly_payment"
-                                    labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
+                                    htmlFor="monthly_payment">
                                     {renderErrorMP()}
                                     <Input
                                         ref={refMonthlyPayment}
@@ -297,11 +296,11 @@ const CreditCalculator = (props: Props) => {
                                         id="monthly_payment"
                                         value={formatPrice(monthlyPaymentInputValue, false)}
                                         onChange={handleChangeMonthlyPayment}
-                                        className="h-[40px] text-[17px]"
+                                        className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                                     />
                                 </FormFieldWrapper>
                             )}
-                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent" labelClassName="text-[14px] max-sm:!text-[12px] top-[-7px]">
+                            <FormFieldWrapper label="Процентная ставка" htmlFor="percent">
                                 {renderErrorPercent()}
                                 <Input
                                     ref={refPercent}
@@ -309,7 +308,7 @@ const CreditCalculator = (props: Props) => {
                                     id="percent"
                                     value={percent}
                                     onChange={handlePercentChange}
-                                    className="h-[40px] text-[17px]"
+                                    className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                                 />
                             </FormFieldWrapper>
                             {creditType === MONTHLY_PAYMENT && (
@@ -320,7 +319,7 @@ const CreditCalculator = (props: Props) => {
                                         onSelectItemClick={onSelectItemClick}
                                         items={keys}
                                         selectedItem={creditTerm}
-                                        className="h-[40px] text-[17px]"
+                                        className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                                     />
                                 </FormFieldWrapper>
                             )}
@@ -332,7 +331,7 @@ const CreditCalculator = (props: Props) => {
                                         onSelectItemClick={onSelectTypeItemClick}
                                         items={[ANUI, DIFF]}
                                         selectedItem={type}
-                                        className="h-[40px] text-[17px]"
+                                        className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                                     />
                                 </FormFieldWrapper>
                             )}
@@ -357,7 +356,7 @@ const CreditCalculator = (props: Props) => {
                         </div>
                     </div>
                 </div>
-                <Link href="/mortgage-calculator" className="bg-[#f7f7f7] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
+                <Link href="/mortgage-calculator" className="bg-[#f7f7f7] max-sm:text-[14px] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
                     Калькулятор ипотеки
                 </Link>
                 <Content

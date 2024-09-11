@@ -58,46 +58,46 @@ const RandomNumber = () => {
                 <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">Генератор случайных чисел</h1>
                 <Button
                     className={cn(
-                        "leading-[0] min-h-[42px] bg-white-500 border mb-[15px] max-sm:mb-[10px] border-black rounded text-[18px] max-sm:text-[16px] max-sm:min-h-[37px]",
+                        "leading-[0] min-h-[42px] bg-white-500 border mb-[15px] max-sm:mb-[10px] border-black rounded text-[18px] max-sm:text-[16px] max-sm:min-h-[38px]",
                         { "bg-stone-800 text-white": state.isExclude }
                     )}
                     onClick={() => setState(prevState => ({ ...prevState, isExclude: !prevState.isExclude }))}>
                     Исключить повторения
                 </Button>
                 <div className={cn("flex gap-[5px] mb-[15px] max-sm:mb-[10px]")}>
-                    <FormFieldWrapper label="От" htmlFor="from" labelClassName="mb-[2px] text-[12px] max-sm:!text-[10px]">
+                    <FormFieldWrapper label="От" htmlFor="from">
                         <Input
                             ref={refFrom}
                             rounded={false}
                             id="from"
                             value={state.fromValue.toString()}
                             onChange={handleChange("fromValue")}
-                            className="!text-[25px] h-[48px] max-sm:!text-[20px] max-sm:h-[40px]"
+                            className="!text-[20px] h-[40px] max-sm:h-[38px] max-sm:!text-[16px]"
                         />
                     </FormFieldWrapper>
-                    <FormFieldWrapper label="До" htmlFor="to" labelClassName="mb-[2px] text-[12px] max-sm:!text-[10px]">
+                    <FormFieldWrapper label="До" htmlFor="to">
                         <Input
                             ref={refTo}
                             rounded={false}
                             id="to"
                             value={state.toValue.toString()}
                             onChange={handleChange("toValue")}
-                            className="!text-[25px] h-[48px] max-sm:!text-[20px] max-sm:h-[40px]"
+                            className="!text-[20px] h-[40px] max-sm:h-[38px] max-sm:!text-[16px]"
                         />
                     </FormFieldWrapper>
-                    <FormFieldWrapper label="Время анимации" htmlFor="time" labelClassName="mb-[2px] text-[12px] max-sm:!text-[10px]">
+                    <FormFieldWrapper label="Время анимации" htmlFor="time">
                         <Input
                             ref={refTime}
                             rounded={false}
                             id="time"
                             onChange={handleChange("time")}
                             value={state.time.toString()}
-                            className="!text-[25px] h-[48px] max-sm:!text-[20px] max-sm:h-[40px]"
+                            className="!text-[20px] h-[40px] max-sm:h-[38px] max-sm:!text-[16px]"
                         />
                     </FormFieldWrapper>
                 </div>
                 <Button
-                    className="leading-[0] min-h-[62px] max-sm:min-h-[50px] bg-white-500 hover:bg-stone-800 hover:text-white max-sm:hover:bg-[#f7f7f7] max-sm:hover:text-inherit border border-black rounded text-[20px] max-sm:text-[16px]"
+                    className="leading-[0] min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white max-sm:hover:bg-[#f7f7f7] max-sm:hover:text-inherit border border-black rounded text-[20px] max-sm:text-[16px]"
                     onClick={onClick}
                     disabled={state.animation}>
                     Получить случайное число

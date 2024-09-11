@@ -36,16 +36,16 @@ const PercentPlusNumber = () => {
             <div className="flex flex-col">
                 <div className="flex gap-[10px]">
                     <FormFieldWrapper label="Число" htmlFor="number" className="w-[50%]" labelClassName="text-[13px]">
-                        <Input rounded={false} id="number" value={number.toString()} onChange={handleNumber} className="h-[38px] text-[17px]" />
+                        <Input rounded={false} id="number" value={number.toString()} onChange={handleNumber} className="text-[20px] max-sm:text-[16px] h-[40px] max-sm:h-[38px]" />
                     </FormFieldWrapper>
                     <FormFieldWrapper label="Процент %" htmlFor="percent" className="w-[50%]" labelClassName="text-[13px]">
-                        <Input rounded={false} id="percent" value={percent.toString()} onChange={handlePercent} className="h-[38px] text-[17px]" />
+                        <Input rounded={false} id="percent" value={percent.toString()} onChange={handlePercent} className="text-[20px] max-sm:text-[16px] h-[40px] max-sm:h-[38px]" />
                     </FormFieldWrapper>
                 </div>
             </div>
             <div className="flex mt-[10px] flex-col">
-                <h2 className="font-bold text-[20px] me-[10px]">Результат: {formatPrice(result, false)}</h2>
-                <p className="text-md">
+                <h2 className="font-bold text-[20px] me-[10px] max-sm:text-[17px]">Результат: {formatPrice(result, false)}</h2>
+                <p className="text-[20px] max-sm:text-[16px]">
                     {number} + {percent}% это {formatPrice(result, false)}
                 </p>
             </div>

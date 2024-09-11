@@ -47,22 +47,22 @@ const RandomWordList = () => {
         <>
             <div className="px-[10px]">
                 <div className={cn("mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[530px] rounded p-[20px] max-sm:px-[10px]", {}, [])}>
-                    <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[18px]">Генератор случайных слов</h1>
+                    <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">Генератор случайных слов</h1>
                     <div className="flex mb-[15px] max-sm:mb-[10px] ">
                         <Button
                             classContainer="w-full me-[10px]"
                             className={cn({ "bg-stone-800 text-white": isExclude }, [
-                                "leading-[0] min-h-[45px] max-sm:min-h-[38px] max-sm:m-0 bg-white-500 border border-black rounded text-[18px] max-sm:text-[11px]"
+                                "leading-[0] min-h-[40px] max-sm:min-h-[38px] max-sm:m-0 bg-white-500 border border-black rounded text-[18px] max-sm:text-[11px]"
                             ])}
                             border
                             onClick={() => setIsExclude(prev => !prev)}>
                             исключить повторения
                         </Button>
-                        <FormFieldWrapper label="Время анимации" htmlFor="time" labelClassName="mb-[2px] text-[12px] max-sm:!text-[10px]">
+                        <FormFieldWrapper label="Время анимации" htmlFor="time">
                             <Input
                                 ref={refTime}
                                 className={cn(
-                                    "w-[100px] min-h-[45px] max-sm:min-h-[38px] !text-[25px] max-sm:!text-[20px] px-[6px] py-[4px] leading-none",
+                                    "w-[100px] min-h-[40px] max-sm:min-h-[38px] !text-[20px] max-sm:!text-[16px] px-[6px] py-[4px] leading-none",
                                     {},
                                     []
                                 )}
@@ -76,19 +76,18 @@ const RandomWordList = () => {
                     <div className="mb-[15px] max-sm:mb-[10px]">
                         <FormFieldWrapper
                             label="Введите слова через запятую или с переносом строк"
-                            htmlFor="textarea"
-                            labelClassName="mb-[2px] text-[12px] max-sm:!text-[10px]">
+                            htmlFor="textarea">
                             <Textarea
                                 spellcheck={false}
                                 id="textarea"
                                 className={cn(
-                                    "max-sm:text-[16px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-black min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
+                                    "text-[20px] max-sm:text-[16px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-black min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
                                 )}
                                 onChange={handleTextareaChange}></Textarea>
                         </FormFieldWrapper>
                     </div>
                     <Button
-                        className="leading-[0] min-h-[62px] max-sm:hover:bg-[#f7f7f7] max-sm:hover:text-inherit max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded text-[20px] max-sm:text-[16px]"
+                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] max-sm:hover:bg-[#f7f7f7] max-sm:hover:text-inherit bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded text-[20px] max-sm:text-[16px]"
                         border
                         onClick={onClick}
                         disabled={animation}>

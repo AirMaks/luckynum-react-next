@@ -36,16 +36,16 @@ const NumberGreaterNumber = () => {
             <div className="flex flex-col">
                 <div className="flex gap-[10px]">
                     <FormFieldWrapper label="Число 1" htmlFor="number1" className="w-[50%]" labelClassName="text-[13px]">
-                        <Input rounded={false} id="number1" value={number1.toString()} onChange={handleNumber1} className="h-[38px] text-[17px]" />
+                        <Input rounded={false} id="number1" value={number1.toString()} onChange={handleNumber1} className="text-[20px] max-sm:text-[16px] h-[40px] max-sm:h-[38px]" />
                     </FormFieldWrapper>
                     <FormFieldWrapper label="Число 2" htmlFor="number2" className="w-[50%]" labelClassName="text-[13px]">
-                        <Input rounded={false} id="number2" value={number2.toString()} onChange={handleNumber2} className="h-[38px] text-[17px]" />
+                        <Input rounded={false} id="number2" value={number2.toString()} onChange={handleNumber2} className="text-[20px] max-sm:text-[16px] h-[40px] max-sm:h-[38px]" />
                     </FormFieldWrapper>
                 </div>
             </div>
             <div className="flex mt-[10px] flex-col">
-                <h2 className="font-bold text-[20px] me-[10px]">Результат: {formatPrice(result, false)} %</h2>
-                <p className="text-md">
+                <h2 className="font-bold text-[20px] me-[10px] max-sm:text-[17px]">Результат: {formatPrice(result, false)} %</h2>
+                <p className="text-[20px] max-sm:text-[16px]">
                     {number1} больше чем {number2} на {formatPrice(result, false)} %
                 </p>
             </div>

@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname } from "next/navigation";
 
 const YandexAd = ({ className }: any) => {
-    const pathname = usePathname();
 
     useEffect(() => {
         let adLoaded = false;

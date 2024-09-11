@@ -34,8 +34,8 @@ const PercentCalculator = () => {
         <>
             <div className="px-[10px]">
                 <div className="mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[550px] bg-[#f7f7f7] max-lg:p-[20px] rounded">
-                    <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[20px]">Рассчитать проценты</h1>
-                    <FormFieldWrapper label="" className="mb-[15px] max-sm:mb-[10px] h-[38px]">
+                    <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[17px]">Рассчитать проценты</h1>
+                    <FormFieldWrapper labelNone className="mb-[15px]">
                         <SelectList
                             onSelectClick={onSelectTypeClick}
                             isOpenSelect={isOpenSelectType}
@@ -49,6 +49,7 @@ const PercentCalculator = () => {
                                 PERCENT_TYPE_NUMBER_LESS_NUMBER
                             ]}
                             selectedItem={percentType}
+                            className="text-[20px] max-sm:text-[16px] h-[40px] max-sm:h-[38px]"
                         />
                     </FormFieldWrapper>
                     {percentType === PERCENT_TYPE_NUMBER_FROM_NUMBER && <NumberFromNumber />}

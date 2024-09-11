@@ -38,8 +38,8 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
 
     return (
         <div className="px-[10px] pb-[40px] select-none">
-            <div className={cn("mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[430px] rounded p-[20px]")}>
-                <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[18px]">Генератор паролей</h1>
+            <div className={cn("mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[430px] rounded p-[20px] max-sm:px-[10px]")}>
+                <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">Генератор паролей</h1>
                 <div className={cn("flex mt-[10px] mb-[20px] flex-col")}>
                     <div>
                         <h3 className="mb-[10px] text-[20px] max-sm:text-[16px]">
@@ -63,8 +63,8 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                             onChange={value => setLength(value)}
                         />
                     </div>
-                    <div className="mt-[20px] flex justify-between gap-[10px] max-sm:flex-col max-sm:text-[16px]">
-                        <label className="cursor-pointer">
+                    <div className="mt-[20px] flex justify-between gap-[10px] max-sm:text-[12px]">
+                        <label className="cursor-pointer flex items-center">
                             <input
                                 type="checkbox"
                                 checked={includeNumbers}
@@ -73,7 +73,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                             />
                             Включить цифры
                         </label>
-                        <label className="cursor-pointer">
+                        <label className="cursor-pointer flex items-center">
                             <input
                                 type="checkbox"
                                 checked={includeSymbols}
@@ -86,13 +86,13 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                 </div>
 
                 <Button
-                    className="max-sm:hover:bg-[#f7f7f7] max-sm:hover:text-inherit min-h-[62px] max-sm:min-h-[50px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded mt-2 text-[20px] max-sm:text-[16px]"
+                    className="max-sm:hover:bg-[#f7f7f7] max-sm:hover:text-inherit min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded mt-2 text-[20px] max-sm:text-[16px]"
                     onClick={generatePassword}>
                     Сгенерировать
                 </Button>
             </div>
             <div className="max-w-[430px] mx-auto text-center mt-[30px]">
-                <h2 className="text-[26px] max-sm:text-[18px] mb-[10px]">Скопируйте ваш пароль кликом:</h2>
+                <h2 className="text-[26px] max-sm:text-[16px] mb-[10px]">Скопируйте ваш пароль кликом:</h2>
                 <div className="text-[30px] max-sm:text-[20px] font-bold cursor-pointer hover:text-[#45a12e] transition-colors hover:transition-colors">
                     <CopyToClipboardButton textToCopy={password} />
                 </div>
