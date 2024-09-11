@@ -52,7 +52,7 @@ const RandomWordList = () => {
                         <Button
                             classContainer="w-full me-[10px]"
                             className={cn({ "bg-stone-800 text-white": isExclude }, [
-                                "leading-[0] min-h-[40px] max-sm:min-h-[38px] max-sm:m-0 bg-white-500 border border-black rounded text-[18px] max-sm:text-[11px]"
+                                "leading-[1] min-h-[40px] max-sm:min-h-[38px] max-sm:m-0 bg-white-500 border border-black rounded text-[18px] max-sm:text-[13px]"
                             ])}
                             border
                             onClick={() => setIsExclude(prev => !prev)}>
