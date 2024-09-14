@@ -5,7 +5,6 @@ import YandexMetrika from "./YandexMetrika";
 import cn from "classnames";
 import { Metadata } from "next";
 import { Suspense } from "react";
-import Script from "next/script";
 
 const jura = Jura({ subsets: ["cyrillic", "latin"] });
 
@@ -30,13 +29,8 @@ export default function RootLayout({
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
                 <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
                 <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
-                <Script
-                    id="yaContextCb"
-                    dangerouslySetInnerHTML={{
-                        __html: "window.yaContextCb=window.yaContextCb||[]"
-                    }}
-                />
-                <Script src="https://yandex.ru/ads/system/context.js" strategy="lazyOnload" />
+                <script>window.yaContextCb=window.yaContextCb||[]</script>
+                <script src="https://yandex.ru/ads/system/context.js" async></script>
             </head>
             <body className="bg-lightbg text-black dark:bg-stone-800 dark:text-white overflow-hidden h-[100%]">
                 <App>{children}</App>
