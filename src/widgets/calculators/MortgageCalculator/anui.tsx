@@ -74,11 +74,11 @@ export const Anui = (props: any) => {
         setPaymentSchedule(schedule);
     };
 
-    const totalPayment =
-        monthlyPayment * Math.round(TERMS[creditTerm] * 12) - +creditSumValue + +initialPaymentValue + +creditSumValue - +initialPaymentValue;
+    const totalPayments = Math.round(TERMS[creditTerm] * 12);
+    const totalPayment = monthlyPayment * totalPayments;
 
-    const calculateWidth = (creditSumValue / totalPayment) * 100;
-    const overPay = monthlyPayment * (TERMS[creditTerm] * 12) - creditSumValue + +initialPaymentValue;
+    const calculateWidth = ((creditSumValue - initialPaymentValue) / totalPayment) * 100;
+    const overPay = totalPayment - (creditSumValue - initialPaymentValue);
 
     const hasErrors = errorPercent || errorPercentTooBig || errorCS || errorPV;
     return (

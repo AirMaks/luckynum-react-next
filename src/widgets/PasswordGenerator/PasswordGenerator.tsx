@@ -24,16 +24,33 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
         const symbols = "!@#$%^&*()_+[]{}|;:,.<>?";
 
         let characters = letters;
+        let generatedPassword = "";
+
         if (includeNumbers) characters += numbers;
         if (includeSymbols) characters += symbols;
 
-        let generatedPassword = "";
         for (let i = 0; i < length; i++) {
             const randomIndex = Math.floor(Math.random() * characters.length);
             generatedPassword += characters[randomIndex];
         }
 
+        if (includeNumbers && !/\d/.test(generatedPassword)) {
+            const randomNumber = numbers[Math.floor(Math.random() * numbers.length)];
+            const randomIndex = Math.floor(Math.random() * generatedPassword.length);
+            generatedPassword = replaceAt(generatedPassword, randomIndex, randomNumber);
+        }
+
+        if (includeSymbols && !/[!@#$%^&*()_+\[\]{}|;:,.<>?]/.test(generatedPassword)) {
+            const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+            const randomIndex = Math.floor(Math.random() * generatedPassword.length);
+            generatedPassword = replaceAt(generatedPassword, randomIndex, randomSymbol);
+        }
+
         setPassword(generatedPassword);
+    };
+
+    const replaceAt = (str: string, index: number, replacement: string) => {
+        return str.substring(0, index) + replacement + str.substring(index + 1);
     };
 
     return (

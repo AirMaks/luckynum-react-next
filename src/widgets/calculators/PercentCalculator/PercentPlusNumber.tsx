@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { FormFieldWrapper } from "../FormFieldWrapper";
 import { Input } from "shared/ui/Input/Input";
 import { sanitizePercents, sanitizeSymbols } from "helpers/sanitizeSymbols";
-import { formatPrice } from "helpers/formatPrice";
 
 const PercentPlusNumber = () => {
     const [percent, setPercent] = useState<any>(50);
@@ -36,17 +35,29 @@ const PercentPlusNumber = () => {
             <div className="flex flex-col">
                 <div className="flex gap-[10px]">
                     <FormFieldWrapper label="Число" htmlFor="number" className="w-[50%]" labelClassName="text-[13px]">
-                        <Input rounded={false} id="number" value={number.toString()} onChange={handleNumber} className="text-[20px] max-sm:text-[16px] h-[40px] max-sm:h-[38px]" />
+                        <Input
+                            rounded={false}
+                            id="number"
+                            value={number.toString()}
+                            onChange={handleNumber}
+                            className="text-[20px] max-sm:text-[16px] h-[40px] max-sm:h-[38px]"
+                        />
                     </FormFieldWrapper>
                     <FormFieldWrapper label="Процент %" htmlFor="percent" className="w-[50%]" labelClassName="text-[13px]">
-                        <Input rounded={false} id="percent" value={percent.toString()} onChange={handlePercent} className="text-[20px] max-sm:text-[16px] h-[40px] max-sm:h-[38px]" />
+                        <Input
+                            rounded={false}
+                            id="percent"
+                            value={percent.toString()}
+                            onChange={handlePercent}
+                            className="text-[20px] max-sm:text-[16px] h-[40px] max-sm:h-[38px]"
+                        />
                     </FormFieldWrapper>
                 </div>
             </div>
             <div className="flex mt-[10px] flex-col">
-                <h2 className="font-bold text-[20px] me-[10px] max-sm:text-[17px]">Результат: {formatPrice(result, false)}</h2>
+                <h2 className="font-bold text-[20px] me-[10px] max-sm:text-[17px]">Результат: {result === Infinity ? 0 : result}</h2>
                 <p className="text-[20px] max-sm:text-[16px]">
-                    {number} + {percent}% это {formatPrice(result, false)}
+                    {number} + {percent}% это {result === Infinity ? 0 : result}
                 </p>
             </div>
         </>

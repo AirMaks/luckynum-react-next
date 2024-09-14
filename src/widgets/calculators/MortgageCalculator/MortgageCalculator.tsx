@@ -278,7 +278,9 @@ const MortgageCalculator = (props: Props) => {
                         </div>
                     </div>
                 </div>
-                <Link href="/credit-calculator" className="bg-[#f7f7f7] max-sm:text-[14px] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
+                <Link
+                    href="/credit-calculator"
+                    className="bg-[#f7f7f7] max-sm:text-[14px] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
                     Кредитный калькулятор
                 </Link>
                 <Content

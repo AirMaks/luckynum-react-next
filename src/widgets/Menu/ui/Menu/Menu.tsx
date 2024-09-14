@@ -41,7 +41,7 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             className={cn(cls.link, { [cls.active]: pathname === "/choose-from-list" })}
                             onClick={onClickMenuItem}>
                             <ListIcon className={cls.icon} />
-                            <span className={cls.link_text}>Выбрать из списка</span>
+                            <span className={cls.link_text}>Случайное слово</span>
                         </AppLink>
                     </li>
                     <li>

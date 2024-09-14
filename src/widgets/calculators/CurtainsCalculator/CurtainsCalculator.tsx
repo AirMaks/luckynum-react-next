@@ -51,7 +51,13 @@ const CurtainsCalculator = () => {
                     <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[17px]">Рассчитать ширину штор</h1>
                     <div className="flex gap-[10px] max-sm:gap-[15px] max-sm:flex-col">
                         <FormFieldWrapper label="Длина карниза (см)" htmlFor="rod_length">
-                            <Input rounded={false} id="rod_length" value={rodLength} onChange={handleRodWidth} className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]" />
+                            <Input
+                                rounded={false}
+                                id="rod_length"
+                                value={rodLength}
+                                onChange={handleRodWidth}
+                                className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                            />
                         </FormFieldWrapper>
 
                         <FormFieldWrapper
@@ -66,9 +72,7 @@ const CurtainsCalculator = () => {
                                 className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                             />
                         </FormFieldWrapper>
-                        <FormFieldWrapper
-                            label="Коэфф. сборки"
-                            htmlFor="gathering_coefficient">
+                        <FormFieldWrapper label="Коэфф. сборки" htmlFor="gathering_coefficient">
                             <Input
                                 rounded={false}
                                 id="gathering_coefficient"
@@ -93,7 +97,9 @@ const CurtainsCalculator = () => {
                     </div>
                 </div>
                 <article className="pb-[40px] ms-auto me-auto max-w-[750px]">
-                    <h3 className="font-bold text-[24px] max-sm:text-[16px] mb-[10px] mt-[40px] max-sm:mt-[20px]">Как рассчитать ширину штор на нашем калькуляторе?</h3>
+                    <h3 className="font-bold text-[24px] max-sm:text-[16px] mb-[10px] mt-[40px] max-sm:mt-[20px]">
+                        Как рассчитать ширину штор на нашем калькуляторе?
+                    </h3>
                     <strong className="font-semibold max-sm:text-[14px]">
                         При определении ширины занавесей следует принимать во внимание несколько ключевых факторов:
                     </strong>

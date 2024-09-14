@@ -43,13 +43,18 @@ export const Diff = (props: any) => {
         const monthlyInterestRate = interestRate / 12;
         const principalPayment = (creditSumValue - initialPaymentValue) / totalMonths;
         const payments = [];
+        let totalSum = 0;
+        let remainingBalance = creditSumValue - initialPaymentValue;
+
         for (let i = 1; i <= totalMonths; i++) {
-            const interestPayment = (creditSumValue - initialPaymentValue - (i - 1) * principalPayment) * monthlyInterestRate;
+            const interestPayment = remainingBalance * monthlyInterestRate;
             const monthlyPayment = principalPayment + interestPayment;
             payments.push(monthlyPayment);
+            totalSum += monthlyPayment;
+            remainingBalance -= principalPayment;
         }
-        const totalSum = payments.reduce((acc, curr) => acc + parseFloat(curr.toFixed(2)), 0);
-        setDiffOverPaid(parseFloat((totalSum - creditSumValue + +initialPaymentValue).toFixed(2)));
+
+        setDiffOverPaid(parseFloat((totalSum - creditSumValue + parseFloat(initialPaymentValue)).toFixed(2)));
         setMonthlyPayment(payments);
     };
 
@@ -81,9 +86,9 @@ export const Diff = (props: any) => {
         setPaymentSchedule(schedule);
     };
 
-    const totalPayment = +diffOverPaid + +creditSumValue - +initialPaymentValue;
+    const totalPayment = +diffOverPaid + (creditSumValue - initialPaymentValue);
 
-    const calculateWidth = (creditSumValue / totalPayment) * 100;
+    const calculateWidth = ((creditSumValue - initialPaymentValue) / totalPayment) * 100;
 
     const hasErrors = errorPercent || errorPercentTooBig || errorCS || errorPV;
     return (
@@ -99,7 +104,7 @@ export const Diff = (props: any) => {
             <SummaryItem text="Общая выплата:" value={hasErrors ? "" : formatPrice(totalPayment > 0 ? totalPayment : 0)} />
             <SummaryItem
                 text="Сумма кредита:"
-                value={hasErrors ? "" : formatPrice(creditSumValue > 0 ? creditSumValue : 0)}
+                value={hasErrors ? "" : formatPrice(creditSumValue - initialPaymentValue > 0 ? creditSumValue - initialPaymentValue : 0)}
                 className="text-[#0168af]"
             />
             <SummaryItem

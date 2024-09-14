@@ -1,4 +1,4 @@
-let exclude: number[] = [];
+let exclude: bigint[] = [];
 
 export const getRandomNumber = (minValue: number | string, maxValue: number | string, isExclude: boolean) => {
     const errors = {
@@ -6,33 +6,30 @@ export const getRandomNumber = (minValue: number | string, maxValue: number | st
     };
 
     const errorText: any = [];
-    let min = Number(minValue);
-    let max = Number(maxValue);
+    let min = BigInt(minValue);
+    let max = BigInt(maxValue);
 
-    // Если min больше max, меняем их местами
     if (min > max) {
         [min, max] = [max, min];
     }
 
-    const array = [];
-    let randomNumber: number | boolean;
-    for (let i: any = min; i <= max; i++) {
-        array.push(i);
-    }
+    const rangeSize = BigInt(max - min + BigInt(1));
 
-    if (isExclude) {
-        if (exclude.length < array.length) {
-            do {
-                randomNumber = Math.floor(Math.random() * (+max - +min + 1)) + +min;
-            } while (exclude.includes(randomNumber));
-
-            exclude.push(randomNumber);
-            return randomNumber;
-        }
+    if (isExclude && exclude.length >= Number(rangeSize)) {
         errorText.push(errors.noNumberLast);
         return errorText;
     }
 
-    exclude = [];
-    return Math.floor(Math.random() * (+max - +min + 1)) + +min;
+    let randomNumber: bigint;
+    do {
+        randomNumber = BigInt(Math.floor(Math.random() * Number(rangeSize))) + min;
+    } while (isExclude && exclude.includes(randomNumber));
+
+    if (isExclude) {
+        exclude.push(randomNumber);
+    } else {
+        exclude = [];
+    }
+
+    return Number(randomNumber.toString()); // Возвращаем строку, т.к. число может быть большим например 10000000n
 };

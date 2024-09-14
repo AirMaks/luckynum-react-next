@@ -74,9 +74,7 @@ const RandomWordList = () => {
                         </FormFieldWrapper>
                     </div>
                     <div className="mb-[15px] max-sm:mb-[10px]">
-                        <FormFieldWrapper
-                            label="Введите слова через запятую или с переносом строк"
-                            htmlFor="textarea">
+                        <FormFieldWrapper label="Введите слова через запятую или с переносом строк" htmlFor="textarea">
                             <Textarea
                                 spellcheck={false}
                                 id="textarea"

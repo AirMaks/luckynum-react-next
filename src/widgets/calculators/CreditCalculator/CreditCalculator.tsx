@@ -286,9 +286,7 @@ const CreditCalculator = (props: Props) => {
                                 />
                             </FormFieldWrapper>
                             {creditType === CREDIT_TIME && (
-                                <FormFieldWrapper
-                                    label="Ежемесячный платеж"
-                                    htmlFor="monthly_payment">
+                                <FormFieldWrapper label="Ежемесячный платеж" htmlFor="monthly_payment">
                                     {renderErrorMP()}
                                     <Input
                                         ref={refMonthlyPayment}
@@ -356,7 +354,9 @@ const CreditCalculator = (props: Props) => {
                         </div>
                     </div>
                 </div>
-                <Link href="/mortgage-calculator" className="bg-[#f7f7f7] max-sm:text-[14px] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
+                <Link
+                    href="/mortgage-calculator"
+                    className="bg-[#f7f7f7] max-sm:text-[14px] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
                     Калькулятор ипотеки
                 </Link>
                 <Content

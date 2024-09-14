@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 
 const YandexAd = ({ className }: any) => {
-
     useEffect(() => {
         let adLoaded = false;
 
@@ -16,7 +15,7 @@ const YandexAd = ({ className }: any) => {
                     });
                 });
                 adLoaded = true;
-                removeEventListeners(); // Убираем слушатели после загрузки рекламы
+                removeEventListeners();
             }
         };
 
@@ -37,11 +36,11 @@ const YandexAd = ({ className }: any) => {
         };
 
         if (typeof window !== "undefined") {
-            addEventListeners(); // Добавляем слушатели при рендере компонента
+            addEventListeners();
         }
 
         return () => {
-            removeEventListeners(); // Удаляем слушатели при размонтировании компонента
+            removeEventListeners();
         };
     }, []);
 
