@@ -4,6 +4,10 @@ const config: Config = {
     content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
     plugins: [],
     darkMode: "class",
-    purge: ["./src/**/*.{js,ts,jsx,tsx,mdx}"]
+    mode: "jit",
+    corePlugins: {
+        float: false,
+        clear: false
+    }
 };
 export default config;

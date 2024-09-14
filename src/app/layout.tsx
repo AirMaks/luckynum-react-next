@@ -36,7 +36,7 @@ export default function RootLayout({
                     <YandexMetrika yid={88160252} clickmap={true} trackLinks={true} accurateTrackBounce={true} webvisor={true} />
                 </Suspense>
                 <script>window.yaContextCb=window.yaContextCb||[]</script>
-                <script src="https://yandex.ru/ads/system/context.js" async></script>
+                <script src="https://yandex.ru/ads/system/context.js" defer></script>
             </body>
         </html>
     );
