@@ -54,7 +54,7 @@ const RandomNumber = () => {
 
     return (
         <div className="px-[10px]">
-            <div className={cn("mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[430px] rounded p-[20px] max-sm:px-[10px]")}>
+            <div className="mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[430px] rounded p-[20px] max-sm:px-[10px]">
                 <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">Генератор случайных чисел</h1>
                 <Button
                     className={cn(
@@ -64,7 +64,7 @@ const RandomNumber = () => {
                     onClick={() => setState(prevState => ({ ...prevState, isExclude: !prevState.isExclude }))}>
                     исключить повторения
                 </Button>
-                <div className={cn("flex gap-[5px] mb-[15px] max-sm:mb-[10px]")}>
+                <div className="flex gap-[5px] mb-[15px] max-sm:mb-[10px]">
                     <FormFieldWrapper label="От" htmlFor="from">
                         <Input
                             ref={refFrom}

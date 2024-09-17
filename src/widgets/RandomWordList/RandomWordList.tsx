@@ -46,7 +46,7 @@ const RandomWordList = () => {
     return (
         <>
             <div className="px-[10px]">
-                <div className={cn("mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[530px] rounded p-[20px] max-sm:px-[10px]", {}, [])}>
+                <div className="mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[530px] rounded p-[20px] max-sm:px-[10px]">
                     <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">Генератор случайных слов</h1>
                     <div className="flex mb-[15px] max-sm:mb-[10px] ">
                         <Button
@@ -61,11 +61,7 @@ const RandomWordList = () => {
                         <FormFieldWrapper label="Время анимации" htmlFor="time">
                             <Input
                                 ref={refTime}
-                                className={cn(
-                                    "w-[100px] min-h-[40px] max-sm:min-h-[38px] !text-[20px] max-sm:!text-[16px] px-[6px] py-[4px] leading-none",
-                                    {},
-                                    []
-                                )}
+                                className="w-[100px] min-h-[40px] max-sm:min-h-[38px] !text-[20px] max-sm:!text-[16px] px-[6px] py-[4px] leading-none"
                                 rounded={false}
                                 id="time"
                                 onChange={handleChangeTime}
@@ -78,9 +74,7 @@ const RandomWordList = () => {
                             <Textarea
                                 spellcheck={false}
                                 id="textarea"
-                                className={cn(
-                                    "text-[20px] max-sm:text-[16px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-black min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
-                                )}
+                                className="text-[20px] max-sm:text-[16px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-black min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
                                 onChange={handleTextareaChange}></Textarea>
                         </FormFieldWrapper>
                     </div>

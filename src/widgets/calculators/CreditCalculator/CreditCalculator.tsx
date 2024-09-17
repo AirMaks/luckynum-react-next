@@ -268,7 +268,7 @@ const CreditCalculator = (props: Props) => {
 
     return (
         <>
-            <div className="px-[10px] max-sm:pb-[100px] ms-auto me-auto max-w-[1000px]">
+            <div className="px-[10px] ms-auto me-auto max-w-[1000px]">
                 <div className="bg-[#f7f7f7] mt-[20px] max-sm:mt-[10px] p-[20px] rounded max-sm:px-[10px]">
                     <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[17px]">{renderHeading()}</h1>
                     <div className="flex justify-between max-sm:flex-col">
