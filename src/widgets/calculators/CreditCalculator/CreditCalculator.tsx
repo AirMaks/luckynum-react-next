@@ -231,7 +231,7 @@ const CreditCalculator = (props: Props) => {
             setModalIsOpen(true);
         };
         return (
-            <div className="text-[#006af3] cursor-pointer font-bold mt-[20px] text-[20px] max-sm:text-[16px]" onClick={handleOpenScheduleModal}>
+            <div className="text-[#006af3] cursor-pointer font-medium mt-[20px] text-[20px] max-sm:text-[16px]" onClick={handleOpenScheduleModal}>
                 Скачать график платежей
             </div>
         );
@@ -270,7 +270,7 @@ const CreditCalculator = (props: Props) => {
         <>
             <div className="px-[10px] ms-auto me-auto max-w-[1000px]">
                 <div className="bg-[#f7f7f7] mt-[20px] max-sm:mt-[10px] p-[20px] rounded max-sm:px-[10px]">
-                    <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[17px]">{renderHeading()}</h1>
+                    <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]">{renderHeading()}</h1>
                     <div className="flex justify-between max-sm:flex-col">
                         <div className="flex flex-col w-1/2 max-sm:w-full gap-[15px]">
                             {renderCreditTypeSelect()}
@@ -356,7 +356,7 @@ const CreditCalculator = (props: Props) => {
                 </div>
                 <Link
                     href="/mortgage-calculator"
-                    className="bg-[#f7f7f7] max-sm:text-[14px] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-bold">
+                    className="bg-[#f7f7f7] max-sm:text-[14px] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
                     Калькулятор ипотеки
                 </Link>
                 <Content

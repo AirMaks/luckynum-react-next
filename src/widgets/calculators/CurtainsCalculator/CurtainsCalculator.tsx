@@ -48,7 +48,7 @@ const CurtainsCalculator = () => {
         <>
             <div className="px-[10px]">
                 <div className="bg-[#f7f7f7] mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] rounded pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[750px] px-[20px]">
-                    <h1 className="text-center text-[24px] mb-[20px] font-bold max-sm:text-[17px]">Рассчитать ширину штор</h1>
+                    <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]">Рассчитать ширину штор</h1>
                     <div className="flex gap-[10px] max-sm:gap-[15px] max-sm:flex-col">
                         <FormFieldWrapper label="Длина карниза (см)" htmlFor="rod_length">
                             <Input
@@ -92,12 +92,12 @@ const CurtainsCalculator = () => {
                         </FormFieldWrapper>
                     </div>
                     <div className="flex mt-[10px] flex-wrap">
-                        <h2 className="font-bold text-[20px] me-[10px] max-sm:text-[17px]">Ширина одной шторы:</h2>
+                        <h2 className="font-medium text-[20px] me-[10px] max-sm:text-[17px]">Ширина одной шторы:</h2>
                         <p className="text-[20px] max-sm:text-[16px]">{result || 0} см.</p>
                     </div>
                 </div>
                 <article className="pb-[40px] ms-auto me-auto max-w-[750px]">
-                    <h3 className="font-bold text-[24px] max-sm:text-[16px] mb-[10px] mt-[40px] max-sm:mt-[20px]">
+                    <h3 className="font-medium text-[24px] max-sm:text-[16px] mb-[10px] mt-[40px] max-sm:mt-[20px]">
                         Как рассчитать ширину штор на нашем калькуляторе?
                     </h3>
                     <strong className="font-semibold max-sm:text-[14px]">

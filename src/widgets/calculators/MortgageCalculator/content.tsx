@@ -5,7 +5,7 @@ export const Content = ({ isMainPage, isCountryIpoteka, isItIpoteka, isInitialPa
     if (isInitialPaymentIpoteka) {
         return (
             <article className="mt-[50px] max-sm:mt-[25px]">
-                <h2 className="font-bold text-[24px] max-sm:text-[16px] mb-[10px]">
+                <h2 className="font-medium text-[24px] max-sm:text-[16px] mb-[10px]">
                     Вы рассчитали кредит с первоначальным взносом {formatPrice(initialPayment, false)} {formatRublesText(initialPayment)}, с суммой
                     кредита {formatPrice(creditSum, false)} {formatRublesText(creditSum)} и сроком на {years}
                 </h2>
@@ -19,7 +19,7 @@ export const Content = ({ isMainPage, isCountryIpoteka, isItIpoteka, isInitialPa
     if (isCountryIpoteka) {
         return (
             <article className="mt-[50px] max-sm:mt-[25px]">
-                <h2 className="font-bold text-[24px] max-sm:text-[16px] mb-[10px]">
+                <h2 className="font-medium text-[24px] max-sm:text-[16px] mb-[10px]">
                     Вы рассчитали кредит на сельскую ипотеку с процетной ставкой {percent}%, с суммой кредита {formatPrice(creditSum, false)}{" "}
                     {formatRublesText(creditSum)} и сроком на {years}
                 </h2>
@@ -35,7 +35,7 @@ export const Content = ({ isMainPage, isCountryIpoteka, isItIpoteka, isInitialPa
     if (isItIpoteka) {
         return (
             <article className="mt-[50px] max-sm:mt-[25px]">
-                <h2 className="font-bold text-[24px] max-sm:text-[16px] mb-[10px]">
+                <h2 className="font-medium text-[24px] max-sm:text-[16px] mb-[10px]">
                     Вы рассчитали кредит на IT ипотеку с процетной ставкой {percent}%, с суммой кредита {formatPrice(creditSum, false)}{" "}
                     {formatRublesText(creditSum)} и сроком на {years}
                 </h2>
@@ -50,7 +50,7 @@ export const Content = ({ isMainPage, isCountryIpoteka, isItIpoteka, isInitialPa
     if (!isMainPage) return null;
     return (
         <article className="mt-[50px] max-sm:mt-[25px]">
-            <h2 className="font-bold text-[24px] max-sm:text-[16px] mb-[10px]">Расчет ипотеки онлайн с помощью ипотечного калькулятора</h2>
+            <h2 className="font-medium text-[24px] max-sm:text-[16px] mb-[10px]">Расчет ипотеки онлайн с помощью ипотечного калькулятора</h2>
             <p className="mb-[20px] max-sm:text-[14px]">
                 Ипотечный калькулятор — это программа, которая с помощью математических формул рассчитывает ежемесячные платежи, процентные ставки,
                 переплату и другие важные параметры кредита. Для получения точных данных пользователю необходимо ввести:

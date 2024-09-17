@@ -55,7 +55,7 @@ const NumberFromNumber = () => {
                 </div>
             </div>
             <div className="flex mt-[10px] flex-col">
-                <h2 className="font-bold text-[20px] me-[10px] max-sm:text-[17px]">Результат: {result === Infinity ? 0 : result}%</h2>
+                <h2 className="font-medium text-[20px] me-[10px] max-sm:text-[17px]">Результат: {result === Infinity ? 0 : result}%</h2>
                 <p className="text-[20px] max-sm:text-[16px]">
                     {number1} это {result === Infinity ? 0 : result}% от {number2}
                 </p>

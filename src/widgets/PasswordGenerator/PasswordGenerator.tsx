@@ -56,11 +56,11 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
     return (
         <div className="px-[10px] pb-[40px] select-none">
             <div className="mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[430px] rounded p-[20px] max-sm:px-[10px]">
-                <h1 className="mb-[20px] text-center text-[24px] font-bold max-sm:text-[17px]">Генератор паролей</h1>
+                <h1 className="mb-[20px] text-center text-[24px] font-medium max-sm:text-[17px]">Генератор паролей</h1>
                 <div className="flex mt-[10px] mb-[20px] flex-col">
                     <div>
                         <h3 className="mb-[10px] text-[20px] max-sm:text-[16px]">
-                            Длина пароля: <span className="font-bold">{length}</span>
+                            Длина пароля: <span className="font-medium">{length}</span>
                         </h3>
                         <Slider
                             trackStyle={{ backgroundColor: "#2569e1" }}
@@ -110,7 +110,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
             </div>
             <div className="max-w-[430px] mx-auto text-center mt-[30px]">
                 <h2 className="text-[26px] max-sm:text-[16px] mb-[10px]">Скопируйте ваш пароль кликом:</h2>
-                <div className="text-[30px] max-sm:text-[20px] font-bold cursor-pointer hover:text-[#45a12e] transition-colors hover:transition-colors">
+                <div className="text-[30px] max-sm:text-[20px] font-medium cursor-pointer hover:text-[#45a12e] transition-colors hover:transition-colors">
                     <CopyToClipboardButton textToCopy={password} />
                 </div>
             </div>

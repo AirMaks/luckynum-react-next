@@ -11,7 +11,7 @@ export const ScheduleModal = (props: any) => {
     return (
         <Modal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)}>
             <div className="bg-white p-[20px] max-sm:px-[10px] rounded shadow">
-                <div className="flex justify-between items-center mb-[20px] font-bold">
+                <div className="flex justify-between items-center mb-[20px] font-medium">
                     <CSVLink data={csvData} headers={csvDataHeaders} filename={`График платежей по кредиту (${type})`}>
                         <div className="text-[#006af3] cursor-pointer">Скачать график в формате CSV</div>
                     </CSVLink>
@@ -20,7 +20,7 @@ export const ScheduleModal = (props: any) => {
                 {paymentSchedule.length > 0 && (
                     <div className="border border-black overflow-x-auto">
                         <div className="w-max">
-                            <div className="bg-[#b0e5ff] border-b border-b-black flex justify-between font-bold p-[10px] text-center">
+                            <div className="bg-[#b0e5ff] border-b border-b-black flex justify-between font-medium p-[10px] text-center">
                                 <div className="w-[200px]">Дата</div>
                                 <div className="w-[200px]">Платеж</div>
                                 <div className="w-[200px]">Погашено</div>
