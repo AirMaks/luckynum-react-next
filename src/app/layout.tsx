@@ -6,7 +6,7 @@ import cn from "classnames";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
-const jura = Jura({ subsets: ["cyrillic", "latin"] });
+const jura = Jura({ subsets: ["cyrillic", "latin"], display: "swap" });
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://lucky-num.ru"),
