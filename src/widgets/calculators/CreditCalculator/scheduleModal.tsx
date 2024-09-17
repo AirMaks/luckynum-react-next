@@ -27,7 +27,7 @@ export const ScheduleModal = (props: any) => {
                                 <div className="w-[200px]">Остаток</div>
                                 <div className="w-[200px]">Проценты</div>
                             </div>
-                            <div className="overflow-x-auto max-h-[calc(100vh-300px)]">
+                            <div className="overflow-x-auto max-h-[calc(100vh-300px)] max-sm:max-h-[calc(100dvh-300px)] transition-[max-height]">
                                 {paymentSchedule.map((payment: any, index: number) => (
                                     <div key={index} className="flex py-[5px] text-center border-b border-b-black last:border-0">
                                         <div className="w-[200px]">
