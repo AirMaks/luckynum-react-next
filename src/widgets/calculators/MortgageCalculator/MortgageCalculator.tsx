@@ -105,21 +105,17 @@ const MortgageCalculator = (props: Props) => {
 
     const onSelectClick = () => {
         setIsOpenSelect((prev: any) => !prev);
-        setIsOpenSelectType(false);
     };
 
     const onSelectItemClick = (value: any) => {
         setCreditTerm(value);
-        setIsOpenSelect(false);
     };
     const onSelectTypeClick = () => {
         setIsOpenSelectType((prev: any) => !prev);
-        setIsOpenSelect(false);
     };
     const onSelectTypeItemClick = (value: any) => {
         if (value !== type) setMonthlyPayment(0);
         setType(value);
-        setIsOpenSelectType(false);
     };
     const formattedCreditSumValue = formatPrice(creditSumValue, false);
     const formattedInitialPaymentValue = formatPrice(initialPaymentValue, false);

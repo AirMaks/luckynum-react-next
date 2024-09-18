@@ -30,3 +30,10 @@ export const PERCENT_TYPE_PERCENT_PLUS_NUMBER = "Прибавить процен
 export const PERCENT_TYPE_PERCENT_MINUS_NUMBER = "Вычесть процент из числа";
 export const PERCENT_TYPE_NUMBER_GREATER_NUMBER = "На сколько процентов одно число больше другого";
 export const PERCENT_TYPE_NUMBER_LESS_NUMBER = "На сколько процентов одно число меньше другого";
+
+export const TIRE_WIDTHS = [
+    135, 145, 155, 165, 175, 185, 195, 205, 215, 225, 235, 245, 255, 265, 275, 285, 295, 305, 315, 325, 335, 345, 355, 365, 375, 385, 395
+];
+
+export const TIRE_PROFILES = [25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
+export const TIRE_DIAMETERS = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 22.5, 23, 24];

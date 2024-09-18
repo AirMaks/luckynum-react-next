@@ -26,7 +26,6 @@ const PercentCalculator = () => {
         setIsOpenSelectType((prev: any) => !prev);
     };
     const onSelectTypeItemClick = (value: any) => {
-        setIsOpenSelectType(false);
         setPercentType(value);
     };
 

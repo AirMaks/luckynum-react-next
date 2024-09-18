@@ -105,22 +105,16 @@ const CreditCalculator = (props: Props) => {
 
     const onSelectClick = () => {
         setIsOpenSelect((prev: any) => !prev);
-        setIsOpenSelectType(false);
-        setIsOpenSelectCreditType(false);
     };
 
     const onSelectItemClick = (value: any) => {
         setCreditTerm(value);
-        setIsOpenSelect(false);
     };
     const onSelectTypeClick = () => {
         setIsOpenSelectType((prev: any) => !prev);
-        setIsOpenSelectCreditType(false);
-        setIsOpenSelect(false);
     };
     const onSelectTypeItemClick = (value: any) => {
         setType(value);
-        setIsOpenSelectType(false);
     };
 
     const csvData = (paymentSchedule || []).reduce((acc: any, curr: any) => {
@@ -241,15 +235,11 @@ const CreditCalculator = (props: Props) => {
         const creditTypeItemsArray = props.isMainPage ? [MONTHLY_PAYMENT, CREDIT_TIME] : [];
         if (!creditTypeItemsArray.length) return null;
 
-        const onSelectCreditTypeClick = (value: any) => {
+        const onSelectCreditTypeClick = () => {
             setIsOpenSelectCreditType((prev: any) => !prev);
-            setIsOpenSelect(false);
-            setIsOpenSelectType(false);
         };
         const onSelectCreditTypeItemClick = (value: any) => {
             setCreditType(value);
-            setIsOpenSelectCreditType(false);
-            setIsOpenSelect(false);
         };
 
         return (
