@@ -54,7 +54,7 @@ const RandomNumber = () => {
 
     return (
         <div className="px-[10px]">
-            <div className="mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] max-w-[430px] rounded p-[20px] max-sm:px-[10px]">
+            <div className="mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] shadow max-w-[430px] rounded p-[20px] max-sm:px-[10px]">
                 <h1 className="mb-[20px] text-center text-[24px] font-medium max-sm:text-[17px]">Генератор случайных чисел</h1>
                 <Button
                     className={cn(

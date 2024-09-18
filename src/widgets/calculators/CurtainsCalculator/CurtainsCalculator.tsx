@@ -47,7 +47,7 @@ const CurtainsCalculator = () => {
     return (
         <>
             <div className="px-[10px]">
-                <div className="bg-[#f7f7f7] mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] rounded pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[750px] px-[20px]">
+                <div className="bg-[#f7f7f7] shadow mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] rounded pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[750px] px-[20px]">
                     <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]">Рассчитать ширину штор</h1>
                     <div className="flex gap-[10px] max-sm:gap-[15px] max-sm:flex-col">
                         <FormFieldWrapper label="Длина карниза (см)" htmlFor="rod_length">

@@ -5,12 +5,13 @@ import { FormFieldWrapper } from "../FormFieldWrapper";
 import { SelectList } from "../SelectList";
 import { TIRE_DIAMETERS, TIRE_PROFILES, TIRE_WIDTHS } from "const";
 import cn from "classnames";
-import TireCanvas from "./TireCanvas";
+// import TireCanvas from "./TireCanvas";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
 interface Props {
     h1: string;
+    className?: string;
 }
 
 interface TireData {
@@ -148,22 +149,28 @@ export const TireCalculator: React.FC<Props> = props => {
 
     return (
         <div className="px-[10px] ms-auto me-auto max-w-[710px]">
-            <div className="mt-[20px] max-sm:mt-[10px] p-[20px] bg-[#f7f7f7] rounded max-sm:px-[10px]">
+            <div className="shadow mt-[20px] max-sm:mt-[10px] p-[20px] bg-[#f7f7f7] shadow rounded max-sm:px-[10px]">
                 <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]">{props.h1}</h1>
 
                 <div className="flex justify-center gap-[15px] mb-[20px]">
                     <button
                         onClick={() => setUnit("mm")}
-                        className={cn("border-0 bg-slate-400 text-white px-[10px] max-sm:px-[5px] leading-none py-[7px] max-sm:py-[5px] w-[100px]", {
-                            "!bg-blue-500": unit === "mm"
-                        })}>
+                        className={cn(
+                            "shadow border-0 bg-slate-400 text-white px-[10px] max-sm:px-[5px] leading-none py-[7px] max-sm:py-[5px] w-[100px]",
+                            {
+                                "!bg-blue-500": unit === "mm"
+                            }
+                        )}>
                         ММ
                     </button>
                     <button
                         onClick={() => setUnit("inch")}
-                        className={cn("border-0 bg-slate-400 text-white px-[10px] max-sm:px-[5px] leading-none py-[7px] max-sm:py-[5px] w-[100px]", {
-                            "!bg-blue-500": unit === "inch"
-                        })}>
+                        className={cn(
+                            "shadow border-0 bg-slate-400 text-white px-[10px] max-sm:px-[5px] leading-none py-[7px] max-sm:py-[5px] w-[100px]",
+                            {
+                                "!bg-blue-500": unit === "inch"
+                            }
+                        )}>
                         Дюймы
                     </button>
                 </div>
@@ -238,7 +245,7 @@ export const TireCalculator: React.FC<Props> = props => {
                     </div>
                 </div>
 
-                <button onClick={calculateResults} className="mt-[20px] w-full bg-blue-500 text-white py-2 rounded">
+                <button onClick={calculateResults} className="shadow mt-[20px] w-full bg-blue-500 text-white py-2 rounded">
                     Рассчитать
                 </button>
 
@@ -318,7 +325,9 @@ export const TireCalculator: React.FC<Props> = props => {
 
                         <div className="mt-[20px] select-none">
                             <div>
-                                <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center">Скорость автомобиля: {speed} {unit === "mm" ? "км/ч" : "миль/ч"}</h3>
+                                <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center">
+                                    Скорость автомобиля, {unit === "mm" ? "км/ч" : "миль/ч"}
+                                </h3>
                                 <Slider
                                     trackStyle={{ backgroundColor: "#2569e1" }}
                                     handleStyle={{
@@ -332,23 +341,44 @@ export const TireCalculator: React.FC<Props> = props => {
                                     }}
                                     min={1}
                                     max={500}
-                                    className=""
+                                    className="max-sm:!w-[calc(100%-20px)] max-sm:!mx-auto"
                                     value={speed}
                                     onChange={value => setSpeed(Number(value))}
                                 />
-                                <div className="mb-[10px] mt-[20px] text-[18px] max-sm:text-[16px]">
-                                    При показаниях спидометра на старых шинах: {speed} {unit === "mm" ? "км/ч" : "миль/ч"}
-                                </div>
-                                <div className="mb-[10px] text-[18px] max-sm:text-[16px]">
-                                    Реальная скорость на новых шинах будет:{" "}
-                                    {calculateNewSpeed(results.oldTireData.circumference, results.newTireData.circumference, speed).toFixed(2)}{" "}
-                                    {unit === "mm" ? "км/ч" : "миль/ч"}
+                                <div className="grid grid-cols-2 mt-[20px] text-center">
+                                    <div className="mb-[10px] text-[18px] max-sm:text-[14px] leading-none">
+                                        При показаниях спидометра на старых шинах:
+                                    </div>
+
+                                    <div className="mb-[10px] text-[18px] max-sm:text-[14px] leading-none">
+                                        Реальная скорость на новых шинах будет:
+                                    </div>
+                                    <div className="flex items-center justify-center mt-2">
+                                        <div
+                                            className={cn(
+                                                "w-[170px] shadow max-sm:w-[130px] max-sm:text-[22px] bg-black p-[10px] leading-none rounded flex items-center justify-center text-teal-500 text-[36px]",
+                                                [props.className]
+                                            )}>
+                                            {speed}{" "}
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center justify-center mt-2">
+                                        <div
+                                            className={cn(
+                                                "w-[170px] shadow max-sm:w-[130px] max-sm:text-[22px] bg-black p-[10px] leading-none rounded flex items-center justify-center text-teal-500 text-[36px]",
+                                                [props.className]
+                                            )}>
+                                            {calculateNewSpeed(results.oldTireData.circumference, results.newTireData.circumference, speed).toFixed(
+                                                2
+                                            )}{" "}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div
-                            className={cn("text-center max-sm:text-[14px] mt-5 font-medium bg-green-600 text-white  p-[10px] rounded", {
+                            className={cn("shadow text-center max-sm:text-[14px] mt-5 font-medium bg-green-600 text-white  p-[10px] rounded", {
                                 "!bg-red-800": isDanger
                             })}>
                             <div>
