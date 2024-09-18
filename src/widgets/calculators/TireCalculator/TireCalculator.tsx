@@ -131,6 +131,15 @@ export const TireCalculator: React.FC<Props> = props => {
         };
     };
 
+    const calculateFuelConsumptionChange = (oldTireData: any, newTireData: any) => {
+        const oldDiameter = oldTireData?.diameter;
+        const newDiameter = newTireData?.diameter;
+        const diameterChangePercentage = ((newDiameter - oldDiameter) / oldDiameter) * 100;
+        const fuelConsumptionChangePercentage = diameterChangePercentage * 0.25; // Примерно 0.25% на каждый 1% изменения диаметра
+
+        return fuelConsumptionChangePercentage;
+    };
+
     const convertToInches = (value: number, baseValue: number | boolean = false) => {
         if (baseValue === false) return `${Number((value / 25.4).toFixed(2))}"`;
 
@@ -146,10 +155,10 @@ export const TireCalculator: React.FC<Props> = props => {
     const calculateNewSpeed = (oldCircumference: number, newCircumference: number, speed: number) => {
         return (speed * newCircumference) / oldCircumference;
     };
-
+    const fuelConsumptionChange = calculateFuelConsumptionChange(results?.oldTireData, results?.newTireData);
     return (
         <div className="px-[10px] ms-auto me-auto max-w-[710px]">
-            <div className="shadow mt-[20px] max-sm:mt-[10px] p-[20px] bg-[#f7f7f7] shadow rounded max-sm:px-[10px]">
+            <div className="mt-[20px] max-sm:mt-[10px] p-[20px] bg-[#f7f7f7] shadow rounded max-sm:px-[10px]">
                 <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]">{props.h1}</h1>
 
                 <div className="flex justify-center gap-[15px] mb-[20px]">
@@ -376,7 +385,6 @@ export const TireCalculator: React.FC<Props> = props => {
                                 </div>
                             </div>
                         </div>
-
                         <div
                             className={cn("shadow text-center max-sm:text-[14px] mt-5 font-medium bg-green-600 text-white  p-[10px] rounded", {
                                 "!bg-red-800": isDanger
@@ -393,6 +401,25 @@ export const TireCalculator: React.FC<Props> = props => {
                                 )}
                             </div>
                             <div className="mt-2">{results.newTireData.result}</div>
+                        </div>
+                        <div className="mt-[20px]">
+                            <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center">Изменение расхода топлива</h3>
+                            <div
+                                className={cn("text-center text-[20px] max-sm:text-[16px]", {
+                                    "text-red-800": fuelConsumptionChange > 0,
+                                    "text-green-600": fuelConsumptionChange < 0
+                                })}>
+                                {fuelConsumptionChange > 0
+                                    ? `Расход топлива увеличится примерно на ${Number(fuelConsumptionChange.toFixed(2))}`
+                                    : fuelConsumptionChange < 0
+                                      ? `Расход топлива уменьшиться примерно на ${Number(fuelConsumptionChange.toFixed(2))}`
+                                      : Number(fuelConsumptionChange.toFixed(2))}
+                                %
+                            </div>
+                            <p className="mt-[10px] text-center max-sm:text-[14px]">
+                                Важно! Этот расчет является приблизительным и не учитывает все факторы, влияющие на расход топлива. Фактическое
+                                изменение расхода топлива может отличаться в зависимости от условий эксплуатации, стиля вождения и других факторов.
+                            </p>
                         </div>
                     </div>
                 )}
