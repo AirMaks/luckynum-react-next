@@ -377,8 +377,12 @@ export const TireCalculator: React.FC<Props> = props => {
                                                 "w-[170px] shadow max-sm:w-[130px] max-sm:text-[22px] bg-black p-[10px] leading-none rounded flex items-center justify-center text-teal-500 text-[36px]",
                                                 [props.className]
                                             )}>
-                                            {calculateNewSpeed(results.oldTireData.circumference, results.newTireData.circumference, speed).toFixed(
-                                                2
+                                            {Number(
+                                                calculateNewSpeed(
+                                                    results.oldTireData.circumference,
+                                                    results.newTireData.circumference,
+                                                    speed
+                                                ).toFixed(2)
                                             )}{" "}
                                         </div>
                                     </div>
