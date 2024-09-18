@@ -318,7 +318,7 @@ export const TireCalculator: React.FC<Props> = props => {
 
                         <div className="mt-[20px] select-none">
                             <div>
-                                <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center">Скорость автомобиля</h3>
+                                <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center">Скорость автомобиля: {speed} {unit === "mm" ? "км/ч" : "миль/ч"}</h3>
                                 <Slider
                                     trackStyle={{ backgroundColor: "#2569e1" }}
                                     handleStyle={{
