@@ -337,10 +337,10 @@ export const TireCalculator: React.FC<Props> = props => {
                                     onChange={value => setSpeed(Number(value))}
                                 />
                                 <div className="mb-[10px] mt-[20px] text-[18px] max-sm:text-[16px]">
-                                    На старых шинах: ({unit === "mm" ? "км/ч" : "миль/ч"}): {speed} {unit === "mm" ? "км/ч" : "миль/ч"}
+                                    При показаниях спидометра на старых шинах: {speed} {unit === "mm" ? "км/ч" : "миль/ч"}
                                 </div>
                                 <div className="mb-[10px] text-[18px] max-sm:text-[16px]">
-                                    На новых шинах:{" "}
+                                    Реальная скорость на новых шинах будет:{" "}
                                     {calculateNewSpeed(results.oldTireData.circumference, results.newTireData.circumference, speed).toFixed(2)}{" "}
                                     {unit === "mm" ? "км/ч" : "миль/ч"}
                                 </div>

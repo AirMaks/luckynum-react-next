@@ -18,8 +18,8 @@ const TireCanvas: React.FC<TireCanvasProps> = ({ oldTire, newTire, tireImageSrc 
     const inchToMm = 25.4;
 
     // Рассчитываем физический диаметр и профиль шины (в мм)
-    const oldTireFullDiameter = (oldTire.diameter * inchToMm) + 2 * (oldTire.profile / 100 * oldTire.width);
-    const newTireFullDiameter = (newTire.diameter * inchToMm) + 2 * (newTire.profile / 100 * newTire.width);
+    const oldTireFullDiameter = oldTire.diameter * inchToMm + 2 * ((oldTire.profile / 100) * oldTire.width);
+    const newTireFullDiameter = newTire.diameter * inchToMm + 2 * ((newTire.profile / 100) * newTire.width);
 
     const maxSize = Math.max(oldTireFullDiameter, newTireFullDiameter);
     const minSize = Math.min(oldTireFullDiameter, newTireFullDiameter);
@@ -48,9 +48,8 @@ const TireCanvas: React.FC<TireCanvasProps> = ({ oldTire, newTire, tireImageSrc 
         image.onload = () => {
             const height = Math.max(oldTireWidth, newTireWidth);
 
-            const profileHeightOld = ((oldTire.profile / 100) * oldTireWidth) * 0.25;
-            const profileHeightNew = ((newTire.profile / 100) * newTireWidth) * 0.25;
-
+            const profileHeightOld = (oldTire.profile / 100) * oldTireWidth * 0.25;
+            const profileHeightNew = (newTire.profile / 100) * newTireWidth * 0.25;
 
             context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -76,20 +75,23 @@ const TireCanvas: React.FC<TireCanvasProps> = ({ oldTire, newTire, tireImageSrc 
             context.lineTo(oldTireWidth + newTireWidth + 130, profileHeightNew - 6);
             context.stroke();
 
-
             // Текст для старой шины
             context.setLineDash([]);
             context.font = "12px Arial";
             context.fillStyle = "black";
             context.fillText(`Диаметр: ${oldTireFullDiameter.toFixed(2)} мм`, 5, height - profileHeightOld - 10);
-            context.fillText(`Профиль: ${(oldTire.profile / 100 * oldTire.width).toFixed(2)} мм`, 5, height - profileHeightOld - 25);
+            context.fillText(`Профиль: ${((oldTire.profile / 100) * oldTire.width).toFixed(2)} мм`, 5, height - profileHeightOld - 25);
 
             // Текст для новой шины
             context.fillText(`Диаметр: ${newTireFullDiameter.toFixed(2)} мм`, oldTireWidth + 135, height - profileHeightNew - 10);
-            context.fillText(`Профиль: ${(newTire.profile / 100 * newTire.width).toFixed(2)} мм`, oldTireWidth + 135, height - profileHeightNew - 25);
+            context.fillText(
+                `Профиль: ${((newTire.profile / 100) * newTire.width).toFixed(2)} мм`,
+                oldTireWidth + 135,
+                height - profileHeightNew - 25
+            );
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tireImageSrc, newTireWidth, oldTireWidth]);
-
 
     const height = Math.max(oldTireWidth, newTireWidth);
 
