@@ -264,7 +264,7 @@ export const TireCalculator: React.FC<Props> = props => {
                     <div className="mt-[30px]">
                         <div className="grid grid-cols-4 mt-[20px] border-l border-t border-black max-sm:text-[12px] break-words">
                             <div className="font-medium border-r border-b border-black p-[4px]">Показатель</div>
-                            <div className="font-medium border-r border-b border-black p-[4px]">Старая шина</div>
+                            <div className="font-medium border-r border-b border-black p-[4px]">Стандартная шина</div>
                             <div className="font-medium border-r border-b border-black p-[4px]">Новая шина</div>
                             <div className="font-medium border-r border-b border-black p-[4px]">Разница</div>
 
@@ -339,26 +339,9 @@ export const TireCalculator: React.FC<Props> = props => {
                                 <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center">
                                     Скорость автомобиля, {unit === "mm" ? "км/ч" : "миль/ч"}
                                 </h3>
-                                <Slider
-                                    trackStyle={{ backgroundColor: "#2569e1" }}
-                                    handleStyle={{
-                                        backgroundColor: "#2569e1",
-                                        borderColor: "#2569e1",
-                                        opacity: 1,
-                                        boxShadow: "none",
-                                        width: "20px",
-                                        height: "20px",
-                                        marginTop: "-8px"
-                                    }}
-                                    min={1}
-                                    max={500}
-                                    className="max-sm:!w-[calc(100%-20px)] max-sm:!mx-auto"
-                                    value={speed}
-                                    onChange={value => setSpeed(Number(value))}
-                                />
                                 <div className="grid grid-cols-2 mt-[20px] text-center">
                                     <div className="mb-[10px] text-[18px] max-sm:text-[14px] leading-none">
-                                        При показаниях спидометра на старых шинах:
+                                        При показаниях спидометра на стандартных шинах:
                                     </div>
 
                                     <div className="mb-[10px] text-[18px] max-sm:text-[14px] leading-none">
@@ -389,6 +372,23 @@ export const TireCalculator: React.FC<Props> = props => {
                                         </div>
                                     </div>
                                 </div>
+                                <Slider
+                                    trackStyle={{ backgroundColor: "#2569e1" }}
+                                    handleStyle={{
+                                        backgroundColor: "#2569e1",
+                                        borderColor: "#2569e1",
+                                        opacity: 1,
+                                        boxShadow: "none",
+                                        width: "20px",
+                                        height: "20px",
+                                        marginTop: "-8px"
+                                    }}
+                                    min={1}
+                                    max={500}
+                                    className="max-sm:!w-[calc(100%-20px)] max-sm:!mx-auto my-[30px]"
+                                    value={speed}
+                                    onChange={value => setSpeed(Number(value))}
+                                />
                             </div>
                         </div>
                         <div
