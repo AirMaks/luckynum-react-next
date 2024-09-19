@@ -254,7 +254,9 @@ export const TireCalculator: React.FC<Props> = props => {
                     </div>
                 </div>
 
-                <button onClick={calculateResults} className="shadow mt-[20px] w-full bg-blue-500 text-white py-2 rounded">
+                <button
+                    onClick={calculateResults}
+                    className="shadow mt-[20px] w-full bg-blue-500 active:bg-blue-700 transition-[background-color] text-white py-2 rounded">
                     Рассчитать
                 </button>
 
