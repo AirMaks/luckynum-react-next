@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormFieldWrapper } from "../FormFieldWrapper";
 import { SelectList } from "../SelectList";
 import { TIRE_DIAMETERS, TIRE_PROFILES, TIRE_WIDTHS } from "const";
@@ -56,6 +56,11 @@ export const TireCalculator: React.FC<Props> = props => {
     const [isNewWidthSelectOpen, setIsNewWidthSelectOpen] = useState(false);
     const [isNewProfileSelectOpen, setIsNewProfileSelectOpen] = useState(false);
     const [isNewDiameterSelectOpen, setIsNewDiameterSelectOpen] = useState(false);
+
+    useEffect(() => {
+        calculateResults();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [oldTire, newTire]);
 
     const handleChange = (name: "old" | "new", key: keyof TireData, value: number) => {
         if (name === "old") {
@@ -253,13 +258,6 @@ export const TireCalculator: React.FC<Props> = props => {
                         </FormFieldWrapper>
                     </div>
                 </div>
-
-                <button
-                    onClick={calculateResults}
-                    className="shadow mt-[20px] w-full bg-blue-500 active:bg-blue-700 transition-[background-color] text-white py-2 rounded">
-                    Рассчитать
-                </button>
-
                 {results && (
                     <div className="mt-[30px]">
                         <div className="grid grid-cols-4 mt-[20px] border-l border-t border-black max-sm:text-[12px] break-words">
