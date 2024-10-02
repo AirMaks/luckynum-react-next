@@ -9,6 +9,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1
         },
         {
+            url: "https://lucky-num.ru/generator-sluchainykh-chisel",
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 1
+        },
+        {
             url: "https://lucky-num.ru/mortgage-calculator",
             lastModified: new Date(),
             changeFrequency: "monthly",
@@ -99,7 +105,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1
         },
         {
-            url: "https://lucky-num.ru/choose-from-list",
+            url: "https://lucky-num.ru/generator-sluchainykh-slov",
             lastModified: new Date(),
             changeFrequency: "monthly",
             priority: 1

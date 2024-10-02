@@ -28,8 +28,8 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                     <li>
                         <AppLink
                             theme={AppLinkTheme.SECONDARY}
-                            href={"/"}
-                            className={cn(cls.link, { [cls.active]: pathname === "/" })}
+                            href={"/generator-sluchainykh-chisel"}
+                            className={cn(cls.link, { [cls.active]: pathname === "/generator-sluchainykh-chisel" })}
                             onClick={onClickMenuItem}>
                             <DiceIcon className={cls.icon} />
                             <span className={cls.link_text}>Случайное число</span>
@@ -38,8 +38,8 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                     <li>
                         <AppLink
                             theme={AppLinkTheme.SECONDARY}
-                            href={"/choose-from-list"}
-                            className={cn(cls.link, { [cls.active]: pathname === "/choose-from-list" })}
+                            href={"/generator-sluchainykh-slov"}
+                            className={cn(cls.link, { [cls.active]: pathname === "/generator-sluchainykh-slov" })}
                             onClick={onClickMenuItem}>
                             <ListIcon className={cls.icon} />
                             <span className={cls.link_text}>Случайное слово</span>
