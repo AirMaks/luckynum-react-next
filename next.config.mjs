@@ -28,6 +28,7 @@ const nextConfig = {
         }
         return config
     },
+    distDir: "next-new",
     sassOptions: {
         includePaths: [path.join(__dirname, "styles")]
     }
