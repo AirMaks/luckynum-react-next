@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <div className="px-[10px] ms-auto me-auto max-w-[1000px]">
-                        <ul className="flex gap-[10px] flex-wrap mt-[20px]">
+            <ul className="flex gap-[10px] flex-wrap mt-[20px]">
                 <li>
                     <Link
                         href="/mortgage-calculator"

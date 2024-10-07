@@ -12,13 +12,22 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-     "baseUrl": "./src",
+    "baseUrl": "./src",
     "plugins": [
       {
         "name": "next"
       }
-    ],
+    ]
   },
-  "include": ["svgr.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "svgr.d.ts",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "next-new/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
