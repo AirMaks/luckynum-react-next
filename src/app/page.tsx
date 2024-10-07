@@ -14,16 +14,16 @@ export default function Home() {
             <ul className="flex gap-[10px] flex-wrap mt-[20px]">
                 <li>
                     <Link
-                        href="/mortgage-calculator"
+                        href="/credit-calculator"
                         className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
-                        Калькулятор ипотеки
+                        Кредитный калькулятор
                     </Link>
                 </li>
                 <li>
                     <Link
-                        href="/credit-calculator"
+                        href="/mortgage-calculator"
                         className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
-                        Кредитный калькулятор
+                        Калькулятор ипотеки
                     </Link>
                 </li>
                 <li>
