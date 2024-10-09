@@ -49,6 +49,13 @@ export default function Home() {
                 </li>
                 <li>
                     <Link
+                        href="/generator-da-net"
+                        className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
+                        Генератор ответов Да или Нет
+                    </Link>
+                </li>
+                <li>
+                    <Link
                         href="/shirina-shtor"
                         className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
                         Калькулятор расчета штор на окно

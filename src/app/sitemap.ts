@@ -111,6 +111,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1
         },
         {
+            url: "https://lucky-num.ru/generator-da-net",
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 1
+        },
+        {
             url: "https://lucky-num.ru/shirina-shtor",
             lastModified: new Date(),
             changeFrequency: "monthly",

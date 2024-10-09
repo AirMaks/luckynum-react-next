@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import PercentCalcIcon from "shared/assets/icons/menu/percent-calc.svg";
 import PasswordIcon from "shared/assets/icons/menu/password.svg";
 import TireIcon from "shared/assets/icons/menu/tire-icon.svg";
+import BallIcon from "shared/assets/icons/menu/ball.svg";
 
 interface MenuProps {
     className?: string;
@@ -93,6 +94,16 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             onClick={onClickMenuItem}>
                             <TireIcon className={cls.icon} />
                             <span className={cls.link_text}>Калькулятор шин</span>
+                        </AppLink>
+                    </li>
+                    <li>
+                        <AppLink
+                            theme={AppLinkTheme.SECONDARY}
+                            href={"/generator-da-net"}
+                            className={cn(cls.link, { [cls.active]: pathname === "/generator-da-net" })}
+                            onClick={onClickMenuItem}>
+                            <BallIcon className={cls.icon} />
+                            <span className={cls.link_text}>Генератор Да/Нет</span>
                         </AppLink>
                     </li>
                 </ul>
