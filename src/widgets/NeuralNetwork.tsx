@@ -1,13 +1,14 @@
 import React, { useRef, useMemo, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { AdditiveBlending, Vector3 } from "three";
+import { Text } from "@react-three/drei";
 
 interface ParticleData {
     velocity: Vector3;
     numConnections: number;
 }
 
-export default function NeuralNetwork({ loading, answer, stop }: any) {
+export default function NeuralNetwork({ loading, answer }: any) {
     const groupRef = useRef<any>(null);
     const particlesRef = useRef<any>(null);
     const linesGeometryRef = useRef<any>(null);
@@ -119,27 +120,42 @@ export default function NeuralNetwork({ loading, answer, stop }: any) {
         if (particlesRef.current) {
             particlesRef.current.attributes.position.needsUpdate = true;
         }
-        if ((loading || answer) && !stop) {
-            groupRef.current!.rotation.y += delta / 5;
-            groupRef.current!.rotation.x += delta / 5;
+        if (loading) {
+            groupRef.current!.rotation.y += delta / 2;
+            groupRef.current!.rotation.x += delta / 2;
         }
     });
 
     return (
-        <group ref={groupRef} dispose={null}>
-            <points>
-                <bufferGeometry ref={particlesRef}>
-                    <bufferAttribute attach="attributes-position" count={particleCount} array={particlePositions} itemSize={3} />
-                </bufferGeometry>
-                <pointsMaterial color={"blue"} size={3} blending={AdditiveBlending} transparent={true} sizeAttenuation={false} />
-            </points>
-            <lineSegments>
-                <bufferGeometry ref={linesGeometryRef}>
-                    <bufferAttribute attach="attributes-position" count={positions.length / 3} array={positions} itemSize={3} />
-                    <bufferAttribute attach="attributes-color" count={colors.length / 3} array={colors} itemSize={3} />
-                </bufferGeometry>
-                <lineBasicMaterial vertexColors={true} blending={AdditiveBlending} transparent={true} />
-            </lineSegments>
-        </group>
+        <>
+            <group ref={groupRef} dispose={null}>
+                <points>
+                    <bufferGeometry ref={particlesRef}>
+                        <bufferAttribute attach="attributes-position" count={particleCount} array={particlePositions} itemSize={3} />
+                    </bufferGeometry>
+                    <pointsMaterial color={"blue"} size={3} blending={AdditiveBlending} transparent={true} sizeAttenuation={false} />
+                </points>
+                <lineSegments>
+                    <bufferGeometry ref={linesGeometryRef}>
+                        <bufferAttribute attach="attributes-position" count={positions.length / 3} array={positions} itemSize={3} />
+                        <bufferAttribute attach="attributes-color" count={colors.length / 3} array={colors} itemSize={3} />
+                    </bufferGeometry>
+                    <lineBasicMaterial vertexColors={true} blending={AdditiveBlending} transparent={true} />
+                </lineSegments>
+            </group>
+            {!loading && answer && (
+                <Text
+                    position={[0, 0, 0]}
+                    fontSize={3}
+                    color="#111"
+                    anchorX="center"
+                    anchorY="middle"
+                    fontWeight={300}
+                    maxWidth={200}
+                >
+                    {answer}
+                </Text>
+            )}
+        </>
     );
 }

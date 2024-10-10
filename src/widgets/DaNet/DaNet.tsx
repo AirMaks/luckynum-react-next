@@ -7,7 +7,6 @@ import { Three } from "widgets/Three";
 const DaNet = () => {
     const [answer, setAnswer] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [stop, setStop] = useState<boolean>(false);
 
     useEffect(() => {
         if (isLoading) {
@@ -21,7 +20,6 @@ const DaNet = () => {
     }, [isLoading]);
 
     const generateAnswer = () => {
-        setStop(false);
         setIsLoading(true);
         setTimeout(() => {
             const answers = ["ДА", "НЕТ", "ПОКА НЕ ЯСНО"];
@@ -47,7 +45,7 @@ const DaNet = () => {
                     </Button>
                 </div>
             </div>
-            <Three answer={answer} loading={isLoading} stop={stop} setStop={setStop} />
+            <Three answer={answer} loading={isLoading} />
         </div>
     );
 };
