@@ -195,7 +195,7 @@ const QRCodeGenerator = () => {
                                 type="checkbox"
                                 value={wiFiHidden}
                                 onChange={() => setWiFiHidden(prev => !prev)}
-                                className="w-auto cursor-pointer"
+                                className="!w-auto cursor-pointer"
                             />
                         </FormFieldWrapper>
                     </>
