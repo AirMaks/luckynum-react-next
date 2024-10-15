@@ -12,6 +12,7 @@ import ru from "react-phone-input-2/lang/ru.json";
 import { SelectList } from "widgets/calculators/SelectList";
 import { Textarea } from "shared/ui/Textarea/Textarea";
 import { FormFieldWrapper } from "shared/ui/FormFieldWrapper";
+import cn from "classnames";
 
 const WHATSAPP = "Whatsapp";
 const TELEGRAM = "Telegram";
@@ -224,10 +225,16 @@ const QRCodeGenerator = () => {
                     </div>
                 )}
                 <div className="flex justify-between flex-wrap mb-[15px]">
-                    <Button onClick={downloadPNG} className="bg-yellow-500 px-[5px] py-[2px] text-white">
+                    <Button
+                        onClick={downloadPNG}
+                        className={cn("bg-yellow-500 px-[5px] py-[2px] text-white", { "opacity-50": !qrValue })}
+                        disabled={!qrValue}>
                         Скачать PNG
                     </Button>
-                    <Button onClick={downloadSVG} className="bg-green-500 px-[5px] py-[2px] text-white">
+                    <Button
+                        onClick={downloadSVG}
+                        className={cn("bg-green-500 px-[5px] py-[2px] text-white", { "opacity-50": !qrValue })}
+                        disabled={!qrValue}>
                         Скачать SVG
                     </Button>
                 </div>
