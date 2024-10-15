@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "shared/ui/Button/Button";
-import { Three } from "widgets/Three";
+import gifOne from "shared/assets/images/1.gif";
+import Image from "next/image";
+import cn from "classnames";
 
 const DaNet = () => {
     const [answer, setAnswer] = useState("");
@@ -21,6 +23,7 @@ const DaNet = () => {
 
     const generateAnswer = () => {
         setIsLoading(true);
+        setAnswer("");
         setTimeout(() => {
             const answers = ["ДА", "НЕТ", "ПОКА НЕ ЯСНО"];
             const randomIndex = Math.floor(Math.random() * answers.length);
@@ -31,7 +34,7 @@ const DaNet = () => {
 
     return (
         <div>
-            <div className="px-[10px] pb-[40px] max-w-[430px] mx-auto mt-[20px] max-sm:mt-[10px] select-none">
+            <div className="px-[10px] max-w-[430px] mx-auto mt-[20px] max-sm:mt-[10px] select-none">
                 <div className=" bg-[#f7f7f7] shadow  rounded p-[20px] max-sm:px-[10px]">
                     <h1 className="mb-[20px] text-center text-[24px] font-medium max-sm:text-[17px]">
                         Генератор ответов <br />
@@ -45,7 +48,19 @@ const DaNet = () => {
                     </Button>
                 </div>
             </div>
-            <Three answer={answer} loading={isLoading} />
+            <div className="!text-[80px] max-sm:!text-[67px] flex justify-center">
+                <Image
+                    src={gifOne}
+                    className={cn("max-sm:max-h-[190px] object-contain hidden", { "!block": isLoading })}
+                    alt="кот gif"
+                    priority={true}
+                />
+            </div>
+            {!isLoading && answer && (
+                <div className="text-[50px] leading-none h-[300px] max-sm:h-[190px] flex justify-center items-center max-sm:text-[30px]">
+                    {answer}
+                </div>
+            )}
         </div>
     );
 };
