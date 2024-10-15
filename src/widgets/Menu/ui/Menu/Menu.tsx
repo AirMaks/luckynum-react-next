@@ -13,6 +13,7 @@ import PasswordIcon from "shared/assets/icons/menu/password.svg";
 import TireIcon from "shared/assets/icons/menu/tire-icon.svg";
 import BallIcon from "shared/assets/icons/menu/ball.svg";
 import QrCodeIcon from "shared/assets/icons/menu/qr-code.svg";
+import MeasureIcon from "shared/assets/icons/menu/measure.svg";
 
 interface MenuProps {
     className?: string;
@@ -34,7 +35,7 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             className={cn(cls.link, { [cls.active]: pathname === "/generator-sluchainykh-chisel" })}
                             onClick={onClickMenuItem}>
                             <DiceIcon className={cls.icon} />
-                            <span className={cls.link_text}>Случайное число</span>
+                            <span className={cls.link_text}>Генератор случайных чисел</span>
                         </AppLink>
                     </li>
                     <li>
@@ -44,7 +45,37 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             className={cn(cls.link, { [cls.active]: pathname === "/generator-sluchainykh-slov" })}
                             onClick={onClickMenuItem}>
                             <ListIcon className={cls.icon} />
-                            <span className={cls.link_text}>Случайное слово</span>
+                            <span className={cls.link_text}>Генератор случайных слов</span>
+                        </AppLink>
+                    </li>
+                    <li>
+                        <AppLink
+                            theme={AppLinkTheme.SECONDARY}
+                            href={"/generator-parolei"}
+                            className={cn(cls.link, { [cls.active]: pathname === "/generator-parolei" })}
+                            onClick={onClickMenuItem}>
+                            <PasswordIcon className={cls.icon} />
+                            <span className={cls.link_text}>Генератор паролей</span>
+                        </AppLink>
+                    </li>
+                    <li>
+                        <AppLink
+                            theme={AppLinkTheme.SECONDARY}
+                            href={"/generator-da-net"}
+                            className={cn(cls.link, { [cls.active]: pathname === "/generator-da-net" })}
+                            onClick={onClickMenuItem}>
+                            <BallIcon className={cls.icon} />
+                            <span className={cls.link_text}>Генератор Да / Нет</span>
+                        </AppLink>
+                    </li>
+                    <li className="border-b  border-gray-200">
+                        <AppLink
+                            theme={AppLinkTheme.SECONDARY}
+                            href={"/qr-code-generator"}
+                            className={cn(cls.link, { [cls.active]: pathname === "/qr-code-generator" })}
+                            onClick={onClickMenuItem}>
+                            <QrCodeIcon className={cls.icon} />
+                            <span className={cls.link_text}>Генератор QR кода</span>
                         </AppLink>
                     </li>
                     <li>
@@ -80,16 +111,6 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                     <li>
                         <AppLink
                             theme={AppLinkTheme.SECONDARY}
-                            href={"/generator-parolei"}
-                            className={cn(cls.link, { [cls.active]: pathname === "/generator-parolei" })}
-                            onClick={onClickMenuItem}>
-                            <PasswordIcon className={cls.icon} />
-                            <span className={cls.link_text}>Генератор паролей</span>
-                        </AppLink>
-                    </li>
-                    <li>
-                        <AppLink
-                            theme={AppLinkTheme.SECONDARY}
                             href={"/kalkulyator-shin"}
                             className={cn(cls.link, { [cls.active]: pathname === "/kalkulyator-shin" })}
                             onClick={onClickMenuItem}>
@@ -100,21 +121,11 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                     <li>
                         <AppLink
                             theme={AppLinkTheme.SECONDARY}
-                            href={"/generator-da-net"}
-                            className={cn(cls.link, { [cls.active]: pathname === "/generator-da-net" })}
+                            href={"/shirina-shtor"}
+                            className={cn(cls.link, { [cls.active]: pathname === "/shirina-shtor" })}
                             onClick={onClickMenuItem}>
-                            <BallIcon className={cls.icon} />
-                            <span className={cls.link_text}>Генератор Да/Нет</span>
-                        </AppLink>
-                    </li>
-                    <li>
-                        <AppLink
-                            theme={AppLinkTheme.SECONDARY}
-                            href={"/qr-code-generator"}
-                            className={cn(cls.link, { [cls.active]: pathname === "/qr-code-generator" })}
-                            onClick={onClickMenuItem}>
-                            <QrCodeIcon className={cls.icon} />
-                            <span className={cls.link_text}>Qr код генератор</span>
+                            <MeasureIcon className={cls.icon} />
+                            <span className={cls.link_text}>Калькулятор расчета ширины штор</span>
                         </AppLink>
                     </li>
                 </ul>

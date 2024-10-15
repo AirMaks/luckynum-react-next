@@ -71,6 +71,13 @@ export default function Home() {
                         </li>
                         <li className="mb-[10px]">
                             <Link
+                                href="/generator-parolei"
+                                className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium w-full">
+                                Генератор паролей
+                            </Link>
+                        </li>
+                        <li className="mb-[10px]">
+                            <Link
                                 href="/generator-da-net"
                                 className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium w-full">
                                 Генератор ответов Да или Нет

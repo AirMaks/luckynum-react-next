@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import { Input } from "shared/ui/Input/Input";
 import { toPng, toSvg } from "html-to-image";
@@ -37,7 +37,6 @@ const QRCodeGenerator = () => {
     const [qrValue, setQrValue] = useState("");
     const [telegramInputValue, setTelegramInputValue] = useState("");
     const [message, setMessage] = useState("");
-    const qrRef = useRef<HTMLDivElement>(null);
     const [isOpenSelect, setIsOpenSelect] = useState<any>(false);
     const [isOpenEncryptSelect, setIsOpenEncryptSelect] = useState(false);
 
@@ -64,8 +63,9 @@ const QRCodeGenerator = () => {
     };
 
     const downloadPNG = () => {
-        if (qrRef.current) {
-            toPng(qrRef.current)
+        const canvas = document.querySelector("canvas");
+        if (canvas) {
+            toPng(canvas, { backgroundColor: "" })
                 .then(dataUrl => {
                     const link = document.createElement("a");
                     link.href = dataUrl;
@@ -79,8 +79,9 @@ const QRCodeGenerator = () => {
     };
 
     const downloadSVG = () => {
-        if (qrRef.current) {
-            toSvg(qrRef.current)
+        const canvas = document.querySelector("canvas");
+        if (canvas) {
+            toSvg(canvas)
                 .then(dataUrl => {
                     const link = document.createElement("a");
                     link.href = dataUrl;
@@ -135,7 +136,7 @@ const QRCodeGenerator = () => {
     return (
         <div className="px-[10px] pb-[40px] max-w-[430px] mx-auto mt-[20px] max-sm:mt-[10px] select-none">
             <div className=" bg-[#f7f7f7] shadow rounded p-[20px] max-sm:px-[10px] mb-[30px]">
-                <h1 className="mb-[15px] text-center text-[24px] font-medium max-sm:text-[17px]">QR Code генератор</h1>
+                <h1 className="mb-[15px] text-center text-[24px] font-medium max-sm:text-[17px]">QR код генератор</h1>
                 <SelectList
                     onSelectClick={onSelectClick}
                     isOpenSelect={isOpenSelect}
@@ -244,9 +245,7 @@ const QRCodeGenerator = () => {
                     Генерировать
                 </Button>
             </div>
-            <div className="flex justify-center" ref={qrRef}>
-                {qrValue && <QRCodeCanvas value={qrValue} size={256} />}
-            </div>
+            <div className="flex justify-center">{qrValue && <QRCodeCanvas value={qrValue} size={300} />}</div>
         </div>
     );
 };
