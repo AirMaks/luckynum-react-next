@@ -10,7 +10,7 @@ import { getAnimationSrc } from "features/Animations/model/selectors/getAnimatio
 import { useSelector } from "react-redux";
 import gifOne from "shared/assets/images/1.gif";
 import Image from "next/image";
-import { FormFieldWrapper } from "widgets/calculators/FormFieldWrapper";
+import { FormFieldWrapper } from "shared/ui/FormFieldWrapper";
 
 const RandomNumber = () => {
     const [state, setState] = useState({

@@ -12,6 +12,7 @@ import PercentCalcIcon from "shared/assets/icons/menu/percent-calc.svg";
 import PasswordIcon from "shared/assets/icons/menu/password.svg";
 import TireIcon from "shared/assets/icons/menu/tire-icon.svg";
 import BallIcon from "shared/assets/icons/menu/ball.svg";
+import QrCodeIcon from "shared/assets/icons/menu/qr-code.svg";
 
 interface MenuProps {
     className?: string;
@@ -104,6 +105,16 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             onClick={onClickMenuItem}>
                             <BallIcon className={cls.icon} />
                             <span className={cls.link_text}>Генератор Да/Нет</span>
+                        </AppLink>
+                    </li>
+                    <li>
+                        <AppLink
+                            theme={AppLinkTheme.SECONDARY}
+                            href={"/qr-code-generator"}
+                            className={cn(cls.link, { [cls.active]: pathname === "/qr-code-generator" })}
+                            onClick={onClickMenuItem}>
+                            <QrCodeIcon className={cls.icon} />
+                            <span className={cls.link_text}>Qr код генератор</span>
                         </AppLink>
                     </li>
                 </ul>

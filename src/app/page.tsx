@@ -11,57 +11,81 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <div className="px-[10px] ms-auto me-auto max-w-[1000px]">
-            <ul className="flex gap-[10px] flex-wrap mt-[20px]">
-                <li>
-                    <Link
-                        href="/credit-calculator"
-                        className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
-                        Кредитный калькулятор
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        href="/mortgage-calculator"
-                        className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
-                        Калькулятор ипотеки
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        href="/percent-calculator"
-                        className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
-                        Калькулятор процентов
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        href="/generator-sluchainykh-chisel"
-                        className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
-                        Генератор случайных чисел
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        href="/generator-sluchainykh-slov"
-                        className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
-                        Генератор случайных слов
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        href="/generator-da-net"
-                        className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
-                        Генератор ответов Да или Нет
-                    </Link>
-                </li>
-                <li>
-                    <Link
-                        href="/shirina-shtor"
-                        className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
-                        Калькулятор расчета штор на окно
-                    </Link>
-                </li>
-            </ul>
+            <div className="flex flex-wrap gap-[10px]">
+                <div>
+                    <h2 className="font-medium text-[22px] mb-[10px] pl-[5px]">Калькуляторы</h2>
+                    <ul>
+                        <li className="mb-[10px]">
+                            <Link
+                                href="/credit-calculator"
+                                className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium w-full">
+                                Кредитный калькулятор
+                            </Link>
+                        </li>
+                        <li className="mb-[10px]">
+                            <Link
+                                href="/mortgage-calculator"
+                                className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium w-full">
+                                Калькулятор ипотеки
+                            </Link>
+                        </li>
+                        <li className="mb-[10px]">
+                            <Link
+                                href="/percent-calculator"
+                                className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium w-full">
+                                Калькулятор процентов
+                            </Link>
+                        </li>
+                        <li className="mb-[10px]">
+                            <Link
+                                href="/kalkulyator-shin"
+                                className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium w-full">
+                                Калькулятор шин и дисков
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/shirina-shtor"
+                                className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium w-full">
+                                Калькулятор расчета штор на окно
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 className="font-medium text-[22px] mb-[10px] pl-[5px]">Генераторы</h2>
+                    <ul>
+                        <li className="mb-[10px]">
+                            <Link
+                                href="/generator-sluchainykh-chisel"
+                                className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium w-full">
+                                Генератор случайных чисел
+                            </Link>
+                        </li>
+                        <li className="mb-[10px]">
+                            <Link
+                                href="/generator-sluchainykh-slov"
+                                className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium w-full">
+                                Генератор случайных слов
+                            </Link>
+                        </li>
+                        <li className="mb-[10px]">
+                            <Link
+                                href="/generator-da-net"
+                                className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium w-full">
+                                Генератор ответов Да или Нет
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="/qr-code-generator"
+                                className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium w-full">
+                                QR код генератор
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div className="bg-[#f7f7f7] shadow mt-[20px] max-sm:mt-[10px] p-[20px] rounded max-sm:px-[10px]">
                 <h1 className="text-[24px] mb-[20px] font-medium max-sm:text-[17px]">Сервис онлайн калькуляторов и инструментов для расчета</h1>
                 <p className=" mb-[20px] text-[20px] max-sm:text-[16px]">

@@ -144,15 +144,7 @@ export default function NeuralNetwork({ loading, answer }: any) {
                 </lineSegments>
             </group>
             {!loading && answer && (
-                <Text
-                    position={[0, 0, 0]}
-                    fontSize={3}
-                    color="#111"
-                    anchorX="center"
-                    anchorY="middle"
-                    fontWeight={300}
-                    maxWidth={200}
-                >
+                <Text position={[0, 0, 0]} fontSize={3} color="#111" anchorX="center" anchorY="middle" fontWeight={300} maxWidth={200}>
                     {answer}
                 </Text>
             )}

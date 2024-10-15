@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { getAnimationSrc } from "features/Animations/model/selectors/getAnimationSrc/getAnimationSrc";
 import gif1 from "shared/assets/images/1.gif";
 import Image from "next/image";
-import { FormFieldWrapper } from "widgets/calculators/FormFieldWrapper";
+import { FormFieldWrapper } from "shared/ui/FormFieldWrapper";
 
 const RandomWordList = () => {
     const [randomWord, setRandomWord] = useState<any>("");

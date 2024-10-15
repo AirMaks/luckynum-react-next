@@ -30,7 +30,7 @@ const DaNet = () => {
     };
 
     return (
-        <div className="">
+        <div>
             <div className="px-[10px] pb-[40px] max-w-[430px] mx-auto mt-[20px] max-sm:mt-[10px] select-none">
                 <div className=" bg-[#f7f7f7] shadow  rounded p-[20px] max-sm:px-[10px]">
                     <h1 className="mb-[20px] text-center text-[24px] font-medium max-sm:text-[17px]">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FormFieldWrapper } from "../FormFieldWrapper";
+import { FormFieldWrapper } from "shared/ui/FormFieldWrapper";
 import { SelectList } from "../SelectList";
 import {
     PERCENT_TYPE_NUMBER_FROM_NUMBER,

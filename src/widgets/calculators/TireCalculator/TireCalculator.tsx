@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FormFieldWrapper } from "../FormFieldWrapper";
+import { FormFieldWrapper } from "shared/ui/FormFieldWrapper";
 import { SelectList } from "../SelectList";
 import { TIRE_DIAMETERS, TIRE_PROFILES, TIRE_WIDTHS } from "const";
 import cn from "classnames";

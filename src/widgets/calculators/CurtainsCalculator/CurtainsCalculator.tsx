@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FormFieldWrapper } from "../FormFieldWrapper";
+import { FormFieldWrapper } from "shared/ui/FormFieldWrapper";
 import { Input } from "shared/ui/Input/Input";
 import Image from "next/image";
 import { sanitizePercents, sanitizeSymbols } from "helpers/sanitizeSymbols";

@@ -10,7 +10,7 @@ import { Content } from "./content";
 import { Anui } from "./anui";
 import { Diff } from "./diff";
 import { ScheduleModal } from "./scheduleModal";
-import { FormFieldWrapper } from "../FormFieldWrapper";
+import { FormFieldWrapper } from "shared/ui/FormFieldWrapper";
 import { SelectList } from "../SelectList";
 import { CreditTime } from "./credit-time";
 import Link from "next/link";
