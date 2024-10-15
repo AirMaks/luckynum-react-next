@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <div className="px-[10px] ms-auto me-auto max-w-[1000px]">
-            <div className="flex flex-wrap gap-[10px]">
+            <div className="flex flex-wrap gap-[10px] mt-[20px]">
                 <div>
                     <h2 className="font-medium text-[22px] mb-[10px] pl-[5px]">Калькуляторы</h2>
                     <ul>
