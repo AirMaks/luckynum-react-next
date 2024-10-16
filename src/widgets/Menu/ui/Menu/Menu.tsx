@@ -14,6 +14,7 @@ import TireIcon from "shared/assets/icons/menu/tire-icon.svg";
 import BallIcon from "shared/assets/icons/menu/ball.svg";
 import QrCodeIcon from "shared/assets/icons/menu/qr-code.svg";
 import MeasureIcon from "shared/assets/icons/menu/measure.svg";
+import CaloryIcon from "shared/assets/icons/menu/calory.svg";
 
 interface MenuProps {
     className?: string;
@@ -116,6 +117,16 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             onClick={onClickMenuItem}>
                             <TireIcon className={cls.icon} />
                             <span className={cls.link_text}>Калькулятор шин</span>
+                        </AppLink>
+                    </li>
+                    <li>
+                        <AppLink
+                            theme={AppLinkTheme.SECONDARY}
+                            href={"/kalkulyator-kaloriy"}
+                            className={cn(cls.link, { [cls.active]: pathname === "/kalkulyator-kaloriy" })}
+                            onClick={onClickMenuItem}>
+                            <CaloryIcon className={cls.icon} />
+                            <span className={cls.link_text}>Калькулятор калорий</span>
                         </AppLink>
                     </li>
                     <li>

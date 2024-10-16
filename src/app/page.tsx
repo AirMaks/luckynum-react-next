@@ -43,6 +43,13 @@ export default function Home() {
                                 Калькулятор шин и дисков
                             </Link>
                         </li>
+                        <li className="mb-[10px]">
+                            <Link
+                                href="/kalkulyator-kaloriy"
+                                className="bg-[#f7f7f7] shadow max-sm:text-[14px] px-[15px] py-[5px] rounded inline-block text-black font-medium w-full">
+                                Калькулятор калорий
+                            </Link>
+                        </li>
                         <li>
                             <Link
                                 href="/shirina-shtor"

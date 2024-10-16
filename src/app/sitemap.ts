@@ -117,6 +117,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1
         },
         {
+            url: "https://lucky-num.ru/kalkulyator-kaloriy",
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 1
+        },
+        {
             url: "https://lucky-num.ru/qr-code-generator",
             lastModified: new Date(),
             changeFrequency: "monthly",
