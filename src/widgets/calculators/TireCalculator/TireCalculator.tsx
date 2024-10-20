@@ -5,9 +5,10 @@ import { FormFieldWrapper } from "shared/ui/FormFieldWrapper";
 import { SelectList } from "../SelectList";
 import { TIRE_DIAMETERS, TIRE_PROFILES, TIRE_WIDTHS } from "const";
 import cn from "classnames";
-// import TireCanvas from "./TireCanvas";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import useLocalStorage from "shared/hooks/useLocalStorage";
+import Loader from "shared/ui/Loader/Loader";
 
 interface Props {
     h1: string;
@@ -42,12 +43,13 @@ interface TireDifferences {
 }
 
 export const TireCalculator: React.FC<Props> = props => {
-    const [oldTire, setOldTire] = useState<TireData>({ width: 205, profile: 65, diameter: 15 });
-    const [newTire, setNewTire] = useState<TireData>({ width: 195, profile: 55, diameter: 15 });
-    const [results, setResults] = useState<{ oldTireData: TireResults; newTireData: TireResults; differences: TireDifferences } | null>(null);
+    const [oldTire, setOldTire] = useLocalStorage<TireData>("oldTire", { width: 205, profile: 65, diameter: 15 });
+    const [newTire, setNewTire] = useLocalStorage<TireData>("newTire", { width: 195, profile: 55, diameter: 15 });
+    const [speed, setSpeed] = useLocalStorage<number>("speed", 60);
     const [unit, setUnit] = useState<"mm" | "inch">("mm");
+    const [isMounted, setIsMounted] = useState(false);
+    const [results, setResults] = useState<{ oldTireData: TireResults; newTireData: TireResults; differences: TireDifferences } | null>(null);
     const [isDanger, setIsDanger] = useState(false);
-    const [speed, setSpeed] = useState(60); // Добавляем состояние для скорости
 
     const [isOldWidthSelectOpen, setIsOldWidthSelectOpen] = useState(false);
     const [isOldProfileSelectOpen, setIsOldProfileSelectOpen] = useState(false);
@@ -56,6 +58,10 @@ export const TireCalculator: React.FC<Props> = props => {
     const [isNewWidthSelectOpen, setIsNewWidthSelectOpen] = useState(false);
     const [isNewProfileSelectOpen, setIsNewProfileSelectOpen] = useState(false);
     const [isNewDiameterSelectOpen, setIsNewDiameterSelectOpen] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useEffect(() => {
         calculateResults();
@@ -188,244 +194,269 @@ export const TireCalculator: React.FC<Props> = props => {
                         Дюймы
                     </button>
                 </div>
-
-                <div className="flex gap-[15px]">
-                    <div className="flex flex-col gap-[15px] max-sm:gap-[10px] w-1/2 max-sm:w-full">
-                        <h2 className="text-[20px] max-sm:text-[14px] truncate">Стандартный размер</h2>
-                        <FormFieldWrapper labelNone>
-                            <SelectList
-                                onSelectClick={() => setIsOldWidthSelectOpen(prev => !prev)}
-                                isOpenSelect={isOldWidthSelectOpen}
-                                onSelectItemClick={(value: number) => handleChange("old", "width", value)}
-                                items={TIRE_WIDTHS}
-                                selectedItem={oldTire.width}
-                                className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
-                            />
-                        </FormFieldWrapper>
-                        <FormFieldWrapper labelNone>
-                            <SelectList
-                                onSelectClick={() => setIsOldProfileSelectOpen(prev => !prev)}
-                                isOpenSelect={isOldProfileSelectOpen}
-                                onSelectItemClick={(value: number) => handleChange("old", "profile", value)}
-                                items={TIRE_PROFILES}
-                                selectedItem={oldTire.profile}
-                                className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
-                            />
-                        </FormFieldWrapper>
-                        <FormFieldWrapper labelNone>
-                            <SelectList
-                                onSelectClick={() => setIsOldDiameterSelectOpen(prev => !prev)}
-                                isOpenSelect={isOldDiameterSelectOpen}
-                                onSelectItemClick={(value: number) => handleChange("old", "diameter", value)}
-                                items={TIRE_DIAMETERS}
-                                selectedItem={oldTire.diameter}
-                                className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
-                            />
-                        </FormFieldWrapper>
+                {!isMounted ? (
+                    <div className="w-full h-full flex items-center justify-center">
+                        <Loader />
                     </div>
-
-                    <div className="flex flex-col gap-[15px] max-sm:gap-[10px] w-1/2 max-sm:w-full">
-                        <h2 className="text-[20px] max-sm:text-[14px] truncate">Новый размер</h2>
-                        <FormFieldWrapper labelNone>
-                            <SelectList
-                                onSelectClick={() => setIsNewWidthSelectOpen(prev => !prev)}
-                                isOpenSelect={isNewWidthSelectOpen}
-                                onSelectItemClick={(value: number) => handleChange("new", "width", value)}
-                                items={TIRE_WIDTHS}
-                                selectedItem={newTire.width}
-                                className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
-                            />
-                        </FormFieldWrapper>
-                        <FormFieldWrapper labelNone>
-                            <SelectList
-                                onSelectClick={() => setIsNewProfileSelectOpen(prev => !prev)}
-                                isOpenSelect={isNewProfileSelectOpen}
-                                onSelectItemClick={(value: number) => handleChange("new", "profile", value)}
-                                items={TIRE_PROFILES}
-                                selectedItem={newTire.profile}
-                                className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
-                            />
-                        </FormFieldWrapper>
-                        <FormFieldWrapper labelNone>
-                            <SelectList
-                                onSelectClick={() => setIsNewDiameterSelectOpen(prev => !prev)}
-                                isOpenSelect={isNewDiameterSelectOpen}
-                                onSelectItemClick={(value: number) => handleChange("new", "diameter", value)}
-                                items={TIRE_DIAMETERS}
-                                selectedItem={newTire.diameter}
-                                className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
-                            />
-                        </FormFieldWrapper>
-                    </div>
-                </div>
-                {results && (
-                    <div className="mt-[30px]">
-                        <div className="grid grid-cols-4 mt-[20px] border-l border-t border-black max-sm:text-[12px] break-words">
-                            <div className="font-medium border-r border-b border-black p-[4px]">Показатель</div>
-                            <div className="font-medium border-r border-b border-black p-[4px]">Стандартная шина</div>
-                            <div className="font-medium border-r border-b border-black p-[4px]">Новая шина</div>
-                            <div className="font-medium border-r border-b border-black p-[4px]">Разница</div>
-
-                            <div className="border-r border-black border-b p-[4px] font-medium">Диаметр</div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm" ? `${results.oldTireData.diameter} мм` : convertToInches(results.oldTireData.diameter)}
-                            </div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm" ? `${results.newTireData.diameter} мм` : convertToInches(results.newTireData.diameter)}
-                            </div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm"
-                                    ? results.differences.diameter
-                                    : convertToInches(parseFloat(results.differences.diameter.split(" ")[0]), results.oldTireData.diameter)}
+                ) : (
+                    <>
+                        <div className="flex gap-[15px]">
+                            <div className="flex flex-col gap-[15px] max-sm:gap-[10px] w-1/2 max-sm:w-full">
+                                <h2 className="text-[20px] max-sm:text-[14px] truncate">Стандартный размер</h2>
+                                <FormFieldWrapper labelNone>
+                                    <SelectList
+                                        onSelectClick={() => setIsOldWidthSelectOpen(prev => !prev)}
+                                        isOpenSelect={isOldWidthSelectOpen}
+                                        onSelectItemClick={(value: number) => handleChange("old", "width", value)}
+                                        items={TIRE_WIDTHS}
+                                        selectedItem={oldTire.width}
+                                        className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                    />
+                                </FormFieldWrapper>
+                                <FormFieldWrapper labelNone>
+                                    <SelectList
+                                        onSelectClick={() => setIsOldProfileSelectOpen(prev => !prev)}
+                                        isOpenSelect={isOldProfileSelectOpen}
+                                        onSelectItemClick={(value: number) => handleChange("old", "profile", value)}
+                                        items={TIRE_PROFILES}
+                                        selectedItem={oldTire.profile}
+                                        className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                    />
+                                </FormFieldWrapper>
+                                <FormFieldWrapper labelNone>
+                                    <SelectList
+                                        onSelectClick={() => setIsOldDiameterSelectOpen(prev => !prev)}
+                                        isOpenSelect={isOldDiameterSelectOpen}
+                                        onSelectItemClick={(value: number) => handleChange("old", "diameter", value)}
+                                        items={TIRE_DIAMETERS}
+                                        selectedItem={oldTire.diameter}
+                                        className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                    />
+                                </FormFieldWrapper>
                             </div>
 
-                            <div className="border-r border-black border-b p-[4px] font-medium">Ширина</div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm" ? `${results.oldTireData.width} мм` : convertToInches(results.oldTireData.width)}
-                            </div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm" ? `${results.newTireData.width} мм` : convertToInches(results.newTireData.width)}
-                            </div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm"
-                                    ? results.differences.width
-                                    : convertToInches(parseFloat(results.differences.width.split(" ")[0]), results.oldTireData.width)}
-                            </div>
-
-                            <div className="border-r border-black border-b p-[4px] font-medium">Длина окружности</div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm" ? `${results.oldTireData.circumference} мм` : convertToInches(results.oldTireData.circumference)}
-                            </div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm" ? `${results.newTireData.circumference} мм` : convertToInches(results.newTireData.circumference)}
-                            </div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm"
-                                    ? results.differences.circumference
-                                    : convertToInches(parseFloat(results.differences.circumference.split(" ")[0]), results.oldTireData.circumference)}
-                            </div>
-
-                            <div className="border-r border-black border-b p-[4px] font-medium">Высота профиля</div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm" ? `${results.oldTireData.profileHeight} мм` : convertToInches(results.oldTireData.profileHeight)}
-                            </div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm" ? `${results.newTireData.profileHeight} мм` : convertToInches(results.newTireData.profileHeight)}
-                            </div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm"
-                                    ? results.differences.profileHeight
-                                    : convertToInches(parseFloat(results.differences.profileHeight.split(" ")[0]), results.oldTireData.profileHeight)}
-                            </div>
-
-                            <div className="border-r border-black border-b p-[4px] font-medium">
-                                {unit === "mm" ? "Оборотов на км" : "Оборотов на милю"}
-                            </div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm" ? results.oldTireData.revolutionsPerKm : results.oldTireData.revolutionsPerMile}
-                            </div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm" ? results.newTireData.revolutionsPerKm : results.newTireData.revolutionsPerMile}
-                            </div>
-                            <div className="border-r border-black border-b p-[4px]">
-                                {unit === "mm" ? results.differences.revolutionsPerKm : results.differences.revolutionsPerMile}
+                            <div className="flex flex-col gap-[15px] max-sm:gap-[10px] w-1/2 max-sm:w-full">
+                                <h2 className="text-[20px] max-sm:text-[14px] truncate">Новый размер</h2>
+                                <FormFieldWrapper labelNone>
+                                    <SelectList
+                                        onSelectClick={() => setIsNewWidthSelectOpen(prev => !prev)}
+                                        isOpenSelect={isNewWidthSelectOpen}
+                                        onSelectItemClick={(value: number) => handleChange("new", "width", value)}
+                                        items={TIRE_WIDTHS}
+                                        selectedItem={newTire.width}
+                                        className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                    />
+                                </FormFieldWrapper>
+                                <FormFieldWrapper labelNone>
+                                    <SelectList
+                                        onSelectClick={() => setIsNewProfileSelectOpen(prev => !prev)}
+                                        isOpenSelect={isNewProfileSelectOpen}
+                                        onSelectItemClick={(value: number) => handleChange("new", "profile", value)}
+                                        items={TIRE_PROFILES}
+                                        selectedItem={newTire.profile}
+                                        className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                    />
+                                </FormFieldWrapper>
+                                <FormFieldWrapper labelNone>
+                                    <SelectList
+                                        onSelectClick={() => setIsNewDiameterSelectOpen(prev => !prev)}
+                                        isOpenSelect={isNewDiameterSelectOpen}
+                                        onSelectItemClick={(value: number) => handleChange("new", "diameter", value)}
+                                        items={TIRE_DIAMETERS}
+                                        selectedItem={newTire.diameter}
+                                        className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                    />
+                                </FormFieldWrapper>
                             </div>
                         </div>
+                        {results && (
+                            <div className="mt-[30px]">
+                                <div className="grid grid-cols-4 mt-[20px] border-l border-t border-black max-sm:text-[12px] break-words">
+                                    <div className="font-medium border-r border-b border-black p-[4px]">Показатель</div>
+                                    <div className="font-medium border-r border-b border-black p-[4px]">Стандартная шина</div>
+                                    <div className="font-medium border-r border-b border-black p-[4px]">Новая шина</div>
+                                    <div className="font-medium border-r border-b border-black p-[4px]">Разница</div>
 
-                        <div className="mt-[20px] select-none">
-                            <div>
-                                <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center">
-                                    Скорость автомобиля, {unit === "mm" ? "км/ч" : "миль/ч"}
-                                </h3>
-                                <div className="grid grid-cols-2 mt-[20px] text-center">
-                                    <div className="mb-[10px] text-[18px] max-sm:text-[14px] leading-none">
-                                        При показаниях спидометра на стандартных шинах:
+                                    <div className="border-r border-black border-b p-[4px] font-medium">Диаметр</div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm" ? `${results.oldTireData.diameter} мм` : convertToInches(results.oldTireData.diameter)}
+                                    </div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm" ? `${results.newTireData.diameter} мм` : convertToInches(results.newTireData.diameter)}
+                                    </div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm"
+                                            ? results.differences.diameter
+                                            : convertToInches(parseFloat(results.differences.diameter.split(" ")[0]), results.oldTireData.diameter)}
                                     </div>
 
-                                    <div className="mb-[10px] text-[18px] max-sm:text-[14px] leading-none">
-                                        Реальная скорость на новых шинах будет:
+                                    <div className="border-r border-black border-b p-[4px] font-medium">Ширина</div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm" ? `${results.oldTireData.width} мм` : convertToInches(results.oldTireData.width)}
                                     </div>
-                                    <div className="flex items-center justify-center mt-2">
-                                        <div
-                                            className={cn(
-                                                "w-[170px] shadow max-sm:w-[130px] max-sm:text-[22px] bg-black p-[10px] leading-none rounded flex items-center justify-center text-teal-500 text-[36px]",
-                                                [props.className]
-                                            )}>
-                                            {speed}{" "}
-                                        </div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm" ? `${results.newTireData.width} мм` : convertToInches(results.newTireData.width)}
                                     </div>
-                                    <div className="flex items-center justify-center mt-2">
-                                        <div
-                                            className={cn(
-                                                "w-[170px] shadow max-sm:w-[130px] max-sm:text-[22px] bg-black p-[10px] leading-none rounded flex items-center justify-center text-teal-500 text-[36px]",
-                                                [props.className]
-                                            )}>
-                                            {Number(
-                                                calculateNewSpeed(
-                                                    results.oldTireData.circumference,
-                                                    results.newTireData.circumference,
-                                                    speed
-                                                ).toFixed(2)
-                                            )}{" "}
-                                        </div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm"
+                                            ? results.differences.width
+                                            : convertToInches(parseFloat(results.differences.width.split(" ")[0]), results.oldTireData.width)}
+                                    </div>
+
+                                    <div className="border-r border-black border-b p-[4px] font-medium">Длина окружности</div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm"
+                                            ? `${results.oldTireData.circumference} мм`
+                                            : convertToInches(results.oldTireData.circumference)}
+                                    </div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm"
+                                            ? `${results.newTireData.circumference} мм`
+                                            : convertToInches(results.newTireData.circumference)}
+                                    </div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm"
+                                            ? results.differences.circumference
+                                            : convertToInches(
+                                                  parseFloat(results.differences.circumference.split(" ")[0]),
+                                                  results.oldTireData.circumference
+                                              )}
+                                    </div>
+
+                                    <div className="border-r border-black border-b p-[4px] font-medium">Высота профиля</div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm"
+                                            ? `${results.oldTireData.profileHeight} мм`
+                                            : convertToInches(results.oldTireData.profileHeight)}
+                                    </div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm"
+                                            ? `${results.newTireData.profileHeight} мм`
+                                            : convertToInches(results.newTireData.profileHeight)}
+                                    </div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm"
+                                            ? results.differences.profileHeight
+                                            : convertToInches(
+                                                  parseFloat(results.differences.profileHeight.split(" ")[0]),
+                                                  results.oldTireData.profileHeight
+                                              )}
+                                    </div>
+
+                                    <div className="border-r border-black border-b p-[4px] font-medium">
+                                        {unit === "mm" ? "Оборотов на км" : "Оборотов на милю"}
+                                    </div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm" ? results.oldTireData.revolutionsPerKm : results.oldTireData.revolutionsPerMile}
+                                    </div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm" ? results.newTireData.revolutionsPerKm : results.newTireData.revolutionsPerMile}
+                                    </div>
+                                    <div className="border-r border-black border-b p-[4px]">
+                                        {unit === "mm" ? results.differences.revolutionsPerKm : results.differences.revolutionsPerMile}
                                     </div>
                                 </div>
-                                <Slider
-                                    trackStyle={{ backgroundColor: "#2569e1" }}
-                                    handleStyle={{
-                                        backgroundColor: "#2569e1",
-                                        borderColor: "#2569e1",
-                                        opacity: 1,
-                                        boxShadow: "none",
-                                        width: "20px",
-                                        height: "20px",
-                                        marginTop: "-8px"
-                                    }}
-                                    min={1}
-                                    max={500}
-                                    className="max-sm:!w-[calc(100%-20px)] max-sm:!mx-auto my-[30px]"
-                                    value={speed}
-                                    onChange={value => setSpeed(Number(value))}
-                                />
-                            </div>
-                        </div>
-                        <div
-                            className={cn("shadow text-center max-sm:text-[14px] mt-5 font-medium bg-green-600 text-white  p-[10px] rounded", {
-                                "!bg-red-800": isDanger
-                            })}>
-                            <div>
-                                {unit === "mm" ? (
-                                    <div>{results.differences.groundClearanceChange}.</div>
-                                ) : (
+
+                                <div className="mt-[20px] select-none">
                                     <div>
-                                        {results.differences.groundClearanceChange.includes("Клиренс не изменится")
-                                            ? "Клиренс не изменится."
-                                            : `Клиренс изменится на ${convertToInches(parseFloat(results.differences.groundClearanceChange.split(" ")[3]))}.`}
+                                        <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center">
+                                            Скорость автомобиля, {unit === "mm" ? "км/ч" : "миль/ч"}
+                                        </h3>
+                                        <div className="grid grid-cols-2 mt-[20px] text-center">
+                                            <div className="mb-[10px] text-[18px] max-sm:text-[14px] leading-none">
+                                                При показаниях спидометра на стандартных шинах:
+                                            </div>
+
+                                            <div className="mb-[10px] text-[18px] max-sm:text-[14px] leading-none">
+                                                Реальная скорость на новых шинах будет:
+                                            </div>
+                                            <div className="flex items-center justify-center mt-2">
+                                                <div
+                                                    className={cn(
+                                                        "w-[170px] shadow max-sm:w-[130px] max-sm:text-[22px] bg-black p-[10px] leading-none rounded flex items-center justify-center text-teal-500 text-[36px]",
+                                                        [props.className]
+                                                    )}>
+                                                    {speed}{" "}
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center justify-center mt-2">
+                                                <div
+                                                    className={cn(
+                                                        "w-[170px] shadow max-sm:w-[130px] max-sm:text-[22px] bg-black p-[10px] leading-none rounded flex items-center justify-center text-teal-500 text-[36px]",
+                                                        [props.className]
+                                                    )}>
+                                                    {Number(
+                                                        calculateNewSpeed(
+                                                            results.oldTireData.circumference,
+                                                            results.newTireData.circumference,
+                                                            speed
+                                                        ).toFixed(2)
+                                                    )}{" "}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <Slider
+                                            trackStyle={{ backgroundColor: "#2569e1" }}
+                                            handleStyle={{
+                                                backgroundColor: "#2569e1",
+                                                borderColor: "#2569e1",
+                                                opacity: 1,
+                                                boxShadow: "none",
+                                                width: "20px",
+                                                height: "20px",
+                                                marginTop: "-8px"
+                                            }}
+                                            min={1}
+                                            max={500}
+                                            className="max-sm:!w-[calc(100%-20px)] max-sm:!mx-auto my-[30px]"
+                                            value={speed}
+                                            onChange={value => setSpeed(Number(value))}
+                                        />
                                     </div>
-                                )}
+                                </div>
+                                <div
+                                    className={cn(
+                                        "shadow text-center max-sm:text-[14px] mt-5 font-medium bg-green-600 text-white  p-[10px] rounded",
+                                        {
+                                            "!bg-red-800": isDanger
+                                        }
+                                    )}>
+                                    <div>
+                                        {unit === "mm" ? (
+                                            <div>{results.differences.groundClearanceChange}.</div>
+                                        ) : (
+                                            <div>
+                                                {results.differences.groundClearanceChange.includes("Клиренс не изменится")
+                                                    ? "Клиренс не изменится."
+                                                    : `Клиренс изменится на ${convertToInches(parseFloat(results.differences.groundClearanceChange.split(" ")[3]))}.`}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="mt-2">{results.newTireData.result}</div>
+                                </div>
+                                <div className="mt-[20px]">
+                                    <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center">Изменение расхода топлива</h3>
+                                    <div
+                                        className={cn("text-center text-[20px] max-sm:text-[16px]", {
+                                            "text-red-800": fuelConsumptionChange > 0,
+                                            "text-green-600": fuelConsumptionChange < 0
+                                        })}>
+                                        {fuelConsumptionChange > 0
+                                            ? `Расход топлива увеличится примерно на ${Number(fuelConsumptionChange.toFixed(2))}`
+                                            : fuelConsumptionChange < 0
+                                              ? `Расход топлива уменьшиться примерно на ${Number(fuelConsumptionChange.toFixed(2))}`
+                                              : Number(fuelConsumptionChange.toFixed(2))}
+                                        %
+                                    </div>
+                                    <p className="mt-[10px] text-center max-sm:text-[14px]">
+                                        Важно! Этот расчет является приблизительным и не учитывает все факторы, влияющие на расход топлива.
+                                        Фактическое изменение расхода топлива может отличаться в зависимости от условий эксплуатации, стиля вождения и
+                                        других факторов.
+                                    </p>
+                                </div>
                             </div>
-                            <div className="mt-2">{results.newTireData.result}</div>
-                        </div>
-                        <div className="mt-[20px]">
-                            <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center">Изменение расхода топлива</h3>
-                            <div
-                                className={cn("text-center text-[20px] max-sm:text-[16px]", {
-                                    "text-red-800": fuelConsumptionChange > 0,
-                                    "text-green-600": fuelConsumptionChange < 0
-                                })}>
-                                {fuelConsumptionChange > 0
-                                    ? `Расход топлива увеличится примерно на ${Number(fuelConsumptionChange.toFixed(2))}`
-                                    : fuelConsumptionChange < 0
-                                      ? `Расход топлива уменьшиться примерно на ${Number(fuelConsumptionChange.toFixed(2))}`
-                                      : Number(fuelConsumptionChange.toFixed(2))}
-                                %
-                            </div>
-                            <p className="mt-[10px] text-center max-sm:text-[14px]">
-                                Важно! Этот расчет является приблизительным и не учитывает все факторы, влияющие на расход топлива. Фактическое
-                                изменение расхода топлива может отличаться в зависимости от условий эксплуатации, стиля вождения и других факторов.
-                            </p>
-                        </div>
-                    </div>
+                        )}
+                    </>
                 )}
             </div>
         </div>
