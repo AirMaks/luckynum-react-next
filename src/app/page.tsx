@@ -8,6 +8,20 @@ export const metadata: Metadata = {
     ...metaData({ title, description, keywords, img: ImageOg })
 };
 
+function addProductJsonLd() {
+    return {
+        __html: `{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Сервис онлайн-калькуляторов и генераторов",
+          "url": "https://lucky-num.ru",
+          "description": "Рассчитайте кредит, выберите идеальные параметры для автомобиля, выполните сложные математические вычисления или получите случайные числа, слова, уникальные пароли и много чего другого всего за несколько секунд.",
+          "applicationCategory": "Utility",
+          "operatingSystem": "All"
+        }`
+    };
+}
+
 export default function Home() {
     return (
         <main className="px-[10px] ms-auto me-auto max-w-[1000px]" role="main">
