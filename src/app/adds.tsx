@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const YandexAd = ({ className }: any) => {
+const YandexAd = ({ className, id }: { className: string; id: string }) => {
     useEffect(() => {
         let adLoaded = false;
 
@@ -10,8 +10,8 @@ const YandexAd = ({ className }: any) => {
             if (!adLoaded && window.yaContextCb && window.Ya) {
                 window.yaContextCb.push(() => {
                     window.Ya.Context.AdvManager.render({
-                        blockId: "R-A-11866944-1",
-                        renderTo: "yandex_rtb_R-A-11866944-1"
+                        blockId: id,
+                        renderTo: `yandex_rtb_${id}`
                     });
                 });
                 adLoaded = true;
@@ -42,9 +42,10 @@ const YandexAd = ({ className }: any) => {
         return () => {
             removeEventListeners();
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return <div id="yandex_rtb_R-A-11866944-1" className={className}></div>;
+    return <div id={`yandex_rtb_${id}`} className={className}></div>;
 };
 
 export default YandexAd;

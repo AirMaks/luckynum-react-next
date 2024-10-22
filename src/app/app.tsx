@@ -38,7 +38,7 @@ export const App = ({
             <div className="overflow-y-auto flex flex-col h-[calc(100vh-60px)] max-sm:h-[calc(100dvh-60px)] transition-[height] pb-[20px]">
                 <div className="flex-1">
                     <Suspense fallback={<></>}>
-                        <YandexAd className="max-w-[960px] h-[70px] mx-auto pt-[20px] max-sm:px-[10px] max-sm:pt-[0]" />
+                        <YandexAd id="R-A-11866944-1" className="max-w-[960px] h-[70px] mx-auto pt-[20px] max-sm:px-[10px] max-sm:pt-[0]" />
                     </Suspense>
                     {children}
                 </div>
