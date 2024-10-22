@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const YandexAd = ({ className, id }: { className: string; id: string }) => {
+    const [isPageTransition, setIsPageTransition] = useState(false);
+
     useEffect(() => {
         let adLoaded = false;
 
@@ -15,6 +17,7 @@ const YandexAd = ({ className, id }: { className: string; id: string }) => {
                         renderTo: `yandex_rtb_${id}`
                     });
                 });
+                adLoaded = true; // Устанавливаем флаг, что реклама загружена
                 removeEventListeners();
             }
         };
@@ -37,12 +40,25 @@ const YandexAd = ({ className, id }: { className: string; id: string }) => {
 
         if (typeof window !== "undefined") {
             addEventListeners();
-        }
 
-        return () => {
-            removeEventListeners();
-        };
-    }, [id]);
+            // Если это переход между страницами, загружаем рекламу
+            if (isPageTransition) {
+                loadAd();
+            }
+
+            // Устанавливаем флаг, что это переход между страницами
+            const handleTransitionStart = () => {
+                setIsPageTransition(true);
+            };
+            window.addEventListener("beforeunload", handleTransitionStart);
+
+            return () => {
+                removeEventListeners();
+                adLoaded = false; // Сбрасываем флаг при размонтировании компонента
+                window.removeEventListener("beforeunload", handleTransitionStart);
+            };
+        }
+    }, [id, isPageTransition]);
 
     return <div id={`yandex_rtb_${id}`} className={className}></div>;
 };
