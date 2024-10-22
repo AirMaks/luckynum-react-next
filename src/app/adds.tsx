@@ -7,6 +7,7 @@ const YandexAd = ({ className, id }: { className: string; id: string }) => {
         let adLoaded = false;
 
         const loadAd = () => {
+            // Проверяем, загружена ли реклама
             if (!adLoaded && window.yaContextCb && window.Ya) {
                 window.yaContextCb.push(() => {
                     window.Ya.Context.AdvManager.render({
@@ -14,7 +15,7 @@ const YandexAd = ({ className, id }: { className: string; id: string }) => {
                         renderTo: `yandex_rtb_${id}`
                     });
                 });
-                adLoaded = true;
+                adLoaded = true; // Устанавливаем флаг, что реклама загружена
                 removeEventListeners();
             }
         };
@@ -37,13 +38,14 @@ const YandexAd = ({ className, id }: { className: string; id: string }) => {
 
         if (typeof window !== "undefined") {
             addEventListeners();
+            loadAd(); // Попробуем загрузить рекламу сразу после добавления обработчиков
         }
 
         return () => {
             removeEventListeners();
+            adLoaded = false; // Сбрасываем флаг при размонтировании компонента
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [id]); // Добавляем id в зависимости
 
     return <div id={`yandex_rtb_${id}`} className={className}></div>;
 };
