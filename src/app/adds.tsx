@@ -1,15 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 const YandexAd = ({ className, id }: { className: string; id: string }) => {
-    const [isPageTransition, setIsPageTransition] = useState(false);
-
+    const pathname = usePathname();
     useEffect(() => {
         let adLoaded = false;
 
         const loadAd = () => {
-            // Проверяем, загружена ли реклама
             if (!adLoaded && window.yaContextCb && window.Ya) {
                 window.yaContextCb.push(() => {
                     window.Ya.Context.AdvManager.render({
@@ -17,7 +16,7 @@ const YandexAd = ({ className, id }: { className: string; id: string }) => {
                         renderTo: `yandex_rtb_${id}`
                     });
                 });
-                adLoaded = true; // Устанавливаем флаг, что реклама загружена
+                adLoaded = true;
                 removeEventListeners();
             }
         };
@@ -38,27 +37,20 @@ const YandexAd = ({ className, id }: { className: string; id: string }) => {
             document.removeEventListener("DOMContentLoaded", loadAd);
         };
 
-        if (typeof window !== "undefined") {
-            addEventListeners();
+        if (pathname !== localStorage.getItem("prevUrl")) {
+            loadAd();
+        } else {
 
-            // Если это переход между страницами, загружаем рекламу
-            if (isPageTransition) {
-                loadAd();
+            if (typeof window !== "undefined") {
+                addEventListeners();
             }
-
-            // Устанавливаем флаг, что это переход между страницами
-            const handleTransitionStart = () => {
-                setIsPageTransition(true);
-            };
-            window.addEventListener("beforeunload", handleTransitionStart);
 
             return () => {
                 removeEventListeners();
-                adLoaded = false; // Сбрасываем флаг при размонтировании компонента
-                window.removeEventListener("beforeunload", handleTransitionStart);
             };
         }
-    }, [id, isPageTransition]);
+
+    }, [id]);
 
     return <div id={`yandex_rtb_${id}`} className={className}></div>;
 };

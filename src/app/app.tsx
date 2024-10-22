@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu } from "widgets/Menu";
 import { Providers } from "app/providers";
 import { Navbar } from "widgets/Navbar";
+import { usePathname } from "next/navigation";
 
 export const App = ({
     children
@@ -12,6 +13,11 @@ export const App = ({
 }>) => {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
     const [isOpenSettings, setIsOpenSettings] = useState(false);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        localStorage.setItem("prevUrl", pathname);
+    }, []);
 
     const onToggleMenu = () => {
         setIsOpenMenu((prev: any) => !prev);
