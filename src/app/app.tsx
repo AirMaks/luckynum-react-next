@@ -4,8 +4,6 @@ import { useState } from "react";
 import { Menu } from "widgets/Menu";
 import { Providers } from "app/providers";
 import { Navbar } from "widgets/Navbar";
-import YandexAd from "./adds";
-import { Suspense } from "react";
 
 export const App = ({
     children
@@ -36,12 +34,7 @@ export const App = ({
             <Navbar isOpenMenu={isOpenMenu} isOpenSettings={isOpenSettings} onToggleMenu={onToggleMenu} onToggleSettings={onToggleSettings} />
             <Menu isOpenMenu={isOpenMenu} onClickMenuItem={onClickMenuItem} />
             <div className="overflow-y-auto flex flex-col h-[calc(100vh-60px)] max-sm:h-[calc(100dvh-60px)] transition-[height] pb-[20px]">
-                <div className="flex-1">
-                    <Suspense fallback={<></>}>
-                        <YandexAd id="R-A-11866944-1" className="max-w-[960px] h-[70px] mx-auto pt-[20px] max-sm:px-[10px] max-sm:pt-[0]" />
-                    </Suspense>
-                    {children}
-                </div>
+                <div className="flex-1">{children}</div>
             </div>
         </Providers>
     );
