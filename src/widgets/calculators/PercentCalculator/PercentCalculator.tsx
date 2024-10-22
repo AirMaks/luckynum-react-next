@@ -18,6 +18,20 @@ import PercentMinusNumber from "./PercentMinusNumber";
 import NumberGreaterNumber from "./NumberGreaterNumber";
 import NumberLessNumber from "./NumberLessNumber";
 
+function addProductJsonLd() {
+    return {
+        __html: `{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Калькулятор процентов",
+          "url": "https://lucky-num.ru/percent-calculator",
+          "description": "Калькулятор поможет вам посчитать проценты.",
+          "applicationCategory": "Utility",
+          "operatingSystem": "All"
+        }`
+    };
+}
+
 const PercentCalculator = () => {
     const [isOpenSelectType, setIsOpenSelectType] = useState<any>(false);
     const [percentType, setPercentType] = useState(PERCENT_TYPE_NUMBER_FROM_NUMBER);
@@ -31,6 +45,7 @@ const PercentCalculator = () => {
 
     return (
         <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={addProductJsonLd()} key="page-jsonld" />
             <div className="px-[10px]">
                 <div className="shadow mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[550px] bg-[#f5f5f7] max-lg:p-[20px] rounded">
                     <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]">Рассчитать проценты</h1>

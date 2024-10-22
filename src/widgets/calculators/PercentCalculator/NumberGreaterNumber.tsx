@@ -36,6 +36,7 @@ const NumberGreaterNumber = () => {
                 <div className="flex gap-[10px]">
                     <FormFieldWrapper label="Число 1" htmlFor="number1" className="w-[50%]" labelClassName="text-[13px]">
                         <Input
+                            autofocus
                             ariaLabel="Укажите Число 1"
                             rounded={false}
                             id="number1"

@@ -13,6 +13,20 @@ import gif1 from "shared/assets/images/1.gif";
 import Image from "next/image";
 import { FormFieldWrapper } from "shared/ui/FormFieldWrapper";
 
+function addProductJsonLd() {
+    return {
+        __html: `{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Генератор случайных слов",
+          "url": "https://lucky-num.ru/generator-sluchainykh-slov",
+          "description": "Генератор случайных слов помогает выбрать случайное слово из списка. Вы можете задать свои слова и исключить повторения.",
+          "applicationCategory": "Utility",
+          "operatingSystem": "All"
+        }`
+    };
+}
+
 const RandomWordList = () => {
     const [randomWord, setRandomWord] = useState<string>("");
     const [time, setTime] = useState<any>(1);
@@ -46,6 +60,7 @@ const RandomWordList = () => {
 
     return (
         <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={addProductJsonLd()} key="page-jsonld" />
             <div className="px-[10px]">
                 <div className="mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f5f5f7] shadow max-w-[530px] rounded p-[20px] max-sm:px-[10px]">
                     <h1 className="mb-[20px] text-center text-[24px] font-medium max-sm:text-[17px]">Генератор случайных слов</h1>
@@ -77,6 +92,7 @@ const RandomWordList = () => {
                         <FormFieldWrapper label="Введите слова через запятую или с переносом строк" htmlFor="textarea">
                             <Textarea
                                 spellCheck={false}
+                                autofocus
                                 id="textarea"
                                 className="text-[20px] max-sm:text-[16px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-gray-700 min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
                                 onChange={handleTextareaChange}
@@ -106,7 +122,14 @@ const RandomWordList = () => {
                     alt="кот gif"
                     priority={true}
                 />
-                {!animation && <span aria-describedby={`Ваше случайное слово: ${randomWord}`}>{randomWord}</span>}
+                {!animation && (
+                    <>
+                        <span id="random-word-description" className="sr-only">
+                            Ваше случайное слово: {randomWord}
+                        </span>
+                        <span aria-describedby="random-word-description">{randomWord}</span>
+                    </>
+                )}
             </div>
         </>
     );

@@ -27,7 +27,7 @@ const CopyToClipboardButton = ({ textToCopy, ariaLabel }: any) => {
                 )}>
                 Скопировано!
             </div>
-            <button onClick={handleCopyClick} area-label={ariaLabel} aria-pressed={isCopied}>
+            <button onClick={handleCopyClick} aria-label={ariaLabel} aria-pressed={isCopied}>
                 {textToCopy}
             </button>
         </div>

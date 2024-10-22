@@ -17,6 +17,20 @@ import { ErrorBadge } from "../ErrorBadge";
 import Loader from "shared/ui/Loader/Loader";
 import { formatYearsText } from "helpers/formatMonths";
 
+function addProductJsonLd() {
+    return {
+        __html: `{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Калькулятор ипотеки",
+          "url": "https://lucky-num.ru/mortgage-calculator",
+          "description": "Калькулятор ипотеки поможет рассчитать ежемесячный платеж и переплату по ипотеке.",
+          "applicationCategory": "Utility",
+          "operatingSystem": "All"
+        }`
+    };
+}
+
 const keys = Object.keys(TERMS);
 
 export const csvDataHeaders = [
@@ -195,6 +209,7 @@ const MortgageCalculator = (props: Props) => {
 
     return (
         <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={addProductJsonLd()} key="page-jsonld" />
             <div className="px-[10px] ms-auto me-auto max-w-[1000px]" aria-label="Ипотечный калькулятор">
                 <div className="mt-[20px] shadow max-sm:mt-[10px] p-[20px] bg-[#f5f5f7] rounded max-sm:px-[10px]" role="form">
                     <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]" id="calculator-heading">
@@ -206,6 +221,7 @@ const MortgageCalculator = (props: Props) => {
                                 {errorCS && <ErrorBadge text="СИ не может быть меньше/равна ПВ" />}
                                 <Input
                                     ref={refCreditSum}
+                                    autofocus
                                     rounded={false}
                                     id="credit_sum"
                                     value={formattedCreditSumValue}

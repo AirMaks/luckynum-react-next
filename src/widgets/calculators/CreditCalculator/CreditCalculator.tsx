@@ -19,6 +19,20 @@ import Loader from "shared/ui/Loader/Loader";
 import { formatYearsText } from "helpers/formatMonths";
 import { formatRublesText } from "helpers/formatRublesText";
 
+function addProductJsonLd() {
+    return {
+        __html: `{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Кредитный калькулятор",
+          "url": "https://lucky-num.ru/credit-calculator",
+          "description": "Кредитный калькулятор поможет вам рассчитать ежемесячный платеж, срок кредита, а также произвести другие нужные вам расчеты.",
+          "applicationCategory": "Utility",
+          "operatingSystem": "All"
+        }`
+    };
+}
+
 const keys = Object.keys(TERMS);
 
 export const csvDataHeaders = [
@@ -259,6 +273,7 @@ const CreditCalculator = (props: Props) => {
 
     return (
         <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={addProductJsonLd()} key="page-jsonld" />
             <div className="px-[10px] ms-auto me-auto max-w-[1000px]">
                 <div className="bg-[#f5f5f7] shadow mt-[20px] max-sm:mt-[10px] p-[20px] rounded max-sm:px-[10px]">
                     <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]">{renderHeading()}</h1>
@@ -268,6 +283,7 @@ const CreditCalculator = (props: Props) => {
                             <FormFieldWrapper label="Сумма кредита" htmlFor="credit_sum">
                                 {renderErrorCS()}
                                 <Input
+                                    autofocus
                                     ariaLabel="Введите сумму кредита"
                                     ref={refCreditSum}
                                     rounded={false}

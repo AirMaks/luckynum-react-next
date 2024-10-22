@@ -6,6 +6,20 @@ import { Input } from "shared/ui/Input/Input";
 import Image from "next/image";
 import { sanitizePercents, sanitizeSymbols } from "helpers/sanitizeSymbols";
 
+function addProductJsonLd() {
+    return {
+        __html: `{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "Калькулятор расчета ширины штор",
+          "url": "https://lucky-num.ru/mortgage-calculator",
+          "description": "Калькулятор ширины штор помогает рассчитать размеры штор для вашего декора..",
+          "applicationCategory": "Utility",
+          "operatingSystem": "All"
+        }`
+    };
+}
+
 const CurtainsCalculator = () => {
     const [rodLength, setRodLength] = useState<any>(250);
     const [gatheringCoefficient, setGatheringCoefficient] = useState<any>(1.5);
@@ -46,6 +60,7 @@ const CurtainsCalculator = () => {
 
     return (
         <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={addProductJsonLd()} key="page-jsonld" />
             <div className="px-[10px]">
                 <div
                     className="bg-[#f5f5f7] shadow mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] rounded pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[750px] px-[20px]"

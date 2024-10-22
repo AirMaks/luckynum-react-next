@@ -1,7 +1,7 @@
 "use client";
 
 import cn from "classnames";
-import { InputHTMLAttributes, memo, ChangeEvent, forwardRef } from "react";
+import { InputHTMLAttributes, memo, ChangeEvent, forwardRef, useEffect, useRef } from "react";
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "onChange">;
 
@@ -17,17 +17,28 @@ interface InputProps extends HTMLInputProps {
 
 export const Input = memo(
     forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-        const { className, value, onChange, type = "text", placeholder, rounded = true, border = true, ariaLabel, ...otherProps } = props;
+        const { className, value, onChange, type = "text", placeholder, rounded = true, border = true, ariaLabel, autofocus, ...otherProps } = props;
+        const inputRef = useRef<HTMLInputElement>(null);
 
         const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             const newValue = type === "checkbox" ? e.target.checked : e.target.value;
             onChange?.(newValue, e);
         };
 
+        useEffect(() => {
+            if (autofocus && inputRef.current) {
+                inputRef.current.focus();
+                if (type !== "checkbox" && typeof value === "string") {
+                    inputRef.current.setSelectionRange(value.length, value.length);
+                }
+            }
+        }, [autofocus, type, value]);
+
         return (
             <input
-                ref={ref}
+                ref={inputRef}
                 type={type}
+                autoFocus={autofocus}
                 checked={type === "checkbox" ? (value as boolean) : undefined}
                 value={type !== "checkbox" ? (value as string) : undefined}
                 onChange={onChangeHandler}
