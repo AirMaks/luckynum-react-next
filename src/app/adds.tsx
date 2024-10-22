@@ -42,7 +42,7 @@ const YandexAd = ({ className, id }: { className: string; id: string }) => {
         return () => {
             removeEventListeners();
         };
-    }, []);
+    }, [id]);
 
     return <div id={`yandex_rtb_${id}`} className={className}></div>;
 };
