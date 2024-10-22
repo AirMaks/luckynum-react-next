@@ -18,7 +18,7 @@ const DaNetPage = () => {
             <Suspense fallback={<></>}>
                 <YandexAd id="R-A-11866944-2" className="max-w-[960px] h-[70px] mx-auto pt-[20px] max-sm:px-[10px] max-sm:pt-[0]" />
             </Suspense>
-            <DaNet />;
+            <DaNet />
         </>
     );
 };

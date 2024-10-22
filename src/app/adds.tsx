@@ -15,7 +15,6 @@ const YandexAd = ({ className, id }: { className: string; id: string }) => {
                         renderTo: `yandex_rtb_${id}`
                     });
                 });
-                adLoaded = true; // Устанавливаем флаг, что реклама загружена
                 removeEventListeners();
             }
         };
@@ -38,14 +37,12 @@ const YandexAd = ({ className, id }: { className: string; id: string }) => {
 
         if (typeof window !== "undefined") {
             addEventListeners();
-            loadAd(); // Попробуем загрузить рекламу сразу после добавления обработчиков
         }
 
         return () => {
             removeEventListeners();
-            adLoaded = false; // Сбрасываем флаг при размонтировании компонента
         };
-    }, [id]); // Добавляем id в зависимости
+    }, []);
 
     return <div id={`yandex_rtb_${id}`} className={className}></div>;
 };
