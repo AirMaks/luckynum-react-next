@@ -36,7 +36,7 @@ const QRCodeGenerator = () => {
 
     const [qrValue, setQrValue] = useState("");
     const [telegramInputValue, setTelegramInputValue] = useState("");
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState<any>("");
     const [isOpenSelect, setIsOpenSelect] = useState<any>(false);
     const [isOpenEncryptSelect, setIsOpenEncryptSelect] = useState(false);
 
@@ -135,8 +135,10 @@ const QRCodeGenerator = () => {
 
     return (
         <div className="px-[10px] pb-[40px] max-w-[430px] mx-auto mt-[20px] max-sm:mt-[10px] select-none">
-            <div className=" bg-[#f7f7f7] shadow rounded p-[20px] max-sm:px-[10px] mb-[30px]">
-                <h1 className="mb-[15px] text-center text-[24px] font-medium max-sm:text-[17px]">QR код генератор</h1>
+            <div className="bg-[#f5f5f7] shadow rounded p-[20px] max-sm:px-[10px] mb-[30px]">
+                <h1 className="mb-[15px] text-center text-[24px] font-medium max-sm:text-[17px]" aria-level={1} role="heading">
+                    QR код генератор
+                </h1>
                 <SelectList
                     onSelectClick={onSelectClick}
                     isOpenSelect={isOpenSelect}
@@ -144,6 +146,7 @@ const QRCodeGenerator = () => {
                     items={["Ссылка", WHATSAPP, TELEGRAM, SMS, WIFI]}
                     selectedItem={qrType}
                     className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px] mb-[15px]"
+                    ariaDescribedby="Выбор типа QR-кода"
                 />
                 {qrType === "Ссылка" && (
                     <Input
@@ -152,6 +155,7 @@ const QRCodeGenerator = () => {
                         onChange={handleInputChange}
                         placeholder="https://"
                         className="w-full mb-[15px] h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                        ariaLabel="Введите ссылку"
                     />
                 )}
                 {qrType === TELEGRAM && (
@@ -161,6 +165,7 @@ const QRCodeGenerator = () => {
                         onChange={handleTelegramInputChange}
                         placeholder="Введите никнейм"
                         className="w-full mb-[15px] h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                        ariaLabel="Введите никнейм Telegram"
                     />
                 )}
                 {qrType === WIFI && (
@@ -171,6 +176,7 @@ const QRCodeGenerator = () => {
                             onChange={handleSsidInputChange}
                             placeholder="SSID"
                             className="w-full mb-[15px] h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                            ariaLabel="Введите SSID Wi-Fi"
                         />
                         <SelectList
                             onSelectClick={onEncryptSelectClick}
@@ -179,6 +185,7 @@ const QRCodeGenerator = () => {
                             items={["WPA/WPA2", "WEP", "nopass"]}
                             selectedItem={encrypt}
                             className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px] mb-[15px]"
+                            ariaDescribedby="Выбор типа шифрования Wi-Fi"
                         />
                         <Input
                             type="text"
@@ -186,6 +193,7 @@ const QRCodeGenerator = () => {
                             onChange={handleWifiPasswordChange}
                             placeholder="Пароль"
                             className="w-full mb-[15px] h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                            ariaLabel="Введите пароль Wi-Fi"
                         />
                         <FormFieldWrapper
                             label="Скрыть SSID"
@@ -198,6 +206,7 @@ const QRCodeGenerator = () => {
                                 value={wiFiHidden}
                                 onChange={() => setWiFiHidden(prev => !prev)}
                                 className="!w-auto cursor-pointer"
+                                ariaLabel="Скрыть SSID"
                             />
                         </FormFieldWrapper>
                     </>
@@ -221,6 +230,7 @@ const QRCodeGenerator = () => {
                                 spellcheck={false}
                                 id="textarea"
                                 className="text-[20px] max-sm:text-[16px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-black min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
+                                ariaLabel="Введите сообщение"
                                 onChange={handleTextareaChange}></Textarea>
                         </FormFieldWrapper>
                     </div>
@@ -229,23 +239,26 @@ const QRCodeGenerator = () => {
                     <Button
                         onClick={downloadPNG}
                         className={cn("bg-yellow-500 px-[5px] py-[2px] text-white", { "opacity-50": !qrValue })}
+                        ariaLabel="Скачать QR-код в формате PNG"
                         disabled={!qrValue}>
                         Скачать PNG
                     </Button>
                     <Button
                         onClick={downloadSVG}
                         className={cn("bg-green-500 px-[5px] py-[2px] text-white", { "opacity-50": !qrValue })}
+                        ariaLabel="Скачать QR-код в формате SVG"
                         disabled={!qrValue}>
                         Скачать SVG
                     </Button>
                 </div>
                 <Button
                     onClick={generateQrValue}
-                    className="min-h-[34px] max-sm:min-h-[48px] bg-blue-500 text-white rounded text-[20px] max-sm:text-[16px]">
-                    Генерировать
+                    className="min-h-[34px] max-sm:min-h-[48px] bg-blue-500 text-white rounded text-[20px] max-sm:text-[16px]"
+                    ariaLabel="Сгенерировать QR-код">
+                    Создать QR
                 </Button>
             </div>
-            <div className="flex justify-center">{qrValue && <QRCodeCanvas value={qrValue} size={300} />}</div>
+            <div className="flex justify-center">{qrValue && <QRCodeCanvas value={qrValue} size={256} aria-label="Ваш QR-код" />}</div>
         </div>
     );
 };

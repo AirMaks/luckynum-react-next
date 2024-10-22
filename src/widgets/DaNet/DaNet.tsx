@@ -35,15 +35,17 @@ const DaNet = () => {
     return (
         <div>
             <div className="px-[10px] max-w-[430px] mx-auto mt-[20px] max-sm:mt-[10px] select-none">
-                <div className=" bg-[#f7f7f7] shadow  rounded p-[20px] max-sm:px-[10px]">
+                <div className=" bg-[#f5f5f7] shadow  rounded p-[20px] max-sm:px-[10px]">
                     <h1 className="mb-[20px] text-center text-[24px] font-medium max-sm:text-[17px]">
                         Генератор ответов <br />
                         {`${"Да"} или ${"Нет"}`}
                     </h1>
                     <Button
-                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white max-sm:hover:bg-[#f7f7f7] max-sm:hover:text-inherit border border-black rounded text-[20px] max-sm:text-[16px]"
+                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white max-sm:hover:bg-[#f5f5f7] max-sm:hover:text-inherit border border-gray-700 rounded text-[20px] max-sm:text-[16px]"
                         onClick={generateAnswer}
-                        disabled={isLoading}>
+                        disabled={isLoading}
+                        ariaLabel="Кнопка для получения ответа"
+                        ariaDisabled={isLoading}>
                         Получить ответ
                     </Button>
                 </div>
@@ -57,7 +59,9 @@ const DaNet = () => {
                 />
             </div>
             {!isLoading && answer && (
-                <div className="text-[50px] leading-none h-[300px] max-sm:h-[190px] flex justify-center items-center max-sm:text-[30px]">
+                <div
+                    aria-label={`Ваш ответ: ${answer}`}
+                    className="text-[50px] leading-none h-[300px] max-sm:h-[190px] flex justify-center items-center max-sm:text-[30px]">
                     {answer}
                 </div>
             )}

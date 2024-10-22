@@ -11,12 +11,13 @@ interface TextareaProps extends HTMLTextareaProps {
     onBlur?: (value: string) => void;
     color?: string;
     spellcheck?: boolean;
+    ariaLabel?: string;
     id: string;
 }
 
 export const Textarea = memo((props: TextareaProps, ref) => {
     // eslint-disable-next-line react/prop-types
-    const { className, onChange, onFocus, onBlur, children, style, spellcheck, id } = props;
+    const { className, onChange, onFocus, onBlur, children, style, spellcheck, id, ariaLabel } = props;
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         onChange?.(e.target.value);
     };
@@ -34,6 +35,7 @@ export const Textarea = memo((props: TextareaProps, ref) => {
             onFocus={onFocusHandler}
             onBlur={onBlurHandler}
             style={style}
+            aria-label={ariaLabel}
             spellCheck={spellcheck}
             className={cn(cls.Textarea, {}, [className])}>
             {children}

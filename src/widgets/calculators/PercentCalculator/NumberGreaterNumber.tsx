@@ -36,6 +36,7 @@ const NumberGreaterNumber = () => {
                 <div className="flex gap-[10px]">
                     <FormFieldWrapper label="Число 1" htmlFor="number1" className="w-[50%]" labelClassName="text-[13px]">
                         <Input
+                            ariaLabel="Укажите Число 1"
                             rounded={false}
                             id="number1"
                             value={number1.toString()}
@@ -45,6 +46,7 @@ const NumberGreaterNumber = () => {
                     </FormFieldWrapper>
                     <FormFieldWrapper label="Число 2" htmlFor="number2" className="w-[50%]" labelClassName="text-[13px]">
                         <Input
+                            ariaLabel="Укажите Число 2"
                             rounded={false}
                             id="number2"
                             value={number2.toString()}
@@ -55,8 +57,14 @@ const NumberGreaterNumber = () => {
                 </div>
             </div>
             <div className="flex mt-[10px] flex-col">
-                <h2 className="font-medium text-[20px] me-[10px] max-sm:text-[17px]">Результат: {result === Infinity ? 0 : result} %</h2>
-                <p className="text-[20px] max-sm:text-[16px]">
+                <h2
+                    className="font-medium text-[20px] me-[10px] max-sm:text-[17px]"
+                    aria-label={`Ваш результат: ${result === Infinity ? 0 : result} %`}>
+                    Результат: {result === Infinity ? 0 : result} %
+                </h2>
+                <p
+                    className="text-[20px] max-sm:text-[16px]"
+                    aria-label={`${number1} больше чем ${number2} на ${result === Infinity ? 0 : result} %`}>
                     {number1} больше чем {number2} на {result === Infinity ? 0 : result} %
                 </p>
             </div>

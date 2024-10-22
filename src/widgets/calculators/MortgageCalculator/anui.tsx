@@ -83,14 +83,28 @@ export const Anui = (props: any) => {
     const hasErrors = errorPercent || errorPercentTooBig || errorCS || errorPV;
     return (
         <>
-            <SummaryItem text="Ежемесячный платеж:" value={hasErrors ? "" : formatPrice(monthlyPayment)} />
-            <SummaryItem text="Общая выплата:" value={hasErrors ? "" : formatPrice(totalPayment)} />
             <SummaryItem
+                ariaLabel={`Ежемесячный платеж: ${hasErrors ? "" : formatPrice(monthlyPayment)}`}
+                text="Ежемесячный платеж:"
+                value={hasErrors ? "" : formatPrice(monthlyPayment)}
+            />
+            <SummaryItem
+                ariaLabel={`Общая выплата: ${hasErrors ? "" : formatPrice(totalPayment)}`}
+                text="Общая выплата:"
+                value={hasErrors ? "" : formatPrice(totalPayment)}
+            />
+            <SummaryItem
+                ariaLabel={`Сумма кредита: ${hasErrors ? "" : formatPrice(creditSumValue - initialPaymentValue)}`}
                 text="Сумма кредита:"
                 value={hasErrors ? "" : formatPrice(creditSumValue - initialPaymentValue)}
                 className="text-[#0168af]"
             />
-            <SummaryItem text="Переплата по кредиту:" value={hasErrors ? "" : formatPrice(overPay)} className="text-[#489b00]" />
+            <SummaryItem
+                ariaLabel={`Переплата по кредиту: ${hasErrors ? "" : formatPrice(overPay)}`}
+                text="Переплата по кредиту:"
+                value={hasErrors ? "" : formatPrice(overPay)}
+                className="text-[#489b00]"
+            />
             {!hasErrors && <DifferenceBar width={calculateWidth} />}
         </>
     );

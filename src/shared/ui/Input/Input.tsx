@@ -12,11 +12,12 @@ interface InputProps extends HTMLInputProps {
     autofocus?: boolean;
     rounded?: boolean;
     border?: boolean;
+    ariaLabel?: string;
 }
 
 export const Input = memo(
     forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-        const { className, value, onChange, type = "text", placeholder, rounded = true, border = true, ...otherProps } = props;
+        const { className, value, onChange, type = "text", placeholder, rounded = true, border = true, ariaLabel, ...otherProps } = props;
 
         const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             const newValue = type === "checkbox" ? e.target.checked : e.target.value;
@@ -30,11 +31,12 @@ export const Input = memo(
                 checked={type === "checkbox" ? (value as boolean) : undefined}
                 value={type !== "checkbox" ? (value as string) : undefined}
                 onChange={onChangeHandler}
+                aria-label={ariaLabel}
                 className={cn(
                     "bg-transparent border-0 outline-none w-full p-[4px]",
                     {
                         rounded: rounded,
-                        "!border border-black": border
+                        "!border border-gray-700": border
                     },
                     [className]
                 )}

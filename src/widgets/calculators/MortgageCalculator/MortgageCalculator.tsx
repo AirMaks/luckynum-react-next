@@ -195,10 +195,12 @@ const MortgageCalculator = (props: Props) => {
 
     return (
         <>
-            <div className="px-[10px] ms-auto me-auto max-w-[1000px]">
-                <div className="mt-[20px] shadow max-sm:mt-[10px] p-[20px] bg-[#f7f7f7] rounded max-sm:px-[10px]">
-                    <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]">{props.h1}</h1>
-                    <div className="flex justify-between max-sm:flex-col">
+            <div className="px-[10px] ms-auto me-auto max-w-[1000px]" aria-label="Ипотечный калькулятор">
+                <div className="mt-[20px] shadow max-sm:mt-[10px] p-[20px] bg-[#f5f5f7] rounded max-sm:px-[10px]" role="form">
+                    <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]" id="calculator-heading">
+                        {props.h1}
+                    </h1>
+                    <div className="flex justify-between max-sm:flex-col" role="group" aria-labelledby="calculator-heading">
                         <div className="flex flex-col w-1/2 max-sm:w-full gap-[15px]">
                             <FormFieldWrapper label="Сумма ипотеки" htmlFor="credit_sum">
                                 {errorCS && <ErrorBadge text="СИ не может быть меньше/равна ПВ" />}
@@ -209,6 +211,7 @@ const MortgageCalculator = (props: Props) => {
                                     value={formattedCreditSumValue}
                                     onChange={handleChangeCreditSum}
                                     className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                    ariaLabel="Сумма ипотеки"
                                 />
                             </FormFieldWrapper>
                             <FormFieldWrapper label="Процентная ставка" htmlFor="percent">
@@ -220,6 +223,7 @@ const MortgageCalculator = (props: Props) => {
                                     value={percent}
                                     onChange={handlePercentChange}
                                     className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                    ariaLabel="Процентная ставка"
                                 />
                             </FormFieldWrapper>
                             <FormFieldWrapper labelNone>
@@ -230,6 +234,7 @@ const MortgageCalculator = (props: Props) => {
                                     items={keys}
                                     selectedItem={creditTerm}
                                     className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                    ariaDescribedby="Срок ипотеки"
                                 />
                             </FormFieldWrapper>
                             <FormFieldWrapper
@@ -247,6 +252,7 @@ const MortgageCalculator = (props: Props) => {
                                     value={formattedInitialPaymentValue}
                                     onChange={handleChangeInitialPayment}
                                     className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                    ariaLabel="Первоначальный взнос"
                                 />
                             </FormFieldWrapper>
                             <FormFieldWrapper labelNone>
@@ -257,13 +263,14 @@ const MortgageCalculator = (props: Props) => {
                                     items={[ANUI, DIFF]}
                                     selectedItem={type}
                                     className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                    ariaDescribedby="Тип платежа"
                                 />
                             </FormFieldWrapper>
                         </div>
                         <div className="ps-[20px] max-sm:ps-[0] max-sm:mt-[20px] relative w-2/3 max-sm:w-full">
                             {!isMounted ? (
                                 <div className="w-full h-full flex items-center justify-center">
-                                    <Loader />
+                                    <Loader aria-label="Загрузка данных" />
                                 </div>
                             ) : (
                                 <>
@@ -276,7 +283,8 @@ const MortgageCalculator = (props: Props) => {
                 </div>
                 <Link
                     href="/credit-calculator"
-                    className="bg-[#f7f7f7] shadow max-sm:text-[14px] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
+                    className="bg-[#f5f5f7] shadow max-sm:text-[14px] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-medium"
+                    aria-label="Перейти к кредитному калькулятору">
                     Кредитный калькулятор
                 </Link>
                 <Content

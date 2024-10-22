@@ -14,16 +14,17 @@ import Image from "next/image";
 import { FormFieldWrapper } from "shared/ui/FormFieldWrapper";
 
 const RandomWordList = () => {
-    const [randomWord, setRandomWord] = useState<any>("");
+    const [randomWord, setRandomWord] = useState<string>("");
     const [time, setTime] = useState<any>(1);
-    const [isExclude, setIsExclude] = useState(false);
-    const [animation, setAnimation] = useState(false);
-    const refTime = useRef(null);
-    const [textareaValue, setTextareaValue] = useState("");
+    const [isExclude, setIsExclude] = useState<boolean>(false);
+    const [animation, setAnimation] = useState<boolean>(false);
+    const refTime = useRef<HTMLInputElement>(null);
+    const [textareaValue, setTextareaValue] = useState<string>("");
     const src = useSelector(getAnimationSrc);
+
     const onClick = () => {
-        const word: any = getRandomWord(textareaValue, isExclude);
-        if (!Array.isArray(word) && time !== "0" && time !== 0 && String(time).trim() !== "") {
+        const word = getRandomWord(textareaValue, isExclude);
+        if (!Array.isArray(word) && time !== 0 && String(time).trim() !== "") {
             setAnimation(true);
             setTimeout(() => {
                 setAnimation(false);
@@ -34,7 +35,7 @@ const RandomWordList = () => {
         }
     };
 
-    const handleTextareaChange = (value: any) => {
+    const handleTextareaChange = (value: string) => {
         setIsExclude(false);
         setTextareaValue(value);
     };
@@ -46,16 +47,18 @@ const RandomWordList = () => {
     return (
         <>
             <div className="px-[10px]">
-                <div className="mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] shadow max-w-[530px] rounded p-[20px] max-sm:px-[10px]">
+                <div className="mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f5f5f7] shadow max-w-[530px] rounded p-[20px] max-sm:px-[10px]">
                     <h1 className="mb-[20px] text-center text-[24px] font-medium max-sm:text-[17px]">Генератор случайных слов</h1>
-                    <div className="flex mb-[15px] max-sm:mb-[10px] ">
+                    <div className="flex mb-[15px] max-sm:mb-[10px]">
                         <Button
                             classContainer="w-full me-[10px]"
                             className={cn({ "bg-stone-800 text-white": isExclude }, [
-                                "leading-[1] min-h-[40px] max-sm:min-h-[38px] max-sm:m-0 bg-white-500 border border-black rounded text-[18px] max-sm:text-[13px]"
+                                "leading-[1] min-h-[40px] max-sm:min-h-[38px] max-sm:m-0 bg-white-500 border border-gray-700 rounded text-[18px] max-sm:text-[13px]"
                             ])}
                             border
-                            onClick={() => setIsExclude(prev => !prev)}>
+                            onClick={() => setIsExclude(prev => !prev)}
+                            ariaPressed={isExclude}
+                            ariaLabel="Кнопка для исключения повторений">
                             исключить повторения
                         </Button>
                         <FormFieldWrapper label="Время анимации" htmlFor="time">
@@ -66,23 +69,28 @@ const RandomWordList = () => {
                                 id="time"
                                 onChange={handleChangeTime}
                                 value={time}
+                                ariaLabel="Время анимации в секундах"
                             />
                         </FormFieldWrapper>
                     </div>
                     <div className="mb-[15px] max-sm:mb-[10px]">
                         <FormFieldWrapper label="Введите слова через запятую или с переносом строк" htmlFor="textarea">
                             <Textarea
-                                spellcheck={false}
+                                spellCheck={false}
                                 id="textarea"
-                                className="text-[20px] max-sm:text-[16px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-black min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
-                                onChange={handleTextareaChange}></Textarea>
+                                className="text-[20px] max-sm:text-[16px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-gray-700 min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
+                                onChange={handleTextareaChange}
+                                ariaLabel="Текстовое поле для ввода слов через запятую или с переносами строк"
+                            />
                         </FormFieldWrapper>
                     </div>
                     <Button
-                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] max-sm:hover:bg-[#f7f7f7] max-sm:hover:text-inherit bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded text-[20px] max-sm:text-[16px]"
+                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] max-sm:hover:bg-[#f5f5f7] max-sm:hover:text-inherit bg-white-500 hover:bg-stone-800 hover:text-white border border-gray-700 rounded text-[20px] max-sm:text-[16px]"
                         border
                         onClick={onClick}
-                        disabled={animation}>
+                        disabled={animation}
+                        ariaPressed={animation}
+                        ariaLabel="Кнопка, чтобы сгенерировать случайное слово">
                         Получить случайное слово
                     </Button>
                 </div>
@@ -98,7 +106,7 @@ const RandomWordList = () => {
                     alt="кот gif"
                     priority={true}
                 />
-                {!animation && randomWord}
+                {!animation && <span aria-describedby={`Ваше случайное слово: ${randomWord}`}>{randomWord}</span>}
             </div>
         </>
     );

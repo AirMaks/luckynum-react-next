@@ -42,6 +42,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     loader?: boolean;
     border?: boolean;
     loaderOptions?: LoaderOptionsProps;
+    ariaPressed?: boolean;
+    ariaDisabled?: boolean;
+    ariaLabel?: string;
 }
 
 export const Button: FC<ButtonProps> = props => {
@@ -65,12 +68,18 @@ export const Button: FC<ButtonProps> = props => {
         loader,
         border,
         loaderOptions,
+        ariaPressed,
+        ariaLabel,
+        ariaDisabled,
         ...otherProps
     } = props;
 
     return (
         <div className={cn("position-relative", { [cls.w100]: w100 }, [classContainer])}>
             <button
+                aria-pressed={ariaPressed}
+                aria-label={ariaLabel}
+                aria-disabled={ariaDisabled}
                 className={cn("text-center w-full transition-all ease-in-out duration-300", {}, [className])}
                 type="button"
                 {...otherProps}

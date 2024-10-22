@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import cn from "classnames";
 import { Button } from "shared/ui/Button/Button";
 import Slider from "rc-slider";
@@ -55,11 +55,11 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
 
     return (
         <div className="px-[10px] pb-[40px] select-none">
-            <div className="mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f7f7f7] shadow max-w-[430px] rounded p-[20px] max-sm:px-[10px]">
+            <div className="mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f5f5f7] shadow max-w-[430px] rounded p-[20px] max-sm:px-[10px]">
                 <h1 className="mb-[20px] text-center text-[24px] font-medium max-sm:text-[17px]">Генератор паролей</h1>
                 <div className="flex mt-[10px] mb-[20px] flex-col">
                     <div>
-                        <h3 className="mb-[10px] text-[20px] max-sm:text-[16px]">
+                        <h3 className="mb-[10px] text-[20px] max-sm:text-[16px]" aria-live="polite">
                             Длина пароля: <span className="font-medium">{length}</span>
                         </h3>
                         <Slider
@@ -75,13 +75,12 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                             }}
                             min={1}
                             max={20}
-                            className=""
                             value={length}
                             onChange={value => setLength(value)}
                         />
                     </div>
                     <div className="mt-[20px] flex justify-between gap-[10px] max-sm:text-[12px]">
-                        <label className="cursor-pointer flex items-center">
+                        <label className="cursor-pointer flex items-center" aria-label="Включить цифры">
                             <input
                                 type="checkbox"
                                 checked={includeNumbers}
@@ -90,7 +89,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                             />
                             Включить цифры
                         </label>
-                        <label className="cursor-pointer flex items-center">
+                        <label className="cursor-pointer flex items-center" aria-label="Включить символы">
                             <input
                                 type="checkbox"
                                 checked={includeSymbols}
@@ -103,15 +102,18 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                 </div>
 
                 <Button
-                    className="max-sm:hover:bg-[#f7f7f7] max-sm:hover:text-inherit min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white border border-black rounded mt-2 text-[20px] max-sm:text-[16px]"
-                    onClick={generatePassword}>
+                    className="max-sm:hover:bg-[#f5f5f7] max-sm:hover:text-inherit min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white border border-gray-700 rounded mt-2 text-[20px] max-sm:text-[16px]"
+                    onClick={generatePassword}
+                    ariaLabel="Сгенерировать новый пароль">
                     Сгенерировать
                 </Button>
             </div>
             <div className="max-w-[430px] mx-auto text-center mt-[30px]">
-                <h2 className="text-[26px] max-sm:text-[16px] mb-[10px]">Скопируйте ваш пароль кликом:</h2>
+                <h2 className="text-[26px] max-sm:text-[16px] mb-[10px]" aria-level={2} role="heading">
+                    Скопируйте ваш пароль кликом:
+                </h2>
                 <div className="text-[30px] max-sm:text-[20px] font-medium cursor-pointer hover:text-[#45a12e] transition-colors hover:transition-colors">
-                    <CopyToClipboardButton textToCopy={password} />
+                    <CopyToClipboardButton textToCopy={password} ariaLabel="Копировать пароль" />
                 </div>
             </div>
         </div>

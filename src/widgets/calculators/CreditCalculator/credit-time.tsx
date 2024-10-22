@@ -107,10 +107,28 @@ export const CreditTime = (props: any) => {
 
     return (
         <>
-            <SummaryItem text="Срок кредита:" value={hasErrors ? "" : `${formatMonths(creditTime)}`} />
-            <SummaryItem text="Общая выплата:" value={hasErrors ? "" : formatPrice(totalPayment)} />
-            <SummaryItem text="Сумма кредита:" value={hasErrors ? "" : formatPrice(creditSumValue)} className="text-[#0168af]" />
-            <SummaryItem text="Переплата по кредиту:" value={hasErrors ? "" : formatPrice(overPay)} className="text-[#489b00]" />
+            <SummaryItem
+                ariaLabel={`Срок кредита: ${hasErrors ? "" : `${formatMonths(creditTime)}`}`}
+                text="Срок кредита:"
+                value={hasErrors ? "" : `${formatMonths(creditTime)}`}
+            />
+            <SummaryItem
+                ariaLabel={`Общая выплата: ${hasErrors ? "" : formatPrice(totalPayment)}`}
+                text="Общая выплата:"
+                value={hasErrors ? "" : formatPrice(totalPayment)}
+            />
+            <SummaryItem
+                ariaLabel={`Сумма кредита: ${hasErrors ? "" : formatPrice(creditSumValue)}`}
+                text="Сумма кредита:"
+                value={hasErrors ? "" : formatPrice(creditSumValue)}
+                className="text-[#0168af]"
+            />
+            <SummaryItem
+                ariaLabel={`Переплата по кредиту: ${hasErrors ? "" : formatPrice(overPay)}`}
+                text="Переплата по кредиту:"
+                value={hasErrors ? "" : formatPrice(overPay)}
+                className="text-[#489b00]"
+            />
             {!hasErrors && <DifferenceBar width={calculateWidth} />}
         </>
     );

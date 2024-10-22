@@ -86,14 +86,28 @@ export const Anui = (props: any) => {
     const hasErrors = errorPercentTooBig || errorPercent || errorCreditSumZero;
     return (
         <>
-            <SummaryItem text="Ежемесячный платеж:" value={hasErrors ? "" : formatPrice(monthlyPayment > 0 ? monthlyPayment : 0)} />
-            <SummaryItem text="Общая выплата:" value={hasErrors ? "" : formatPrice(totalPayment > 0 ? totalPayment : 0)} />
             <SummaryItem
+                ariaLabel={`Ежемесячный платеж: ${hasErrors ? "" : formatPrice(monthlyPayment > 0 ? monthlyPayment : 0)}`}
+                text="Ежемесячный платеж:"
+                value={hasErrors ? "" : formatPrice(monthlyPayment > 0 ? monthlyPayment : 0)}
+            />
+            <SummaryItem
+                ariaLabel={`Общая выплата: ${hasErrors ? "" : formatPrice(totalPayment > 0 ? totalPayment : 0)}`}
+                text="Общая выплата:"
+                value={hasErrors ? "" : formatPrice(totalPayment > 0 ? totalPayment : 0)}
+            />
+            <SummaryItem
+                ariaLabel={`Сумма кредита: ${hasErrors ? "" : formatPrice(creditSumValue > 0 ? creditSumValue : 0)}`}
                 text="Сумма кредита:"
                 value={hasErrors ? "" : formatPrice(creditSumValue > 0 ? creditSumValue : 0)}
                 className="text-[#0168af]"
             />
-            <SummaryItem text="Переплата по кредиту:" value={hasErrors ? "" : formatPrice(overPay > 0 ? overPay : 0)} className="text-[#489b00]" />
+            <SummaryItem
+                ariaLabel={`Переплата по кредиту: ${hasErrors ? "" : formatPrice(overPay > 0 ? overPay : 0)}`}
+                text="Переплата по кредиту:"
+                value={hasErrors ? "" : formatPrice(overPay > 0 ? overPay : 0)}
+                className="text-[#489b00]"
+            />
             {!hasErrors && <DifferenceBar width={calculateWidth} />}
         </>
     );

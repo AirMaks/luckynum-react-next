@@ -36,6 +36,7 @@ const PercentMinusNumber = () => {
                 <div className="flex gap-[10px]">
                     <FormFieldWrapper label="Число" htmlFor="number" className="w-[50%]" labelClassName="text-[13px]">
                         <Input
+                            ariaLabel="Укажите число"
                             rounded={false}
                             id="number"
                             value={number.toString()}
@@ -45,6 +46,7 @@ const PercentMinusNumber = () => {
                     </FormFieldWrapper>
                     <FormFieldWrapper label="Процент %" htmlFor="percent" className="w-[50%]" labelClassName="text-[13px]">
                         <Input
+                            ariaLabel="Укажите процент"
                             rounded={false}
                             id="percent"
                             value={percent.toString()}
@@ -55,8 +57,10 @@ const PercentMinusNumber = () => {
                 </div>
             </div>
             <div className="flex mt-[10px] flex-col">
-                <h2 className="font-medium text-[20px] me-[10px] max-sm:text-[17px]">Результат: {result === Infinity ? 0 : result}</h2>
-                <p className="text-[20px] max-sm:text-[16px]">
+                <h2 className="font-medium text-[20px] me-[10px] max-sm:text-[17px]" aria-label={`Результат: ${result === Infinity ? 0 : result}`}>
+                    Результат: {result === Infinity ? 0 : result}
+                </h2>
+                <p className="text-[20px] max-sm:text-[16px]" aria-label={`${number} - ${percent}% это ${result === Infinity ? 0 : result}`}>
                     {number} - {percent}% это {result === Infinity ? 0 : result}
                 </p>
             </div>

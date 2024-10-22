@@ -133,12 +133,17 @@ const CalorieCalculator = () => {
 
     return (
         <div className="px-[10px]">
-            <div className="bg-[#f7f7f7] shadow mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] rounded pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[750px] px-[20px]">
-                <h1 className="text-center text-[24px] mb-[10px] font-medium max-sm:text-[17px]">Калькулятор калорий</h1>
-                <p className="mb-[40px] text-center">
-                    Узнайте, сколько калорий, белков, жиров и углеводов нужно для поддержания веса, похудения или набора мышечной массы.{" "}
+            <div
+                className="bg-[#f5f5f7] shadow mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] rounded pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[750px] px-[20px]"
+                role="form"
+                aria-label="Калькулятор калорий">
+                <h1 className="text-center text-[24px] mb-[10px] font-medium max-sm:text-[17px]" id="calories-calculator-heading">
+                    Калькулятор калорий
+                </h1>
+                <p className="mb-[40px] text-center" aria-describedby="calories-calculator-heading">
+                    Узнайте, сколько калорий, белков, жиров и углеводов нужно для поддержания веса, похудения или набора мышечной массы.
                 </p>
-                <div className="flex max-sm:flex-wrap gap-[10px] mb-[10px]">
+                <div className="flex max-sm:flex-wrap gap-[10px] mb-[10px]" role="group" aria-labelledby="calories-calculator-heading">
                     <FormFieldWrapper label="Возраст" htmlFor="age" className="max-sm:w-full">
                         <Input
                             rounded={false}
@@ -146,6 +151,7 @@ const CalorieCalculator = () => {
                             value={age}
                             onChange={handleAgeChange}
                             className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                            ariaLabel="Возраст"
                         />
                     </FormFieldWrapper>
                     <FormFieldWrapper label="Вес (кг)" htmlFor="weight" className="max-sm:w-full">
@@ -155,6 +161,7 @@ const CalorieCalculator = () => {
                             value={weight}
                             onChange={handleWeightChange}
                             className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                            ariaLabel="Вес"
                         />
                     </FormFieldWrapper>
                     <FormFieldWrapper label="Рост (см)" htmlFor="height" className="max-sm:w-full">
@@ -164,6 +171,7 @@ const CalorieCalculator = () => {
                             value={height}
                             onChange={handleHeightChange}
                             className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                            ariaLabel="Рост"
                         />
                     </FormFieldWrapper>
                     <FormFieldWrapper labelNone className="w-[120px] max-sm:w-full">
@@ -174,6 +182,7 @@ const CalorieCalculator = () => {
                             items={["Мужской", "Женский"]}
                             selectedItem={gender}
                             className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px] w-[120px] max-sm:w-full"
+                            ariaDescribedby="Пол"
                         />
                     </FormFieldWrapper>
                 </div>
@@ -185,6 +194,7 @@ const CalorieCalculator = () => {
                         items={["Сидячий образ жизни", "Слабая активность", "Умеренная активность", "Высокая активность", "Супер активность"]}
                         selectedItem={activity}
                         className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px] max-sm:w-full"
+                        ariaDescribedby="Уровень активности"
                     />
                 </FormFieldWrapper>
                 <FormFieldWrapper labelNone className="w-full mb-[10px]">
@@ -195,20 +205,24 @@ const CalorieCalculator = () => {
                         items={["Миффлина-Сен Жеора", "Харриса-Бенедикта"]}
                         selectedItem={formula}
                         className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                        ariaDescribedby="Формула расчета"
                     />
                 </FormFieldWrapper>
                 <Button
                     onClick={calculateCalories}
                     className={cn("py-[7px] bg-blue-500 text-white", {
                         "opacity-50 cursor-default": !Number(age) || !Number(weight) || !Number(height)
-                    })}>
+                    })}
+                    ariaLabel="Рассчитать калории">
                     Рассчитать
                 </Button>
             </div>
-            <div className="mt-[20px] max-sm:mt-[10px]  mx-auto max-w-[750px]">
+            <div className="mt-[20px] max-sm:mt-[10px]  mx-auto max-w-[750px]" role="group" aria-labelledby="calories-result-heading">
                 {calories && (
                     <div>
-                        <h2 className="text-[18px] text-center mb-[10px]">Ваша суточная норма калорий</h2>
+                        <h2 className="text-[18px] text-center mb-[10px]" id="calories-result-heading">
+                            Ваша суточная норма калорий
+                        </h2>
                         <p>
                             <span className="font-bold">Для поддержания веса:</span> {calories.maintenance} ккал
                         </p>

@@ -94,6 +94,11 @@ export const Diff = (props: any) => {
     return (
         <>
             <SummaryItem
+                ariaLabel={`Ежемесячный платеж: ${
+                    hasErrors
+                        ? ""
+                        : `${formatPrice(monthlyPayment[0] > 0 ? monthlyPayment[0] : 0)} ... ${formatPrice(monthlyPayment[monthlyPayment.length - 1] > 0 ? monthlyPayment[monthlyPayment.length - 1] : 0)}`
+                }`}
                 text="Ежемесячный платеж:"
                 value={
                     hasErrors
@@ -101,13 +106,19 @@ export const Diff = (props: any) => {
                         : `${formatPrice(monthlyPayment[0] > 0 ? monthlyPayment[0] : 0)} ... ${formatPrice(monthlyPayment[monthlyPayment.length - 1] > 0 ? monthlyPayment[monthlyPayment.length - 1] : 0)}`
                 }
             />
-            <SummaryItem text="Общая выплата:" value={hasErrors ? "" : formatPrice(totalPayment > 0 ? totalPayment : 0)} />
             <SummaryItem
+                ariaLabel={`Общая выплата: ${hasErrors ? "" : formatPrice(totalPayment > 0 ? totalPayment : 0)}`}
+                text="Общая выплата:"
+                value={hasErrors ? "" : formatPrice(totalPayment > 0 ? totalPayment : 0)}
+            />
+            <SummaryItem
+                ariaLabel={`Сумма кредита: ${hasErrors ? "" : formatPrice(creditSumValue - initialPaymentValue > 0 ? creditSumValue - initialPaymentValue : 0)}`}
                 text="Сумма кредита:"
                 value={hasErrors ? "" : formatPrice(creditSumValue - initialPaymentValue > 0 ? creditSumValue - initialPaymentValue : 0)}
                 className="text-[#0168af]"
             />
             <SummaryItem
+                ariaLabel={`Переплата по кредиту: ${hasErrors ? "" : formatPrice(diffOverPaid > 0 ? diffOverPaid : 0)}`}
                 text="Переплата по кредиту:"
                 value={hasErrors ? "" : formatPrice(diffOverPaid > 0 ? diffOverPaid : 0)}
                 className="text-[#489b00]"

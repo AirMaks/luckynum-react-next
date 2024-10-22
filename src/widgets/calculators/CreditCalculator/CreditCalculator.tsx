@@ -245,6 +245,7 @@ const CreditCalculator = (props: Props) => {
         return (
             <FormFieldWrapper labelNone>
                 <SelectList
+                    ariaDescribedby="Выберите тип расчета кредита"
                     onSelectClick={onSelectCreditTypeClick}
                     isOpenSelect={isOpenSelectCreditType}
                     onSelectItemClick={onSelectCreditTypeItemClick}
@@ -259,7 +260,7 @@ const CreditCalculator = (props: Props) => {
     return (
         <>
             <div className="px-[10px] ms-auto me-auto max-w-[1000px]">
-                <div className="bg-[#f7f7f7] shadow mt-[20px] max-sm:mt-[10px] p-[20px] rounded max-sm:px-[10px]">
+                <div className="bg-[#f5f5f7] shadow mt-[20px] max-sm:mt-[10px] p-[20px] rounded max-sm:px-[10px]">
                     <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]">{renderHeading()}</h1>
                     <div className="flex justify-between max-sm:flex-col">
                         <div className="flex flex-col w-1/2 max-sm:w-full gap-[15px]">
@@ -267,6 +268,7 @@ const CreditCalculator = (props: Props) => {
                             <FormFieldWrapper label="Сумма кредита" htmlFor="credit_sum">
                                 {renderErrorCS()}
                                 <Input
+                                    ariaLabel="Введите сумму кредита"
                                     ref={refCreditSum}
                                     rounded={false}
                                     id="credit_sum"
@@ -279,6 +281,7 @@ const CreditCalculator = (props: Props) => {
                                 <FormFieldWrapper label="Ежемесячный платеж" htmlFor="monthly_payment">
                                     {renderErrorMP()}
                                     <Input
+                                        ariaLabel="Введите ежемесячный платеж"
                                         ref={refMonthlyPayment}
                                         rounded={false}
                                         id="monthly_payment"
@@ -291,6 +294,7 @@ const CreditCalculator = (props: Props) => {
                             <FormFieldWrapper label="Процентная ставка" htmlFor="percent">
                                 {renderErrorPercent()}
                                 <Input
+                                    ariaLabel="Введите процентную ставку"
                                     ref={refPercent}
                                     rounded={false}
                                     id="percent"
@@ -302,6 +306,7 @@ const CreditCalculator = (props: Props) => {
                             {creditType === MONTHLY_PAYMENT && (
                                 <FormFieldWrapper labelNone>
                                     <SelectList
+                                        ariaDescribedby="Введите срок кредита"
                                         onSelectClick={onSelectClick}
                                         isOpenSelect={isOpenSelect}
                                         onSelectItemClick={onSelectItemClick}
@@ -314,6 +319,7 @@ const CreditCalculator = (props: Props) => {
                             {creditType === MONTHLY_PAYMENT && (
                                 <FormFieldWrapper labelNone>
                                     <SelectList
+                                        ariaDescribedby="Введите аннуитетный или дифференцированный тип платежа"
                                         onSelectClick={onSelectTypeClick}
                                         isOpenSelect={isOpenSelectType}
                                         onSelectItemClick={onSelectTypeItemClick}
@@ -345,8 +351,9 @@ const CreditCalculator = (props: Props) => {
                     </div>
                 </div>
                 <Link
+                    aria-label="Перейти на страницу калькулятора ипотеки"
                     href="/mortgage-calculator"
-                    className="bg-[#f7f7f7] shadow max-sm:text-[14px] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
+                    className="bg-[#f5f5f7] shadow max-sm:text-[14px] mt-[15px] px-[15px] py-[5px] rounded inline-block text-black font-medium">
                     Калькулятор ипотеки
                 </Link>
                 <Content

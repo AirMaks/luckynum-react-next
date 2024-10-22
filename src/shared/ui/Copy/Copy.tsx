@@ -3,7 +3,7 @@
 import { useState } from "react";
 import cn from "classnames";
 
-const CopyToClipboardButton = ({ textToCopy }: any) => {
+const CopyToClipboardButton = ({ textToCopy, ariaLabel }: any) => {
     const [isCopied, setIsCopied] = useState(false);
 
     const handleCopyClick = async () => {
@@ -27,7 +27,9 @@ const CopyToClipboardButton = ({ textToCopy }: any) => {
                 )}>
                 Скопировано!
             </div>
-            <button onClick={handleCopyClick}>{textToCopy}</button>
+            <button onClick={handleCopyClick} area-label={ariaLabel} aria-pressed={isCopied}>
+                {textToCopy}
+            </button>
         </div>
     );
 };

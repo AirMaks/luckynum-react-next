@@ -169,11 +169,13 @@ export const TireCalculator: React.FC<Props> = props => {
     const fuelConsumptionChange = calculateFuelConsumptionChange(results?.oldTireData, results?.newTireData);
     return (
         <div className="px-[10px] ms-auto me-auto max-w-[710px]">
-            <div className="mt-[20px] max-sm:mt-[10px] p-[20px] bg-[#f7f7f7] shadow rounded max-sm:px-[10px]">
+            <div className="mt-[20px] max-sm:mt-[10px] p-[20px] bg-[#f5f5f7] shadow rounded max-sm:px-[10px]">
                 <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]">{props.h1}</h1>
 
                 <div className="flex justify-center gap-[15px] mb-[20px]">
                     <button
+                        aria-label="Выбрать миллимметры"
+                        aria-pressed={unit === "mm"}
                         onClick={() => setUnit("mm")}
                         className={cn(
                             "shadow border-0 bg-slate-400 text-white px-[10px] max-sm:px-[5px] leading-none py-[7px] max-sm:py-[5px] w-[100px]",
@@ -184,6 +186,8 @@ export const TireCalculator: React.FC<Props> = props => {
                         ММ
                     </button>
                     <button
+                        aria-label="Выбрать дюймы"
+                        aria-pressed={unit === "inch"}
                         onClick={() => setUnit("inch")}
                         className={cn(
                             "shadow border-0 bg-slate-400 text-white px-[10px] max-sm:px-[5px] leading-none py-[7px] max-sm:py-[5px] w-[100px]",
@@ -205,6 +209,7 @@ export const TireCalculator: React.FC<Props> = props => {
                                 <h2 className="text-[20px] max-sm:text-[14px] truncate">Стандартный размер</h2>
                                 <FormFieldWrapper labelNone>
                                     <SelectList
+                                        ariaDescribedby="Выбор ширины для стандартного размера"
                                         onSelectClick={() => setIsOldWidthSelectOpen(prev => !prev)}
                                         isOpenSelect={isOldWidthSelectOpen}
                                         onSelectItemClick={(value: number) => handleChange("old", "width", value)}
@@ -215,6 +220,7 @@ export const TireCalculator: React.FC<Props> = props => {
                                 </FormFieldWrapper>
                                 <FormFieldWrapper labelNone>
                                     <SelectList
+                                        ariaDescribedby="Выбор профиля для стандартного размера"
                                         onSelectClick={() => setIsOldProfileSelectOpen(prev => !prev)}
                                         isOpenSelect={isOldProfileSelectOpen}
                                         onSelectItemClick={(value: number) => handleChange("old", "profile", value)}
@@ -225,6 +231,7 @@ export const TireCalculator: React.FC<Props> = props => {
                                 </FormFieldWrapper>
                                 <FormFieldWrapper labelNone>
                                     <SelectList
+                                        ariaDescribedby="Выбор диаметра для стандартного размера"
                                         onSelectClick={() => setIsOldDiameterSelectOpen(prev => !prev)}
                                         isOpenSelect={isOldDiameterSelectOpen}
                                         onSelectItemClick={(value: number) => handleChange("old", "diameter", value)}
@@ -239,6 +246,7 @@ export const TireCalculator: React.FC<Props> = props => {
                                 <h2 className="text-[20px] max-sm:text-[14px] truncate">Новый размер</h2>
                                 <FormFieldWrapper labelNone>
                                     <SelectList
+                                        ariaDescribedby="Выбор ширины для нового размера"
                                         onSelectClick={() => setIsNewWidthSelectOpen(prev => !prev)}
                                         isOpenSelect={isNewWidthSelectOpen}
                                         onSelectItemClick={(value: number) => handleChange("new", "width", value)}
@@ -249,6 +257,7 @@ export const TireCalculator: React.FC<Props> = props => {
                                 </FormFieldWrapper>
                                 <FormFieldWrapper labelNone>
                                     <SelectList
+                                        ariaDescribedby="Выбор профиля для стандартного размера"
                                         onSelectClick={() => setIsNewProfileSelectOpen(prev => !prev)}
                                         isOpenSelect={isNewProfileSelectOpen}
                                         onSelectItemClick={(value: number) => handleChange("new", "profile", value)}
@@ -259,6 +268,7 @@ export const TireCalculator: React.FC<Props> = props => {
                                 </FormFieldWrapper>
                                 <FormFieldWrapper labelNone>
                                     <SelectList
+                                        ariaDescribedby="Выбор диаметра для стандартного размера"
                                         onSelectClick={() => setIsNewDiameterSelectOpen(prev => !prev)}
                                         isOpenSelect={isNewDiameterSelectOpen}
                                         onSelectItemClick={(value: number) => handleChange("new", "diameter", value)}
@@ -271,50 +281,67 @@ export const TireCalculator: React.FC<Props> = props => {
                         </div>
                         {results && (
                             <div className="mt-[30px]">
-                                <div className="grid grid-cols-4 mt-[20px] border-l border-t border-black max-sm:text-[12px] break-words">
-                                    <div className="font-medium border-r border-b border-black p-[4px]">Показатель</div>
-                                    <div className="font-medium border-r border-b border-black p-[4px]">Стандартная шина</div>
-                                    <div className="font-medium border-r border-b border-black p-[4px]">Новая шина</div>
-                                    <div className="font-medium border-r border-b border-black p-[4px]">Разница</div>
+                                <div
+                                    className="grid grid-cols-4 mt-[20px] border-l border-t border-gray-700 max-sm:text-[12px] break-words"
+                                    role="table"
+                                    aria-label="Сравнение характеристик шин">
+                                    <div className="font-medium border-r border-b border-gray-700 p-[4px]" role="columnheader">
+                                        Показатель
+                                    </div>
+                                    <div className="font-medium border-r border-b border-gray-700 p-[4px]" role="columnheader">
+                                        Стандартная шина
+                                    </div>
+                                    <div className="font-medium border-r border-b border-gray-700 p-[4px]" role="columnheader">
+                                        Новая шина
+                                    </div>
+                                    <div className="font-medium border-r border-b border-gray-700 p-[4px]" role="columnheader">
+                                        Разница
+                                    </div>
 
-                                    <div className="border-r border-black border-b p-[4px] font-medium">Диаметр</div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px] font-medium" role="rowheader">
+                                        Диаметр
+                                    </div>
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm" ? `${results.oldTireData.diameter} мм` : convertToInches(results.oldTireData.diameter)}
                                     </div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm" ? `${results.newTireData.diameter} мм` : convertToInches(results.newTireData.diameter)}
                                     </div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm"
                                             ? results.differences.diameter
                                             : convertToInches(parseFloat(results.differences.diameter.split(" ")[0]), results.oldTireData.diameter)}
                                     </div>
 
-                                    <div className="border-r border-black border-b p-[4px] font-medium">Ширина</div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px] font-medium" role="rowheader">
+                                        Ширина
+                                    </div>
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm" ? `${results.oldTireData.width} мм` : convertToInches(results.oldTireData.width)}
                                     </div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm" ? `${results.newTireData.width} мм` : convertToInches(results.newTireData.width)}
                                     </div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm"
                                             ? results.differences.width
                                             : convertToInches(parseFloat(results.differences.width.split(" ")[0]), results.oldTireData.width)}
                                     </div>
 
-                                    <div className="border-r border-black border-b p-[4px] font-medium">Длина окружности</div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px] font-medium" role="rowheader">
+                                        Длина окружности
+                                    </div>
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm"
                                             ? `${results.oldTireData.circumference} мм`
                                             : convertToInches(results.oldTireData.circumference)}
                                     </div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm"
                                             ? `${results.newTireData.circumference} мм`
                                             : convertToInches(results.newTireData.circumference)}
                                     </div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm"
                                             ? results.differences.circumference
                                             : convertToInches(
@@ -323,18 +350,20 @@ export const TireCalculator: React.FC<Props> = props => {
                                               )}
                                     </div>
 
-                                    <div className="border-r border-black border-b p-[4px] font-medium">Высота профиля</div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px] font-medium" role="rowheader">
+                                        Высота профиля
+                                    </div>
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm"
                                             ? `${results.oldTireData.profileHeight} мм`
                                             : convertToInches(results.oldTireData.profileHeight)}
                                     </div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm"
                                             ? `${results.newTireData.profileHeight} мм`
                                             : convertToInches(results.newTireData.profileHeight)}
                                     </div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm"
                                             ? results.differences.profileHeight
                                             : convertToInches(
@@ -343,26 +372,26 @@ export const TireCalculator: React.FC<Props> = props => {
                                               )}
                                     </div>
 
-                                    <div className="border-r border-black border-b p-[4px] font-medium">
+                                    <div className="border-r border-gray-700 border-b p-[4px] font-medium" role="rowheader">
                                         {unit === "mm" ? "Оборотов на км" : "Оборотов на милю"}
                                     </div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm" ? results.oldTireData.revolutionsPerKm : results.oldTireData.revolutionsPerMile}
                                     </div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm" ? results.newTireData.revolutionsPerKm : results.newTireData.revolutionsPerMile}
                                     </div>
-                                    <div className="border-r border-black border-b p-[4px]">
+                                    <div className="border-r border-gray-700 border-b p-[4px]" role="cell">
                                         {unit === "mm" ? results.differences.revolutionsPerKm : results.differences.revolutionsPerMile}
                                     </div>
                                 </div>
 
                                 <div className="mt-[20px] select-none">
                                     <div>
-                                        <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center">
+                                        <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center" id="speed-heading">
                                             Скорость автомобиля, {unit === "mm" ? "км/ч" : "миль/ч"}
                                         </h3>
-                                        <div className="grid grid-cols-2 mt-[20px] text-center">
+                                        <div className="grid grid-cols-2 mt-[20px] text-center" role="group" aria-labelledby="speed-heading">
                                             <div className="mb-[10px] text-[18px] max-sm:text-[14px] leading-none">
                                                 При показаниях спидометра на стандартных шинах:
                                             </div>
@@ -375,7 +404,8 @@ export const TireCalculator: React.FC<Props> = props => {
                                                     className={cn(
                                                         "w-[170px] shadow max-sm:w-[130px] max-sm:text-[22px] bg-black p-[10px] leading-none rounded flex items-center justify-center text-teal-500 text-[36px]",
                                                         [props.className]
-                                                    )}>
+                                                    )}
+                                                    aria-label={`Показания спидометра: ${speed}`}>
                                                     {speed}{" "}
                                                 </div>
                                             </div>
@@ -384,7 +414,14 @@ export const TireCalculator: React.FC<Props> = props => {
                                                     className={cn(
                                                         "w-[170px] shadow max-sm:w-[130px] max-sm:text-[22px] bg-black p-[10px] leading-none rounded flex items-center justify-center text-teal-500 text-[36px]",
                                                         [props.className]
-                                                    )}>
+                                                    )}
+                                                    aria-label={`Реальная скорость: ${Number(
+                                                        calculateNewSpeed(
+                                                            results.oldTireData.circumference,
+                                                            results.newTireData.circumference,
+                                                            speed
+                                                        ).toFixed(2)
+                                                    )}`}>
                                                     {Number(
                                                         calculateNewSpeed(
                                                             results.oldTireData.circumference,
@@ -411,6 +448,7 @@ export const TireCalculator: React.FC<Props> = props => {
                                             className="max-sm:!w-[calc(100%-20px)] max-sm:!mx-auto my-[30px]"
                                             value={speed}
                                             onChange={value => setSpeed(Number(value))}
+                                            aria-label="Регулятор скорости"
                                         />
                                     </div>
                                 </div>
@@ -420,7 +458,9 @@ export const TireCalculator: React.FC<Props> = props => {
                                         {
                                             "!bg-red-800": isDanger
                                         }
-                                    )}>
+                                    )}
+                                    role="alert"
+                                    aria-live="polite">
                                     <div>
                                         {unit === "mm" ? (
                                             <div>{results.differences.groundClearanceChange}.</div>
@@ -435,12 +475,16 @@ export const TireCalculator: React.FC<Props> = props => {
                                     <div className="mt-2">{results.newTireData.result}</div>
                                 </div>
                                 <div className="mt-[20px]">
-                                    <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center">Изменение расхода топлива</h3>
+                                    <h3 className="mb-[10px] text-[20px] max-sm:text-[16px] text-center" id="fuel-consumption-heading">
+                                        Изменение расхода топлива
+                                    </h3>
                                     <div
                                         className={cn("text-center text-[20px] max-sm:text-[16px]", {
                                             "text-red-800": fuelConsumptionChange > 0,
                                             "text-green-600": fuelConsumptionChange < 0
-                                        })}>
+                                        })}
+                                        role="alert"
+                                        aria-live="polite">
                                         {fuelConsumptionChange > 0
                                             ? `Расход топлива увеличится примерно на ${Number(fuelConsumptionChange.toFixed(2))}`
                                             : fuelConsumptionChange < 0
@@ -448,7 +492,7 @@ export const TireCalculator: React.FC<Props> = props => {
                                               : Number(fuelConsumptionChange.toFixed(2))}
                                         %
                                     </div>
-                                    <p className="mt-[10px] text-center max-sm:text-[14px]">
+                                    <p className="mt-[10px] text-center max-sm:text-[14px]" aria-describedby="fuel-consumption-heading">
                                         Важно! Этот расчет является приблизительным и не учитывает все факторы, влияющие на расход топлива.
                                         Фактическое изменение расхода топлива может отличаться в зависимости от условий эксплуатации, стиля вождения и
                                         других факторов.

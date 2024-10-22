@@ -41,6 +41,7 @@ const NumberFromNumber = () => {
                             value={number1.toString()}
                             onChange={handleNumber1}
                             className="text-[20px] max-sm:text-[16px] h-[40px] max-sm:h-[38px]"
+                            ariaLabel="Укажите Число 1"
                         />
                     </FormFieldWrapper>
                     <FormFieldWrapper label="Число 2" htmlFor="number2" className="w-[50%]" labelClassName="text-[13px]">
@@ -50,13 +51,22 @@ const NumberFromNumber = () => {
                             value={number2.toString()}
                             onChange={handleNumber2}
                             className="text-[20px] max-sm:text-[16px] h-[40px] max-sm:h-[38px]"
+                            ariaLabel="Укажите Число 2"
                         />
                     </FormFieldWrapper>
                 </div>
             </div>
-            <div className="flex mt-[10px] flex-col">
-                <h2 className="font-medium text-[20px] me-[10px] max-sm:text-[17px]">Результат: {result === Infinity ? 0 : result}%</h2>
-                <p className="text-[20px] max-sm:text-[16px]">
+            <div className="flex mt-[10px] flex-col" aria-label="Результат вычисления процентов">
+                <h2
+                    className="font-medium text-[20px] me-[10px] max-sm:text-[17px]"
+                    id="result-heading"
+                    aria-label={`Ваш результат: ${result === Infinity ? 0 : result}%`}>
+                    Результат: {result === Infinity ? 0 : result}%
+                </h2>
+                <p
+                    className="text-[20px] max-sm:text-[16px]"
+                    aria-describedby="result-heading"
+                    aria-label={`${number1} это ${result === Infinity ? 0 : result}% от ${number2}`}>
                     {number1} это {result === Infinity ? 0 : result}% от {number2}
                 </p>
             </div>

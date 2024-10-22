@@ -82,7 +82,7 @@ export const Sidebar = (props: SidebarProps) => {
                     {
                         "w-[320px]": isOpen
                     },
-                    ["bg-white position-fixed top-[60px] bottom-[26px] h-[calc(100%-60px)] border-gray-200 dark:border-gray-600", className]
+                    ["bg-[#fbfbfb] position-fixed top-[60px] bottom-[26px] h-[calc(100%-60px)] border-gray-200 dark:border-gray-600", className]
                 )}>
                 {children}
             </div>

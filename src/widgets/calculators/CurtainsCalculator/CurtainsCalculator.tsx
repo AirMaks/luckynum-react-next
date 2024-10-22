@@ -47,9 +47,17 @@ const CurtainsCalculator = () => {
     return (
         <>
             <div className="px-[10px]">
-                <div className="bg-[#f7f7f7] shadow mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] rounded pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[750px] px-[20px]">
-                    <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]">Рассчитать ширину штор</h1>
-                    <div className="flex gap-[10px] max-sm:gap-[15px] max-sm:flex-col">
+                <div
+                    className="bg-[#f5f5f7] shadow mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px] rounded pb-[20px] max-sm:pt-[20px] ms-auto me-auto max-w-[750px] px-[20px]"
+                    role="form"
+                    aria-label="Калькулятор ширины штор">
+                    <h1 className="text-center text-[24px] mb-[20px] font-medium max-sm:text-[17px]" id="curtain-width-calculator-heading">
+                        Рассчитать ширину штор
+                    </h1>
+                    <div
+                        className="flex gap-[10px] max-sm:gap-[15px] max-sm:flex-col"
+                        role="group"
+                        aria-labelledby="curtain-width-calculator-heading">
                         <FormFieldWrapper label="Длина карниза (см)" htmlFor="rod_length">
                             <Input
                                 rounded={false}
@@ -57,6 +65,7 @@ const CurtainsCalculator = () => {
                                 value={rodLength}
                                 onChange={handleRodWidth}
                                 className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                ariaLabel="Длина карниза"
                             />
                         </FormFieldWrapper>
 
@@ -70,6 +79,7 @@ const CurtainsCalculator = () => {
                                 value={additionalWidth.toString()}
                                 onChange={handleAdditionalWidth}
                                 className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                ariaLabel="Дополнительная ширина"
                             />
                         </FormFieldWrapper>
                         <FormFieldWrapper label="Коэфф. сборки" htmlFor="gathering_coefficient">
@@ -79,6 +89,7 @@ const CurtainsCalculator = () => {
                                 value={gatheringCoefficient.toString()}
                                 onChange={handleCoeff}
                                 className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                ariaLabel="Коэффициент сборки"
                             />
                         </FormFieldWrapper>
                         <FormFieldWrapper label="Кол-во штор" htmlFor="curtain_number">
@@ -88,22 +99,27 @@ const CurtainsCalculator = () => {
                                 value={curtainNumber.toString()}
                                 onChange={handleCurtainNumber}
                                 className="h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                                ariaLabel="Количество штор"
                             />
                         </FormFieldWrapper>
                     </div>
-                    <div className="flex mt-[10px] flex-wrap">
-                        <h2 className="font-medium text-[20px] me-[10px] max-sm:text-[17px]">Ширина одной шторы:</h2>
-                        <p className="text-[20px] max-sm:text-[16px]">{result || 0} см.</p>
+                    <div className="flex mt-[10px] flex-wrap" role="group" aria-labelledby="curtain-width-result-heading">
+                        <h2 className="font-medium text-[20px] me-[10px] max-sm:text-[17px]" id="curtain-width-result-heading">
+                            Ширина одной шторы:
+                        </h2>
+                        <p className="text-[20px] max-sm:text-[16px]" aria-describedby="curtain-width-result-heading">
+                            {result || 0} см.
+                        </p>
                     </div>
                 </div>
-                <article className="pb-[40px] ms-auto me-auto max-w-[750px]">
-                    <h3 className="font-medium text-[24px] max-sm:text-[16px] mb-[10px] mt-[40px] max-sm:mt-[20px]">
+                <article className="pb-[40px] ms-auto me-auto max-w-[750px]" aria-label="Инструкция по расчету ширины штор">
+                    <h3 className="font-medium text-[24px] max-sm:text-[16px] mb-[10px] mt-[40px] max-sm:mt-[20px]" id="instruction-heading">
                         Как рассчитать ширину штор на нашем калькуляторе?
                     </h3>
-                    <strong className="font-semibold max-sm:text-[14px]">
+                    <strong className="font-semibold max-sm:text-[14px]" aria-describedby="instruction-heading">
                         При определении ширины занавесей следует принимать во внимание несколько ключевых факторов:
                     </strong>
-                    <p className="mt-[15px] max-sm:text-[14px]">
+                    <p className="mt-[15px] max-sm:text-[14px]" aria-describedby="instruction-heading">
                         <span className="block mb-[20px]">
                             - <b>Длина карниза</b> должна быть длиннее оконного проема на 20-25 см с каждой стороны.
                         </span>
@@ -116,17 +132,17 @@ const CurtainsCalculator = () => {
                             alt="расчет ширины штор"
                         />
                     </p>
-                    <p className="mt-[30px] max-sm:text-[14px]">
+                    <p className="mt-[30px] max-sm:text-[14px]" aria-describedby="instruction-heading">
                         <span className="block mb-[20px]">
                             - <b>Припуск</b> в размере 6 см нужен для обработки боковых сторон штор.
                         </span>
                     </p>
-                    <p className="mt-[15px] max-sm:text-[14px]">
+                    <p className="mt-[15px] max-sm:text-[14px]" aria-describedby="instruction-heading">
                         <span className="block mb-[20px]">
                             - <b>Для плотного соединения</b> двух задернутых штор необходимо добавить 15 см, чтобы они налегали друг на друга.
                         </span>
                     </p>
-                    <p className="mt-[15px] max-sm:text-[14px]">
+                    <p className="mt-[15px] max-sm:text-[14px]" aria-describedby="instruction-heading">
                         <span className="block mb-[10px]">
                             - <b>Коэффициент сборки</b>, зависит от плотности и фактуры материала:
                         </span>
@@ -144,7 +160,7 @@ const CurtainsCalculator = () => {
                         </span>
                     </p>
 
-                    <p className="mt-[15px] max-sm:text-[14px]">
+                    <p className="mt-[15px] max-sm:text-[14px]" aria-describedby="instruction-heading">
                         <span className="block mb-[10px]">
                             - <b>При использовании петель</b>:
                         </span>
@@ -159,11 +175,13 @@ const CurtainsCalculator = () => {
                             количества складок.
                         </span>
                     </p>
-                    <p className="mt-[15px] mb-[15px] max-sm:text-[14px]">
+                    <p className="mt-[15px] mb-[15px] max-sm:text-[14px]" aria-describedby="instruction-heading">
                         - <b>Для угловых, эркерных и мансардных</b> штор добавляется <b>по 10 см</b> запаса ткани на каждый изгиб и угол.
                     </p>
-                    <strong className="font-semibold max-sm:text-[14px]">Формула для расчета ширины штор: </strong>
-                    <p className="mt-[5px] max-sm:text-[14px]">
+                    <strong className="font-semibold max-sm:text-[14px]" aria-describedby="instruction-heading">
+                        Формула для расчета ширины штор:
+                    </strong>
+                    <p className="mt-[5px] max-sm:text-[14px]" aria-describedby="instruction-heading">
                         (<b>Длина карниза</b> + <b>припуски на загиб с обеих сторон (6 см)</b> + <b>на плотное соединение двух полотен (15 см)</b> +{" "}
                         <b>дополнительно до 20 см с каждой стороны в зависимости от вида крепления</b> +{" "}
                         <b>если угловые, эркерные или мансардные шторы 10 см</b>) * <b>на коэффициент сборки</b>.

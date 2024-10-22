@@ -18,7 +18,7 @@ export const ScheduleModal = (props: any) => {
                     <CloseIcon width={30} height={30} onClick={() => setModalIsOpen(false)} className={cn("cursor-pointer fill-stone-800")} />
                 </div>
                 {paymentSchedule.length > 0 && (
-                    <div className="border border-black overflow-x-auto">
+                    <div className="border border-gray-700 overflow-x-auto">
                         <div className="w-max">
                             <div className="bg-[#b0e5ff] border-b border-b-black flex justify-between font-medium p-[10px] text-center">
                                 <div className="w-[200px]">Дата</div>

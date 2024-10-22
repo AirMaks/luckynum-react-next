@@ -27,15 +27,16 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
 
     return (
         <Sidebar isOpen={isOpenMenu} className={cn("right-[0] border-l !z-[1002]", { [cls.opened]: isOpenMenu }, [])}>
-            <nav className={cls.items}>
+            <nav className={cls.items} aria-label="Меню сайта">
                 <ul>
                     <li>
                         <AppLink
                             theme={AppLinkTheme.SECONDARY}
                             href={"/generator-sluchainykh-chisel"}
                             className={cn(cls.link, { [cls.active]: pathname === "/generator-sluchainykh-chisel" })}
-                            onClick={onClickMenuItem}>
-                            <DiceIcon className={cls.icon} />
+                            onClick={onClickMenuItem}
+                            aria-label="Генератор случайных чисел">
+                            <DiceIcon className={cls.icon} aria-hidden="true" />
                             <span className={cls.link_text}>Генератор случайных чисел</span>
                         </AppLink>
                     </li>
@@ -44,8 +45,9 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             theme={AppLinkTheme.SECONDARY}
                             href={"/generator-sluchainykh-slov"}
                             className={cn(cls.link, { [cls.active]: pathname === "/generator-sluchainykh-slov" })}
-                            onClick={onClickMenuItem}>
-                            <ListIcon className={cls.icon} />
+                            onClick={onClickMenuItem}
+                            aria-label="Генератор случайных слов">
+                            <ListIcon className={cls.icon} aria-hidden="true" />
                             <span className={cls.link_text}>Генератор случайных слов</span>
                         </AppLink>
                     </li>
@@ -54,8 +56,9 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             theme={AppLinkTheme.SECONDARY}
                             href={"/generator-parolei"}
                             className={cn(cls.link, { [cls.active]: pathname === "/generator-parolei" })}
-                            onClick={onClickMenuItem}>
-                            <PasswordIcon className={cls.icon} />
+                            onClick={onClickMenuItem}
+                            aria-label="Генератор паролей">
+                            <PasswordIcon className={cls.icon} aria-hidden="true" />
                             <span className={cls.link_text}>Генератор паролей</span>
                         </AppLink>
                     </li>
@@ -64,8 +67,9 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             theme={AppLinkTheme.SECONDARY}
                             href={"/generator-da-net"}
                             className={cn(cls.link, { [cls.active]: pathname === "/generator-da-net" })}
-                            onClick={onClickMenuItem}>
-                            <BallIcon className={cls.icon} />
+                            onClick={onClickMenuItem}
+                            aria-label="Генератор Да / Нет">
+                            <BallIcon className={cls.icon} aria-hidden="true" />
                             <span className={cls.link_text}>Генератор Да / Нет</span>
                         </AppLink>
                     </li>
@@ -74,8 +78,9 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             theme={AppLinkTheme.SECONDARY}
                             href={"/qr-code-generator"}
                             className={cn(cls.link, { [cls.active]: pathname === "/qr-code-generator" })}
-                            onClick={onClickMenuItem}>
-                            <QrCodeIcon className={cls.icon} />
+                            onClick={onClickMenuItem}
+                            aria-label="Генератор QR кода">
+                            <QrCodeIcon className={cls.icon} aria-hidden="true" />
                             <span className={cls.link_text}>Генератор QR кода</span>
                         </AppLink>
                     </li>
@@ -84,8 +89,9 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             theme={AppLinkTheme.SECONDARY}
                             href={"/mortgage-calculator"}
                             className={cn(cls.link, { [cls.active]: pathname === "/mortgage-calculator" })}
-                            onClick={onClickMenuItem}>
-                            <CalcIcon className={cls.icon} />
+                            onClick={onClickMenuItem}
+                            aria-label="Калькулятор ипотеки">
+                            <CalcIcon className={cls.icon} aria-hidden="true" />
                             <span className={cls.link_text}>Калькулятор ипотеки</span>
                         </AppLink>
                     </li>
@@ -94,8 +100,9 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             theme={AppLinkTheme.SECONDARY}
                             href={"/credit-calculator"}
                             className={cn(cls.link, { [cls.active]: pathname === "/credit-calculator" })}
-                            onClick={onClickMenuItem}>
-                            <CreditCardIcon className={cls.icon} />
+                            onClick={onClickMenuItem}
+                            aria-label="Кредитный калькулятор">
+                            <CreditCardIcon className={cls.icon} aria-hidden="true" />
                             <span className={cls.link_text}>Кредитный калькулятор</span>
                         </AppLink>
                     </li>
@@ -104,8 +111,9 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             theme={AppLinkTheme.SECONDARY}
                             href={"/percent-calculator"}
                             className={cn(cls.link, { [cls.active]: pathname === "/percent-calculator" })}
-                            onClick={onClickMenuItem}>
-                            <PercentCalcIcon className={cls.icon} />
+                            onClick={onClickMenuItem}
+                            aria-label="Калькулятор процентов">
+                            <PercentCalcIcon className={cls.icon} aria-hidden="true" />
                             <span className={cls.link_text}>Калькулятор процентов</span>
                         </AppLink>
                     </li>
@@ -114,8 +122,9 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             theme={AppLinkTheme.SECONDARY}
                             href={"/kalkulyator-shin"}
                             className={cn(cls.link, { [cls.active]: pathname === "/kalkulyator-shin" })}
-                            onClick={onClickMenuItem}>
-                            <TireIcon className={cls.icon} />
+                            onClick={onClickMenuItem}
+                            aria-label="Калькулятор шин">
+                            <TireIcon className={cls.icon} aria-hidden="true" />
                             <span className={cls.link_text}>Калькулятор шин</span>
                         </AppLink>
                     </li>
@@ -124,8 +133,9 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             theme={AppLinkTheme.SECONDARY}
                             href={"/kalkulyator-kaloriy"}
                             className={cn(cls.link, { [cls.active]: pathname === "/kalkulyator-kaloriy" })}
-                            onClick={onClickMenuItem}>
-                            <CaloryIcon className={cls.icon} />
+                            onClick={onClickMenuItem}
+                            aria-label="Калькулятор калорий">
+                            <CaloryIcon className={cls.icon} aria-hidden="true" />
                             <span className={cls.link_text}>Калькулятор калорий</span>
                         </AppLink>
                     </li>
@@ -134,8 +144,9 @@ export const Menu = memo(({ isOpenMenu, onClickMenuItem }: MenuProps) => {
                             theme={AppLinkTheme.SECONDARY}
                             href={"/shirina-shtor"}
                             className={cn(cls.link, { [cls.active]: pathname === "/shirina-shtor" })}
-                            onClick={onClickMenuItem}>
-                            <MeasureIcon className={cls.icon} />
+                            onClick={onClickMenuItem}
+                            aria-label="Калькулятор расчета ширины штор">
+                            <MeasureIcon className={cls.icon} aria-hidden="true" />
                             <span className={cls.link_text}>Калькулятор расчета ширины штор</span>
                         </AppLink>
                     </li>
