@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { metaData } from "./metadata";
 import Link from "next/link";
 import ImageOg from "../../public/og-main-page.jpg";
+import { Suspense } from "react";
+import YandexAd from "./adds";
 
 export const metadata: Metadata = {
     ...metaData({ title, description, keywords, img: ImageOg })
@@ -25,6 +27,9 @@ function addProductJsonLd() {
 export default function Home() {
     return (
         <>
+            <Suspense fallback={<></>}>
+                <YandexAd id="R-A-11866944-12" className="max-w-[960px] h-[70px] mx-auto pt-[20px] max-sm:px-[10px] max-sm:pt-[0]" />
+            </Suspense>
             <script type="application/ld+json" dangerouslySetInnerHTML={addProductJsonLd()} key="page-jsonld" />
             <main className="px-[10px] ms-auto me-auto max-w-[1000px]" role="main">
                 <div className="mt-[20px]">
