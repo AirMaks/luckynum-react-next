@@ -138,8 +138,8 @@ export default function Home() {
                 <article className="bg-[#f5f5f7] shadow mt-[20px] max-sm:mt-[10px] p-[20px] max-sm:px-[10px]">
                     <h1 className="text-[24px] mb-[20px] font-medium max-sm:text-[17px]">Сервис онлайн калькуляторов и инструментов для расчета</h1>
                     <p className="mb-[20px] text-[20px] max-sm:text-[16px]">
-                        <span className="font-bold">LUCKY-NUM.RU</span> — это сайт-приложение с каталогом калькуляторов для точных и быстрых расчетов, а
-                        также различных генераторов.
+                        <span className="font-bold">LUCKY-NUM.RU</span> — это сайт-приложение с каталогом калькуляторов для точных и быстрых расчетов,
+                        а также различных генераторов.
                     </p>
                     <section aria-labelledby="calculator-types-heading">
                         <h2 id="calculator-types-heading" className="mb-[5px] text-[18px] max-sm:text-[16px]">

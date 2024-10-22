@@ -36,7 +36,6 @@ const NumberFromNumber = () => {
                 <div className="flex gap-[10px]">
                     <FormFieldWrapper label="Число 1" htmlFor="number1" className="w-[50%]" labelClassName="text-[13px]">
                         <Input
-                            autofocus
                             rounded={false}
                             id="number1"
                             value={number1.toString()}

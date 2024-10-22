@@ -36,7 +36,6 @@ const PercentMinusNumber = () => {
                 <div className="flex gap-[10px]">
                     <FormFieldWrapper label="Число" htmlFor="number" className="w-[50%]" labelClassName="text-[13px]">
                         <Input
-                            autofocus
                             ariaLabel="Укажите число"
                             rounded={false}
                             id="number"

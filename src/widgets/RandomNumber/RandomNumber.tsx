@@ -129,10 +129,13 @@ const RandomNumber = () => {
                     </Button>
                 </div>
                 <div
-                    className={cn("!text-[80px] max-sm:!text-[67px] flex justify-center pt-[70px] max-sm:pt-[40px]", {
-                        "!pt-[20px]": typeof state.number !== "number",
-                        "!pt-0": state.animation
-                    })}
+                    className={cn(
+                        "min-h-[300px] max-sm:min-h-[190px] !text-[80px] max-sm:!text-[67px] flex justify-center pt-[70px] max-sm:pt-[40px]",
+                        {
+                            "!pt-[20px]": typeof state.number !== "number",
+                            "!pt-0": state.animation
+                        }
+                    )}
                     role="status"
                     aria-live="polite">
                     <Image
@@ -158,6 +161,9 @@ const RandomNumber = () => {
                         ))}
                 </div>
             </div>
+            <p className="mx-auto max-w-[430px] text-justify max-sm:px-[10px]">
+                {`Генератор случайных чисел — это удобный инструмент для быстрого получения случайного числа в заданном диапазоне. Просто введите начальное значение в поле "${"От"}" и конечное значение в поле "${"До"}". Если вы хотите исключить повторения чисел, активируйте опцию "Исключить повторения". Для добавления интерактива можно задать время анимации в секундах, чтобы результат отображался с задержкой, создавая эффект ожидания.`}
+            </p>
         </>
     );
 };

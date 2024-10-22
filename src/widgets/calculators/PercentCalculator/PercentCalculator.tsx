@@ -52,6 +52,7 @@ const PercentCalculator = () => {
                     <FormFieldWrapper labelNone className="mb-[15px]">
                         <SelectList
                             ariaDescribedby="Выбор типа расчета"
+                            autofocus
                             onSelectClick={onSelectTypeClick}
                             isOpenSelect={isOpenSelectType}
                             onSelectItemClick={onSelectTypeItemClick}
@@ -75,6 +76,17 @@ const PercentCalculator = () => {
                     {percentType === PERCENT_TYPE_NUMBER_LESS_NUMBER && <NumberLessNumber />}
                 </div>
             </div>
+            <p className="mt-[20px] mx-auto max-w-[550px] text-justify max-sm:px-[10px] mb-[20px]">
+                Калькулятор процентов — это простой и удобный инструмент для быстрого расчета процентных значений. Вы можете узнать, сколько процентов
+                составляет одно число от другого, найти процент от числа, прибавить или вычесть процент к числу, а также рассчитать, на сколько
+                процентов одно число больше или меньше другого. Этот калькулятор поможет вам легко выполнять финансовые расчеты, планировать бюджет и
+                анализировать данные.
+            </p>
+            <p className="mt-[20px] mx-auto max-w-[550px] text-justify max-sm:px-[10px] mb-[20px]">
+                Кроме того, с его помощью вы сможете точно определить изменения в любых величинах, будь то рост цен, скидки или изменение показателей
+                прибыли. Такой инструмент полезен не только в бизнесе, но и в повседневной жизни, например, для расчета скидок при покупках или
+                определения процентной прибыли от инвестиций.
+            </p>
         </>
     );
 };

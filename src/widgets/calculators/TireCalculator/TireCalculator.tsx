@@ -511,10 +511,18 @@ export const TireCalculator: React.FC<Props> = props => {
                                                   : Number(fuelConsumptionChange.toFixed(2))}
                                             %
                                         </div>
-                                        <p className="mt-[10px] text-center max-sm:text-[14px]" aria-describedby="fuel-consumption-heading">
+                                        <p className="mt-[10px] max-sm:text-[14px] text-justify" aria-describedby="fuel-consumption-heading">
                                             Важно! Этот расчет является приблизительным и не учитывает все факторы, влияющие на расход топлива.
                                             Фактическое изменение расхода топлива может отличаться в зависимости от условий эксплуатации, стиля
                                             вождения и других факторов.
+                                        </p>
+                                        <p
+                                            className="p-[10px] rounded bg-slate-300 mt-[10px] text-justify max-sm:text-[14px]"
+                                            aria-describedby="fuel-consumption-heading">
+                                            Калькулятор шин — удобный инструмент для точного расчета параметров новых колес вашего автомобиля. Укажите
+                                            ширину, диаметр и профиль старой шины, затем введите данные для новой шины. В результате вы получите
+                                            информацию о том, как изменится клиренс, расход топлива и скорость на новых колесах. Этот расчет поможет
+                                            вам подобрать оптимальные шины, обеспечив комфорт и безопасность на дороге.
                                         </p>
                                     </div>
                                 </div>

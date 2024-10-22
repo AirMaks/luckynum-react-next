@@ -112,10 +112,13 @@ const RandomWordList = () => {
                 </div>
             </div>
             <div
-                className={cn("text-[46px] max-sm:text-[20px] text-center pt-[30px] flex justify-center max-sm:px-[10px] leading-tight", {
-                    "!text-[24px] max-sm:!text-[20px]": Array.isArray(randomWord),
-                    "!pt-0": animation
-                })}>
+                className={cn(
+                    "min-h-[300px] max-sm:min-h-[180px] text-[46px] max-sm:text-[20px] text-center pt-[30px] flex justify-center max-sm:px-[10px] leading-tight",
+                    {
+                        "!text-[24px] max-sm:!text-[20px]": Array.isArray(randomWord),
+                        "!pt-0": animation
+                    }
+                )}>
                 <Image
                     src={src || gif1}
                     className={cn("max-sm:max-h-[180px] object-contain", { hidden: !animation })}
@@ -123,14 +126,17 @@ const RandomWordList = () => {
                     priority={true}
                 />
                 {!animation && (
-                    <>
+                    <div className="flex items-center justify-center">
                         <span id="random-word-description" className="sr-only">
                             Ваше случайное слово: {randomWord}
                         </span>
                         <span aria-describedby="random-word-description">{randomWord}</span>
-                    </>
+                    </div>
                 )}
             </div>
+            <p className="mx-auto max-w-[530px] text-justify max-sm:px-[10px]">
+                {`Генератор случайных слов — это простой и удобный способ выбрать случайное слово из вашего списка. Введите слова, разделяя их запятыми или размещая каждое слово на новой строке. Чтобы избежать повторяющихся слов, просто нажмите на кнопку "${"Исключить повторения"}". Также вы можете настроить время анимации в секундах, чтобы результат появился с задержкой, добавляя интригу и динамику в процесс выбора.`}
+            </p>
         </>
     );
 };

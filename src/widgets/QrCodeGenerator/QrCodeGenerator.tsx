@@ -157,6 +157,7 @@ const QRCodeGenerator = () => {
                     </h1>
                     <SelectList
                         onSelectClick={onSelectClick}
+                        autofocus
                         isOpenSelect={isOpenSelect}
                         onSelectItemClick={onSelectItemClick}
                         items={["Ссылка", WHATSAPP, TELEGRAM, SMS, WIFI]}
@@ -177,6 +178,7 @@ const QRCodeGenerator = () => {
                     {qrType === TELEGRAM && (
                         <Input
                             type="text"
+                            autofocus
                             value={telegramInputValue}
                             onChange={handleTelegramInputChange}
                             placeholder="Введите никнейм"
@@ -188,6 +190,7 @@ const QRCodeGenerator = () => {
                         <>
                             <Input
                                 type="text"
+                                autofocus
                                 value={ssidInputValue}
                                 onChange={handleSsidInputChange}
                                 placeholder="SSID"
@@ -274,7 +277,14 @@ const QRCodeGenerator = () => {
                         Создать QR
                     </Button>
                 </div>
-                <div className="flex justify-center">{qrValue && <QRCodeCanvas value={qrValue} size={256} aria-label="Ваш QR-код" />}</div>
+                <div className="min-h-[256px] flex justify-center">
+                    {qrValue && <QRCodeCanvas value={qrValue} size={256} aria-label="Ваш QR-код" />}
+                </div>
+                <p className="mt-[20px] mx-auto max-w-[430px] text-justify max-sm:px-[10px] mb-[20px]">
+                    Генератор QR-кодов — это простой и быстрый способ создать нужный вам QR-код. Хотите поделиться ссылкой на WhatsApp, Telegram или
+                    отправить SMS? Просто введите ссылку или номер телефона, а для создания QR-кода для Wi-Fi — укажите данные сети. После генерации
+                    вы сможете легко скачать QR-код в формате PNG или SVG и использовать его где угодно.
+                </p>
             </div>
         </>
     );

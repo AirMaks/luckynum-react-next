@@ -10,11 +10,13 @@ interface SelectListProps {
     selectedItem: number | string;
     isOpenSelect?: boolean;
     ariaDescribedby?: string;
+    autofocus?: boolean;
 }
 
 export const SelectList: React.FC<SelectListProps> = props => {
-    const { className, onSelectClick, onSelectItemClick, items, selectedItem, isOpenSelect = false, ariaDescribedby } = props;
+    const { className, onSelectClick, onSelectItemClick, items, selectedItem, isOpenSelect = false, autofocus } = props;
     const selectRef = useRef<HTMLDivElement>(null);
+    const buttonRef = useRef<HTMLDivElement>(null); // Ссылка на элемент для фокуса
     const [isOpen, setIsOpen] = useState(isOpenSelect);
     const [highlightedIndex, setHighlightedIndex] = useState(-1); // Индекс выделенного элемента
 
@@ -46,19 +48,44 @@ export const SelectList: React.FC<SelectListProps> = props => {
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Enter" || e.key === " ") {
             setIsOpen(!isOpen);
+            e.preventDefault(); // Предотвращаем действие по умолчанию для Enter и пробела
         }
 
         if (isOpen) {
             if (e.key === "ArrowDown") {
+                e.preventDefault(); // Предотвращаем прокрутку страницы при нажатии вниз
                 setHighlightedIndex(prevIndex => (prevIndex < items.length - 1 ? prevIndex + 1 : prevIndex));
             } else if (e.key === "ArrowUp") {
+                e.preventDefault(); // Предотвращаем прокрутку страницы при нажатии вверх
                 setHighlightedIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
             } else if (e.key === "Enter" && highlightedIndex >= 0) {
                 onSelectItemClick(items[highlightedIndex]);
                 setIsOpen(false);
+                e.preventDefault(); // Предотвращаем действие по умолчанию для Enter
             }
         }
     };
+
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                setIsOpen(false); // Закрываем селект при нажатии на Escape
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, []);
+
+    // Устанавливаем автофокус, если свойство autofocus передано
+    useEffect(() => {
+        if (autofocus && buttonRef.current) {
+            buttonRef.current.focus();
+        }
+    }, [autofocus]);
 
     useEffect(() => {
         setHighlightedIndex(-1);
@@ -84,8 +111,9 @@ export const SelectList: React.FC<SelectListProps> = props => {
             >
                 <ArrowIcon className="absolute top-[50%] right-[5px] translate-y-[-50%] pointer-events-none" />
                 <div
+                    ref={buttonRef} // Устанавливаем ссылку на элемент
                     onClick={handleSelectClick}
-                    className="cursor-pointer truncate pe-[10px] w-full"
+                    className="outline-none cursor-pointer truncate pe-[10px] w-full"
                     id={labelId}
                     tabIndex={0} // Позволяет фокусироваться на элементе
                     role="button"

@@ -13,7 +13,7 @@ function addProductJsonLd() {
           "@type": "WebApplication",
           "name": "Калькулятор расчета ширины штор",
           "url": "https://lucky-num.ru/mortgage-calculator",
-          "description": "Калькулятор ширины штор помогает рассчитать размеры штор для вашего декора..",
+          "description": "Калькулятор ширины штор помогает рассчитать размеры штор для вашего декора.",
           "applicationCategory": "Utility",
           "operatingSystem": "All"
         }`

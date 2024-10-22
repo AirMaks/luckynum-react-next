@@ -36,7 +36,6 @@ const PercentFromNumber = () => {
                 <div className="flex gap-[10px]">
                     <FormFieldWrapper label="Процент %" htmlFor="percent" className="w-[50%]" labelClassName="text-[13px]">
                         <Input
-                            autofocus
                             ariaLabel="Укажите процент"
                             rounded={false}
                             id="percent"
