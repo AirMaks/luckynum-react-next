@@ -12,6 +12,8 @@ import { getAnimationSrc } from "features/Animations/model/selectors/getAnimatio
 import gif1 from "shared/assets/images/1.gif";
 import Image from "next/image";
 import { FormFieldWrapper } from "shared/ui/FormFieldWrapper";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
 function addProductJsonLd() {
     return {
@@ -63,45 +65,57 @@ const RandomWordList = () => {
             <script type="application/ld+json" dangerouslySetInnerHTML={addProductJsonLd()} key="page-jsonld" />
             <div className="px-[10px]">
                 <div className="mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f5f5f7] shadow max-w-[530px] rounded p-[20px] max-sm:px-[10px]">
-                    <h1 className="mb-[20px] text-center text-[24px] font-medium max-sm:text-[17px]">Генератор случайных слов</h1>
-                    <div className="flex mb-[15px] max-sm:mb-[10px]">
-                        <Button
-                            classContainer="w-full me-[10px]"
-                            className={cn({ "bg-stone-800 text-white": isExclude }, [
-                                "leading-[1] min-h-[40px] max-sm:min-h-[38px] max-sm:m-0 bg-white-500 border border-gray-700 rounded text-[18px] max-sm:text-[13px]"
-                            ])}
-                            border
-                            onClick={() => setIsExclude(prev => !prev)}
-                            ariaPressed={isExclude}
-                            ariaLabel="Кнопка для исключения повторений">
-                            исключить повторения
-                        </Button>
-                        <FormFieldWrapper label="Время анимации" htmlFor="time">
-                            <Input
-                                ref={refTime}
-                                className="w-[100px] min-h-[40px] max-sm:min-h-[38px] !text-[20px] max-sm:!text-[16px] px-[6px] py-[4px] leading-none"
-                                rounded={false}
-                                id="time"
-                                onChange={handleChangeTime}
-                                value={time}
-                                ariaLabel="Время анимации в секундах"
-                            />
-                        </FormFieldWrapper>
-                    </div>
-                    <div className="mb-[15px] max-sm:mb-[10px]">
-                        <FormFieldWrapper label="Введите слова через запятую или с переносом строк" htmlFor="textarea">
+                    <h1 className="text-center text-[24px] font-medium max-sm:text-[17px]">Генератор случайных слов</h1>
+                    <p className="text-[14px] mb-[20px] text-[#666]">Введите слова через запятую или каждое слово с новой строки.</p>
+                    <div className="mb-[10px]">
+                        <FormFieldWrapper labelNone htmlFor="textarea">
                             <Textarea
                                 spellCheck={false}
                                 autofocus
                                 id="textarea"
-                                className="text-[20px] max-sm:text-[16px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-gray-700 min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
+                                className="text-[20px] max-sm:text-[16px] block no-underline transition-all w-full outline-none p-[6px] leading-tight border border-gray-700 min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
                                 onChange={handleTextareaChange}
                                 ariaLabel="Текстовое поле для ввода слов через запятую или с переносами строк"
                             />
                         </FormFieldWrapper>
                     </div>
+                    <h3 className="mb-[10px] text-[14px]" aria-live="polite">
+                        Время анимации, сек: <span className="font-medium">{time}</span>
+                    </h3>
+                    <div className="mb-[20px] w-[calc(100%-15px)] mx-auto">
+                        <Slider
+                            trackStyle={{ backgroundColor: "#3B82F6" }}
+                            handleStyle={{
+                                backgroundColor: "#3B82F6",
+                                borderColor: "#3B82F6",
+                                opacity: 1,
+                                boxShadow: "none",
+                                width: "15px",
+                                height: "15px",
+                                marginTop: "-5px"
+                            }}
+                            min={1}
+                            max={10}
+                            value={time}
+                            onChange={value => setTime(Number(value))}
+                        />
+                    </div>
+                    <FormFieldWrapper
+                        label="исключить повторения"
+                        htmlFor="exclude"
+                        labelClassName="cursor-pointer !relative p-0 ml-[10px] bg-transparent !top-[unset]"
+                        className="flex mb-[20px] items-center">
+                        <Input
+                            id="exclude"
+                            type="checkbox"
+                            value={isExclude}
+                            onChange={() => setIsExclude(prev => !prev)}
+                            className="!w-auto cursor-pointer absolute"
+                            ariaLabel="Кнопка для исключения повторений"
+                        />
+                    </FormFieldWrapper>
                     <Button
-                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] max-sm:hover:bg-[#f5f5f7] max-sm:hover:text-inherit bg-white-500 hover:bg-stone-800 hover:text-white border border-gray-700 rounded text-[20px] max-sm:text-[16px]"
+                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] shadow bg-blue-500 text-white hover:bg-blue-600 max-sm:hover:bg-blue-600 max-sm:hover:text-inherit border-0 rounded text-[20px] max-sm:text-[16px]"
                         border
                         onClick={onClick}
                         disabled={animation}

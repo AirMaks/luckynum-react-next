@@ -452,10 +452,10 @@ export const TireCalculator: React.FC<Props> = props => {
                                                 </div>
                                             </div>
                                             <Slider
-                                                trackStyle={{ backgroundColor: "#2569e1" }}
+                                                trackStyle={{ backgroundColor: "#3B82F6" }}
                                                 handleStyle={{
-                                                    backgroundColor: "#2569e1",
-                                                    borderColor: "#2569e1",
+                                                    backgroundColor: "#3B82F6",
+                                                    borderColor: "#3B82F6",
                                                     opacity: 1,
                                                     boxShadow: "none",
                                                     width: "20px",

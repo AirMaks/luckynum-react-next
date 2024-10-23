@@ -94,14 +94,14 @@ export const SelectList: React.FC<SelectListProps> = props => {
     if (!items || !items.length) return null;
 
     return (
-        <>
+        <div className="relative">
             <div id={`${selectId}-description`} className="sr-only">
                 Выберите элемент из списка
             </div>
 
             <div
                 ref={selectRef}
-                className={cn("rounded p-[4px] border border-gray-700 relative flex items-center", [className])}
+                className={cn("rounded p-[4px] border border-[#e9e9e9] bg-[#fbfbfb] flex items-center", [className])}
                 aria-haspopup="listbox"
                 role="combobox"
                 aria-controls={listboxId}
@@ -123,9 +123,9 @@ export const SelectList: React.FC<SelectListProps> = props => {
                 <div
                     id={listboxId}
                     className={cn(
-                        "absolute max-h-[300px] top-[40px] right-0 left-0 overflow-y-auto z-[1001] border border-gray-700 rounded",
+                        "absolute max-h-[300px] shadow top-[45px] right-0 left-0 overflow-y-auto z-[1001] border border-[#e9e9e9] rounded",
                         { "opacity-0 hidden": !isOpen },
-                        ["bg-[#f5f5f7]"]
+                        ["bg-[#fbfbfb]"]
                     )}
                     role="listbox"
                     aria-labelledby={labelId}>
@@ -144,6 +144,6 @@ export const SelectList: React.FC<SelectListProps> = props => {
                     ))}
                 </div>
             </div>
-        </>
+        </div>
     );
 };

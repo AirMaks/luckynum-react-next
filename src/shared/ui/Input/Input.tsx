@@ -44,10 +44,10 @@ export const Input = memo(
                 onChange={onChangeHandler}
                 aria-label={ariaLabel}
                 className={cn(
-                    "bg-transparent border-0 outline-none w-full p-[4px]",
+                    "bg-[#fbfbfb] border-0 outline-none w-full p-[4px]",
                     {
                         rounded: rounded,
-                        "!border border-gray-700": border
+                        "!border border-[#e9e9e9]": border
                     },
                     [className]
                 )}

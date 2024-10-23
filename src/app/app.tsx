@@ -17,7 +17,7 @@ export const App = ({
 
     useEffect(() => {
         localStorage.setItem("prevUrl", pathname);
-    }, []);
+    }, [pathname]);
 
     const onToggleMenu = () => {
         setIsOpenMenu((prev: any) => !prev);

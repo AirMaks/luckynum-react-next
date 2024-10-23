@@ -57,7 +57,7 @@ const DaNet = () => {
                             {`${"Да"} или ${"Нет"}`}
                         </h1>
                         <Button
-                            className="leading-[0] min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white max-sm:hover:bg-[#f5f5f7] max-sm:hover:text-inherit border border-gray-700 rounded text-[20px] max-sm:text-[16px]"
+                            className="leading-[0] min-h-[62px] max-sm:min-h-[48px] shadow bg-blue-500 text-white hover:bg-blue-600 max-sm:hover:bg-blue-600 max-sm:hover:text-inherit border-0 rounded text-[20px] max-sm:text-[16px]"
                             onClick={generateAnswer}
                             disabled={isLoading}
                             ariaLabel="Кнопка для получения ответа"

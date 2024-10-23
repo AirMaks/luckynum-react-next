@@ -227,9 +227,12 @@ const CalorieCalculator = () => {
                     </FormFieldWrapper>
                     <Button
                         onClick={calculateCalories}
-                        className={cn("py-[7px] bg-blue-500 text-white", {
-                            "opacity-50 cursor-default": !Number(age) || !Number(weight) || !Number(height)
-                        })}
+                        className={cn(
+                            "leading-[0] min-h-[62px] max-sm:min-h-[48px] shadow bg-blue-500 text-white hover:bg-blue-600 max-sm:hover:bg-blue-600 max-sm:hover:text-inherit border-0 rounded text-[20px] max-sm:text-[16px]",
+                            {
+                                "opacity-50 cursor-default": !Number(age) || !Number(weight) || !Number(height)
+                            }
+                        )}
                         ariaLabel="Рассчитать калории">
                         Рассчитать
                     </Button>

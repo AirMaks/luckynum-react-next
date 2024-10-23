@@ -10,7 +10,7 @@ export const FormFieldWrapper = (props: any) => {
                     className={cn(
                         "block rounded truncate max-w-[-webkit-fill-available]",
                         {
-                            "leading-none bg-[#f5f5f7] px-[2px] text-[14px] max-sm:top-[-7px] max-sm:text-[12px] absolute top-[-8px] left-[7px]":
+                            "leading-none bg-[#fbfbfb] px-[2px] text-[14px] max-sm:top-[-7px] max-sm:text-[12px] absolute top-[-8px] left-[7px]":
                                 !labelOutside,
                             "mb-[5px]": labelOutside
                         },

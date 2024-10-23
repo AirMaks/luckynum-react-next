@@ -236,7 +236,9 @@ const QRCodeGenerator = () => {
                             value={phoneNumber}
                             onChange={value => setPhoneNumber(value as E164Number)}
                             localization={ru}
-                            inputClass="!w-full !h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
+                            buttonClass="!bg-[#fbfbfb] !border-[#e9e9e9]"
+                            dropdownClass="!bg-[#fbfbfb] !border-[#e9e9e9] !rounded"
+                            inputClass="!w-full !h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px] !bg-[#fbfbfb] !border-[#e9e9e9]"
                             containerClass="w-full mb-[15px] !h-[40px] max-sm:h-[38px] text-[20px] max-sm:text-[16px]"
                             enableSearch={true}
                             placeholder=""
@@ -248,7 +250,7 @@ const QRCodeGenerator = () => {
                                 <Textarea
                                     spellcheck={false}
                                     id="textarea"
-                                    className="text-[20px] max-sm:text-[16px] block no-underline bg-transparent transition-all w-full outline-none p-[6px] leading-tight border border-black min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
+                                    className="text-[20px] max-sm:text-[16px] block no-underline transition-all w-full outline-none p-[6px] leading-tight border border-black min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
                                     ariaLabel="Введите сообщение"
                                     onChange={handleTextareaChange}></Textarea>
                             </FormFieldWrapper>
@@ -272,7 +274,7 @@ const QRCodeGenerator = () => {
                     </div>
                     <Button
                         onClick={generateQrValue}
-                        className="min-h-[34px] max-sm:min-h-[48px] bg-blue-500 text-white rounded text-[20px] max-sm:text-[16px]"
+                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] shadow bg-blue-500 text-white hover:bg-blue-600 max-sm:hover:bg-blue-600 max-sm:hover:text-inherit border-0 rounded text-[20px] max-sm:text-[16px]"
                         ariaLabel="Сгенерировать QR-код">
                         Создать QR
                     </Button>

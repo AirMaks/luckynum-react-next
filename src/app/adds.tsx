@@ -40,7 +40,6 @@ const YandexAd = ({ className, id }: { className: string; id: string }) => {
         if (pathname !== localStorage.getItem("prevUrl")) {
             loadAd();
         } else {
-
             if (typeof window !== "undefined") {
                 addEventListeners();
             }
@@ -49,7 +48,6 @@ const YandexAd = ({ className, id }: { className: string; id: string }) => {
                 removeEventListeners();
             };
         }
-
     }, [id]);
 
     return <div id={`yandex_rtb_${id}`} className={className}></div>;

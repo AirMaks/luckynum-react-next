@@ -54,7 +54,7 @@ export const Textarea = memo((props: TextareaProps) => {
             style={style}
             aria-label={ariaLabel}
             spellCheck={spellcheck}
-            className={cn(cls.Textarea, {}, [className])}>
+            className={cn(cls.Textarea, {}, ["bg-[#fbfbfb] border-[#e9e9e9]", className])}>
             {children}
         </textarea>
     );

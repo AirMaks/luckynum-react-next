@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import gifOne from "shared/assets/images/1.gif";
 import Image from "next/image";
 import { FormFieldWrapper } from "shared/ui/FormFieldWrapper";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
 function addProductJsonLd() {
     return {
@@ -31,10 +33,11 @@ const RandomNumber = () => {
         number: 0 as number | string | boolean | Array<string | boolean>,
         fromValue: 1,
         toValue: 10,
-        time: 1,
         isExclude: false,
         animation: false
     });
+
+    const [time, setTime] = useState(1);
 
     const refFrom = useRef(null);
     const refTo = useRef(null);
@@ -43,7 +46,7 @@ const RandomNumber = () => {
 
     const onClick = () => {
         const num = getRandomNumber(state.fromValue, state.toValue, state.isExclude);
-        if ((num || num === 0) && typeof num === "number" && state.time > 0) {
+        if ((num || num === 0) && typeof num === "number" && time > 0) {
             setState(prevState => ({ ...prevState, animation: true }));
             setTimeout(() => {
                 setState(prevState => ({
@@ -51,7 +54,7 @@ const RandomNumber = () => {
                     animation: false,
                     number: num
                 }));
-            }, state.time * 1000);
+            }, time * 1000);
         } else {
             setState(prevState => ({ ...prevState, number: num }));
         }
@@ -69,21 +72,11 @@ const RandomNumber = () => {
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={addProductJsonLd()} key="page-jsonld" />
-            <div className="px-[10px]">
+            <div className="px-[10px] select-none">
                 <div className="mx-auto mt-[20px] max-sm:mt-[10px] bg-[#f5f5f7] shadow max-w-[430px] rounded p-[20px] max-sm:px-[10px]">
                     <h1 className="mb-[20px] text-center text-[24px] font-medium max-sm:text-[17px]">Генератор случайных чисел</h1>
-                    <Button
-                        className={cn(
-                            "leading-[1] min-h-[42px] bg-white-500 border mb-[15px] max-sm:mb-[10px] border-gray-700 rounded text-[18px] max-sm:text-[16px] max-sm:min-h-[38px]",
-                            { "bg-stone-800 text-white": state.isExclude }
-                        )}
-                        ariaLabel="Кнопка для исключения повторений"
-                        ariaPressed={state.isExclude}
-                        onClick={() => setState(prevState => ({ ...prevState, isExclude: !prevState.isExclude }))}>
-                        исключить повторения
-                    </Button>
-                    <div className="flex gap-[5px] mb-[15px] max-sm:mb-[10px]">
-                        <FormFieldWrapper label="От" htmlFor="from">
+                    <div className="flex gap-[5px] mb-[10px] max-sm:mb-[10px]">
+                        <FormFieldWrapper labelNone htmlFor="from">
                             <Input
                                 autofocus
                                 ref={refFrom}
@@ -95,7 +88,7 @@ const RandomNumber = () => {
                                 className="!text-[20px] h-[40px] max-sm:h-[38px] max-sm:!text-[16px]"
                             />
                         </FormFieldWrapper>
-                        <FormFieldWrapper label="До" htmlFor="to">
+                        <FormFieldWrapper labelNone htmlFor="to">
                             <Input
                                 ref={refTo}
                                 rounded={false}
@@ -106,20 +99,44 @@ const RandomNumber = () => {
                                 className="!text-[20px] h-[40px] max-sm:h-[38px] max-sm:!text-[16px]"
                             />
                         </FormFieldWrapper>
-                        <FormFieldWrapper label="Время анимации" htmlFor="time">
-                            <Input
-                                ref={refTime}
-                                rounded={false}
-                                id="time"
-                                ariaLabel="Время анимации в секундах"
-                                onChange={handleChange("time")}
-                                value={state.time.toString()}
-                                className="!text-[20px] h-[40px] max-sm:h-[38px] max-sm:!text-[16px]"
-                            />
-                        </FormFieldWrapper>
                     </div>
+                    <h3 className="mb-[10px] text-[14px]" aria-live="polite">
+                        Время анимации, сек: <span className="font-medium">{time}</span>
+                    </h3>
+                    <div className="mb-[20px] w-[calc(100%-15px)] mx-auto">
+                        <Slider
+                            trackStyle={{ backgroundColor: "#3B82F6" }}
+                            handleStyle={{
+                                backgroundColor: "#3B82F6",
+                                borderColor: "#3B82F6",
+                                opacity: 1,
+                                boxShadow: "none",
+                                width: "15px",
+                                height: "15px",
+                                marginTop: "-5px"
+                            }}
+                            min={1}
+                            max={10}
+                            value={time}
+                            onChange={value => setTime(Number(value))}
+                        />
+                    </div>
+                    <FormFieldWrapper
+                        label="исключить повторения"
+                        htmlFor="exclude"
+                        labelClassName="cursor-pointer !relative p-0 ml-[10px] bg-transparent !top-[unset]"
+                        className="flex mb-[20px] items-center me-[10px]">
+                        <Input
+                            id="exclude"
+                            type="checkbox"
+                            value={state.isExclude}
+                            onChange={() => setState(prevState => ({ ...prevState, isExclude: !prevState.isExclude }))}
+                            className="!w-auto cursor-pointer absolute"
+                            ariaLabel="Кнопка для исключения повторений"
+                        />
+                    </FormFieldWrapper>
                     <Button
-                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white max-sm:hover:bg-[#f5f5f7] max-sm:hover:text-inherit border border-gray-700 rounded text-[20px] max-sm:text-[16px]"
+                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] shadow bg-blue-500 text-white hover:bg-blue-600 max-sm:hover:bg-blue-600 max-sm:hover:text-inherit border-0 rounded text-[20px] max-sm:text-[16px]"
                         onClick={onClick}
                         disabled={state.animation}
                         ariaLabel="Кнопка, чтобы сгенерировать случайное число"

@@ -78,10 +78,10 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                                 Длина пароля: <span className="font-medium">{length}</span>
                             </h3>
                             <Slider
-                                trackStyle={{ backgroundColor: "#2569e1" }}
+                                trackStyle={{ backgroundColor: "#3B82F6" }}
                                 handleStyle={{
-                                    backgroundColor: "#2569e1",
-                                    borderColor: "#2569e1",
+                                    backgroundColor: "#3B82F6",
+                                    borderColor: "#3B82F6",
                                     opacity: 1,
                                     boxShadow: "none",
                                     width: "20px",
@@ -117,7 +117,7 @@ const PasswordGenerator = ({ includeNum, includeSym, len }: any) => {
                     </div>
 
                     <Button
-                        className="max-sm:hover:bg-[#f5f5f7] max-sm:hover:text-inherit min-h-[62px] max-sm:min-h-[48px] bg-white-500 hover:bg-stone-800 hover:text-white border border-gray-700 rounded mt-2 text-[20px] max-sm:text-[16px]"
+                        className="leading-[0] min-h-[62px] max-sm:min-h-[48px] shadow bg-blue-500 text-white hover:bg-blue-600 max-sm:hover:bg-blue-600 max-sm:hover:text-inherit border-0 rounded text-[20px] max-sm:text-[16px]"
                         onClick={generatePassword}
                         ariaLabel="Сгенерировать новый пароль">
                         Сгенерировать
