@@ -73,7 +73,7 @@ const RandomWordList = () => {
                                 spellCheck={false}
                                 autofocus
                                 id="textarea"
-                                className="text-[20px] max-sm:text-[16px] block no-underline transition-all w-full outline-none p-[6px] leading-tight border border-gray-700 min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
+                                className="text-[20px] max-sm:text-[16px] block no-underline transition-all w-full outline-none p-[6px] leading-tight min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
                                 onChange={handleTextareaChange}
                                 ariaLabel="Текстовое поле для ввода слов через запятую или с переносами строк"
                             />

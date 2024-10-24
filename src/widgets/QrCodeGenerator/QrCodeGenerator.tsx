@@ -250,7 +250,7 @@ const QRCodeGenerator = () => {
                                 <Textarea
                                     spellcheck={false}
                                     id="textarea"
-                                    className="text-[20px] max-sm:text-[16px] block no-underline transition-all w-full outline-none p-[6px] leading-tight border border-black min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
+                                    className="text-[20px] max-sm:text-[16px] block no-underline transition-all w-full outline-none p-[6px] leading-tight min-h-[58px] max-h-[170px] min-w-full overflow-auto text-left"
                                     ariaLabel="Введите сообщение"
                                     onChange={handleTextareaChange}></Textarea>
                             </FormFieldWrapper>
